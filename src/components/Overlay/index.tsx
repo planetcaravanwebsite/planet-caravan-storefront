@@ -6,5 +6,6 @@ export {
   OverlayContextInterface,
   OverlayTheme,
   OverlayType,
+  OverlayOverride,
   ShowOverlayType,
 } from "./context";

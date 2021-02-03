@@ -27,7 +27,7 @@ export const darkGreen = "#06847B";
 export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
-
+export const pcBlue = "#66B1E1";
 // theme colors
 export const theme = {
   activeMenuOption: darkGreen,
@@ -50,7 +50,7 @@ export const theme = {
   listAttributeName: baseFontColorSemiTransparent,
   listBullet: darkGreen,
   overlay: overlayColor,
-  primary: turquoise,
+  primary: pcBlue,
   primaryDark: turquoiseDark,
   primaryLight: turquoiseLight,
   primaryTransparent: turquoiseTransparent,

@@ -24,6 +24,7 @@ class Provider extends React.Component<
       show: this.show,
       theme: null,
       type: null,
+      override: null,
     };
   }
 

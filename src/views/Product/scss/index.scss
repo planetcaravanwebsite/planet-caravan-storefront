@@ -3,6 +3,13 @@
 .product-page {
   background-color: $white;
 
+  .blueBG {
+    background-color: $blue-dc;
+    color: $white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   .breadcrumbs {
     background-color: $white;
     padding: $spacer / 2 $spacer $spacer / 2 $spacer * 1.5;

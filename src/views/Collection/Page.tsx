@@ -4,10 +4,11 @@ import * as React from "react";
 import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
+import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { Breadcrumbs, ProductsFeatured } from "../../components";
+import { Breadcrumbs, MainMenu, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
@@ -92,43 +93,46 @@ const Page: React.FC<PageProps> = ({
     );
 
   return (
-    <div className="collection">
-      <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
-        <ProductListHeader
-          activeSortOption={activeSortOption}
-          openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
-          activeFilters={activeFilters}
-          activeFiltersAttributes={activeFiltersAttributes}
-          clearFilters={clearFilters}
-          sortOptions={sortOptions}
-          onChange={onOrder}
-          onCloseFilterAttribute={onAttributeFiltersChange}
-        />
-        {canDisplayProducts && (
-          <ProductList
-            products={products.edges.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
+    <>
+      <MainMenu demoMode={demoMode} whichMenu="homePage" />
+      <div className="collection">
+        <div className="container">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <FilterSidebar
+            show={showFilters}
+            hide={() => setShowFilters(false)}
+            onAttributeFiltersChange={onAttributeFiltersChange}
+            attributes={attributes}
+            filters={filters}
+          />
+          <ProductListHeader
+            activeSortOption={activeSortOption}
+            openFiltersMenu={() => setShowFilters(true)}
+            numberOfProducts={products ? products.totalCount : 0}
+            activeFilters={activeFilters}
+            activeFiltersAttributes={activeFiltersAttributes}
+            clearFilters={clearFilters}
+            sortOptions={sortOptions}
+            onChange={onOrder}
+            onCloseFilterAttribute={onAttributeFiltersChange}
+          />
+          {canDisplayProducts && (
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              canLoadMore={hasNextPage}
+              loading={displayLoader}
+              onLoadMore={onLoadMore}
+            />
+          )}
+        </div>
+
+        {!hasProducts && (
+          <ProductsFeatured
+            title={intl.formatMessage(commonMessages.youMightLike)}
           />
         )}
       </div>
-
-      {!hasProducts && (
-        <ProductsFeatured
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

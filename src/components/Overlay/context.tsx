@@ -17,6 +17,11 @@ export enum OverlayTheme {
   left = "left",
   right = "right",
   modal = "modal",
+  modalFull = "modalFull",
+}
+
+export enum OverlayOverride {
+  fullBg = "full",
 }
 
 export interface InnerOverlayContextInterface {
@@ -29,7 +34,8 @@ export interface InnerOverlayContextInterface {
 export type ShowOverlayType = (
   type: OverlayType,
   theme?: OverlayTheme,
-  context?: InnerOverlayContextInterface
+  context?: InnerOverlayContextInterface,
+  override?: OverlayOverride
 ) => void;
 
 export interface OverlayContextInterface {
@@ -37,6 +43,7 @@ export interface OverlayContextInterface {
   theme: OverlayTheme | null;
   context: InnerOverlayContextInterface;
   show: ShowOverlayType;
+  override: OverlayOverride | null;
   hide(): void;
 }
 
@@ -47,6 +54,7 @@ export const OverlayContext = React.createContext<OverlayContextInterface>({
   show: type => {},
   theme: null,
   type: null,
+  override: null,
 });
 /* tslint:enable:no-empty */
 

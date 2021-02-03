@@ -1,15 +1,22 @@
 import { styled } from "@styles";
 
-export const AddToCartSelection = styled.div``;
+export const AddToCartSelection = styled.div`
+  text-align: left;
+`;
 
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
+  font-family: yukarimobile;
+  font-size: 2rem;
+  line-height: 2rem;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
 
 export const ProductPricing = styled.h4`
-  font-weight: ${props => props.theme.typography.boldFontWeight};
+  font-weight: normal;
+  font-size: 2rem;
+  color: #999999;
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
 

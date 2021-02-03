@@ -21,6 +21,14 @@
       background-color: transparent;
       height: auto;
     }
+    .overlay__modalFull {
+      background-color: rgba(255,255,255,0.8);
+      height: auto;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      overflow: hidden;
+    }
   }
 
   &--no-background {
@@ -70,7 +78,7 @@
       &:focus {
         svg {
           * {
-            fill: $turquoise;
+            fill: $yellow;
           }
         }
       }
@@ -86,7 +94,7 @@
         display: flex;
         svg {
           * {
-            fill: $turquoise;
+            fill: $yellow;
           }
         }
       }

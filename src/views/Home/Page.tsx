@@ -2,10 +2,17 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { Button, Loader, ProductsFeatured } from "../../components";
+import logoImg from "../../images/pc-logo.png";
+
+import {
+  HomePageMenu,
+  HomePageSearch,
+  MainMenu,
+  ProductsFeatured,
+} from "../../components";
 import { generateCategoryUrl } from "../../core/utils";
 
 import {
@@ -17,6 +24,7 @@ import {
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
+import { demoMode } from "@temp/constants";
 
 const Page: React.FC<{
   loading: boolean;
@@ -31,62 +39,26 @@ const Page: React.FC<{
 
   return (
     <>
+      <MainMenu demoMode={demoMode} whichMenu="homePage" />
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>
-      <div
-        className="home-page__hero"
-        style={
-          backgroundImage
-            ? { backgroundImage: `url(${backgroundImage.url})` }
-            : null
-        }
-      >
-        <div className="home-page__hero-text">
-          <div>
-            <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
-              </h1>
-            </span>
-          </div>
-          <div>
-            <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Up to 70% off sale" />
-              </h1>
-            </span>
-          </div>
-        </div>
-        <div className="home-page__hero-action">
-          {loading && !categories ? (
-            <Loader />
-          ) : (
-            categoriesExist() && (
-              <Link
-                to={generateCategoryUrl(
-                  categories.edges[0].node.id,
-                  categories.edges[0].node.name
-                )}
-              >
-                <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
-                </Button>
-              </Link>
-            )
-          )}
+      <div className="section pad-bottom-20">
+        <div className="container w-container center">
+          <a href="/" aria-current="page" className="w-inline-block w--current">
+            <img src={logoImg} alt="" />
+          </a>
+          <HomePageMenu />
         </div>
       </div>
+      <HomePageSearch />
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
-            </h3>
-            <div className="home-page__categories__list">
+            <div className="home-page__categories__row-list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>
                   <Link
@@ -108,7 +80,6 @@ const Page: React.FC<{
                         })`,
                       }}
                     />
-                    <h3>{category.name}</h3>
                   </Link>
                 </div>
               ))}

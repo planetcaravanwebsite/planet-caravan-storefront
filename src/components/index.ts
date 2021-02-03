@@ -31,6 +31,8 @@ export {
 export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { Footer } from "./Footer";
 export { MainMenu } from "./MainMenu";
+export { HomePageMenu } from "./HomePageMenu";
+export { HomePageSearch } from "./HomePageSearch";
 export { MobileNavList, INavItem } from "./MobileNav";
 export { NavLink } from "./NavLink";
 export {

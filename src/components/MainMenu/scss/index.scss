@@ -1,14 +1,32 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.header-with-dropdown {
+  z-index: 3;
+}
+
+.bottom-bar {
+  min-height: 40px;
+  background: $light-gray;
+}
+
+
+
 .main-menu {
   align-items: center;
   align-items: stretch;
-  background-color: $white;
-  border-bottom: 1px solid $gray-light;
+  background-color: $blue-dc;
   display: flex;
   flex-direction: row;
   height: 3.55rem;
   position: relative;
+
+  &__phone {
+    color: $white;
+  }
+
+  &__add-margin {
+    margin-top: 40px;
+  }
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -43,7 +61,8 @@
 
     svg {
       width: 4rem;
-
+      transition: 0.3s;
+      fill: $white;
       @media (min-width: $small-screen) {
         width: 6rem;
       }
@@ -57,18 +76,17 @@
 
     a {
       text-decoration: none;
-      color: $base-font-color;
+      color: $light-font-color;
       position: relative;
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $yellow;
       }
     }
   }
 
   &__hamburger {
-    border-right: 1px solid $gray-light;
     cursor: pointer;
     padding: $spacer;
 
@@ -88,6 +106,7 @@
 
     svg {
       vertical-align: bottom;
+      fill: $white;
     }
   }
 
@@ -105,11 +124,12 @@
 
     svg * {
       transition: 0.3s;
+      fill: $white;
     }
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $yellow;
       }
     }
 
@@ -140,7 +160,7 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $yellow;
       fill-rule: inherit;
     }
   }
@@ -181,17 +201,22 @@
     transition: 0.3s;
 
     @media (min-width: $medium-screen) {
-      border-left: 1px solid $gray-light;
+
+    }
+
+    span {
+      color: $white;
     }
 
     svg * {
       transition: 0.3s;
+      fill: $white;
     }
 
     &:hover {
-      color: $turquoise;
+      color: $yellow;
       svg * {
-        fill: $turquoise;
+        fill: $yellow;
       }
     }
 

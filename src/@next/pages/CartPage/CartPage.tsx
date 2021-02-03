@@ -14,7 +14,9 @@ import { BASE_URL } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
+import { demoMode } from "@temp/constants";
 import { IProps } from "./types";
+import { MainMenu } from "../../../components";
 
 const title = (
   <h1 data-test="cartPageTitle">
@@ -138,18 +140,21 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
 
   if (loaded && items?.length) {
     return (
-      <Cart
-        title={title}
-        button={getCheckoutButton(history, user)}
-        cartHeader={cartHeader}
-        cartFooter={prepareCartFooter(
-          totalPrice,
-          shippingTaxedPrice,
-          promoTaxedPrice,
-          subtotalPrice
-        )}
-        cart={items && generateCart(items, removeItem, updateItem)}
-      />
+      <>
+        <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+        <Cart
+          title={title}
+          button={getCheckoutButton(history, user)}
+          cartHeader={cartHeader}
+          cartFooter={prepareCartFooter(
+            totalPrice,
+            shippingTaxedPrice,
+            promoTaxedPrice,
+            subtotalPrice
+          )}
+          cart={items && generateCart(items, removeItem, updateItem)}
+        />
+      </>
     );
   }
   return <CartEmpty button={getShoppingButton(history)} />;

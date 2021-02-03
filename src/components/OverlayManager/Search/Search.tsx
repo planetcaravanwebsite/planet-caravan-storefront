@@ -19,6 +19,7 @@ import {
   OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
+  OverlayTheme,
   OverlayType,
 } from "../..";
 import { searchUrl } from "../../../app/routes";
@@ -91,7 +92,11 @@ class Search extends React.Component<SearchProps, SearchState> {
       <Overlay
         testingContext="searchOverlay"
         context={this.props.overlay}
-        className="overlay--no-background"
+        className={
+          this.props.overlay.theme === OverlayTheme.modalFull
+            ? ""
+            : "overlay--no-background"
+        }
       >
         <form
           className={classNames("search", {

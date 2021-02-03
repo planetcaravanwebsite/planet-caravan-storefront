@@ -1,0 +1,23 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.nav-menu {
+  margin-right: 20px;
+  margin-left: 20px;
+  color: #fff;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.div-block {
+  margin-top: 10px;
+}
+
+.home-menu__ul {
+  display: flex!important;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+

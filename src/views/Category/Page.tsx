@@ -4,10 +4,12 @@ import * as React from "react";
 import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
+import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
+  MainMenu,
   ProductsFeatured,
 } from "../../components";
 
@@ -87,43 +89,46 @@ const Page: React.FC<PageProps> = ({
     );
 
   return (
-    <div className="category">
-      <div className="container">
-        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
-        <ProductListHeader
-          activeSortOption={activeSortOption}
-          openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
-          activeFilters={activeFilters}
-          activeFiltersAttributes={activeFiltersAttributes}
-          clearFilters={clearFilters}
-          sortOptions={sortOptions}
-          onChange={onOrder}
-          onCloseFilterAttribute={onAttributeFiltersChange}
-        />
-        {canDisplayProducts && (
-          <ProductList
-            products={products.edges.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
+    <>
+      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+      <div className="category">
+        <div className="container">
+          <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+          <FilterSidebar
+            show={showFilters}
+            hide={() => setShowFilters(false)}
+            onAttributeFiltersChange={onAttributeFiltersChange}
+            attributes={attributes}
+            filters={filters}
+          />
+          <ProductListHeader
+            activeSortOption={activeSortOption}
+            openFiltersMenu={() => setShowFilters(true)}
+            numberOfProducts={products ? products.totalCount : 0}
+            activeFilters={activeFilters}
+            activeFiltersAttributes={activeFiltersAttributes}
+            clearFilters={clearFilters}
+            sortOptions={sortOptions}
+            onChange={onOrder}
+            onCloseFilterAttribute={onAttributeFiltersChange}
+          />
+          {canDisplayProducts && (
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              canLoadMore={hasNextPage}
+              loading={displayLoader}
+              onLoadMore={onLoadMore}
+            />
+          )}
+        </div>
+
+        {!hasProducts && (
+          <ProductsFeatured
+            title={intl.formatMessage(commonMessages.youMightLike)}
           />
         )}
       </div>
-
-      {!hasProducts && (
-        <ProductsFeatured
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

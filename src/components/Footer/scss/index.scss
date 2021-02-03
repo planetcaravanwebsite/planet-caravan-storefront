@@ -1,10 +1,27 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .footer {
+
+  .yukarimobile {
+    font-family: 'Yukarimobile', sans-serif;
+    &.med {
+      font-size: 40px;
+      line-height: 60px;
+    }
+  }
+
+  background-color: $blue-dc;
+  color: $white;
+
   &__favicons {
-    border-top: 1px solid $gray-light;
     display: flex;
     justify-content: center;
+
+    svg * {
+      transition: 0.3s;
+      fill: $white;
+    }
+
   }
 
   &__menu {
@@ -58,6 +75,10 @@
     }
 
     &__section {
+      &-logo {
+        margin-left: 40px;
+        margin-right: 40px;
+      }
       &-header {
         font-weight: $bold-font-weight;
         margin-bottom: $spacer;

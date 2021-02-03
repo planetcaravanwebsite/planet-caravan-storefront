@@ -31,6 +31,8 @@ import {
   ICheckoutShippingSubpageHandles,
 } from "./subpages";
 import { IProps } from "./types";
+import { MainMenu } from "../../../components";
+import { demoMode } from "@temp/constants";
 
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
@@ -87,6 +89,7 @@ const getButton = (text?: string, onClick?: () => void) => {
     return (
       <Button
         testingContext="checkoutPageNextStepButton"
+        id="checkoutBtn"
         onClick={onClick}
         type="submit"
       >
@@ -460,25 +463,28 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const activeStepIndex = getActiveStepIndex();
 
   return (
-    <Checkout
-      loading={submitInProgress}
-      navigation={getCheckoutProgress(
-        cartLoaded && checkoutLoaded,
-        activeStepIndex,
-        steps
-      )}
-      cartSummary={prepareCartSummary(
-        totalPrice,
-        subtotalPrice,
-        shippingTaxedPrice,
-        promoTaxedPrice,
-        items
-      )}
-      checkout={checkoutView}
-      paymentGateways={paymentGatewaysView}
-      hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
-      button={getButton(buttonText?.toUpperCase(), handleNextStepClick)}
-    />
+    <>
+      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+      <Checkout
+        loading={submitInProgress}
+        navigation={getCheckoutProgress(
+          cartLoaded && checkoutLoaded,
+          activeStepIndex,
+          steps
+        )}
+        cartSummary={prepareCartSummary(
+          totalPrice,
+          subtotalPrice,
+          shippingTaxedPrice,
+          promoTaxedPrice,
+          items
+        )}
+        checkout={checkoutView}
+        paymentGateways={paymentGatewaysView}
+        hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
+        button={getButton(buttonText?.toUpperCase(), handleNextStepClick)}
+      />
+    </>
   );
 };
 

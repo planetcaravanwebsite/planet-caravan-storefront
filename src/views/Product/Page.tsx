@@ -4,10 +4,13 @@ import Media from "react-media";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
+
+import { demoMode } from "@temp/constants";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import {
   Breadcrumbs,
+  MainMenu,
   OverlayContext,
   OverlayTheme,
   OverlayType,
@@ -79,57 +82,62 @@ const Page: React.FC<
   );
 
   return (
-    <div className="product-page">
-      <div className="container">
-        <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
-      </div>
-      <div className="container">
-        <div className="product-page__product">
-          <script className="structured-data-list" type="application/ld+json">
-            {structuredData(product)}
-          </script>
-          <Media query={{ maxWidth: smallScreen }}>
-            {matches =>
-              matches ? (
-                <>
-                  <GalleryCarousel images={getImages()} />
-                  <div className="product-page__product__info">
-                    {addToCartSection}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="product-page__product__gallery"
-                    ref={productGallery}
-                  >
-                    <ProductGallery images={getImages()} />
-                  </div>
-                  <div className="product-page__product__info">
-                    <div
-                      className={classNames(
-                        "product-page__product__info--fixed"
-                      )}
-                    >
+    <>
+      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+      <div className="product-page">
+        <div className="container">
+          <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
+        </div>
+        <div className="container">
+          <div className="product-page__product">
+            <script className="structured-data-list" type="application/ld+json">
+              {structuredData(product)}
+            </script>
+            <Media query={{ maxWidth: smallScreen }}>
+              {matches =>
+                matches ? (
+                  <>
+                    <GalleryCarousel images={getImages()} />
+                    <div className="product-page__product__info">
                       {addToCartSection}
                     </div>
-                  </div>
-                </>
-              )
-            }
-          </Media>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      className="product-page__product__gallery"
+                      ref={productGallery}
+                    >
+                      <ProductGallery images={getImages()} />
+                    </div>
+                    <div className="product-page__product__info">
+                      <div
+                        className={classNames(
+                          "product-page__product__info--fixed"
+                        )}
+                      >
+                        {addToCartSection}
+                      </div>
+                    </div>
+                  </>
+                )
+              }
+            </Media>
+          </div>
         </div>
-      </div>
-      <div className="container">
-        <div className="product-page__product__description">
-          <ProductDescription
-            descriptionJson={product.descriptionJson}
-            attributes={product.attributes}
-          />
+        <div className="blueBG">
+          <div className="container">
+            <div className="product-page__product__description">
+              <ProductDescription
+                descriptionJson={product.descriptionJson}
+                attributes={product.attributes}
+              />
+            </div>
+          </div>
         </div>
+        <OtherProducts products={product.category.products.edges} />
       </div>
-      <OtherProducts products={product.category.products.edges} />
-    </div>
+    </>
   );
 };
 

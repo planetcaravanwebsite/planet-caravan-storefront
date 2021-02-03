@@ -29,6 +29,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   const fieldErrors: any = {};
 
   if (errors) {
+    console.log(errors);
     errors.map(({ field, message }: { field: string; message: string }) => {
       fieldErrors[field] = fieldErrors[field]
         ? [...fieldErrors[field], { message }]

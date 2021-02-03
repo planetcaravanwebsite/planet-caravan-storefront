@@ -1,5 +1,30 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+
+.yukarimobile {
+  font-family: 'Yukarimobile', sans-serif;
+  &.med {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+
+.pad-bottom-20 {
+  padding-bottom: 20px;
+}
+
+.section {
+  background-color: $blue-dc;
+}
+
+.container {
+  &.center {
+    text-align: center;
+  }
+}
+
+
 .home-page {
   &__hero {
     background-color: $blue-overlay;
@@ -65,7 +90,6 @@
   }
 
   &__categories {
-    margin-bottom: 2rem;
 
     h3 {
       text-transform: uppercase;
@@ -111,10 +135,9 @@
 
       &__image {
         width: 100%;
-        height: 30rem;
+        height: 20rem;
         background-size: cover;
         background-position: center;
-        margin-bottom: 1rem;
 
         &--no-photo {
           background-color: $turquoise-light;

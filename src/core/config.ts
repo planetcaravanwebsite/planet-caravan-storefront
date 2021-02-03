@@ -61,6 +61,28 @@ export const SOCIAL_MEDIA = [
     path: require("../images/youtube-icon.svg"),
   },
 ];
+export const BRANDS = [
+  {
+    name: "yoCan",
+    path: require("../images/PC-yocan.png"),
+  },
+  {
+    name: "puff",
+    path: require("../images/PC-puff.png"),
+  },
+  {
+    name: "Exotic Soda",
+    path: require("../images/PC-exoticSoda.png"),
+  },
+  {
+    name: "Formula 420",
+    path: require("../images/PC-formula420.png"),
+  },
+  {
+    name: "G",
+    path: require("../images/PC-g.png"),
+  },
+];
 export const META_DEFAULTS = {
   custom: [],
   description:

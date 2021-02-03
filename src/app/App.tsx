@@ -5,7 +5,6 @@ import { DemoBanner, Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
 import {
   Footer,
-  MainMenu,
   MetaConsumer,
   OverlayManager,
   OverlayProvider,
@@ -27,9 +26,6 @@ const App: React.FC = () => {
       <OverlayProvider>
         <MetaConsumer />
         {demoMode && <DemoBanner />}
-        <header>
-          <MainMenu />
-        </header>
         <Routes />
         <Footer />
         <OverlayManager />
