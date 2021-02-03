@@ -4,7 +4,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
-
+import { demoMode } from "@temp/constants";
 import logoImg from "../../images/pc-logo.png";
 
 import {
@@ -24,7 +24,6 @@ import {
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
-import { demoMode } from "@temp/constants";
 
 const Page: React.FC<{
   loading: boolean;

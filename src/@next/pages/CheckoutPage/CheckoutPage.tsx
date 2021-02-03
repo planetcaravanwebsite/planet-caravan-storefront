@@ -18,7 +18,7 @@ import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
-
+import { demoMode } from "@temp/constants";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -32,7 +32,6 @@ import {
 } from "./subpages";
 import { IProps } from "./types";
 import { MainMenu } from "../../../components";
-import { demoMode } from "@temp/constants";
 
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
@@ -481,7 +480,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         )}
         checkout={checkoutView}
         paymentGateways={paymentGatewaysView}
-        hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
+        hidePaymentGateways={
+          steps[activeStepIndex].step !== CheckoutStep.Payment
+        }
         button={getButton(buttonText?.toUpperCase(), handleNextStepClick)}
       />
     </>

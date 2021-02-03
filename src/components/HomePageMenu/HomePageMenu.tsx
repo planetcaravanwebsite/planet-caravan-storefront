@@ -47,6 +47,7 @@ const HomePageMenu: React.FC = () => {
                         >
                           <NavDropdown
                             overlay={overlayContext}
+                            // @ts-ignore
                             showDropdown={
                               activeDropdown === item.id && hasSubNavigation
                             }
