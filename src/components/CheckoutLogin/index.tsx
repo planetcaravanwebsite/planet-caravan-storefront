@@ -5,7 +5,14 @@ import { Redirect } from "react-router";
 
 import { useAuth } from "@saleor/sdk";
 
-import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
+import { demoMode } from "@temp/constants";
+import {
+  MainMenu,
+  Offline,
+  OfflinePlaceholder,
+  Online,
+  OverlayContext,
+} from "..";
 
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
@@ -24,19 +31,22 @@ const CheckoutLogin: React.FC<{}> = () => {
     return <Redirect to="/checkout/" />;
   }
   return (
-    <div className="container">
-      <Online>
-        <div className="checkout-login">
-          <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
-          <div className="checkout-login__user">
-            <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
+    <>
+      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+      <div className="container">
+        <Online>
+          <div className="checkout-login">
+            <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
+            <div className="checkout-login__user">
+              <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
+            </div>
           </div>
-        </div>
-      </Online>
-      <Offline>
-        <OfflinePlaceholder />
-      </Offline>
-    </div>
+        </Online>
+        <Offline>
+          <OfflinePlaceholder />
+        </Offline>
+      </div>
+    </>
   );
 };
 

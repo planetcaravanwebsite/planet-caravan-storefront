@@ -16,7 +16,7 @@ import { ITaxedMoney } from "@types";
 
 import { demoMode } from "@temp/constants";
 import { IProps } from "./types";
-import { MainMenu } from "../../../components";
+import { MainMenu, Pelican } from "../../../components";
 
 const title = (
   <h1 data-test="cartPageTitle">
@@ -154,6 +154,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
           )}
           cart={items && generateCart(items, removeItem, updateItem)}
         />
+        <Pelican />
       </>
     );
   }
