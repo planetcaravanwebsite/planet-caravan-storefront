@@ -91,8 +91,6 @@ export class Pelican extends React.Component {
     if (!isFetched) {
       return null;
     }
-    return (
-      <div>{pelicanData.products.edges[0].node.name}</div>
-    );
+    return <div>{pelicanData.products.edges[0].node.name}</div>;
   }
 }
