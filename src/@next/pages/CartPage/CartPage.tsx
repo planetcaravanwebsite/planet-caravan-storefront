@@ -3,6 +3,7 @@ import { History } from "history";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router-dom";
+import { find } from "lodash";
 
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
@@ -70,11 +71,17 @@ const prepareCartFooter = (
   />
 );
 
+const hasPelican = (items: IItems) => {
+  console.log(find(items, ({ id }) => id === "UHJvZHVjdFZhcmlhbnQ6MzI1"));
+  return true;
+};
+
 const generateCart = (
   items: IItems,
   removeItem: (variantId: string) => any,
   updateItem: (variantId: string, quantity: number) => any
 ) => {
+  console.log(items);
   return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}
@@ -139,6 +146,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   };
 
   if (loaded && items?.length) {
+    console.log(items);
     return (
       <>
         <MainMenu demoMode={demoMode} whichMenu="fullPage" />
@@ -154,7 +162,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
           )}
           cart={items && generateCart(items, removeItem, updateItem)}
         />
-        <Pelican />
+        {hasPelican} && (<Pelican />)
       </>
     );
   }

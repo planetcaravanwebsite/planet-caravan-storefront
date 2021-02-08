@@ -96,7 +96,7 @@ export const CartRow: React.FC<IProps> = ({
       ]
     : undefined;
 
-  const productUrl = generateProductUrl(id, name);
+  const productUrl = name ? generateProductUrl(id, name) : "";
 
   return (
     <S.Wrapper data-test="cartRow" data-test-id={sku}>
