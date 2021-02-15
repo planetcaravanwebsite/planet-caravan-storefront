@@ -5,6 +5,7 @@ import * as React from "react";
 import { SocialMediaIcon } from "..";
 import { SOCIAL_MEDIA } from "../../core/config";
 import Brands from "./Brands";
+import Copywrite from "./Copywrite";
 
 const Footer: React.FC = () => (
   <div className="footer" id="footer">
@@ -14,6 +15,7 @@ const Footer: React.FC = () => (
         <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
       ))}
     </div>
+    <Copywrite />
   </div>
 );
 

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { useCart } from "@saleor/sdk";
 
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
-import { Container } from "@components/templates";
 import AddToCartButton from "../../@next/components/molecules/AddToCartButton";
 
 const API_URL = process.env.API_URI || "/graphql/";
@@ -17,8 +16,31 @@ export const Wrapper = styled.div`
   margin: 30px 0 100px 0;
 `;
 
+export const CenterDiv = styled.div`
+  margin: 0 auto;
+`;
+
+export const FLeft = styled.div`
+  float: left;
+`;
+
 export const ButtonWrapper = styled.div`
   float: left;
+  margin-left: 20px;
+`;
+
+export const Container = styled.div`
+  border: 1px gray solid;
+  width: ${props => `${props.theme.container.width}px`};
+  max-width: 100vw;
+  margin: 0 auto 20px auto;
+  padding: 0 ${props => props.theme.spacing.spacer};
+  ${media.xxxLargeScreen`
+    width: 40%;      
+  `}
+  ${media.largeScreen`
+    width: 90%;      
+  `}
 `;
 
 export const Pelican: React.FC<PelicanInterface> = () => {
@@ -123,25 +145,29 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   ) : (
     <Container>
       <Wrapper>
-        <ButtonWrapper>
-          Add a {pelicanData.products.edges[0].node.name} for $
-          {
-            pelicanData.products.edges[0].node.pricing.priceRange.start.net
-              .amount
-          }
-          ?{" "}
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <AddToCartButton
-            onSubmit={() =>
-              handleAddToCart(
-                pelicanData.products.edges[0].node.variants[0].id,
-                1
-              )
-            }
-            disabled={false}
-          />
-        </ButtonWrapper>
+        <CenterDiv>
+          <FLeft>
+            <b>
+              Add a {pelicanData.products.edges[0].node.name} for $
+              {
+                pelicanData.products.edges[0].node.pricing.priceRange.start.net
+                  .amount
+              }
+              ?{" "}
+            </b>
+          </FLeft>
+          <ButtonWrapper>
+            <AddToCartButton
+              onSubmit={() =>
+                handleAddToCart(
+                  pelicanData.products.edges[0].node.variants[0].id,
+                  1
+                )
+              }
+              disabled={false}
+            />
+          </ButtonWrapper>
+        </CenterDiv>
       </Wrapper>
     </Container>
   );

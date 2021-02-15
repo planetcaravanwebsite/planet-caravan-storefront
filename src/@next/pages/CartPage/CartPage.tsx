@@ -162,7 +162,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
           )}
           cart={items && generateCart(items, removeItem, updateItem)}
         />
-        {hasPelican} && (<Pelican />)
+        {hasPelican && <Pelican />}
       </>
     );
   }
