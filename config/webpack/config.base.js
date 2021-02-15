@@ -114,7 +114,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       prefix: "images/favicons/",
     }),
     new webpack.EnvironmentPlugin({
-      API_URI: "https://saleor-2-backend.herokuapp.com/graphql/",
+      API_URI: "https://planet-caravan-backend.herokuapp.com/graphql/",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",

@@ -9,8 +9,10 @@ import { Icon, NavLink } from "@components/atoms";
 import { largeScreen, smallScreen } from "@styles/constants";
 import { maybe } from "@utils/misc";
 
-import LogoSmall from "images/logo-small.svg";
-import Logo from "images/logo.svg";
+// eslint-disable-next-line import/no-duplicates
+import LogoSmall from "images/pc-logo.png";
+// eslint-disable-next-line import/no-duplicates
+import Logo from "images/pc-logo.png";
 
 import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
