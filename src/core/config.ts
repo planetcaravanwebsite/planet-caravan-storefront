@@ -15,6 +15,9 @@ export const PROVIDERS = {
   STRIPE: {
     label: "Stripe",
   },
+  AUTHORIZE: {
+    label: "Authorize.Net",
+  },
   ADYEN: {
     label: "Adyen",
     script: {

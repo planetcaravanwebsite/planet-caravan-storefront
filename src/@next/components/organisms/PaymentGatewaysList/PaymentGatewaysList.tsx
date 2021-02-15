@@ -8,6 +8,7 @@ import {
   DummyPaymentGateway,
   StripePaymentGateway,
   AdyenPaymentGateway,
+  AuthorizePaymentGateway,
 } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -98,6 +99,39 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               </div>
             );
 
+          case PROVIDERS.AUTHORIZE.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayAuthorizeInput"
+                    name="payment-method"
+                    value="credit-card"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayAuthorizeName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <AuthorizePaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    formId={formId}
+                    processPayment={(token, cardData) =>
+                      processPayment(id, token, cardData)
+                    }
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
           case PROVIDERS.STRIPE.label:
             return (
               <div key={index}>
