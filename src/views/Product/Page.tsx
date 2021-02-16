@@ -56,6 +56,9 @@ const Page: React.FC<
       }
     }
 
+    console.log(Object.keys(product.descriptionJson).length);
+
+
     return product.images;
   };
 
@@ -128,12 +131,14 @@ const Page: React.FC<
         </div>
         <div className="blueBG">
           <div className="container">
-            <div className="product-page__product__description">
-              <ProductDescription
-                descriptionJson={product.descriptionJson}
-                attributes={product.attributes}
-              />
-            </div>
+            {Object.keys(product.descriptionJson).length > 2 && (
+              <div className="product-page__product__description">
+                <ProductDescription
+                  descriptionJson={product.descriptionJson}
+                  attributes={product.attributes}
+                />
+              </div>
+            )}
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />
