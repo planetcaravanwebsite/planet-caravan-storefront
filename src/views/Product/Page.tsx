@@ -58,7 +58,6 @@ const Page: React.FC<
 
     console.log(Object.keys(product.descriptionJson).length);
 
-
     return product.images;
   };
 
