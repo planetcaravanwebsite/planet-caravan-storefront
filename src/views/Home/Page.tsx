@@ -1,9 +1,9 @@
 import "./scss/index.scss";
 
-import classNames from "classnames";
+// import classNames from "classnames";
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { demoMode } from "@temp/constants";
 import logoImg from "../../images/pc-logo.png";
 
@@ -13,7 +13,7 @@ import {
   MainMenu,
   ProductsFeatured,
 } from "../../components";
-import { generateCategoryUrl } from "../../core/utils";
+// import { generateCategoryUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
@@ -23,7 +23,7 @@ import {
 
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
-import noPhotoImg from "../../images/no-photo.svg";
+// import noPhotoImg from "../../images/no-photo.svg";
 
 const Page: React.FC<{
   loading: boolean;
@@ -58,30 +58,21 @@ const Page: React.FC<{
         <div className="home-page__categories">
           <div className="container">
             <div className="home-page__categories__row-list">
-              {categories.edges.map(({ node: category }) => (
-                <div key={category.id}>
-                  <Link
-                    to={generateCategoryUrl(category.id, category.name)}
-                    key={category.id}
-                  >
-                    <div
-                      className={classNames(
-                        "home-page__categories__list__image",
-                        {
-                          "home-page__categories__list__image--no-photo": !category.backgroundImage,
-                        }
-                      )}
-                      style={{
-                        backgroundImage: `url(${
-                          category.backgroundImage
-                            ? category.backgroundImage.url
-                            : noPhotoImg
-                        })`,
-                      }}
-                    />
-                  </Link>
+              <div className="home-page__categories__row">
+                <div className="home-page__categories__list__image--no-photo">
+                  Drops
                 </div>
-              ))}
+              </div>
+              <div className="home-page__categories__row">
+                <div className="home-page__categories__list__image--no-photo">
+                  Headies
+                </div>
+              </div>
+              <div className="home-page__categories__row">
+                <div className="home-page__categories__list__image--no-photo">
+                  Smoke Shop
+                </div>
+              </div>
             </div>
           </div>
         </div>
