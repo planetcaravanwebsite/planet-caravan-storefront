@@ -49,6 +49,14 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const { items } = useCart();
   const { countries } = useContext(ShopContext);
 
+  // Add "United States" option on top.
+  const indexOfUSA = countries.indexOf(
+    countries.filter(option => option.code === "US")[0]
+  );
+  const USA = countries[indexOfUSA];
+  countries.splice(indexOfUSA, 1);
+  countries.unshift(USA);
+
   const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
   const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
 
