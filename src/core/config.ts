@@ -49,12 +49,12 @@ export const SOCIAL_MEDIA = [
     path: require("../images/facebook-icon.svg"),
   }, */
   {
-    ariaLabel: "instagram",
+    ariaLabel: "instagram account one",
     href: "https://www.instagram.com/planetcaravandrops/",
     path: require("../images/instagram-icon.svg"),
   },
   {
-    ariaLabel: "instagram",
+    ariaLabel: "instagram account two",
     href: "https://www.instagram.com/planetcaravansmokeshop/",
     path: require("../images/instagram-icon.svg"),
   },

@@ -19,7 +19,7 @@ import * as paths from "./paths";
 const PrivateRoute = ({ component, ...args }) => (
   <Route
     component={withAuthenticationRequired(component, {
-      returnTo: "/",
+      returnTo: args.path,
     })}
     {...args}
   />
@@ -31,7 +31,7 @@ export const Routes: React.FC = () => (
     <PrivateRoute path={paths.searchUrl} component={SearchPage} />
     <PrivateRoute path={paths.categoryUrl} component={CategoryPage} />
     <PrivateRoute path={paths.collectionUrl} component={CollectionPage} />
-    <PrivateRoute path={paths.productUrl} component={ProductPage} />
+    <Route path={paths.productUrl} component={ProductPage} />
     <PrivateRoute path={paths.cartUrl} component={CartPage} />
     <PrivateRoute path={paths.checkoutLoginUrl} component={CheckoutLogin} />
     <PrivateRoute path={paths.pageUrl} component={ArticlePage} />
