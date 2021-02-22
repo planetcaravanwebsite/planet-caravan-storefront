@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
+import { demoMode } from "@temp/constants";
 
 import { TaxedMoney } from "@components/containers";
 import {
@@ -13,7 +14,7 @@ import { DropdownMenu, IconButton } from "@components/atoms";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 
-import { AddressSummary, CartTable, NotFound } from "../../../components";
+import { AddressSummary, CartTable, MainMenu, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
 
 import { orderHistoryUrl } from "../../../app/routes";
@@ -37,6 +38,7 @@ const Page: React.FC<{
   const intl = useIntl();
   return order ? (
     <>
+      <MainMenu demoMode={demoMode} whichMenu="homePage" />
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
           <FormattedMessage defaultMessage="Go back to Order History" />

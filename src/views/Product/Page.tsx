@@ -46,6 +46,7 @@ const Page: React.FC<
   const [variantId, setVariantId] = React.useState("");
 
   const getImages = () => {
+    console.log(product);
     if (product.variants && variantId) {
       const variant = product.variants.find(
         variant => variant.id === variantId
