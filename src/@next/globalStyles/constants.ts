@@ -28,6 +28,9 @@ export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
 export const pcBlue = "#66B1E1";
+export const pcRed = "#E43024";
+export const pcYellow = "#F8EF24";
+
 // theme colors
 export const theme = {
   activeMenuOption: darkGreen,
@@ -64,6 +67,8 @@ export const theme = {
   tableDivider: tabelGray,
   tabsBorder: baseFontColorTransparent,
   thumbnailBorder: darkGreen,
+  red: pcRed,
+  yellow: pcYellow,
   white,
 };
 

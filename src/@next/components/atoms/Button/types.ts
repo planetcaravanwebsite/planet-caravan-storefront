@@ -5,7 +5,7 @@ export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button color type
    */
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "third";
   /**
    * Reference to HTML button element
    */

@@ -12,7 +12,7 @@ const fontSize = (fontSize: string, smallFontSize: string) => ({
 });
 
 export const Primary = styled.button<{
-  color: "primary" | "secondary";
+  color: "primary" | "secondary" | "third";
   fullWidth?: boolean;
   size: Size;
 }>`
@@ -59,6 +59,15 @@ export const Secondary = styled(Primary)`
     ${props => props.theme.button.colors.secondary.color};
   border-left: 1px solid ${props => props.theme.button.colors.secondary.color};
   border-right: 1px solid ${props => props.theme.button.colors.secondary.color};
+`;
+
+export const Third = styled(Primary)`
+  color: ${props => props.theme.button.colors[props.color].color};
+  background-color: ${props =>
+    props.theme.button.colors[props.color].background};
+  &:disabled {
+    color: ${props => props.theme.button.colors["primary"].color};
+  }
 `;
 
 export const Text = styled.span<{ size: Size }>`

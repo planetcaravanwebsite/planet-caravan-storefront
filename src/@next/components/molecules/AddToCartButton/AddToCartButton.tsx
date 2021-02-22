@@ -16,7 +16,7 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       fullWidth
       testingContext="addProductToCartButton"
       onClick={onSubmit}
-      color="primary"
+      color="third"
       disabled={disabled}
     >
       <FormattedMessage defaultMessage="Add to cart" />

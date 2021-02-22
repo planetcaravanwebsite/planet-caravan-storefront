@@ -30,6 +30,13 @@ export const defaultTheme = {
         hoverBackground: C.theme.secondary,
         hoverColor: C.white,
       },
+      third: {
+        activeBackground: C.theme.secondaryDark,
+        background: C.theme.red,
+        color: C.theme.yellow,
+        hoverBackground: C.theme.secondary,
+        hoverColor: C.white,
+      },
     },
     padding: {
       main: "0.9rem 3.7rem",
