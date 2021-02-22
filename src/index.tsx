@@ -15,8 +15,8 @@ import { SaleorProvider } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
-import { App } from "./app";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { App } from "./app";
 import { LocaleProvider } from "./components/Locale";
 import {
   apiUrl,

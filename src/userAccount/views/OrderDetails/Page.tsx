@@ -14,7 +14,12 @@ import { DropdownMenu, IconButton } from "@components/atoms";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 
-import { AddressSummary, CartTable, MainMenu, NotFound } from "../../../components";
+import {
+  AddressSummary,
+  CartTable,
+  MainMenu,
+  NotFound,
+} from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
 
 import { orderHistoryUrl } from "../../../app/routes";
