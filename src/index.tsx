@@ -16,6 +16,7 @@ import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { LocaleProvider } from "./components/Locale";
 import {
   apiUrl,
@@ -49,13 +50,19 @@ const startApp = async () => {
 
   const Root = hot(module)(() => {
     return (
-      <Router history={history}>
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <SaleorProvider config={SALEOR_CONFIG}>
-            <App />
-          </SaleorProvider>
-        </QueryParamProvider>
-      </Router>
+      <Auth0Provider
+        domain="dev-ng7oei8x.us.auth0.com"
+        clientId="DEfLg1xjmzKHzjIfOTegKHzahIiLLHq8"
+        redirectUri={window.location.origin}
+      >
+        <Router history={history}>
+          <QueryParamProvider ReactRouterRoute={Route}>
+            <SaleorProvider config={SALEOR_CONFIG}>
+              <App />
+            </SaleorProvider>
+          </QueryParamProvider>
+        </Router>
+      </Auth0Provider>
     );
   });
 
