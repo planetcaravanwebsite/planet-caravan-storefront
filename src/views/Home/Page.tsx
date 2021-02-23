@@ -3,7 +3,7 @@ import "./scss/index.scss";
 // import classNames from "classnames";
 import * as React from "react";
 import { useIntl } from "react-intl";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { demoMode } from "@temp/constants";
 import logoImg from "../../images/pc-logo.png";
 
@@ -59,19 +59,25 @@ const Page: React.FC<{
           <div className="container">
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
-                <div className="home-page__categories__list__image--no-photo">
-                  Drops
-                </div>
+                <Link to="/category/drops/54/">
+                  <div className="home-page__categories__list__image--no-photo">
+                    Drops
+                  </div>
+                </Link>
               </div>
               <div className="home-page__categories__row">
-                <div className="home-page__categories__list__image--no-photo">
-                  Headies
-                </div>
+                <Link to="/category/headies/52/">
+                  <div className="home-page__categories__list__image--no-photo">
+                    Headies
+                  </div>
+                </Link>
               </div>
               <div className="home-page__categories__row">
-                <div className="home-page__categories__list__image--no-photo">
-                  Smoke Shop
-                </div>
+                <Link to="/category/smoke-shop/56/">
+                  <div className="home-page__categories__list__image--no-photo">
+                    Smoke Shop
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

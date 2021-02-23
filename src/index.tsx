@@ -49,6 +49,7 @@ const startApp = async () => {
   };
 
   const Root = hot(module)(() => {
+
     return (
       <Auth0Provider
         domain="dev-ng7oei8x.us.auth0.com"

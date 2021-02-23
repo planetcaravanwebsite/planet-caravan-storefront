@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Media from "react-media";
 import ReactSVG from "react-svg";
-import searchImg from "../../images/search.svg";
+import searchImg from "../../images/search-dark.svg";
 
 import { mediumScreen } from "../../globalStyles/scss/variables.scss";
 

@@ -66,7 +66,7 @@ export const Third = styled(Primary)`
   background-color: ${props =>
     props.theme.button.colors[props.color].background};
   &:disabled {
-    color: ${props => props.theme.button.colors["primary"].color};
+    color: ${props => props.theme.button.colors.primary.color};
   }
 `;
 

@@ -1,6 +1,16 @@
 @import "../../../globalStyles/scss/variables.scss";
 .section-search {
-  background-color: #E43025;
+  span {
+    color: #002646;
+  }
+  svg {
+    fill: #002646!important;
+    &:hover {
+      color: white;
+      fill: white;
+    }
+  }
+  background-color: white;
   p {
     color: white;
     min-height: 50px;
