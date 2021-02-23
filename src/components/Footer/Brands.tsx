@@ -1,7 +1,16 @@
 import * as React from "react";
+import Slider from "react-slick";
 
 import "./scss/index.scss";
 import { BRANDS } from "../../core/config";
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+};
 
 class Brands extends React.PureComponent {
   render() {
@@ -10,11 +19,15 @@ class Brands extends React.PureComponent {
         <span className="yukarimobile med">our brands</span>
         <div className="footer-nav__section">
           <div className="footer-nav__section-content">
-            {BRANDS.map(brand => (
-              <span className="footer-nav__section-logo">
-                <img src={brand.path} alt={brand.name} />
-              </span>
-            ))}
+            <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+              <Slider {...settings}>
+                {BRANDS.map(brand => (
+                  <span className="footer-nav__section-logo">
+                    <img src={brand.path} alt={brand.name} />
+                  </span>
+                ))}
+              </Slider>
+            </div>
           </div>
         </div>
       </div>
