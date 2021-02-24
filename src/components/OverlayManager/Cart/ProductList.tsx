@@ -26,10 +26,10 @@ const ProductList: React.FC<{
       const API_URL = process.env.API_URI || "/graphql/";
 
       const queryData = async () => {
-        let query: string;
+        // let query: string;
         // if (loaded) {
         // @ts-ignore
-        query = JSON.stringify({
+        const query = JSON.stringify({
           query: `
       {
   product(id: "${line.variant.product.id}") {
