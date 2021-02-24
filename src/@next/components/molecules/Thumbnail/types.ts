@@ -9,7 +9,7 @@ interface ISource {
 }
 
 export interface IProps {
-  image: string;
+  image?: string;
   source: ISource;
   noPhotoDefault?: boolean;
   children?: any;
