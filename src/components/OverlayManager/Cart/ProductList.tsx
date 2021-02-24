@@ -7,10 +7,10 @@ import ReactSVG from "react-svg";
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 
-import { generateProductUrl } from "../../../core/utils";
-import removeImg from "../../../images/garbage.svg";
 import { find } from "lodash";
 import { useEffect, useState } from "react";
+import { generateProductUrl } from "../../../core/utils";
+import removeImg from "../../../images/garbage.svg";
 
 const ProductList: React.FC<{
   lines: ICheckoutModelLine[];
@@ -27,10 +27,10 @@ const ProductList: React.FC<{
 
       const queryData = async () => {
         let query: string;
-        //if (loaded) {
-          // @ts-ignore
-          query = JSON.stringify({
-            query: `
+        // if (loaded) {
+        // @ts-ignore
+        query = JSON.stringify({
+          query: `
       {
   product(id: "${line.variant.product.id}") {
     name
@@ -59,8 +59,8 @@ const ProductList: React.FC<{
   }
 }
     `,
-          });
-       // }
+        });
+        // }
 
         // @ts-ignore
         const response = await fetch(API_URL, {
@@ -76,7 +76,7 @@ const ProductList: React.FC<{
       const fetchData = async () => {
         const res = await queryData();
         console.log(res);
-        let z = find(res.product.variants, function(o) {
+        const z = find(res.product.variants, function (o) {
           // @ts-ignore
           return o.id === line.variant.id;
         });
