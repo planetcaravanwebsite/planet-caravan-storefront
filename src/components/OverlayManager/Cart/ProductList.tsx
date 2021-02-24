@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { Thumbnail } from "@components/molecules";
+import { ThumbnailCart } from "@components/molecules";
 
 import { find } from "lodash";
 import { useEffect, useState } from "react";
@@ -110,7 +110,7 @@ const ProductList: React.FC<{
           data-test-id={line.variant.sku}
         >
           <Link to={productUrl}>
-            <Thumbnail source={line.variant.product} image={varImage} />
+            <ThumbnailCart source={line.variant.product} image={varImage} />
           </Link>
           <div className="cart__list__item__details">
             <p data-test="price">
