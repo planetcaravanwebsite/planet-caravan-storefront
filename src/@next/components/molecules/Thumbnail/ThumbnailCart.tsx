@@ -2,7 +2,7 @@ import React from "react";
 
 import { maybe } from "@utils/misc";
 
-import { LoadingImage } from "@components/atoms";
+import { PlaceholderImage } from "@components/atoms";
 import { CachedImage } from "..";
 import { IProps } from "./types";
 
@@ -20,7 +20,7 @@ export const ThumbnailCart: React.FC<IProps> = ({
   const displayImage = image;
 
   if (!thumbnail && !thumbnail2x) {
-    return <LoadingImage />;
+    return <PlaceholderImage />;
   }
 
   return (
