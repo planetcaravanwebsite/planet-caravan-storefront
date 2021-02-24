@@ -119,7 +119,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const fetchData = async () => {
     const res = await queryData();
     setPelicanData(res);
-    console.log(res);
+    // console.log(res);
   };
 
   useEffect(() => {

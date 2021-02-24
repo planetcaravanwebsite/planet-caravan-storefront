@@ -56,7 +56,7 @@ const Page: React.FC<{
       />
       {categoriesExist() && (
         <div className="home-page__categories">
-          <div className="container">
+          <div className="">
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
                 <Link to="/category/drops/54/">

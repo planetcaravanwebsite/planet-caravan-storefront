@@ -9,13 +9,93 @@ import { Thumbnail } from "@components/molecules";
 
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
+import { find } from "lodash";
+import { useEffect, useState } from "react";
 
-const ProductList: React.SFC<{
+const ProductList: React.FC<{
   lines: ICheckoutModelLine[];
   remove(variantId: string): void;
 }> = ({ lines, remove }) => (
   <ul className="cart__list">
     {lines.map((line, index) => {
+      console.log(line);
+
+      const [isFetched, setIsFetched] = useState(false);
+      const [varImage, setVarImage] = useState("");
+
+      const API_URL = process.env.API_URI || "/graphql/";
+
+      const queryData = async () => {
+        let query: string;
+        //if (loaded) {
+          // @ts-ignore
+          query = JSON.stringify({
+            query: `
+      {
+  product(id: "${line.variant.product.id}") {
+    name
+    description
+    images {
+      url
+      id
+    }
+    variants {
+      id
+      sku
+      name
+      images {
+        url
+        id
+      }
+      pricing {
+        price {
+          gross {
+            amount
+            currency
+          }
+        }
+      }
+    }
+  }
+}
+    `,
+          });
+       // }
+
+        // @ts-ignore
+        const response = await fetch(API_URL, {
+          headers: { "content-type": "application/json" },
+          method: "POST",
+          body: query,
+        });
+
+        const responseJson = await response.json();
+        return responseJson.data;
+      };
+
+      const fetchData = async () => {
+        const res = await queryData();
+        console.log(res);
+        let z = find(res.product.variants, function(o) {
+          // @ts-ignore
+          return o.id === line.variant.id;
+        });
+        console.log(z.images[0]);
+        setVarImage(z.images[0].url);
+      };
+
+      // @ts-ignore
+      useEffect(() => {
+        let mounted = true;
+        fetchData().then(r => {
+          if (mounted) {
+            setIsFetched(true);
+          }
+        });
+        // eslint-disable-next-line no-return-assign
+        return () => (mounted = false);
+      }, [isFetched]);
+
       const productUrl = generateProductUrl(
         line.variant.product.id,
         line.variant.product.name
@@ -30,7 +110,7 @@ const ProductList: React.SFC<{
           data-test-id={line.variant.sku}
         >
           <Link to={productUrl}>
-            <Thumbnail source={line.variant.product} />
+            <Thumbnail source={line.variant.product} image={varImage} />
           </Link>
           <div className="cart__list__item__details">
             <p data-test="price">
