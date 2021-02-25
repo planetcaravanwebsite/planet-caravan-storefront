@@ -7,12 +7,7 @@ import { Link } from "react-router-dom";
 import { demoMode } from "@temp/constants";
 import logoImg from "../../images/pc-logo.png";
 
-import {
-  HomePageMenu,
-  HomePageSearch,
-  MainMenu,
-  ProductsFeatured,
-} from "../../components";
+import { HomePageSearch, MainMenu, ProductsFeatured } from "../../components";
 // import { generateCategoryUrl } from "../../core/utils";
 
 import {
@@ -47,7 +42,6 @@ const Page: React.FC<{
           <a href="/" aria-current="page" className="w-inline-block w--current">
             <img src={logoImg} alt="" />
           </a>
-          <HomePageMenu />
         </div>
       </div>
       <HomePageSearch />
@@ -56,7 +50,7 @@ const Page: React.FC<{
       />
       {categoriesExist() && (
         <div className="home-page__categories">
-          <div className="container">
+          <div>
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
                 <Link to="/category/drops/54/">

@@ -32,17 +32,19 @@
 }
 
 .home-page__categories__row {
-  width:33%;
+  margin: 8px 0;
+  width:calc(33% - 8px);
   display:flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-family: Yukarimobile;
-  text-shadow: 3px 3px 1px #524e4e;
+  text-shadow: 3px 3px 1px #000000;
   font-size: 40px;
   background-color: #E43024;
   @media screen and (max-width: 750px) {
     width:100%;
+    margin: 0 0 8px 0 !important;
   }
 }
 
@@ -50,7 +52,8 @@
   background-color: #F8EF24;
 }
 .home-page__categories__row:nth-child(2) {
-  background-color: #1F5D83;
+  background-color: #002646;
+  margin: 8px;
 }
 .home-page__categories__row:nth-child(3) {
   background-color: #E43024;
