@@ -56,6 +56,28 @@ export const TabTitle = styled.div<{ active?: boolean }>`
   `};
 `;
 
+export const TabTitleHidden = styled.div<{ active?: boolean }>`
+  display: none;
+  cursor: pointer;
+  min-width: 230px;
+  font-size: ${props => props.theme.typography.h3FontSize};
+  font-weight: ${props => props.theme.typography.boldFontWeight};
+  letter-spacing: 0.02em;
+  color: ${props => props.active && props.theme.colors.tabTitle};
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: ${props =>
+  props.active ? props.theme.colors.tabTitle : "transparent"};
+  padding-bottom: 25px;
+  margin-right: 60px;
+
+  ${media.smallScreen`
+    font-size: ${(props: any) => props.theme.typography.h4FontSize};
+    min-width: 150px;
+    margin-right: 20px;
+  `};
+`;
+
 export const AttributeName = styled.span`
   color: ${props => props.theme.colors.listAttributeName};
 `;

@@ -14,6 +14,7 @@ export const Button: React.FC<IProps> = ({
   testingContextId,
   fullWidth = false,
   size = "md",
+  outOfStock,
   ...props
 }: IProps) => {
   let ButtonWithTheme = color === "primary" ? S.Primary : S.Secondary;
@@ -22,6 +23,8 @@ export const Button: React.FC<IProps> = ({
     ButtonWithTheme = S.Primary;
   } else if (color === "secondary") {
     ButtonWithTheme = S.Secondary;
+  } else if (outOfStock) {
+    ButtonWithTheme = S.Special;
   } else {
     ButtonWithTheme = S.Third;
   }

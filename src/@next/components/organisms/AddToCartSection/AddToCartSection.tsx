@@ -85,6 +85,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     quantity
   );
 
+  const outOfStock = variantStock <= 0 && !!variantId;
+
   const renderErrorMessage = (message: string, testingContextId: string) => (
     <S.ErrorMessage
       data-test="stockErrorMessage"
@@ -174,9 +176,11 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       <AddToCartButton
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
+        specialColor={outOfStock}
       />
     </S.AddToCartSelection>
   );
 };
+
 AddToCartSection.displayName = "AddToCartSection";
 export default AddToCartSection;

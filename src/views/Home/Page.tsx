@@ -40,7 +40,7 @@ const Page: React.FC<{
       <div className="section pad-bottom-20">
         <div className="container w-container center">
           <a href="/" aria-current="page" className="w-inline-block w--current">
-            <img src={logoImg} alt="" />
+            <img className="resize-home-page-logo" src={logoImg} alt="" />
           </a>
         </div>
       </div>

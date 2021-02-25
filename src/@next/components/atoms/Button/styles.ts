@@ -70,6 +70,16 @@ export const Third = styled(Primary)`
   }
 `;
 
+export const Special = styled(Primary)`
+  color: ${props => props.theme.button.colors[props.color].color};
+  background-color: ${props =>
+    props.theme.button.colors[props.color].background};
+  &:disabled {
+    color: ${props => props.theme.button.colors.primary.color};
+    background-color: #e43024;
+  }
+`;
+
 export const Text = styled.span<{ size: Size }>`
   display: inline-block;
   font-size: ${({

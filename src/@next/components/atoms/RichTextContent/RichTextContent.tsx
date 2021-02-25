@@ -33,6 +33,12 @@ export const Wrapper = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
+  ul {
+    list-style-type: disc;
+    li {
+      margin-bottom: 8px;
+    }
+  }
 `;
 
 export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) => (

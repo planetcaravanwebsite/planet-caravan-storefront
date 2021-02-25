@@ -32,9 +32,9 @@ export const defaultTheme = {
       },
       third: {
         activeBackground: C.theme.secondaryDark,
-        background: C.theme.red,
-        color: C.theme.yellow,
-        hoverBackground: C.theme.secondary,
+        background: C.theme.secondary,
+        color: C.white,
+        hoverBackground: C.theme.primary,
         hoverColor: C.white,
       },
     },

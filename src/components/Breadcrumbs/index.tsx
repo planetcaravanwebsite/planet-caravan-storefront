@@ -38,8 +38,8 @@ export const extractBreadcrumbs = (category: Category_category) => {
   return breadcrumbs;
 };
 
-const getBackLink = (breadcrumbs: Breadcrumb[]) =>
-  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
+/* const getBackLink = (breadcrumbs: Breadcrumb[]) =>
+  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/"; */
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
@@ -69,11 +69,23 @@ const Breadcrumbs: React.FC<{
           ))}
         </ul>
       ) : (
-        <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>
-            <FormattedMessage defaultMessage="Back" />
-          </Link>
-        </div>
+        <ul className="breadcrumbs">
+          <li>
+            <Link to={baseUrl}>
+              <FormattedMessage {...commonMessages.home} />
+            </Link>
+          </li>
+          {breadcrumbs.map((breadcrumb, index) => (
+            <li
+              key={breadcrumb.value}
+              className={classNames({
+                breadcrumbs__active: index === breadcrumbs.length - 1,
+              })}
+            >
+              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+            </li>
+          ))}
+        </ul>
       )
     }
   </Media>

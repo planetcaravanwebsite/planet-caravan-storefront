@@ -5,11 +5,13 @@ import { Button } from "@components/atoms";
 export interface IAddToCartButton {
   disabled: boolean;
   onSubmit: () => void;
+  specialColor: boolean;
 }
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({
   onSubmit,
   disabled,
+  specialColor,
 }) => {
   return (
     <Button
@@ -18,10 +20,12 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       onClick={onSubmit}
       color="third"
       disabled={disabled}
+      outOfStock={specialColor}
     >
       <FormattedMessage defaultMessage="Add to cart" />
     </Button>
   );
 };
+
 AddToCartButton.displayName = "AddToCartButton";
 export default AddToCartButton;

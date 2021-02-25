@@ -21,7 +21,7 @@ export const ProductDescription: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <S.Tabs>
-        <S.TabTitle
+        <S.TabTitleHidden
           active={activeTab === TABS.DESCRIPTION}
           onMouseEnter={evt => {
             evt.stopPropagation();
@@ -33,8 +33,8 @@ export const ProductDescription: React.FC<IProps> = ({
           }}
         >
           <FormattedMessage defaultMessage="DESCRIPTION" />
-        </S.TabTitle>
-        <S.TabTitle
+        </S.TabTitleHidden>
+        <S.TabTitleHidden
           active={activeTab === TABS.ATTRIBUTES}
           onMouseEnter={evt => {
             evt.stopPropagation();
@@ -46,7 +46,7 @@ export const ProductDescription: React.FC<IProps> = ({
           }}
         >
           <FormattedMessage defaultMessage="ATTRIBUTES" />
-        </S.TabTitle>
+        </S.TabTitleHidden>
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (

@@ -19,6 +19,10 @@ export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    */
   size?: Size;
   /**
+   * Size
+   */
+  outOfStock?: boolean;
+  /**
    * Used as marker for writing e2e tests
    */
   testingContext: string;
