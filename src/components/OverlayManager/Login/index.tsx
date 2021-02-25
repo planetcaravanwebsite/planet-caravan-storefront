@@ -48,7 +48,7 @@ class Login extends React.Component<
           <Online>
             <div className="overlay__header">
               <p className="overlay__header-text">
-                <FormattedMessage defaultMessage="Saleor account" />
+                <FormattedMessage defaultMessage="Planet Caravan Account" />
               </p>
               <ReactSVG
                 path={closeImg}
