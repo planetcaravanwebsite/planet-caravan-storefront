@@ -22,6 +22,7 @@ export * from "./Message";
 export * from "./NavLink";
 export * from "./NotificationTemplate";
 export * from "./PlaceholderImage";
+export * from "./LoadingImage";
 export * from "./Radio";
 export * from "./RichTextContent";
 export * from "./Select";
