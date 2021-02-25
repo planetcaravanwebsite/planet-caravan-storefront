@@ -42,7 +42,7 @@ const HomePageMenu: React.FC = () => {
                       return (
                         <li
                           data-cy="main-menu__item"
-                          className="main-menu__item yukarimobile med"
+                          className="main-menu__item coda med"
                           key={item.id}
                         >
                           <NavDropdown

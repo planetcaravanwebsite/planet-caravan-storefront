@@ -1,7 +1,24 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.social-container {
+  width: 30%;
+  @media screen and (max-width: 750px) {
+    width:100%;
+  }
+}
+
+.social-text {
+  display: block;
+  float: left;
+  margin-top: 24px;
+  &:hover {
+    color: $turquoise;
+  }
+}
+
 .social-icon {
   padding: $spacer $spacer / 2;
+  float: left;
 
   svg * {
     transition: 0.3s;

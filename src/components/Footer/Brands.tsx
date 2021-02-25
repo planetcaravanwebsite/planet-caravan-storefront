@@ -16,7 +16,7 @@ class Brands extends React.PureComponent {
   render() {
     return (
       <div className="container center">
-        <span className="yukarimobile med">our brands</span>
+        <span className="coda med">our brands</span>
         <div className="footer-nav__section">
           <div className="footer-nav__section-content">
             <div style={{ maxWidth: "600px", margin: "0 auto" }}>

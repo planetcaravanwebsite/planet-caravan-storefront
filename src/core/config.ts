@@ -16,7 +16,7 @@ export const PROVIDERS = {
     label: "Stripe",
   },
   AUTHORIZE: {
-    label: "Authorize.Net",
+    label: "Credit Card",
   },
   ADYEN: {
     label: "Adyen",
@@ -49,12 +49,12 @@ export const SOCIAL_MEDIA = [
     path: require("../images/facebook-icon.svg"),
   }, */
   {
-    ariaLabel: "instagram account one",
+    ariaLabel: "@planetcaravandrops",
     href: "https://www.instagram.com/planetcaravandrops/",
     path: require("../images/instagram-icon.svg"),
   },
   {
-    ariaLabel: "instagram account two",
+    ariaLabel: "@planetcaravansmokeshop",
     href: "https://www.instagram.com/planetcaravansmokeshop/",
     path: require("../images/instagram-icon.svg"),
   },

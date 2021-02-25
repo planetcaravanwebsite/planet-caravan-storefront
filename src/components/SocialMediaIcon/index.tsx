@@ -14,13 +14,16 @@ export interface IconProps extends React.HTMLProps<HTMLAnchorElement> {
 }
 
 const SocialMediaIcon: React.FC<IconProps> = ({ medium, target }) => (
-  <a
-    href={medium.href}
-    target={target || "_blank"}
-    aria-label={medium.ariaLabel}
-  >
-    <ReactSVG path={medium.path} className="social-icon" />
-  </a>
+  <div className="social-container">
+    <a
+      href={medium.href}
+      target={target || "_blank"}
+      aria-label={medium.ariaLabel}
+    >
+      <span className="social-text">{medium.ariaLabel}</span>
+      <ReactSVG path={medium.path} className="social-icon" />
+    </a>
+  </div>
 );
 
 export default SocialMediaIcon;

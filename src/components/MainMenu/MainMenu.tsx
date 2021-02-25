@@ -20,7 +20,7 @@ import { maybe } from "../../core/utils";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
-import cartImg from "../../images/cart.svg";
+import cartImg from "../../images/noun_cart.svg";
 import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/pc-logo.png";
