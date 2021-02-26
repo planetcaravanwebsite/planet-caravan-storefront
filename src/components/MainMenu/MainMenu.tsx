@@ -65,79 +65,81 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
 
               return (
-                <ul>
-                  {whichMenu !== "homePage" && (
-                    <Media
-                      query={{ maxWidth: mediumScreen }}
-                      render={() => (
-                        <li
-                          data-test="toggleSideMenuLink"
-                          className="main-menu__hamburger"
-                          onClick={() =>
-                            overlayContext.show(
-                              OverlayType.sideNav,
-                              OverlayTheme.left,
-                              { data: items }
-                            )
-                          }
-                        >
-                          <ReactSVG
-                            path={hamburgerImg}
-                            className="main-menu__hamburger--icon"
-                          />
-                          <ReactSVG
-                            path={hamburgerHoverImg}
-                            className="main-menu__hamburger--hover"
-                          />
-                        </li>
-                      )}
-                    />
-                  )}
-                  {whichMenu === "homePage" && (
-                    <li
-                      data-test="toggleSideMenuLink"
-                      className="main-menu__hamburger"
-                      onClick={() =>
-                        overlayContext.show(
-                          OverlayType.sideNav,
-                          OverlayTheme.left,
-                          { data: items }
-                        )
-                      }
-                    >
-                      <ReactSVG
-                        path={hamburgerImg}
-                        className="main-menu__hamburger--icon"
-                      />
-                      <ReactSVG
-                        path={hamburgerHoverImg}
-                        className="main-menu__hamburger--hover"
-                      />
-                    </li>
-                  )}
-
-                  {whichMenu !== "homePage" && (
-                    <Link to={appPaths.baseUrl}>
-                      <img src={logoImg} style={{ width: "120px" }} alt="" />
-                    </Link>
-                  )}
-                  {whichMenu !== "homePage" && (
-                    <Media
-                      query={{ minWidth: mediumScreen }}
-                      render={() =>
-                        items.map(item => (
+                <>
+                  <ul>
+                    {whichMenu !== "homePage" && (
+                      <Media
+                        query={{ maxWidth: mediumScreen }}
+                        render={() => (
                           <li
-                            data-test="mainMenuItem"
-                            className="main-menu__item"
-                            key={item.id}
+                            data-test="toggleSideMenuLink"
+                            className="main-menu__hamburger"
+                            onClick={() =>
+                              overlayContext.show(
+                                OverlayType.sideNav,
+                                OverlayTheme.left,
+                                { data: items }
+                              )
+                            }
                           >
-                            <NavDropdown overlay={overlayContext} {...item} />
+                            <ReactSVG
+                              path={hamburgerImg}
+                              className="main-menu__hamburger--icon"
+                            />
+                            <ReactSVG
+                              path={hamburgerHoverImg}
+                              className="main-menu__hamburger--hover"
+                            />
                           </li>
-                        ))
-                      }
-                    />
-                  )}
-                </ul>
+                        )}
+                      />
+                    )}
+                    {whichMenu === "homePage" && (
+                      <li
+                        data-test="toggleSideMenuLink"
+                        className="main-menu__hamburger"
+                        onClick={() =>
+                          overlayContext.show(
+                            OverlayType.sideNav,
+                            OverlayTheme.left,
+                            { data: items }
+                          )
+                        }
+                      >
+                        <ReactSVG
+                          path={hamburgerImg}
+                          className="main-menu__hamburger--icon"
+                        />
+                        <ReactSVG
+                          path={hamburgerHoverImg}
+                          className="main-menu__hamburger--hover"
+                        />
+                      </li>
+                    )}
+
+                    {whichMenu !== "homePage" && (
+                      <Link to={appPaths.baseUrl}>
+                        <img src={logoImg} style={{ width: "120px" }} alt="" />
+                      </Link>
+                    )}
+                    {whichMenu !== "homePage" && (
+                      <Media
+                        query={{ minWidth: mediumScreen }}
+                        render={() =>
+                          items.map(item => (
+                            <li
+                              data-test="mainMenuItem"
+                              className="main-menu__item"
+                              key={item.id}
+                            >
+                              <NavDropdown overlay={overlayContext} {...item} />
+                            </li>
+                          ))
+                        }
+                      />
+                    )}
+                  </ul>
+                </>
               );
             }}
           </TypedMainMenuQuery>

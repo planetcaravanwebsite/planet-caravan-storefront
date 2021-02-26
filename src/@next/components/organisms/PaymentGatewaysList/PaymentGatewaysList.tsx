@@ -114,7 +114,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     customLabel
                   >
                     <span data-test="checkoutPaymentGatewayAuthorizeName">
-                      {name}
+                      Credit Card
                     </span>
                   </Radio>
                 </S.Tile>
