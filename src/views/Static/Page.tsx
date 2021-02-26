@@ -15,7 +15,7 @@ import {
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 const Page: React.FC<{
-  slug: string,
+  slug: string;
   loading: boolean;
   categories: ProductsList_categories;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
