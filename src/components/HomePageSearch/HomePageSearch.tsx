@@ -30,7 +30,11 @@ const HomePageSearch: React.FC = () => {
                   query={{ minWidth: mediumScreen }}
                   render={() => <span>search planet caravan</span>}
                 />
-                <img className="searchImage" src={searchImg} />
+                <img
+                  className="searchImage"
+                  src={searchImg}
+                  alt="search site"
+                />
               </div>
             </div>
           </div>
