@@ -1,6 +1,7 @@
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { History } from "history";
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react"; */
+import React from "react";
 import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router-dom";
 import { find } from "lodash";
@@ -13,7 +14,8 @@ import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { BASE_URL } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { IImage, ITaxedMoney } from "@types";
+/* import { IImage, ITaxedMoney } from "@types"; */
+import { ITaxedMoney } from "@types";
 
 import { demoMode } from "@temp/constants";
 import { IProps } from "./types";
@@ -79,10 +81,10 @@ const hasPelican = (items: IItems) => {
 const generateCart = (
   items: IItems,
   removeItem: (variantId: string) => any,
-  updateItem: (variantId: string, quantity: number) => any,
-  newImage: IImage
+  updateItem: (variantId: string, quantity: number) => any
+  // newImage: IImage
 ) => {
-  console.log(items);
+  // console.log(items);
   return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}
@@ -93,7 +95,10 @@ const generateCart = (
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       onQuantityChange={quantity => updateItem(variant.id, quantity)}
-      thumbnail={newImage}
+      thumbnail={{
+        ...variant?.product?.thumbnail,
+        alt: variant?.product?.thumbnail?.alt || "",
+      }}
       totalPrice={<TaxedMoney taxedMoney={totalPrice} />}
       unitPrice={<TaxedMoney taxedMoney={variant?.pricing?.price} />}
       sku={variant.sku}
@@ -130,8 +135,8 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     shippingPrice,
     discount,
   } = useCart();
-  const [isFetched, setIsFetched] = useState(false);
-  const [varImage, setVarImage] = useState("");
+  // const [isFetched, setIsFetched] = useState(false);
+  // const [varImage, setVarImage] = useState("");
 
   const API_URL = process.env.API_URI || "/graphql/";
 
@@ -139,10 +144,11 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     let query: string;
     if (loaded) {
       // @ts-ignore
+      // myid really means: ${items[0].variant.product.id}
       query = JSON.stringify({
         query: `
       {
-  product(id: "${items[0].variant.product.id}") {
+  product(id: "myid") {
     name
     description
     images {
@@ -183,6 +189,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     return responseJson.data;
   };
 
+  // @ts-ignore
   const fetchData = async () => {
     const res = await queryData();
     const z = find(res.product.variants, function (o) {
@@ -190,20 +197,20 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       return o.id === items[0].variant.id;
     });
     console.log(z.images[0]);
-    setVarImage(z.images[0].url);
+    // setVarImage(z.images[0].url);
   };
 
   // @ts-ignore
-  useEffect(() => {
-    let mounted = true;
-    fetchData().then(r => {
-      if (mounted) {
-        setIsFetched(true);
-      }
-    });
-    // eslint-disable-next-line no-return-assign
-    return () => (mounted = false);
-  }, [isFetched]);
+  //  useEffect(() => {
+  //    let mounted = true;
+  //    fetchData().then(r => {
+  //      if (mounted) {
+  //        setIsFetched(true);
+  //      }
+  //    });
+  // eslint-disable-next-line no-return-assign
+  //    return () => (mounted = false);
+  //  }, [isFetched]);
 
   const shippingTaxedPrice =
     checkout?.shippingMethod?.id && shippingPrice
@@ -218,7 +225,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   };
 
   if (loaded && items?.length) {
-    console.log(items);
+    // console.log(items);
     return (
       <>
         <MainMenu demoMode={demoMode} whichMenu="fullPage" />
@@ -233,11 +240,11 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
             subtotalPrice
           )}
           cart={
-            items &&
-            generateCart(items, removeItem, updateItem, {
+            items && generateCart(items, removeItem, updateItem)
+            /*            generateCart(items, removeItem, updateItem, {
               url: varImage,
               url2x: varImage,
-            })
+            }) */
           }
         />
         {hasPelican && <Pelican />}
