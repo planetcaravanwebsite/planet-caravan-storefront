@@ -22,7 +22,8 @@ import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
-import cartImg from "../../../images/cart.svg";
+// import cartImg from "../../../images/cart.svg";
+import cartImg from "../../../images/noun_cart.svg";
 import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {

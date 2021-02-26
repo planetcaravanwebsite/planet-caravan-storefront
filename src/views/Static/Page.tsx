@@ -5,6 +5,7 @@ import { demoMode } from "@temp/constants";
 import { MainMenu } from "../../components";
 import { About } from "./pages/about";
 import { Contact } from "./pages/contact";
+import { Locations } from "./pages/locations";
 
 import {
   ProductsList_categories,
@@ -30,6 +31,7 @@ const Page: React.FC<{
       <div className="static-page">
         {slug === "about" && <About />}
         {slug === "contact" && <Contact />}
+        {slug === "locations" && <Locations />}
       </div>
     </>
   );

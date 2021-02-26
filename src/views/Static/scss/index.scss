@@ -10,9 +10,60 @@
     margin: 1rem 0;
   }
 
-  .about-page {
-    text-align: left;
+  h2 {
+    font-family: "Coda Caption", serif;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+
+  h3 {
+    font-family: "Coda Caption";
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+
+  .locations-page {
     padding: 100px;
+    text-align: left;
+    p {
+      margin: 10px 0;
+    }
+    b {
+      font-weight: bold;
+    }
+    .locations-grid {
+      display: flex;
+      flex-wrap: wrap;
+      .locations-grid-item {
+        flex-basis: calc(50% - 20px);
+        box-shadow: 0 0 0 1px gray;
+        margin: 10px 10px;
+        padding: 20px 20px;
+        background: rgba(0,0,0,0.05);
+      }
+    }
+  }
+
+  .about-page {
+    padding: 100px;
+    text-align: left;
+  }
+  .contact-page {
+    padding: 100px;
+    text-align: left;
+    p {
+      margin: 10px 0;
+    }
+    b {
+      font-weight: bold;
+    }
+    a {
+      color: #E43024;
+    }
   }
 }
 
