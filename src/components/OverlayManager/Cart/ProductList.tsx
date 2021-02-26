@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { ThumbnailCart } from "@components/molecules";
+import { Thumbnail } from "@components/molecules";
 
 import { find } from "lodash";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
 
@@ -20,8 +20,8 @@ const ProductList: React.FC<{
     {lines.map((line, index) => {
       console.log(line);
 
-      const [isFetched, setIsFetched] = useState(false);
-      const [varImage, setVarImage] = useState("");
+      // const [isFetched, setIsFetched] = useState(false);
+      // const [varImage, setVarImage] = useState("");
 
       const API_URL = process.env.API_URI || "/graphql/";
 
@@ -73,6 +73,7 @@ const ProductList: React.FC<{
         return responseJson.data;
       };
 
+      // @ts-ignore
       const fetchData = async () => {
         const res = await queryData();
         console.log(res);
@@ -81,20 +82,20 @@ const ProductList: React.FC<{
           return o.id === line.variant.id;
         });
         console.log(z.images[0]);
-        setVarImage(z.images[0].url);
+        // setVarImage(z.images[0].url);
       };
 
       // @ts-ignore
-      useEffect(() => {
-        let mounted = true;
-        fetchData().then(r => {
-          if (mounted) {
-            setIsFetched(true);
-          }
-        });
-        // eslint-disable-next-line no-return-assign
-        return () => (mounted = false);
-      }, [isFetched]);
+      //    useEffect(() => {
+      //      let mounted = true;
+      //      fetchData().then(r => {
+      //        if (mounted) {
+      //          setIsFetched(true);
+      //        }
+      //      });
+      // eslint-disable-next-line no-return-assign
+      //      return () => (mounted = false);
+      //    }, [isFetched]);
 
       const productUrl = generateProductUrl(
         line.variant.product.id,
@@ -110,7 +111,8 @@ const ProductList: React.FC<{
           data-test-id={line.variant.sku}
         >
           <Link to={productUrl}>
-            <ThumbnailCart source={line.variant.product} image={varImage} />
+            <Thumbnail source={line.variant.product} />
+            {/* image={varImage} /> */}
           </Link>
           <div className="cart__list__item__details">
             <p data-test="price">
