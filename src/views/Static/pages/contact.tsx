@@ -1,7 +1,7 @@
 import "../scss/index.scss";
 import * as React from "react";
 
-import { Formik, Field, Form, useFormik } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as S from "@components/molecules/TextField/styles";
 
 export const Contact: React.FC<any> = () => {

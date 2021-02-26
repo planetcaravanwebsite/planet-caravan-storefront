@@ -12,9 +12,11 @@ const Footer: React.FC = () => (
   <div className="footer" id="footer">
     <Brands />
     <div className="footer__favicons container">
-      {SOCIAL_MEDIA.map(medium => (
-        <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
-      ))}
+      <div className="margin">
+        {SOCIAL_MEDIA.map(medium => (
+          <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
+        ))}
+      </div>
     </div>
     <Nav />
     <Copywrite />
