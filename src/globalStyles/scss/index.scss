@@ -9,6 +9,14 @@
 @import url('//fonts.googleapis.com/css?family=Oswald');
 @import url('//fonts.cdnfonts.com/css/coda-caption');
 
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;

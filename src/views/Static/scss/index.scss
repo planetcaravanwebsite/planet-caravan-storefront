@@ -1,0 +1,17 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.static-page {
+
+  h1 {
+    font-family: "Coda Caption";
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 1rem 0;
+  }
+
+  .about-page {
+    text-align: left;
+  }
+}
+

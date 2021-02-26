@@ -165,6 +165,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
                 )
               }
               disabled={false}
+              specialColor={false}
             />
           </ButtonWrapper>
         </CenterDiv>

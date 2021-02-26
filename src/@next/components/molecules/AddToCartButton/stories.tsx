@@ -8,6 +8,7 @@ import { IAddToCartButton } from "./AddToCartButton";
 const DEFAULT_PROPS: IAddToCartButton = {
   disabled: false,
   onSubmit: () => undefined,
+  specialColor: false,
 };
 
 storiesOf("@components/molecules/AddToCartButton", module)

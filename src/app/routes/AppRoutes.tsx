@@ -8,6 +8,7 @@ import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
+import { StaticPage } from "../../views/Static";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
@@ -35,6 +36,7 @@ export const Routes: React.FC = () => (
     <PrivateRoute path={paths.cartUrl} component={CartPage} />
     <PrivateRoute path={paths.checkoutLoginUrl} component={CheckoutLogin} />
     <PrivateRoute path={paths.pageUrl} component={ArticlePage} />
+    <PrivateRoute path={paths.staticUrl} component={StaticPage} />
     <PrivateRoute path={accountPaths.baseUrl} component={UserAccount} />
     <PrivateRoute
       path={accountPaths.userOrderDetailsUrl}

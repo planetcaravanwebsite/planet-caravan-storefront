@@ -4,7 +4,7 @@ export const Wrapper = styled.div``;
 
 export const AttributeList = styled.ul`
   columns: 2;
-  column-width: 50%;
+  column-width: auto;
 
   ${media.largeScreen`
     column-width: 100%;
@@ -28,7 +28,7 @@ export const AttributeList = styled.ul`
 
 export const Tabs = styled.div`
   display: flex;
-  flex-wrap: none;
+  flex-wrap: nowrap;
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
   margin-bottom: 70px;
@@ -67,7 +67,7 @@ export const TabTitleHidden = styled.div<{ active?: boolean }>`
   border-bottom-width: 4px;
   border-bottom-style: solid;
   border-bottom-color: ${props =>
-  props.active ? props.theme.colors.tabTitle : "transparent"};
+    props.active ? props.theme.colors.tabTitle : "transparent"};
   padding-bottom: 25px;
   margin-right: 60px;
 
