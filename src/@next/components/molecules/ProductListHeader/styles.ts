@@ -42,6 +42,13 @@ export const Element = styled.span`
   padding-left: 2rem;
 `;
 
+export const ElementAnother = styled.span`
+  padding-left: 2rem;
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+
 export const Filters = styled.span`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   padding: 0 0.6rem;

@@ -10,13 +10,25 @@ const settings = {
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 750,
+      settings: {
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true,
+      },
+    },
+  ],
 };
 
 class Brands extends React.PureComponent {
   render() {
     return (
       <div className="container center">
-        <span className="coda med">our brands</span>
+        <span className="yukarimobile med">our brands</span>
         <div className="footer-nav__section">
           <div className="footer-nav__section-content">
             <div style={{ maxWidth: "600px", margin: "0 auto" }}>

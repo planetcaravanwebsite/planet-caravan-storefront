@@ -1,18 +1,25 @@
 @import "../../../globalStyles/scss/variables.scss";
 .section-search {
+
+  .searchImage {
+    height: 34px;
+    margin-bottom: -9px;
+  }
+
+  border-top: 5px solid white;
   span {
-    color: #002646;
-    font-family: 'Coda Caption', sans-serif;
+    color: white;
+    font-family: Yukarimobile;
     font-size: 24px;
   }
   svg {
-    fill: #002646!important;
+
     &:hover {
-      color: white;
-      fill: white;
+      // color: white;
+      // fill: white;
     }
   }
-  background-color: white;
+  background-color: #E43024;
   p {
     color: white;
     min-height: 50px;

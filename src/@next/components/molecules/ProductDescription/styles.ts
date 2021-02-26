@@ -1,6 +1,8 @@
 import { media, styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding-left: 25px;
+`;
 
 export const AttributeList = styled.ul`
   columns: 2;

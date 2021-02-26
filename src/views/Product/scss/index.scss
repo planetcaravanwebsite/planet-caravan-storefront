@@ -24,6 +24,7 @@
     @media (max-width: $small-screen) {
       display: block;
       margin-bottom: $spacer * 2;
+      padding-bottom: 0;
     }
 
     &__description {

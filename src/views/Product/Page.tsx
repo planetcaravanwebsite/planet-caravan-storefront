@@ -104,6 +104,14 @@ const Page: React.FC<
                     <GalleryCarousel images={getImages()} />
                     <div className="product-page__product__info">
                       {addToCartSection}
+                      {Object.keys(product.descriptionJson).length > 2 && (
+                        <div className="product-page__product__description">
+                          <ProductDescription
+                            descriptionJson={product.descriptionJson}
+                            attributes={product.attributes}
+                          />
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -121,24 +129,21 @@ const Page: React.FC<
                         )}
                       >
                         {addToCartSection}
+                        {Object.keys(product.descriptionJson).length > 2 && (
+                          <div className="product-page__product__description">
+                            <ProductDescription
+                              descriptionJson={product.descriptionJson}
+                              attributes={product.attributes}
+                            />
+                          </div>
+                        )}
+
                       </div>
                     </div>
                   </>
                 )
               }
             </Media>
-          </div>
-        </div>
-        <div className="blueBG">
-          <div className="container">
-            {Object.keys(product.descriptionJson).length > 2 && (
-              <div className="product-page__product__description">
-                <ProductDescription
-                  descriptionJson={product.descriptionJson}
-                  attributes={product.attributes}
-                />
-              </div>
-            )}
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />

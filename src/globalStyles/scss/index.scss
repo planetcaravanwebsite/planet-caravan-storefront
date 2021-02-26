@@ -158,3 +158,13 @@ body {
 .form-error {
   color: $rose;
 }
+
+.slick-slide img {
+  max-width: 75px;
+}
+
+.slick-next, .slick-prev {
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+}

@@ -41,12 +41,12 @@ export const ProductListHeader: React.FC<IProps> = ({
         </S.LeftSide>
 
         <S.RightSide>
-          <S.Element data-test="productsFoundCounter">
+          <S.ElementAnother data-test="productsFoundCounter">
             <S.Label>
               <FormattedMessage defaultMessage="Products found:" />{" "}
             </S.Label>
             {numberOfProducts}
-          </S.Element>
+          </S.ElementAnother>
           <S.Element>
             <S.Sort>
               <DropdownSelect

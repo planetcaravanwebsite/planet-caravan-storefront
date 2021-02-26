@@ -35,8 +35,8 @@
 }
 
 .home-page__categories__row {
-  margin: 8px 0;
-  width:calc(33% - 4px);
+  margin: 5px 0;
+  width:calc(33.33%);
   display:flex;
   justify-content: center;
   align-items: center;
@@ -53,10 +53,19 @@
 
 .home-page__categories__row:nth-child(1) {
   background-color: #F8EF24;
+  @media screen and (max-width: 750px) {
+    border-top: 5px solid white;
+    border-right: none;
+  }
 }
 .home-page__categories__row:nth-child(2) {
   background-color: #002646;
-  margin: 8px;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
+  @media screen and (max-width: 750px) {
+    border-left: none;
+    border-right: none;
+  }
 }
 .home-page__categories__row:nth-child(3) {
   background-color: #E43024;
@@ -191,6 +200,7 @@
           @media screen and (max-width: 750px) {
             font-size: 40px;
           }
+          font-family: Yukarimobile;
           margin-top: 100px;
           margin-bottom: 100px;
           //background-color: $turquoise-light;

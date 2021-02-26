@@ -3,8 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import Media from "react-media";
-import ReactSVG from "react-svg";
-import searchImg from "../../images/search-dark.svg";
+// import ReactSVG from "react-svg";
+import searchImg from "../../images/icon-search.png";
 
 import { mediumScreen } from "../../globalStyles/scss/variables.scss";
 
@@ -30,7 +30,7 @@ const HomePageSearch: React.FC = () => {
                   query={{ minWidth: mediumScreen }}
                   render={() => <span>search planet caravan</span>}
                 />
-                <ReactSVG path={searchImg} />
+                <img className="searchImage" src={searchImg} />
               </div>
             </div>
           </div>
