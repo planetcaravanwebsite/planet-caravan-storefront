@@ -26,7 +26,9 @@ export const Contact: React.FC<any> = () => {
           <h1>Contact</h1>
 
           <h2>There are a few ways you can contact us:</h2>
-          <a href="mailto:planetcaravanwebsite@gmail.com">Email: planetcaravanwebsite@gmail.com</a>
+          <a href="mailto:planetcaravanwebsite@gmail.com">
+            Email: planetcaravanwebsite@gmail.com
+          </a>
           <p>Call/Text Everyday 9AM-10PM EST: (513) 444-7448</p>
           <p>
             <b>
