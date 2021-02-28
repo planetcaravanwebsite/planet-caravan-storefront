@@ -9,7 +9,7 @@ const textProps = css`
 
 export const Wrapper = styled.div`
   background: none;
-  padding: 2.5rem;
+  // padding: 2.5rem;
   text-align: center;
   max-height: 30rem;
   transition: 0.3s;
@@ -26,7 +26,6 @@ export const Wrapper = styled.div`
 export const Title = styled.h4`
   text-transform: uppercase;
   font-weight: bold;
-  font-family: "Coda Caption";
   ${textProps}
 `;
 

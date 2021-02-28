@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   }
   p {
     margin-top: 20px;
+    font-size: 1.2rem;
   }
   b {
     font-weight: bold;
@@ -22,21 +23,23 @@ export const Wrapper = styled.div`
     font-style: italic;
   }
   h1 {
-    font-size: 24px;
+    font-size: 1.8rem;
     font-weight: bold;
   }
   h2 {
-    font-size: 22px;
+    font-size: 1.6rem;
     font-weight: bold;
   }
   h3 {
-    font-size: 20px;
+    font-size: 1.4rem;
     font-weight: bold;
   }
   ul {
     list-style-type: disc;
     li {
       margin-bottom: 8px;
+      margin-left: 21px;
+      font-size: 1.2rem;
     }
   }
 `;

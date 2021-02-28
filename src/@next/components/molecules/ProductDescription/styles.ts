@@ -4,6 +4,13 @@ export const Wrapper = styled.div`
   padding-left: 25px;
 `;
 
+export const Title = styled.h2`
+  text-align: left;
+  font-family: "Coda Caption";
+  margin-bottom: 18px;
+  font-size: 1.4rem;
+`;
+
 export const AttributeList = styled.ul`
   columns: 2;
   column-width: auto;
@@ -33,7 +40,7 @@ export const Tabs = styled.div`
   flex-wrap: nowrap;
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   overflow: hidden;
 `;
 

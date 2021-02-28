@@ -45,6 +45,10 @@ const Page: React.FC<
 
   const [variantId, setVariantId] = React.useState("");
 
+  console.log(product.category);
+  console.log(product.category.products);
+  console.log(product.category.products.edges);
+
   const getImages = () => {
     console.log(product);
     if (product.variants && variantId) {
