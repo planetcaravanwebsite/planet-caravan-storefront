@@ -22,7 +22,11 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       disabled={disabled}
       outOfStock={specialColor}
     >
-      <FormattedMessage defaultMessage="Add to cart" />
+      {specialColor ? (
+        <FormattedMessage defaultMessage="Out of Stock" />
+      ) : (
+        <FormattedMessage defaultMessage="Add to cart" />
+      )}
     </Button>
   );
 };
