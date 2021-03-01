@@ -83,7 +83,6 @@ export const Locations: React.FC<any> = () => {
                 <p>Sunday 10AM–9PM</p>
               </div>
             </div>
-
           </div>
         </div>
       </div>

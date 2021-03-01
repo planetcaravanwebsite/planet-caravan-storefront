@@ -1,6 +1,6 @@
 import { media, styled } from "@styles";
 
-export const List = styled.div<{numPerRow: number}>`
+export const List = styled.div<{ numPerRow: number }>`
   display: grid;
 
   grid-template-columns: ${props =>

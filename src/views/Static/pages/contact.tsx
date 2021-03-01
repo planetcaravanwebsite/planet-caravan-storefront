@@ -5,7 +5,7 @@ import { Formik, Field, Form } from "formik";
 import { styled } from "@styles";
 
 export const Primary = styled.button`
-  background-color: #66B1E1;
+  background-color: #66b1e1;
   transform: none;
   padding: 0.9rem 3.7rem;
   border: none;
