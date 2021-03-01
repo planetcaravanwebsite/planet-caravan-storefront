@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Carousel, ProductListItem } from "..";
+import { ProductListItem } from "..";
 import { generateProductUrl, maybe } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
@@ -24,8 +24,8 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
           return (
             <div className="products-featured">
               <div className="container">
-                <h3>{title}</h3>
-                <Carousel>
+                <h3>Featured Products</h3>
+                <div className="product-grid">
                   {products.map(({ node: product }) => (
                     <Link
                       to={generateProductUrl(product.id, product.name)}
@@ -34,7 +34,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                       <ProductListItem product={product} />
                     </Link>
                   ))}
-                </Carousel>
+                </div>
               </div>
             </div>
           );

@@ -5,8 +5,8 @@ export const About: React.FC<any> = () => {
   return (
     <>
       <div className="container">
-        <h1>About Us</h1>
         <div className="about-page">
+          <h1>About Us</h1>
           <p>
             Planet Caravan is a family owned smoke shop based in Cincinnati, OH.
             Originally opened in 2015, we have since expanded to four stores in

@@ -1,8 +1,10 @@
 import { media, styled } from "@styles";
 
-export const List = styled.div`
+export const List = styled.div<{numPerRow: number}>`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+
+  grid-template-columns: ${props =>
+    props.numPerRow === 3 ? "1fr 1fr 1fr" : "1fr 1fr 1fr 1fr;"};
   grid-gap: 0; // 2rem;
 
   ${media.largeScreen`

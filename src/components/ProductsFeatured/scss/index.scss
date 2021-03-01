@@ -15,4 +15,10 @@
     max-width: 255px;
     text-decoration: none;
   }
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0;
+  }
+
 }

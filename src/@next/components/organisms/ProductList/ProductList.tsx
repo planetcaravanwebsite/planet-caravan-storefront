@@ -16,10 +16,15 @@ export const ProductList: React.FC<IProps> = ({
   loading = false,
   testingContextId,
   onLoadMore = () => null,
+  numPerRow = 4,
 }: IProps) => {
   return (
     <>
-      <S.List data-test="productList" data-test-id={testingContextId}>
+      <S.List
+        data-test="productList"
+        data-test-id={testingContextId}
+        numPerRow={numPerRow}
+      >
         {products.map(product => {
           const { id, name } = product;
           return (

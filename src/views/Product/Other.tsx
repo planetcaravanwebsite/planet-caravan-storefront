@@ -13,7 +13,7 @@ const OtherProducts: React.FC<{
       <h4 className="product-page__other-products__title">
         <FormattedMessage defaultMessage="Other products in this category" />
       </h4>
-      <ProductList products={products.map(({ node }) => node)} />
+      <ProductList products={products.map(({ node }) => node)} numPerRow={3} />
     </div>
   </div>
 );

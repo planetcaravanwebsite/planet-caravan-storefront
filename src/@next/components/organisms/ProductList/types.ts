@@ -5,6 +5,7 @@ export interface IProps {
   canLoadMore?: boolean;
   loading?: boolean;
   onLoadMore?: () => void;
+  numPerRow?: number;
   /**
    * Used as marker for writing e2e tests. Use unique ID to differentiate
    * multiple elements in the same view from each other

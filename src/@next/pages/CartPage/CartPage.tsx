@@ -18,13 +18,14 @@ import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { demoMode } from "@temp/constants";
+import * as S from "./styles";
 import { IProps } from "./types";
 import { MainMenu, Pelican } from "../../../components";
 
 const title = (
-  <h1 data-test="cartPageTitle">
+  <S.PageHeader className="" data-test="cartPageTitle">
     <FormattedMessage defaultMessage="My Cart" />
-  </h1>
+  </S.PageHeader>
 );
 
 const getShoppingButton = (history: History) => (

@@ -45,9 +45,6 @@ const Page: React.FC<{
         </div>
       </div>
       <HomePageSearch />
-      <ProductsFeatured
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div>
@@ -77,6 +74,9 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <ProductsFeatured
+        title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
     </>
   );
 };
