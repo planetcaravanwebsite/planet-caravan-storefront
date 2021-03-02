@@ -71,24 +71,72 @@ export const SOCIAL_MEDIA = [
 ];
 export const BRANDS = [
   {
-    name: "yoCan",
-    path: require("../images/PC-yocan.png"),
+    name: "01",
+    path: require("../images/brands-footer/afm.png"),
   },
   {
-    name: "puff",
-    path: require("../images/PC-puff.png"),
+    name: "02",
+    path: require("../images/brands-footer/blazer.png"),
   },
   {
-    name: "Exotic Soda",
-    path: require("../images/PC-exoticSoda.png"),
+    name: "03",
+    path: require("../images/brands-footer/dcg.png"),
   },
   {
-    name: "Formula 420",
-    path: require("../images/PC-formula420.png"),
+    name: "04",
+    path: require("../images/brands-footer/dimaond.png"),
   },
   {
-    name: "G",
-    path: require("../images/PC-g.png"),
+    name: "05",
+    path: require("../images/brands-footer/esb.png"),
+  },
+  {
+    name: "06",
+    path: require("../images/brands-footer/exotic.png"),
+  },
+  {
+    name: "07",
+    path: require("../images/brands-footer/formula-420.png"),
+  },
+  {
+    name: "08",
+    path: require("../images/brands-footer/moodmatas.png"),
+  },
+  {
+    name: "09",
+    path: require("../images/brands-footer/pax.png"),
+  },
+  {
+    name: "10",
+    path: require("../images/brands-footer/pelicon.png"),
+  },
+  {
+    name: "11",
+    path: require("../images/brands-footer/randys.png"),
+  },
+  {
+    name: "12",
+    path: require("../images/brands-footer/raw.png"),
+  },
+  {
+    name: "13",
+    path: require("../images/brands-footer/scs.png"),
+  },
+  {
+    name: "14",
+    path: require("../images/brands-footer/sunami.png"),
+  },
+  {
+    name: "15",
+    path: require("../images/brands-footer/tag.png"),
+  },
+  {
+    name: "16",
+    path: require("../images/brands-footer/vibes.png"),
+  },
+  {
+    name: "17",
+    path: require("../images/brands-footer/zach.png"),
   },
 ];
 export const META_DEFAULTS = {
