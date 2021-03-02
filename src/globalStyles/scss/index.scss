@@ -160,11 +160,16 @@ body {
 }
 
 .slick-slide img {
-  max-width: 75px;
+  max-height: 50px;
 }
 
 .slick-next, .slick-prev {
   @media screen and (max-width: 750px) {
     display: none;
   }
+}
+
+.slider-control-bottomcenter {
+  width: 100%;
+  bottom: -25px!important;
 }

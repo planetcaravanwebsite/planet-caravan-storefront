@@ -29,6 +29,7 @@ export interface InnerOverlayContextInterface {
   content?: string | React.ReactNode;
   status?: "success" | "error";
   data?: any;
+  more?: boolean;
 }
 
 export type ShowOverlayType = (
@@ -44,6 +45,7 @@ export interface OverlayContextInterface {
   context: InnerOverlayContextInterface;
   show: ShowOverlayType;
   override: OverlayOverride | null;
+  more?: boolean;
   hide(): void;
 }
 

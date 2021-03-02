@@ -17,7 +17,7 @@ interface OverlayProps {
 const Overlay: React.FC<OverlayProps> = ({
   children,
   className,
-  context: { type, theme, hide },
+  context: { type, theme, hide, more },
   testingContext,
 }) => (
   <div
@@ -29,7 +29,10 @@ const Overlay: React.FC<OverlayProps> = ({
     onClick={hide}
   >
     <div className={`overlay__${theme}`} onClick={e => e.stopPropagation()}>
-      {children}
+      <>
+        {children}
+        {more && <div>hello</div>}
+      </>
     </div>
   </div>
 );

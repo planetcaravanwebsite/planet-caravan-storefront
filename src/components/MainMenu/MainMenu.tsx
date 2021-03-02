@@ -63,6 +63,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
+              console.log(items);
 
               return (
                 <>
@@ -78,7 +79,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                               overlayContext.show(
                                 OverlayType.sideNav,
                                 OverlayTheme.left,
-                                { data: items }
+                                { data: items, more: true }
                               )
                             }
                           >
@@ -141,36 +142,43 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                             ))
                           }
                         />
-                        <li
-                          data-test="mainMenuItem"
-                          className="main-menu__item"
-                        >
-                          <ul className="main-menu__nav-dropdown">
-                            <li>
-                              <a href="/static/locations/">Locations</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li
-                          data-test="mainMenuItem"
-                          className="main-menu__item"
-                        >
-                          <ul className="main-menu__nav-dropdown">
-                            <li>
-                              <a href="/static/about/">About</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li
-                          data-test="mainMenuItem"
-                          className="main-menu__item"
-                        >
-                          <ul className="main-menu__nav-dropdown">
-                            <li>
-                              <a href="/static/contact/">Contact</a>
-                            </li>
-                          </ul>
-                        </li>
+                        <Media
+                          query={{ minWidth: mediumScreen }}
+                          render={() => (
+                            <>
+                              <li
+                                data-test="mainMenuItem"
+                                className="main-menu__item"
+                              >
+                                <ul className="main-menu__nav-dropdown">
+                                  <li>
+                                    <a href="/static/locations/">Locations</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li
+                                data-test="mainMenuItem"
+                                className="main-menu__item"
+                              >
+                                <ul className="main-menu__nav-dropdown">
+                                  <li>
+                                    <a href="/static/about/">About</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li
+                                data-test="mainMenuItem"
+                                className="main-menu__item"
+                              >
+                                <ul className="main-menu__nav-dropdown">
+                                  <li>
+                                    <a href="/static/contact/">Contact</a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </>
+                          )}
+                        />
                       </>
                     )}
                   </ul>
