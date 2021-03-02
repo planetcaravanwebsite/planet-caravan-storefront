@@ -32,7 +32,7 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 
-import searchImg from "../../../images/search.svg";
+import searchImg from "../../../images/search-dark.svg";
 import closeImg from "../../../images/x.svg";
 
 interface SearchProps extends WrappedComponentProps, RouteComponentProps {

@@ -21,6 +21,16 @@ const settings = {
         dots: true,
       },
     },
+    {
+      breakpoint: 580,
+      settings: {
+        centerMode: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
   ],
 };
 
