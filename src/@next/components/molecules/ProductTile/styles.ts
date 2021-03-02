@@ -24,6 +24,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h4`
+  font-family: Oswald;
   text-transform: uppercase;
   font-weight: bold;
   ${textProps}
