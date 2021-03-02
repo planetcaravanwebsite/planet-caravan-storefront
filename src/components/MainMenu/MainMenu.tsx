@@ -123,20 +123,52 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                       </Link>
                     )}
                     {whichMenu !== "homePage" && (
-                      <Media
-                        query={{ minWidth: mediumScreen }}
-                        render={() =>
-                          items.map(item => (
-                            <li
-                              data-test="mainMenuItem"
-                              className="main-menu__item"
-                              key={item.id}
-                            >
-                              <NavDropdown overlay={overlayContext} {...item} />
+                      <>
+                        <Media
+                          query={{ minWidth: mediumScreen }}
+                          render={() =>
+                            items.map(item => (
+                              <li
+                                data-test="mainMenuItem"
+                                className="main-menu__item"
+                                key={item.id}
+                              >
+                                <NavDropdown overlay={overlayContext} {...item} />
+                              </li>
+                            ))
+                          }
+                        />
+                        <li
+                          data-test="mainMenuItem"
+                          className="main-menu__item"
+                        >
+                          <ul className="main-menu__nav-dropdown">
+                            <li>
+                              <a href="/static/locations/">Locations</a>
                             </li>
-                          ))
-                        }
-                      />
+                          </ul>
+                        </li>
+                        <li
+                          data-test="mainMenuItem"
+                          className="main-menu__item"
+                        >
+                          <ul className="main-menu__nav-dropdown">
+                            <li>
+                              <a href="/static/about/">About</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li
+                          data-test="mainMenuItem"
+                          className="main-menu__item"
+                        >
+                          <ul className="main-menu__nav-dropdown">
+                            <li>
+                              <a href="/static/contact/">Contact</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </>
                     )}
                   </ul>
                 </>
