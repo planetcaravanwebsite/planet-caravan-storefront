@@ -133,7 +133,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                                 className="main-menu__item"
                                 key={item.id}
                               >
-                                <NavDropdown overlay={overlayContext} {...item} />
+                                <NavDropdown
+                                  overlay={overlayContext}
+                                  {...item}
+                                />
                               </li>
                             ))
                           }
