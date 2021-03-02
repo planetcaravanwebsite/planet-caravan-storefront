@@ -15,6 +15,7 @@ import logoImg from "../../images/pc-logo.png";
 interface NavListProps {
   items: INavItem[];
   hideOverlay(): void;
+  more?: boolean;
 }
 
 interface NavListState {
@@ -60,9 +61,8 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
   }
 
   render() {
-    const { hideOverlay } = this.props;
+    const { hideOverlay, more } = this.props;
     const { displayedItems, parent } = this.state;
-
     return (
       <ul>
         {parent ? (
@@ -105,6 +105,38 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             {...item}
           />
         ))}
+
+        {more && (
+          <>
+            <li className="side-nav__menu-item">
+              <Link
+                to="/static/locations/"
+                className="side-nav__menu-item-link"
+                onClick={hideOverlay}
+              >
+                Locations
+              </Link>
+            </li>
+            <li className="side-nav__menu-item">
+              <Link
+                to="/static/about/"
+                className="side-nav__menu-item-link"
+                onClick={hideOverlay}
+              >
+                About
+              </Link>
+            </li>
+            <li className="side-nav__menu-item">
+              <Link
+                to="/static/contact/"
+                className="side-nav__menu-item-link"
+                onClick={hideOverlay}
+              >
+                Contact
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     );
   }

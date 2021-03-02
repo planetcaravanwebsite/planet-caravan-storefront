@@ -57,6 +57,7 @@ export const OverlayContext = React.createContext<OverlayContextInterface>({
   theme: null,
   type: null,
   override: null,
+  more: null,
 });
 /* tslint:enable:no-empty */
 

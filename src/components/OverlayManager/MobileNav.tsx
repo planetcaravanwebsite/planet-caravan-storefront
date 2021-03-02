@@ -6,11 +6,10 @@ const MobileNav: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay,
 }) => {
   const items: INavItem[] = overlay.context.data;
-
   return (
     <Overlay testingContext="mobileNavigationOverlay" context={overlay}>
       <div className="side-nav" onClick={evt => evt.stopPropagation()}>
-        <MobileNavList items={items} hideOverlay={overlay.hide} />
+        <MobileNavList items={items} hideOverlay={overlay.hide} more={overlay.context.more} />
       </div>
     </Overlay>
   );
