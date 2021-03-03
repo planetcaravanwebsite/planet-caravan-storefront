@@ -15,10 +15,10 @@ const settings = {
       breakpoint: 750,
       settings: {
         arrows: false,
+        centerMode: true,
         slidesToShow: 3,
         slidesToScroll: 3,
-        infinite: true,
-        dots: true,
+        dots: false,
       },
     },
     {
@@ -27,8 +27,7 @@ const settings = {
         centerMode: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        infinite: true,
-        dots: true,
+        dots: false,
       },
     },
   ],
