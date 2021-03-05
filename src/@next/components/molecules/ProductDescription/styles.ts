@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h2`
   text-align: left;
-  font-family: "Coda Caption";
+  // font-family: "Coda Caption";
   margin-bottom: 18px;
   font-size: 1.4rem;
 `;

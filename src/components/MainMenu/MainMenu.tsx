@@ -103,7 +103,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                           overlayContext.show(
                             OverlayType.sideNav,
                             OverlayTheme.left,
-                            { data: items }
+                            { data: items, more: true }
                           )
                         }
                       >

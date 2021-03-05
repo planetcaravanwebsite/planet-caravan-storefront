@@ -12,7 +12,7 @@ export const Primary = styled.button`
   box-shadow: -5px 5px 14px 0px rgb(0 0 0 / 20%);
   transition: 0.3s;
   outline: none;
-  font-family: "Oswald", sans-serif;
+  // font-family: "Oswald", sans-serif;
   cursor: pointer;
   color: #fff;
   font-size: 1.125rem;

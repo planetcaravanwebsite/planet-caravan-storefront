@@ -6,7 +6,7 @@
 }
 
 .coda {
-  font-family: 'Coda Caption', sans-serif;
+  // font-family: 'Coda Caption', sans-serif;
   &.med {
     font-size: 40px;
     line-height: 40px;
@@ -41,9 +41,9 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-family: "Coda Caption";
+  // font-family: "Coda Caption";
   text-shadow: 3px 3px 1px #000000;
-  font-size: 3rem;
+  font-size: 3.5rem;
   background-color: #E43024;
   @media screen and (max-width: 750px) {
     width:100%;

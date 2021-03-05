@@ -27,9 +27,8 @@ export const Primary = styled.button<{
   width: ${props => (props.fullWidth ? "100%" : "auto")}
 
   &:hover {
-    background-color: ${props =>
-      props.theme.button.colors[props.color].hoverBackground};
-    color: ${props => props.theme.button.colors[props.color].hoverColor};
+    background-color: #F8EF24;
+    color: rgb(33,18,94);
   }
 
   &:active {
