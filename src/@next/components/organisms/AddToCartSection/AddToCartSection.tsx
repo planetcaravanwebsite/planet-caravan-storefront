@@ -9,7 +9,7 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
-import { ProductDescription } from "@components/molecules";
+// import { ProductDescription } from "@components/molecules";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
@@ -157,7 +157,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           intl.formatMessage(commonMessages.noItemsAvailable),
           "noItemsAvailable"
         )}
-      <ProductDescription descriptionJson={description} />
       <S.VariantPicker>
         <ProductVariantPicker
           productVariants={productVariants}

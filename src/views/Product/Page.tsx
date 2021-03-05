@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
+import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 
@@ -108,6 +109,14 @@ const Page: React.FC<
                     <GalleryCarousel images={getImages()} />
                     <div className="product-page__product__info">
                       {addToCartSection}
+                      {Object.keys(product.descriptionJson).length > 2 && (
+                        <div className="product-page__product__description">
+                          <ProductDescription
+                            descriptionJson={product.descriptionJson}
+                            attributes={product.attributes}
+                          />
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -125,6 +134,15 @@ const Page: React.FC<
                         )}
                       >
                         {addToCartSection}
+                        {Object.keys(product.descriptionJson).length > 2 && (
+                          <div className="product-page__product__description">
+                            <ProductDescription
+                              descriptionJson={product.descriptionJson}
+                              attributes={product.attributes}
+                            />
+                          </div>
+                        )}
+
                       </div>
                     </div>
                   </>

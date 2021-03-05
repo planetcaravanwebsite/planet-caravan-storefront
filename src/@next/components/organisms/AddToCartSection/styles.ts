@@ -7,7 +7,7 @@ export const AddToCartSelection = styled.div`
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
   // font-family: "Coda Caption";
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 2rem;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
@@ -15,7 +15,7 @@ export const ProductNameHeader = styled.h3`
 
 export const ProductPricing = styled.h4`
   font-weight: normal;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #999999;
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
