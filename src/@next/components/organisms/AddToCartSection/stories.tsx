@@ -6,6 +6,7 @@ import AddToCartSection, { IAddToCartSection } from "./AddToCartSection";
 
 const DEFAULT_PROPS: IAddToCartSection = {
   productId: "42",
+  description: "Hello",
   productVariants: [],
   name: "Tribute",
   productPricing: {
