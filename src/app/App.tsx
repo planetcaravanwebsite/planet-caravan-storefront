@@ -1,6 +1,6 @@
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import { InstantSearch } from "react-instantsearch-dom"; // , SearchBox, Hits } from "react-instantsearch-dom";
 
 import { useAuth } from "@saleor/sdk";
 import { DemoBanner, Loader } from "@components/atoms";
@@ -34,8 +34,6 @@ const App: React.FC = () => {
         <OverlayProvider>
           <MetaConsumer />
           {demoMode && <DemoBanner />}
-          <SearchBox />
-          <Hits />
           <Routes />
           <Footer />
           <OverlayManager />
