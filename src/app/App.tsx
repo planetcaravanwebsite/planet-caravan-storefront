@@ -1,4 +1,6 @@
 import React from "react";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 
 import { useAuth } from "@saleor/sdk";
 import { DemoBanner, Loader } from "@components/atoms";
@@ -14,6 +16,11 @@ import "../globalStyles/scss/index.scss";
 import { Routes } from "./routes";
 import Notifications from "./Notifications";
 
+const searchClient = algoliasearch(
+  "RZFI9YHKMB",
+  "959671f0d835e32af44a31dd270a90d2"
+);
+
 const App: React.FC = () => {
   const { tokenRefreshing, tokenVerifying } = useAuth();
 
@@ -23,14 +30,18 @@ const App: React.FC = () => {
 
   return (
     <ShopProvider>
-      <OverlayProvider>
-        <MetaConsumer />
-        {demoMode && <DemoBanner />}
-        <Routes />
-        <Footer />
-        <OverlayManager />
-        <Notifications />
-      </OverlayProvider>
+      <InstantSearch indexName="products" searchClient={searchClient}>
+        <OverlayProvider>
+          <MetaConsumer />
+          {demoMode && <DemoBanner />}
+          <SearchBox />
+          <Hits />
+          <Routes />
+          <Footer />
+          <OverlayManager />
+          <Notifications />
+        </OverlayProvider>
+      </InstantSearch>
     </ShopProvider>
   );
 };

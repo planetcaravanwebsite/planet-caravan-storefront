@@ -254,7 +254,8 @@
     }
 
     &__body {
-      background: $white;
+      background-color: $blue-dc;
+      color: white;
       border-top-color: $gray-light;
       border-top-style: solid;
       border-top-width: 1px;
@@ -262,7 +263,7 @@
       left: 0;
       padding: 2rem;
       position: absolute;
-      top: 100%;
+      top: 120%;
       width: 100%;
       z-index: 3;
 
