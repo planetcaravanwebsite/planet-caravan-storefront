@@ -1,39 +1,16 @@
 import "./scss/index.scss";
-
-import classNames from "classnames";
-import { stringify } from "query-string";
 import * as React from "react";
-import {
-  injectIntl,
-  WrappedComponentProps,
-  FormattedMessage,
-} from "react-intl";
+import { injectIntl, WrappedComponentProps } from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import ReactSVG from "react-svg";
 
-import { commonMessages } from "@temp/intl";
-
+import algoliasearch from "algoliasearch/lite";
+import { Hits, InstantSearch, SearchBox } from "react-instantsearch-dom";
 import {
-  Button,
-  Loader,
-  OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
   OverlayType,
 } from "../..";
-import { searchUrl } from "../../../app/routes";
-import { maybe } from "../../../core/utils";
-import { DebouncedTextField } from "../../Debounce";
-import { Error } from "../../Error";
-import NetworkStatus from "../../NetworkStatus";
-import { SearchResults } from "./gqlTypes/SearchResults";
-import NothingFound from "./NothingFound";
-import ProductItem from "./ProductItem";
-import { TypedSearchResults } from "./queries";
-
-import searchImg from "../../../images/search-dark.svg";
-import closeImg from "../../../images/x.svg";
 
 interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
@@ -42,6 +19,22 @@ interface SearchProps extends WrappedComponentProps, RouteComponentProps {
 interface SearchState {
   search: string;
 }
+
+const Hit = hit => {
+  const result = hit.hit;
+  return (
+    <a href={`/product/${result.slug}/${result.objectID}`}>
+      {!!result.image && (
+        <img
+          src={result.image}
+          style={{ height: 100, width: 100 }}
+          alt={result.name}
+        />
+      )}
+      <p>{result.name}</p>
+    </a>
+  );
+};
 
 class Search extends React.Component<SearchProps, SearchState> {
   state = { search: "" };
@@ -57,37 +50,12 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
   }
 
-  get hasSearchPhrase() {
-    return this.state.search.length > 0;
-  }
-
-  get redirectTo() {
-    return { pathname: searchUrl, search: `?${this.searchQs}` };
-  }
-
-  get searchQs() {
-    return stringify({ q: this.state.search });
-  }
-
-  hasResults = (data: SearchResults) =>
-    maybe(() => !!data.products.edges.length);
-
-  handleSubmit = (evt: React.FormEvent) => {
-    if (this.hasSearchPhrase && this.submitBtnRef.current) {
-      this.props.overlay.hide();
-      this.props.history.push(`${searchUrl}?${this.searchQs}`);
-    }
-
-    evt.preventDefault();
-  };
-
-  handleInputBlur = () => {
-    if (!this.hasSearchPhrase) {
-      this.props.overlay.hide();
-    }
-  };
-
   render() {
+    const searchClient = algoliasearch(
+      process.env.ALGOLIA_APPLICATION_ID || "",
+      process.env.ALGOLIA_SEARCH_KEY || ""
+    );
+
     return (
       <Overlay
         testingContext="searchOverlay"
@@ -98,93 +66,10 @@ class Search extends React.Component<SearchProps, SearchState> {
             : "overlay--no-background"
         }
       >
-        <form
-          className={classNames("search", {
-            "search--has-results": this.hasSearchPhrase,
-          })}
-          onClick={e => e.stopPropagation()}
-          onSubmit={this.handleSubmit}
-        >
-          <div className="search__input">
-            <DebouncedTextField
-              onChange={evt => this.setState({ search: evt.target.value })}
-              value={this.state.search}
-              iconLeft={
-                <ReactSVG
-                  path={closeImg}
-                  onClick={this.props.overlay.hide}
-                  className="search__input__close-btn"
-                />
-              }
-              iconRight={<ReactSVG path={searchImg} />}
-              autoFocus
-              placeholder={this.props.intl.formatMessage(commonMessages.search)}
-              onBlur={this.handleInputBlur}
-            />
-          </div>
-          <div
-            className={classNames({
-              search__products: true,
-              "search__products--expanded": this.hasSearchPhrase,
-            })}
-          >
-            <NetworkStatus>
-              {isOnline => {
-                if (this.hasSearchPhrase) {
-                  return (
-                    <TypedSearchResults
-                      renderOnError
-                      displayError={false}
-                      errorPolicy="all"
-                      variables={{ query: this.state.search }}
-                    >
-                      {({ data, error, loading }) => {
-                        if (this.hasResults(data)) {
-                          return (
-                            <>
-                              <ul>
-                                {data.products.edges.map(product => (
-                                  <ProductItem
-                                    {...product}
-                                    key={product.node.id}
-                                  />
-                                ))}
-                              </ul>
-                              <div className="search__products__footer">
-                                {loading ? (
-                                  <Loader />
-                                ) : (
-                                  <Button
-                                    testingContext="searchProductsButton"
-                                    btnRef={this.submitBtnRef}
-                                    type="submit"
-                                  >
-                                    <FormattedMessage defaultMessage="Show all results" />
-                                  </Button>
-                                )}
-                              </div>
-                            </>
-                          );
-                        }
-
-                        if (error) {
-                          return isOnline ? (
-                            <Error error={error.message} />
-                          ) : (
-                            <OfflinePlaceholder />
-                          );
-                        }
-
-                        return <NothingFound search={this.state.search} />;
-                      }}
-                    </TypedSearchResults>
-                  );
-                }
-                return null;
-              }}
-            </NetworkStatus>
-          </div>
-        </form>
+        <InstantSearch indexName="products" searchClient={searchClient}>
+          <SearchBox />
+          <Hits hitComponent={Hit} />
+        </InstantSearch>
       </Overlay>
     );
   }
