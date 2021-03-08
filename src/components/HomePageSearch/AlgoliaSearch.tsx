@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+// import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import algoliasearch from "algoliasearch/lite";
 import {
@@ -36,7 +36,9 @@ const Hit = hit => {
   );
 };
 
+// @ts-ignore
 class Search extends React.Component<SearchState> {
+  // eslint-disable-next-line react/no-unused-state
   state = { search: "" };
 
   submitBtnRef = React.createRef<HTMLButtonElement>();
@@ -59,14 +61,3 @@ class Search extends React.Component<SearchState> {
     );
   }
 }
-
-// Workaround ATM for:
-// withRouter(Search): Function components do not support contextType
-export default injectIntl(
-  withRouter(
-    (
-      props: WrappedComponentProps &
-        RouteComponentProps & { overlay: OverlayContextInterface }
-    ) => <Search {...props} />
-  )
-);
