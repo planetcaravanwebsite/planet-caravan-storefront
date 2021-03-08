@@ -1,6 +1,4 @@
-import "./scss/index.scss";
 import * as React from "react";
-import { injectIntl, WrappedComponentProps } from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import algoliasearch from "algoliasearch/lite";
@@ -10,27 +8,15 @@ import {
   SearchBox,
   connectStateResults,
 } from "react-instantsearch-dom";
-// import { connectStateResults } from "react-instantsearch/connectors";
-import {
-  Overlay,
-  OverlayContextInterface,
-  OverlayTheme,
-  OverlayType,
-} from "../..";
-
-interface SearchProps extends WrappedComponentProps, RouteComponentProps {
-  overlay: OverlayContextInterface;
-}
 
 interface SearchState {
   search: string;
 }
 
-const Results = connectStateResults(
-  ({ searchState }) =>
+const Results = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
     <Hits hitComponent={Hit} />
-  ) : //<div>No query</div>
+  ) : // <div>No query</div>
   null
 );
 
@@ -50,19 +36,10 @@ const Hit = hit => {
   );
 };
 
-class Search extends React.Component<SearchProps, SearchState> {
+class Search extends React.Component<SearchState> {
   state = { search: "" };
 
   submitBtnRef = React.createRef<HTMLButtonElement>();
-
-  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
-    if (
-      !!prevState.search.length &&
-      this.props.overlay.type !== OverlayType.search
-    ) {
-      this.setState({ search: "" });
-    }
-  }
 
   render() {
     const searchClient = algoliasearch(
@@ -73,20 +50,12 @@ class Search extends React.Component<SearchProps, SearchState> {
     console.log(searchClient);
 
     return (
-      <Overlay
-        testingContext="searchOverlay"
-        context={this.props.overlay}
-        className={
-          this.props.overlay.theme === OverlayTheme.modalFull
-            ? ""
-            : "overlay--no-background"
-        }
-      >
+      <>
         <InstantSearch indexName="products" searchClient={searchClient}>
           <SearchBox />
           <Results />
         </InstantSearch>
-      </Overlay>
+      </>
     );
   }
 }
