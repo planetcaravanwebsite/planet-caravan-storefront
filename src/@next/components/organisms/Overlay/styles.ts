@@ -79,7 +79,7 @@ export const Overlay = styled.div<IStyleProps>`
   height: 100%;
   min-height: 100vh;
   top: 0;
-  z-index: 2;
+  z-index: 6;
   transition: opacity 0.2s ease;
   transition-delay: ${({ open }) => (open ? 0 : ".4s")};
   background-color: ${({ transparent, theme }) =>

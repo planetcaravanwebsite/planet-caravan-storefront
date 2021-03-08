@@ -40,17 +40,10 @@ const Page: React.FC<
   }
 > = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const overlayContext = React.useContext(OverlayContext);
-
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
-
   const [variantId, setVariantId] = React.useState("");
 
-  console.log(product.category);
-  console.log(product.category.products);
-  console.log(product.category.products.edges);
-
   const getImages = () => {
-    console.log(product);
     if (product.variants && variantId) {
       const variant = product.variants.find(
         variant => variant.id === variantId
@@ -61,13 +54,10 @@ const Page: React.FC<
       }
     }
 
-    console.log(Object.keys(product.descriptionJson).length);
-
     return product.images;
   };
 
   const handleAddToCart = (variantId, quantity) => {
-    console.log("adding %o %o", variantId, quantity);
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };

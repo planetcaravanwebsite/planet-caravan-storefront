@@ -1,10 +1,12 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 
 import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
+import { generateCategoryUrl } from "@temp/core/utils";
 
 import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
@@ -32,10 +34,12 @@ export const FilterSidebar: React.FC<IProps> = ({
   attributes,
   target,
   onAttributeFiltersChange,
+  category,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
+  console.log(category);
   return (
     <Overlay
       duration={0}
@@ -58,6 +62,31 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
+        <S.SubCat>
+          {category && <S.SmHeader2>Sub Category</S.SmHeader2>}
+          <ul>
+            {category &&
+              category.children.map(
+                (child: {
+                  category: { id: string; name: {} | null | undefined };
+                }) => {
+                  return (
+                    <li>
+                      <Link
+                        to={generateCategoryUrl(
+                          child.category.id,
+                          // @ts-ignore
+                          child.category.name
+                        )}
+                      >
+                        {child.category.name}
+                      </Link>
+                    </li>
+                  );
+                }
+              )}
+          </ul>
+        </S.SubCat>
         {attributes.map(({ id, name, slug, values }) => {
           return (
             <AttributeValuesChecklist
