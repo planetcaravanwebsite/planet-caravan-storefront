@@ -1,7 +1,6 @@
 import "../scss/index.scss";
 import * as React from "react";
 
-import { Formik, Field, Form } from "formik";
 import { styled } from "@styles";
 
 export const Primary = styled.button`
@@ -59,32 +58,28 @@ export const Contact: React.FC<any> = () => {
             </b>
           </p>
 
-          <Formik
-            initialValues={{ name: "", email: "", message: "" }}
-            onSubmit={async values => {
-              await new Promise(resolve => setTimeout(resolve, 500));
-              alert(JSON.stringify(values, null, 2));
-            }}
+          <form
+            action="https://formcarry.com/s/ydBVqqih4q"
+            method="POST"
+            acceptCharset="UTF-8"
           >
-            <Form>
-              <TextField>
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="name">Full Name* </label>
-                <Field name="name" type="text" />
-              </TextField>
-              <TextField>
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="email">Email Address* </label>
-                <Field name="email" type="email" />
-              </TextField>
-              <TextField>
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="message">Say Something* </label>
-                <Field name="message" component="textarea" />
-              </TextField>
-              <Primary type="submit">Submit</Primary>
-            </Form>
-          </Formik>
+            <TextField>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="name">Full Name* </label>
+              <input name="name" type="text" />
+            </TextField>
+            <TextField>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="email">Email Address* </label>
+              <input name="email" type="email" />
+            </TextField>
+            <TextField>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="message">Say Something* </label>
+              <input name="message" type="textarea" />
+            </TextField>
+            <Primary type="submit">Submit</Primary>
+          </form>
         </div>
       </div>
     </>

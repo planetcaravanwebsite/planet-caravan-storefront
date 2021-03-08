@@ -52,9 +52,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   render() {
     const searchClient = algoliasearch(
-      process.env.ALGOLIA_APPLICATION_ID || "",
-      process.env.ALGOLIA_SEARCH_KEY || ""
+      "RZFI9YHKMB",
+      "959671f0d835e32af44a31dd270a90d2"
     );
+
+    console.log(searchClient);
 
     return (
       <Overlay

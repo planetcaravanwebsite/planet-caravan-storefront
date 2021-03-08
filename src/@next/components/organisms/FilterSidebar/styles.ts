@@ -1,7 +1,11 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
-  overflow: scroll;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
   width: 410px;
   display: flex;
   justify-content: flex-start;
