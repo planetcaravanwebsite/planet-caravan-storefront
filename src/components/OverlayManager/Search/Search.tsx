@@ -26,11 +26,10 @@ interface SearchState {
   search: string;
 }
 
-const Results = connectStateResults(
-  ({ searchState }) =>
+const Results = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
     <Hits hitComponent={Hit} />
-  ) : //<div>No query</div>
+  ) : // <div>No query</div>
   null
 );
 
