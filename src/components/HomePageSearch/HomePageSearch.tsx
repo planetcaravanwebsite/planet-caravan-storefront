@@ -10,7 +10,7 @@ import { mediumScreen } from "../../globalStyles/scss/variables.scss";
 
 import { OverlayContext, OverlayTheme, OverlayType } from "..";
 
-import algoliasearch from "algoliasearch/lite";
+// import algoliasearch from "algoliasearch/lite";
 
 const HomePageSearch: React.FC = () => {
   return (
