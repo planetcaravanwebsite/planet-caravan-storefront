@@ -7,4 +7,5 @@ export interface IProps {
   onAttributeFiltersChange: (attributeSlug: string, values: string) => void;
   show: boolean;
   target?: HTMLElement | null;
+  category?: any;
 }

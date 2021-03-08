@@ -63,7 +63,6 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
-
               return (
                 <>
                   <ul>

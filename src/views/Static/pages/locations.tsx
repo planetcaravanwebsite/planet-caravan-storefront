@@ -43,6 +43,7 @@ export const Locations: React.FC<any> = () => {
               </div>
               <div className="store-hours">
                 <p>Mon-Sat: 10AM–11PM</p>
+                <p>Sun: 10AM–10PM</p>
               </div>
             </div>
             <div className="locations-grid-item">

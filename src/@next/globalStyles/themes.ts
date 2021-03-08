@@ -58,14 +58,14 @@ export const defaultTheme = {
     colors: {
       primary: {
         activeBackground: C.theme.primaryTransparent,
-        background: C.theme.primaryLight,
+        background: C.theme.primaryYellowLight,
         color: C.theme.primaryDark,
         hoverBackground: "none",
         hoverColor: C.theme.primaryDark,
       },
       secondary: {
         activeBackground: C.theme.primaryTransparent,
-        background: C.theme.secondaryLight,
+        background: C.theme.primaryYellowLight,
         color: C.theme.secondaryDark,
         hoverBackground: "none",
         hoverColor: C.theme.secondaryDark,

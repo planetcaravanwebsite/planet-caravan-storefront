@@ -72,11 +72,11 @@ export const SOCIAL_MEDIA = [
 export const BRANDS = [
   {
     name: "01",
-    path: require("../images/brands-footer/afm.png"),
+    path: require("../images/brands-footer/blazer.png"),
   },
   {
     name: "02",
-    path: require("../images/brands-footer/blazer.png"),
+    path: require("../images/brands-footer/formula-420.png"),
   },
   {
     name: "03",
@@ -96,7 +96,7 @@ export const BRANDS = [
   },
   {
     name: "07",
-    path: require("../images/brands-footer/formula-420.png"),
+    path: require("../images/brands-footer/afm.png"),
   },
   {
     name: "08",

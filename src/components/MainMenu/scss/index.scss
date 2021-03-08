@@ -20,6 +20,10 @@
   height: 3.55rem;
   position: relative;
 
+  &__fix-z {
+    z-index: 5;
+  }
+
   &__phone {
     color: $white;
   }
@@ -246,7 +250,7 @@
     padding: 0 1.5rem;
 
     &--active {
-      background-color: $turquoise-light;
+      background-color: $blue-dc-light;
     }
 
     & > li:first-child {
@@ -254,13 +258,14 @@
     }
 
     &__body {
-      background: $white;
-      border-top-color: $gray-light;
-      border-top-style: solid;
-      border-top-width: 1px;
+      background-color: $blue-dc-light;
+      color: white;
+      // border-top-color: $gray-light;
+      // border-top-style: solid;
+      // border-top-width: 1px;
       display: none;
       left: 0;
-      padding: 2rem;
+      padding: 2rem 2rem 1.2rem;
       position: absolute;
       top: 100%;
       width: 100%;

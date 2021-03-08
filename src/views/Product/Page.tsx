@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
+import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 
@@ -39,17 +40,10 @@ const Page: React.FC<
   }
 > = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const overlayContext = React.useContext(OverlayContext);
-
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
-
   const [variantId, setVariantId] = React.useState("");
 
-  console.log(product.category);
-  console.log(product.category.products);
-  console.log(product.category.products.edges);
-
   const getImages = () => {
-    console.log(product);
     if (product.variants && variantId) {
       const variant = product.variants.find(
         variant => variant.id === variantId
@@ -60,13 +54,10 @@ const Page: React.FC<
       }
     }
 
-    console.log(Object.keys(product.descriptionJson).length);
-
     return product.images;
   };
 
   const handleAddToCart = (variantId, quantity) => {
-    console.log("adding %o %o", variantId, quantity);
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
@@ -108,6 +99,14 @@ const Page: React.FC<
                     <GalleryCarousel images={getImages()} />
                     <div className="product-page__product__info">
                       {addToCartSection}
+                      {Object.keys(product.descriptionJson).length > 2 && (
+                        <div className="product-page__product__description">
+                          <ProductDescription
+                            descriptionJson={product.descriptionJson}
+                            attributes={product.attributes}
+                          />
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -125,6 +124,14 @@ const Page: React.FC<
                         )}
                       >
                         {addToCartSection}
+                        {Object.keys(product.descriptionJson).length > 2 && (
+                          <div className="product-page__product__description">
+                            <ProductDescription
+                              descriptionJson={product.descriptionJson}
+                              attributes={product.attributes}
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </>

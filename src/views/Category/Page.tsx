@@ -2,6 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
+import { find } from "lodash";
 
 import { commonMessages } from "@temp/intl";
 import { demoMode } from "@temp/constants";
@@ -16,6 +17,7 @@ import {
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+import { TypedMainMenuQuery } from "../../components/MainMenu/queries";
 
 import { maybe } from "../../core/utils";
 
@@ -90,44 +92,60 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
-      <div className="category">
-        <div className="container">
-          <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
-          <FilterSidebar
-            show={showFilters}
-            hide={() => setShowFilters(false)}
-            onAttributeFiltersChange={onAttributeFiltersChange}
-            attributes={attributes}
-            filters={filters}
-          />
-          <ProductListHeader
-            activeSortOption={activeSortOption}
-            openFiltersMenu={() => setShowFilters(true)}
-            numberOfProducts={products ? products.totalCount : 0}
-            activeFilters={activeFilters}
-            activeFiltersAttributes={activeFiltersAttributes}
-            clearFilters={clearFilters}
-            sortOptions={sortOptions}
-            onChange={onOrder}
-            onCloseFilterAttribute={onAttributeFiltersChange}
-          />
-          {canDisplayProducts && (
-            <ProductList
-              products={products.edges.map(edge => edge.node)}
-              canLoadMore={hasNextPage}
-              loading={displayLoader}
-              onLoadMore={onLoadMore}
-            />
-          )}
-        </div>
+      <TypedMainMenuQuery renderOnError displayLoader={false}>
+        {({ data }) => {
+          const items = maybe(() => data.shop.navigation.main.items, []);
+          const categoryData = find(items, function (item) {
+            // @ts-ignore
+            return item.category.id === category.id;
+          });
+          console.log(categoryData);
 
-        {!hasProducts && (
-          <ProductsFeatured
-            title={intl.formatMessage(commonMessages.youMightLike)}
-          />
-        )}
-      </div>
+          return (
+            <>
+              <MainMenu demoMode={demoMode} whichMenu="fullPage" />
+              <div className="category">
+                <div className="container">
+                  <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+                  <FilterSidebar
+                    show={showFilters}
+                    hide={() => setShowFilters(false)}
+                    onAttributeFiltersChange={onAttributeFiltersChange}
+                    attributes={attributes}
+                    filters={filters}
+                    category={categoryData}
+                  />
+                  <ProductListHeader
+                    activeSortOption={activeSortOption}
+                    openFiltersMenu={() => setShowFilters(true)}
+                    numberOfProducts={products ? products.totalCount : 0}
+                    activeFilters={activeFilters}
+                    activeFiltersAttributes={activeFiltersAttributes}
+                    clearFilters={clearFilters}
+                    sortOptions={sortOptions}
+                    onChange={onOrder}
+                    onCloseFilterAttribute={onAttributeFiltersChange}
+                  />
+                  {canDisplayProducts && (
+                    <ProductList
+                      products={products.edges.map(edge => edge.node)}
+                      canLoadMore={hasNextPage}
+                      loading={displayLoader}
+                      onLoadMore={onLoadMore}
+                    />
+                  )}
+                </div>
+
+                {!hasProducts && (
+                  <ProductsFeatured
+                    title={intl.formatMessage(commonMessages.youMightLike)}
+                  />
+                )}
+              </div>
+            </>
+          );
+        }}
+      </TypedMainMenuQuery>
     </>
   );
 };

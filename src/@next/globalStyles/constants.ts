@@ -21,6 +21,8 @@ export const turquoise = "#13bebb";
 export const turquoiseDark = "#06a09e";
 export const turquoiseLight = "rgba(6, 132, 123, 0.25)";
 export const turquoiseTransparent = "rgba(6, 132, 123, 0.1)";
+export const yellowTransparent = "rgba(248, 239, 36, .3)";
+export const yellowLight = "rgba(248, 239, 36, .5)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
@@ -55,8 +57,9 @@ export const theme = {
   overlay: overlayColor,
   primary: pcBlue,
   primaryDark: turquoiseDark,
-  primaryLight: turquoiseLight,
-  primaryTransparent: turquoiseTransparent,
+  primaryLight: yellowLight,
+  primaryYellowLight: yellowLight,
+  primaryTransparent: yellowTransparent,
   secondary: blue,
   secondaryDark: blueDark,
   secondaryLight: blueLight,
@@ -73,7 +76,7 @@ export const theme = {
 };
 
 // typography
-export const baseFontFamily = "'Inter', sans-serif";
+export const baseFontFamily = "'industry', sans-serif";
 export const baseFontSize = "1rem"; // 16px
 export const baseLineHeight = "1.25rem"; // 20px
 export const boldFontWeight = 600;
