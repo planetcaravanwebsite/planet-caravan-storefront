@@ -45,12 +45,16 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
-  const [sort, setSort] = useQueryParam("sortBy", StringParam);
+  let [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
   const intl = useIntl();
+
+  if (!sort) {
+    sort = "updated_at";
+  }
 
   const clearFilters = () => {
     setAttributeFilters({});

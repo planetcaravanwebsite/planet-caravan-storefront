@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 80%;
   padding-bottom: 2rem;
   &:last-child {
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
   }
 `;
 

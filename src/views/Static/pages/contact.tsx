@@ -49,7 +49,7 @@ export const Contact: React.FC<any> = () => {
           <a href="mailto:planetcaravanwebsite@gmail.com">
             planetcaravanwebsite@gmail.com
           </a>
-          <p>Call/Text Everyday 9AM-10PM EST: (513) 444-7448</p>
+          <p>Call/Text Everyday 9AM-10PM EST: <a href="tel:513447448">(513) 444-7448</a></p>
           <p className="margin-bottom-small">
             <b>
               Note: Phone lines are busy every day at 7:10PM EST for Instagram
