@@ -36,7 +36,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
-        <CachedImage alt={product.name} url={product.images[0]} />
+        <CachedImage alt={product.name} url={product.images[0].url} />
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category?.name}</p>
