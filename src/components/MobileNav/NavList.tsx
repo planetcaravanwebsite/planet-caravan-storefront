@@ -29,9 +29,9 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     parent: null,
   };
 
-  handleShowSubItems = (item: INavItem) => {
-    this.setState({ parent: item, displayedItems: item.children });
-  };
+  // handleShowSubItems = (item: INavItem) => {
+  //   this.setState({ parent: item, displayedItems: item.children });
+  // };
 
   handleGoBack = () => {
     const grandparent = this.state.parent.parent;
@@ -101,7 +101,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           <NavItem
             key={item.id}
             hideOverlay={hideOverlay}
-            showSubItems={this.handleShowSubItems}
+            // showSubItems={this.handleShowSubItems}
             {...item}
           />
         ))}

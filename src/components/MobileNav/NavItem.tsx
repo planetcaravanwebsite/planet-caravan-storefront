@@ -13,15 +13,16 @@ export interface INavItem extends MainMenuSubItem {
 
 interface NavItemProps extends INavItem {
   hideOverlay(): void;
-  showSubItems(item: INavItem): void;
+  // showSubItems(item: INavItem): void;
 }
 
 const NavItem: React.FC<NavItemProps> = ({
   hideOverlay,
-  showSubItems,
+  // showSubItems,
   ...item
 }) => {
   const hasSubNavigation = item.children && !!item.children.length;
+  const [showChildren, setShowChildren] = React.useState(false);
 
   return (
     <li
@@ -33,14 +34,26 @@ const NavItem: React.FC<NavItemProps> = ({
       <NavLink
         item={item}
         className="side-nav__menu-item-link"
-        onClick={hideOverlay}
+        hasSubNavigation={hasSubNavigation}
+        subNavOpen={showChildren}
+        onClick={e => {
+          if (hasSubNavigation) {
+            e.preventDefault();
+            setShowChildren(!showChildren);
+          } else {
+            hideOverlay();
+          }
+        }}
       />
+
       {hasSubNavigation && (
-        <ReactSVG
-          path={subcategoriesImg}
-          className="side-nav__menu-item-more"
-          onClick={() => showSubItems(item)}
-        />
+        <div className={`sub-nav ${showChildren ? "show" : ""}`}>
+          <ul>
+            {item.children.map(child => (
+              <NavItem key={child.id} hideOverlay={hideOverlay} {...child} />
+            ))}
+          </ul>
+        </div>
       )}
     </li>
   );

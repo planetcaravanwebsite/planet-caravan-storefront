@@ -22,9 +22,12 @@ interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page } = item;
+  // @ts-ignore
+  const { hasSubNavigation, subNavOpen } = props;
   const link = (url: string) => (
     <Link to={url} {...props}>
       {name}
+      {hasSubNavigation && <span className="more">{subNavOpen ? '-' : '+'}</span>}
     </Link>
   );
 

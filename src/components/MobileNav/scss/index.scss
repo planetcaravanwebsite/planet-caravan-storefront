@@ -7,8 +7,8 @@
 
   &__menu-item {
     border-bottom: 1px solid $gray-light;
-    display: grid;
-    height: $item-height;
+    //display: grid;
+    min-height: $item-height;
 
     &-link,
     &-back span {
@@ -98,6 +98,46 @@
 
       a {
         color: inherit;
+      }
+    }
+
+    // Updates
+    align-items: center;
+
+    > a
+    {
+      display: block;
+      position: relative;
+      width: 100%;
+
+      span
+      {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        padding: 8px 15px;
+        font-size: 1.5rem;
+        z-index: -1;
+        transform: translateY(-50%);
+      }
+
+      &:hover > span
+      {
+        color: $turquoise;
+      }
+    }
+
+
+
+
+    .sub-nav
+    {
+      display: none;
+      padding-left: 25px;
+
+      &.show
+      {
+        display: block;
       }
     }
   }
