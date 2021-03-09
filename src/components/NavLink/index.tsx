@@ -27,7 +27,9 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const link = (url: string) => (
     <Link to={url} {...props}>
       {name}
-      {hasSubNavigation && <span className="more">{subNavOpen ? '-' : '+'}</span>}
+      {hasSubNavigation && (
+        <span className="more">{subNavOpen ? "-" : "+"}</span>
+      )}
     </Link>
   );
 
