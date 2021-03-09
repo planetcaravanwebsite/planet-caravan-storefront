@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   transition: 0.3s;
 
   :hover {
-    background-color: #fefefe;
+    background-color: #efefef;
   }
 
   ${media.largeScreen`

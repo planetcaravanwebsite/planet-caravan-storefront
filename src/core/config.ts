@@ -75,10 +75,6 @@ export const BRANDS = [
     path: require("../images/brands-footer/blazer.png"),
   },
   {
-    name: "02",
-    path: require("../images/brands-footer/formula-420.png"),
-  },
-  {
     name: "03",
     path: require("../images/brands-footer/dcg.png"),
   },
@@ -89,10 +85,6 @@ export const BRANDS = [
   {
     name: "05",
     path: require("../images/brands-footer/esb.png"),
-  },
-  {
-    name: "06",
-    path: require("../images/brands-footer/exotic.png"),
   },
   {
     name: "07",
@@ -111,10 +103,6 @@ export const BRANDS = [
     path: require("../images/brands-footer/pelicon.png"),
   },
   {
-    name: "11",
-    path: require("../images/brands-footer/randys.png"),
-  },
-  {
     name: "12",
     path: require("../images/brands-footer/raw.png"),
   },
@@ -123,20 +111,152 @@ export const BRANDS = [
     path: require("../images/brands-footer/scs.png"),
   },
   {
-    name: "14",
-    path: require("../images/brands-footer/sunami.png"),
-  },
-  {
-    name: "15",
-    path: require("../images/brands-footer/tag.png"),
-  },
-  {
     name: "16",
     path: require("../images/brands-footer/vibes.png"),
   },
   {
     name: "17",
-    path: require("../images/brands-footer/zach.png"),
+    path: require("../images/brands-footer/storz.png"),
+  },
+  {
+    name: "18",
+    path: require("../images/brands-footer/evolempire.png"),
+  },
+  {
+    name: "19",
+    path: require("../images/brands-footer/tsnami.png"),
+  },
+  {
+    name: "20",
+    path: require("../images/brands-footer/zb.png"),
+  },
+  {
+    name: "21",
+    path: require("../images/brands-footer/colibri.png"),
+  },
+  {
+    name: "22",
+    path: require("../images/brands-footer/randy.png"),
+  },
+  {
+    name: "23",
+    path: require("../images/brands-footer/satya.png"),
+  },
+  {
+    name: "24",
+    path: require("../images/brands-footer/yo.png"),
+  },
+  {
+    name: "25",
+    path: require("../images/brands-footer/junkie.png"),
+  },
+  {
+    name: "26",
+    path: require("../images/brands-footer/cyclonescones.png"),
+  },
+  {
+    name: "27",
+    path: require("../images/brands-footer/exoticsoda.png"),
+  },
+  {
+    name: "28",
+    path: require("../images/brands-footer/cbdaxis.png"),
+  },
+  {
+    name: "29",
+    path: require("../images/brands-footer/toro.png"),
+  },
+  {
+    name: "30",
+    path: require("../images/brands-footer/santa.png"),
+  },
+  {
+    name: "31",
+    path: require("../images/brands-footer/ozium.png"),
+  },
+  {
+    name: "32",
+    path: require("../images/brands-footer/milkyway.png"),
+  },
+  {
+    name: "33",
+    path: require("../images/brands-footer/dividerpro.png"),
+  },
+  {
+    name: "34",
+    path: require("../images/brands-footer/elbo.png"),
+  },
+  {
+    name: "35",
+    path: require("../images/brands-footer/hisiglass.png"),
+  },
+  {
+    name: "36",
+    path: require("../images/brands-footer/kingpalm.png"),
+  },
+  {
+    name: "37",
+    path: require("../images/brands-footer/mav.png"),
+  },
+  {
+    name: "38",
+    path: require("../images/brands-footer/puffco.png"),
+  },
+  {
+    name: "39",
+    path: require("../images/brands-footer/elementsp.png"),
+  },
+  {
+    name: "40",
+    path: require("../images/brands-footer/magicalbutter.png"),
+  },
+  {
+    name: "41",
+    path: require("../images/brands-footer/wildberry.png"),
+  },
+  {
+    name: "42",
+    path: require("../images/brands-footer/grungeoff.png"),
+  },
+  {
+    name: "43",
+    path: require("../images/brands-footer/710.png"),
+  },
+  {
+    name: "44",
+    path: require("../images/brands-footer/str8.png"),
+  },
+  {
+    name: "45",
+    path: require("../images/brands-footer/tag.png"),
+  },
+  {
+    name: "46",
+    path: require("../images/brands-footer/disorderlyconduction.png"),
+  },
+  {
+    name: "47",
+    path: require("../images/brands-footer/detoxify.png"),
+  },
+  {
+    name: "48",
+    path: require("../images/brands-footer/formula420.png"),
+  },
+  {
+    name: "49",
+    path: require("../images/brands-footer/ruby.png"),
+  },
+  {
+    name: "50",
+    path: require("../images/brands-footer/nogoo.png"),
+  },
+  {
+    name: "51",
+    path: require("../images/brands-footer/juicyjays.png"),
+  },
+  {
+    name: "52",
+    path: require("../images/brands-footer/freshglass.png"),
   },
 ];
 export const META_DEFAULTS = {
