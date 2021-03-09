@@ -63,7 +63,7 @@ export const FilterSidebar: React.FC<IProps> = ({
           />
         </S.Header>
         <S.SubCat>
-          {category && <S.SmHeader2>Sub Category</S.SmHeader2>}
+          {category && <S.SmHeader2>Categories</S.SmHeader2>}
           <ul>
             {category &&
               category.children.map(

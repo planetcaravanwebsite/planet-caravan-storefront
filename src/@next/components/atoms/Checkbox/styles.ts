@@ -2,7 +2,7 @@ import { styled } from "@styles";
 
 export const Checkbox = styled.div`
   width: 100%;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.4rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;

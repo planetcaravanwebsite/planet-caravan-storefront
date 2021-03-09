@@ -1,6 +1,6 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
 import "./scss/index.scss";
+import Instagram from "../../images/icon-insta.png";
 
 interface Medium {
   ariaLabel: string;
@@ -20,7 +20,7 @@ const SocialMediaIcon: React.FC<IconProps> = ({ medium, target }) => (
       target={target || "_blank"}
       aria-label={medium.ariaLabel}
     >
-      <ReactSVG path={medium.path} className="social-icon" />
+      <img className="resize-social-logo" src={Instagram} alt="" />
       <span className="social-text">{medium.ariaLabel}</span>
     </a>
   </div>

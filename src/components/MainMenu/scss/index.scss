@@ -20,6 +20,10 @@
   height: 3.55rem;
   position: relative;
 
+  &__ul-block {
+    display: block !important;
+  }
+
   &__fix-z {
     z-index: 5;
   }
@@ -78,14 +82,16 @@
     font-weight: $bold-font-weight;
     height: 100%;
     text-transform: uppercase;
+    position: relative;
 
     a {
       text-decoration: none;
       color: $light-font-color;
+      font-weight: bold;
       position: relative;
       transition: 0.3s;
       white-space: nowrap;
-      font-size: .9rem;
+      font-size: 1rem;
       @media screen and (max-width: 750px) {
         font-size: 1rem;
       }
@@ -265,10 +271,10 @@
       // border-top-width: 1px;
       display: none;
       left: 0;
-      padding: 2rem 2rem 1.2rem;
+      padding: 2rem 0 1.2rem;
       position: absolute;
       top: 100%;
-      width: 100%;
+      width: 300px;
       z-index: 3;
 
       &--visible {
@@ -282,13 +288,15 @@
 
       > ul > li {
         align-self: flex-start;
-        margin-left: 2rem;
+        // margin-left: 2rem;
+        margin: 0 0 0.5rem 1.5rem;
         position: relative;
         width: 188px;
 
         // 2nd level name
         > a {
-          font-size: $base-font-size;
+          font-size: .9rem;
+          font-weight: bold;
           position: relative;
           text-transform: uppercase;
           padding-bottom: 9px;

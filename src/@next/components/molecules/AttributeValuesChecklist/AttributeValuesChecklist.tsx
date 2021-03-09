@@ -1,7 +1,6 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
-import { ButtonLink, Checkbox } from "@components/atoms";
+import { Checkbox } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -21,13 +20,15 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
     <S.Wrapper>
       {title && (
         <S.Header>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a onClick={() => setViewAll(!viewAll)} className="filter-title">
-          {title}
+            {title}
             <span>{viewAll ? "-" : "+"}</span>
           </a>
         </S.Header>
       )}
-      {values && viewAll &&
+      {values &&
+        viewAll &&
         values
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((value, index) => {

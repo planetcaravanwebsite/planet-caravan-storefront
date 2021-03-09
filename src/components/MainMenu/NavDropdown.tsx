@@ -57,7 +57,7 @@ class NavDropdown extends React.PureComponent<
             "main-menu__nav-dropdown__body--visible": showDropDown,
           })}
         >
-          <ul>
+          <ul className="main-menu__ul-block">
             {children.map((subItem, i) => (
               <NavItem
                 key={i}

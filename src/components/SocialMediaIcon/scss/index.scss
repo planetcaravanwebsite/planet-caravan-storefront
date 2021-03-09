@@ -7,13 +7,19 @@
   }
 }
 
+.resize-social-logo {
+  width: 35px;
+  height: 35px;
+}
+
 .social-text {
-  font-weight: bold;
+  display: block;
+  // font-weight: bold;
   // display: block;
   // float: left;
   // margin-top: 24px;
   &:hover {
-    color: $turquoise;
+    // color: $turquoise;
   }
 }
 
