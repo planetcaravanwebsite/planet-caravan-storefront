@@ -45,6 +45,7 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
+  // eslint-disable-next-line prefer-const
   let [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",

@@ -8,7 +8,7 @@ export const Primary = styled.button`
   transform: none;
   padding: 0.9rem 3.7rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgb(0 0 0 / 20%);
+  box-shadow: -5px 5px 14px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
   outline: none;
   // font-family: "Oswald", sans-serif;
@@ -49,7 +49,10 @@ export const Contact: React.FC<any> = () => {
           <a href="mailto:planetcaravanwebsite@gmail.com">
             planetcaravanwebsite@gmail.com
           </a>
-          <p>Call/Text Everyday 9AM-10PM EST: <a href="tel:513447448">(513) 444-7448</a></p>
+          <p>
+            Call/Text Everyday 9AM-10PM EST:
+            <a href="tel:513447448">(513) 444-7448</a>
+          </p>
           <p className="margin-bottom-small">
             <b>
               Note: Phone lines are busy every day at 7:10PM EST for Instagram
