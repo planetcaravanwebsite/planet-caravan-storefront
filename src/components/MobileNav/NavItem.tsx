@@ -1,11 +1,8 @@
 import classNames from "classnames";
 import * as React from "react";
-import ReactSVG from "react-svg";
 
 import { NavLink } from "..";
 import { MainMenuSubItem } from "../MainMenu/gqlTypes/MainMenuSubItem";
-
-import subcategoriesImg from "../../images/subcategories.svg";
 
 export interface INavItem extends MainMenuSubItem {
   children?: INavItem[];
@@ -34,6 +31,7 @@ const NavItem: React.FC<NavItemProps> = ({
       <NavLink
         item={item}
         className="side-nav__menu-item-link"
+        // @ts-ignore
         hasSubNavigation={hasSubNavigation}
         subNavOpen={showChildren}
         onClick={e => {

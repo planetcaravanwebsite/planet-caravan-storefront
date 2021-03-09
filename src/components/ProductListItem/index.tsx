@@ -1,9 +1,10 @@
+// @ts-nocheck
 import "./scss/index.scss";
 
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
-import {CachedImage, Thumbnail} from "@components/molecules";
+import { CachedImage } from "@components/molecules";
 
 import { TaxedMoney } from "../../@next/components/containers";
 import { FeaturedProducts_shop_homepageCollection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
@@ -35,7 +36,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
-        <CachedImage alt={product.name} url={product.images[0].url} />
+        <CachedImage alt={product.name} url={product.images[0]} />
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category?.name}</p>
