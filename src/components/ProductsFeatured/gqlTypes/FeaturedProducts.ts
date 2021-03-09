@@ -220,6 +220,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ca
 }
 
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
+    images: String[] | null;
   __typename: "Product";
   /**
    * The ID of the object.

@@ -99,7 +99,6 @@ const Page: React.FC<PageProps> = ({
             // @ts-ignore
             return item.category.id === category.id;
           });
-          console.log(categoryData);
 
           return (
             <>

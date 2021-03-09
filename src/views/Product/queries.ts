@@ -30,6 +30,9 @@ export const basicProductFragment = gql`
     thumbnail2x: thumbnail(size: 510) {
       url
     }
+    images {
+      url
+    }
   }
 `;
 
