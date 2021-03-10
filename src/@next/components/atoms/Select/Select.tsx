@@ -33,6 +33,7 @@ const optionStyle = (customTheme: any) => ({
       minHeight: "34px",
       verticalAlign: "middle",
       width: "95%",
+      padding: "8px!important",
     };
   },
 });
