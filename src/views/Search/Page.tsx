@@ -1,4 +1,5 @@
-/* tslint:disable */
+// @ts-nocheck
+
 import "./scss/index.scss";
 
 import * as React from "react";
