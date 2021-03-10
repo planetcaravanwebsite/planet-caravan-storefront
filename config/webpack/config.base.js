@@ -127,7 +127,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       // when it comes to peer dependencies, and we need to somehow develop
       // @saleor/sdk package
       react: path.resolve("./node_modules/react"),
-      "react-dom": "@hot-loader/react-dom",
+      // "react-dom": "@hot-loader/react-dom",
     },
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     plugins: [
