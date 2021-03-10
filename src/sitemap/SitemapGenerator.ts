@@ -49,7 +49,7 @@ class SitemapGenerator {
     );
 
     // tslint:disable-next-line: no-console
-    console.log("DONE");
+    // console .log("DONE");
   }
 
   generateSitemapIndex(filename: string) {

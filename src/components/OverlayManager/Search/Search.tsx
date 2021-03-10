@@ -69,7 +69,7 @@ class Search extends React.Component<SearchProps, SearchState> {
       "959671f0d835e32af44a31dd270a90d2"
     );
 
-    console.log(searchClient);
+    // console.log(searchClient);
 
     return (
       <Overlay

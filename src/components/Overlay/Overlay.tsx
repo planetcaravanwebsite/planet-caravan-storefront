@@ -35,6 +35,9 @@ const Overlay: React.FC<OverlayProps> = ({
         <>
           {children}
           {more && <div>hello</div>}
+          <div onClick={hide} className="closeOverlay">
+            close
+          </div>
         </>
       </div>
     </div>

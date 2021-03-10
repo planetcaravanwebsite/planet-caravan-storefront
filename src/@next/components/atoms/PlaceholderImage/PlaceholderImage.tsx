@@ -7,7 +7,7 @@ import { IProps } from "./types";
 export const PlaceholderImage: React.FC<IProps> = ({
   alt = "placeholder",
 }: IProps) => {
-  console.log("placeholderimage");
-  console.log(NoPhoto);
+  // console.log("placeholderimage");
+  // console.log(NoPhoto);
   return <img src={NoPhoto} alt={alt} />;
 };

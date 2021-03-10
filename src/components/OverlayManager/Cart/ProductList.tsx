@@ -18,7 +18,7 @@ const ProductList: React.FC<{
 }> = ({ lines, remove }) => (
   <ul className="cart__list">
     {lines.map((line, index) => {
-      console.log(line);
+      // console.log(line);
 
       // const [isFetched, setIsFetched] = useState(false);
       // const [varImage, setVarImage] = useState("");
@@ -76,12 +76,13 @@ const ProductList: React.FC<{
       // @ts-ignore
       const fetchData = async () => {
         const res = await queryData();
-        console.log(res);
+        // console.log(res);
+        // @ts-ignore
         const z = find(res.product.variants, function (o) {
           // @ts-ignore
           return o.id === line.variant.id;
         });
-        console.log(z.images[0]);
+        // console.log(z.images[0]);
         // setVarImage(z.images[0].url);
       };
 

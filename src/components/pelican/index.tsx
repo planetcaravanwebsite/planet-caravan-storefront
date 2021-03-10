@@ -45,6 +45,7 @@ export const Container = styled.div`
 
 export const Pelican: React.FC<PelicanInterface> = () => {
   const [isFetched, setIsFetched] = useState(false);
+  const [anyData, setAnyData] = useState(false);
   const [pelicanData, setPelicanData] = useState({
     products: {
       edges: [
@@ -119,6 +120,9 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const fetchData = async () => {
     const res = await queryData();
     setPelicanData(res);
+    if (res.products.edges.length > 0) {
+      setAnyData(true);
+    }
     // console.log(res);
   };
 
@@ -136,40 +140,46 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const { addItem } = useCart();
 
   const handleAddToCart = (variantId, quantity) => {
-    console.log("adding %o %o", variantId, quantity);
+    // console.log("adding %o %o", variantId, quantity);
     addItem(variantId, quantity);
   };
 
-  return !isFetched ? (
-    <div>loading...</div>
-  ) : (
-    <Container>
-      <Wrapper>
-        <CenterDiv>
-          <FLeft>
-            <b>
-              Add a {pelicanData.products.edges[0].node.name} for $
-              {
-                pelicanData.products.edges[0].node.pricing.priceRange.start.net
-                  .amount
-              }
-              ?{" "}
-            </b>
-          </FLeft>
-          <ButtonWrapper>
-            <AddToCartButton
-              onSubmit={() =>
-                handleAddToCart(
-                  pelicanData.products.edges[0].node.variants[0].id,
-                  1
-                )
-              }
-              disabled={false}
-              specialColor={false}
-            />
-          </ButtonWrapper>
-        </CenterDiv>
-      </Wrapper>
-    </Container>
-  );
+  if (!isFetched) {
+    return (
+      <div>loading...</div>
+    );
+  } else if (!anyData) {
+    return (<></>);
+  } else {
+    return (
+      <Container>
+        <Wrapper>
+          <CenterDiv>
+            <FLeft>
+              <b>
+                Add a {pelicanData.products.edges[0].node.name} for $
+                {
+                  pelicanData.products.edges[0].node.pricing.priceRange.start.net
+                    .amount
+                }
+                ?{" "}
+              </b>
+            </FLeft>
+            <ButtonWrapper>
+              <AddToCartButton
+                onSubmit={() =>
+                  handleAddToCart(
+                    pelicanData.products.edges[0].node.variants[0].id,
+                    1
+                  )
+                }
+                disabled={false}
+                specialColor={false}
+              />
+            </ButtonWrapper>
+          </CenterDiv>
+        </Wrapper>
+      </Container>
+    );
+  }
 };

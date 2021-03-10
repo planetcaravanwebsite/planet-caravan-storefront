@@ -50,7 +50,7 @@ export const Contact: React.FC<any> = () => {
             planetcaravanwebsite@gmail.com
           </a>
           <p>
-            Call/Text Everyday 9AM-10PM EST:
+            Call/Text Everyday 9AM-10PM EST:<br className="onlyMobile" />
             <a href="tel:513447448">(513) 444-7448</a>
           </p>
           <p className="margin-bottom-small">

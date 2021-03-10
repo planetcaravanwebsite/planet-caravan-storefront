@@ -34,7 +34,8 @@ export const Title = styled.h4`
   // font-family: Oswald;
   text-transform: uppercase;
   font-weight: bold;
-  ${textProps}
+  ${textProps};
+  padding: 0 10px;
 `;
 
 export const Price = styled.p`
@@ -45,7 +46,7 @@ export const Image = styled.div`
   width: auto;
   height: auto;
   max-width: 100%;
-  padding-top: 10px;
+  padding: 10px 15px;
 
   > img {
     width: auto;

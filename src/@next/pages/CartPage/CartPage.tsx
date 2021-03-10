@@ -75,7 +75,7 @@ const prepareCartFooter = (
 );
 
 const hasPelican = (items: IItems) => {
-  console.log(find(items, ({ id }) => id === "UHJvZHVjdFZhcmlhbnQ6MzI1"));
+  // console.log(find(items, ({ id }) => id === "UHJvZHVjdFZhcmlhbnQ6MzI1"));
   return true;
 };
 
@@ -197,7 +197,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       // @ts-ignore
       return o.id === items[0].variant.id;
     });
-    console.log(z.images[0]);
+    // console.log(z.images[0]);
     // setVarImage(z.images[0].url);
   };
 

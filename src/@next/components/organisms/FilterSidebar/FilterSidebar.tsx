@@ -44,17 +44,19 @@ export const FilterSidebar: React.FC<IProps> = ({
   // Filter for... filter values
   const hasProducts = (attributeName: String, value: any) => {
     let hasProducts = false;
+    // @ts-ignore
     products.forEach(product => {
       if (hasProducts) {
         return false; // break
       }
-
+      // @ts-ignore
       product.attributes.forEach(attribute => {
         if (hasProducts) {
           return false;
         }
 
         if (attribute.attribute.name === attributeName) {
+          // @ts-ignore
           attribute.values.forEach(attributeValue => {
             if (attributeValue.name === value.name) {
               hasProducts = true;

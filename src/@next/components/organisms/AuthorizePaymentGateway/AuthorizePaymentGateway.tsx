@@ -90,7 +90,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
         return response;
       })
       .catch(response => {
-        console.log(response);
+        // console.log(response);
       });
     // setSubmitErrors([]);
     // const creditCard: ICardPaymentInput = {

@@ -14,8 +14,8 @@ export const ThumbnailCart: React.FC<IProps> = ({
 }: IProps) => {
   const { thumbnail, thumbnail2x } = source;
 
-  console.log(thumbnail);
-  console.log(image);
+  // console.log(thumbnail);
+  // console.log(image);
 
   const displayImage = image;
 

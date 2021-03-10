@@ -2,6 +2,16 @@
 
 .static-page {
 
+  .onlyMobile {
+    @media screen and (min-width: 450px) {
+      display: none;
+    }
+  }
+
+  a {
+    color: #1F5D83;
+  }
+
   p {
     // font-family: Oswald, serif;
     line-height: 2rem;
@@ -58,9 +68,9 @@
     b {
       font-weight: bold;
     }
-    a {
+/*    a {
       color: #E43024;
-    }
+    } */
   }
 
   .locations-page {

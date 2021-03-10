@@ -145,6 +145,9 @@ $drawer-width: 25rem;
   {
     width: 500px;
     max-width: 100%;
+    @media screen and (max-width: 450px) {
+      height: 94vh;
+    }
   }
   form
   {
@@ -165,6 +168,7 @@ $drawer-width: 25rem;
 
     .ais-SearchBox-submit
     {
+      display: none;
       padding: 10px 8px 8px 8px;
       font-size: 1rem;
 
