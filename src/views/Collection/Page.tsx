@@ -92,6 +92,7 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+
   return (
     <>
       <MainMenu demoMode={demoMode} whichMenu="homePage" />
@@ -104,6 +105,7 @@ const Page: React.FC<PageProps> = ({
             onAttributeFiltersChange={onAttributeFiltersChange}
             attributes={attributes}
             filters={filters}
+            products={products.edges.map(edge => edge.node)}
           />
           <ProductListHeader
             activeSortOption={activeSortOption}

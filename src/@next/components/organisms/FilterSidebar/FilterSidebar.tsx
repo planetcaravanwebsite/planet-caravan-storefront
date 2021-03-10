@@ -35,11 +35,38 @@ export const FilterSidebar: React.FC<IProps> = ({
   target,
   onAttributeFiltersChange,
   category,
+  products,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
-  console.log(category);
+
+  // Filter for... filter values
+  const hasProducts = (attributeName: String, value: any) => {
+    let hasProducts = false;
+    products.forEach(product => {
+      if (hasProducts) {
+        return false; // break
+      }
+
+      product.attributes.forEach(attribute => {
+        if (hasProducts) {
+          return false;
+        }
+
+        if (attribute.attribute.name === attributeName) {
+          attribute.values.forEach(attributeValue => {
+            if (attributeValue.name === value.name) {
+              hasProducts = true;
+              return false; // break
+            }
+          });
+        }
+      });
+    });
+    return hasProducts;
+  };
+
   return (
     <Overlay
       duration={0}
@@ -93,10 +120,12 @@ export const FilterSidebar: React.FC<IProps> = ({
               key={id}
               title={name}
               name={slug}
-              values={values.map(value => ({
-                ...value,
-                selected: checkIfAttributeIsChecked(filters, value, slug),
-              }))}
+              values={values
+                .filter(hasProducts.bind(null, name))
+                .map(value => ({
+                  ...value,
+                  selected: checkIfAttributeIsChecked(filters, value, slug),
+                }))}
               valuesShowLimit
               onValueClick={value => onAttributeFiltersChange(slug, value.slug)}
             />
