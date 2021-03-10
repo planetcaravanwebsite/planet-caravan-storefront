@@ -33,6 +33,16 @@ export const basicProductFragment = gql`
     images {
       url
     }
+    attributes {
+      values {
+        id
+        name
+      }
+      attribute {
+        id
+        name
+      }
+    }
   }
 `;
 

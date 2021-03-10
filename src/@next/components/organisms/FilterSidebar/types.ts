@@ -8,4 +8,5 @@ export interface IProps {
   show: boolean;
   target?: HTMLElement | null;
   category?: any;
+  products: any;
 }

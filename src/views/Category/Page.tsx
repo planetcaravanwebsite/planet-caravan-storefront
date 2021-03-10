@@ -113,6 +113,7 @@ const Page: React.FC<PageProps> = ({
                     attributes={attributes}
                     filters={filters}
                     category={categoryData}
+                    products={products.edges.map(edge => edge.node)}
                   />
                   <ProductListHeader
                     activeSortOption={activeSortOption}
