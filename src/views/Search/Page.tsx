@@ -1,3 +1,4 @@
+/* tslint:disable */
 import "./scss/index.scss";
 
 import * as React from "react";

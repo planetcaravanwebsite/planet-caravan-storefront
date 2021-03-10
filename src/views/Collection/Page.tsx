@@ -92,7 +92,6 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
-
   return (
     <>
       <MainMenu demoMode={demoMode} whichMenu="homePage" />

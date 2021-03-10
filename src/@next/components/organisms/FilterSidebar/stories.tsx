@@ -15,6 +15,7 @@ if (!portalRoot) {
 storiesOf("@components/organisms/FilterSidebar", module)
   .addParameters({ component: FilterSidebar })
   .add("default", () => (
+    // @ts-ignore
     <FilterSidebar
       target={portalRoot}
       {...DEFAULT_PROPS}

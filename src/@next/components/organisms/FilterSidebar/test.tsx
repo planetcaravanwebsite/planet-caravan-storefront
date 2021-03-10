@@ -10,6 +10,7 @@ const onAttributeFiltersChange = jest.fn();
 describe("<FilterSidebar />", () => {
   it("exists", () => {
     const wrapper = shallow(
+      // @ts-ignore
       <FilterSidebar
         {...DEFAULT_PROPS}
         hide={hide}
