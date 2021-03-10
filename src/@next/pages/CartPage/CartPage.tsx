@@ -193,6 +193,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   // @ts-ignore
   const fetchData = async () => {
     const res = await queryData();
+    // @ts-ignore
     const z = find(res.product.variants, function (o) {
       // @ts-ignore
       return o.id === items[0].variant.id;

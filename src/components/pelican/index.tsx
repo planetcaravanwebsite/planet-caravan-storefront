@@ -145,41 +145,39 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   };
 
   if (!isFetched) {
-    return (
-      <div>loading...</div>
-    );
-  } else if (!anyData) {
-    return (<></>);
-  } else {
-    return (
-      <Container>
-        <Wrapper>
-          <CenterDiv>
-            <FLeft>
-              <b>
-                Add a {pelicanData.products.edges[0].node.name} for $
-                {
-                  pelicanData.products.edges[0].node.pricing.priceRange.start.net
-                    .amount
-                }
-                ?{" "}
-              </b>
-            </FLeft>
-            <ButtonWrapper>
-              <AddToCartButton
-                onSubmit={() =>
-                  handleAddToCart(
-                    pelicanData.products.edges[0].node.variants[0].id,
-                    1
-                  )
-                }
-                disabled={false}
-                specialColor={false}
-              />
-            </ButtonWrapper>
-          </CenterDiv>
-        </Wrapper>
-      </Container>
-    );
+    return <div>loading...</div>;
   }
+  if (!anyData) {
+    return <></>;
+  }
+  return (
+    <Container>
+      <Wrapper>
+        <CenterDiv>
+          <FLeft>
+            <b>
+              Add a {pelicanData.products.edges[0].node.name} for $
+              {
+                pelicanData.products.edges[0].node.pricing.priceRange.start.net
+                  .amount
+              }
+              ?{" "}
+            </b>
+          </FLeft>
+          <ButtonWrapper>
+            <AddToCartButton
+              onSubmit={() =>
+                handleAddToCart(
+                  pelicanData.products.edges[0].node.variants[0].id,
+                  1
+                )
+              }
+              disabled={false}
+              specialColor={false}
+            />
+          </ButtonWrapper>
+        </CenterDiv>
+      </Wrapper>
+    </Container>
+  );
 };
