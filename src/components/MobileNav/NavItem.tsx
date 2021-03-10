@@ -34,14 +34,7 @@ const NavItem: React.FC<NavItemProps> = ({
         // @ts-ignore
         hasSubNavigation={hasSubNavigation}
         subNavOpen={showChildren}
-        onClick={e => {
-          if (hasSubNavigation) {
-            e.preventDefault();
-            setShowChildren(!showChildren);
-          } else {
-            hideOverlay();
-          }
-        }}
+        toggleSubNav={() => setShowChildren(!showChildren)}
       />
 
       {hasSubNavigation && (
