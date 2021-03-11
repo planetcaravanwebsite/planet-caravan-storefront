@@ -189,8 +189,9 @@ body {
 }
 
 .slick-slide img {
-  max-height: 50px;
+  max-height: 75px;
   display: inline !important;
+  max-width: 150px;
 }
 
 .slick-next, .slick-prev {
