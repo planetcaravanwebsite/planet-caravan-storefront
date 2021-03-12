@@ -22,10 +22,7 @@ const HomePageSearch: React.FC = () => {
               <div
                 className="main-menu__search"
                 onClick={() =>
-                  overlayContext.show(
-                    OverlayType.search,
-                    OverlayTheme.modalFull
-                  )
+                  overlayContext.show(OverlayType.search, OverlayTheme.right)
                 }
               >
                 <Media
