@@ -1,7 +1,7 @@
 @import "../../../globalStyles/scss/variables";
 @import "../../../globalStyles/scss/animations";
 
-$button-size: 40px;
+$button-size: 3s0px;
 $close-width: ($button-size / 10);
 
 .close-button {
@@ -29,7 +29,7 @@ $close-width: ($button-size / 10);
       left: calc(55% - 4px);
       display: block;
       width: 4px;
-      height: 25px;
+      height: 18px;
       transform-origin: bottom center;
       background: gray;
       transition: all ease-out 280ms;
