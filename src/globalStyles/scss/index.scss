@@ -204,3 +204,8 @@ body {
   width: 100%;
   bottom: -25px!important;
 }
+
+.noscroll {
+  height: 100vh;
+  overflow: hidden;
+}
