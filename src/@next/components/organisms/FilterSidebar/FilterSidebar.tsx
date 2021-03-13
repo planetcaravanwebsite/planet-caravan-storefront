@@ -114,7 +114,7 @@ export const FilterSidebar: React.FC<IProps> = ({
                       </li>
                     );
                   }
-                  return <></>
+                  return <></>;
                 }
               )}
           </ul>
