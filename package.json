@@ -183,8 +183,7 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "engines": {
-    "node": "15.x",
-    "npm": "7.x"
+    "node": "10.x"
   },
   "husky": {
     "hooks": {
