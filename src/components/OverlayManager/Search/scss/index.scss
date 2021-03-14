@@ -159,12 +159,17 @@ $drawer-width: 25rem;
     {
       flex: 1;
       border: 0;
-      padding: 5px;
+      padding: 10px;
       font-size: 1rem;
       outline: 0;
     }
 
-    .ais-SearchBox-reset { display: none; }
+    .ais-SearchBox-reset {
+      display: none;
+      .ais-SearchBox-resetIcon {
+        display: none;
+      }
+    }
 
     .ais-SearchBox-submit
     {
@@ -197,6 +202,7 @@ $drawer-width: 25rem;
       &:last-child
       {
         padding-bottom: 0;
+        margin-bottom: 80px;
       }
 
       a

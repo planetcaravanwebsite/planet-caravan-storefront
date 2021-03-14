@@ -99,19 +99,22 @@ export const FilterSidebar: React.FC<IProps> = ({
                 (child: {
                   category: { id: string; name: {} | null | undefined };
                 }) => {
-                  return (
-                    <li>
-                      <Link
-                        to={generateCategoryUrl(
-                          child.category.id,
-                          // @ts-ignore
-                          child.category.name
-                        )}
-                      >
-                        {child.category.name}
-                      </Link>
-                    </li>
-                  );
+                  if (child.category) {
+                    return (
+                      <li>
+                        <Link
+                          to={generateCategoryUrl(
+                            child.category.id,
+                            // @ts-ignore
+                            child.category.name
+                          )}
+                        >
+                          {child.category.name}
+                        </Link>
+                      </li>
+                    );
+                  }
+                  return <></>;
                 }
               )}
           </ul>

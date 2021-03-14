@@ -50,7 +50,7 @@ const Page: React.FC<{
           <div>
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
-                <Link to="/category/drops/54/">
+                <Link to="/category/drops/58/">
                   <div className="home-page__categories__list__image--no-photo">
                     Drops
                   </div>

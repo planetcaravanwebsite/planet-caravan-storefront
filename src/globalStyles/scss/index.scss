@@ -189,8 +189,9 @@ body {
 }
 
 .slick-slide img {
-  max-height: 50px;
+  max-height: 75px;
   display: inline !important;
+  max-width: 150px;
 }
 
 .slick-next, .slick-prev {
@@ -202,4 +203,9 @@ body {
 .slider-control-bottomcenter {
   width: 100%;
   bottom: -25px!important;
+}
+
+.noscroll {
+  height: 100vh;
+  overflow: hidden;
 }
