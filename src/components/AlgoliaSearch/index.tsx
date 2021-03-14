@@ -61,7 +61,16 @@ export default class AlgoliaSearch extends React.Component<SearchState> {
             this.setState({ search: searchState });
           }}
         >
-          <SearchBox />
+          <SearchBox
+            onSubmit={e => {
+              e.preventDefault();
+              const el = e.currentTarget.querySelector('input[type="search"]');
+              if (el) {
+                const value = el.value;
+                window.location.href = `/search?q=${encodeURIComponent(value)}`;
+              }
+            }}
+          />
           <Results />
         </InstantSearch>
       </>

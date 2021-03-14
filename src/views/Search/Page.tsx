@@ -3,6 +3,7 @@
 import "./scss/index.scss";
 import * as React from "react";
 
+import { MainMenu } from "@temp/components";
 import AlgoliaSearch from "../../components/AlgoliaSearch";
 
 interface PageProps {
@@ -11,11 +12,14 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = ({ search }) => {
   return (
-    <div className="search-page">
-      <div className="container">
-        <AlgoliaSearch search={search} />
+    <>
+      <MainMenu whichMenu="fullPage" />
+      <div className="search-page">
+        <div className="container">
+          <AlgoliaSearch search={search} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
