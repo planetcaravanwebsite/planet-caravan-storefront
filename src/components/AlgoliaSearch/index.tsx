@@ -37,9 +37,9 @@ const Hit = hit => {
 };
 
 // @ts-ignore
-class Search extends React.Component<SearchState> {
+export default class AlgoliaSearch extends React.Component<SearchState> {
   // eslint-disable-next-line react/no-unused-state
-  state = { search: "" };
+  state = { search: { query: this.props.search || "" } };
 
   submitBtnRef = React.createRef<HTMLButtonElement>();
 
@@ -53,7 +53,14 @@ class Search extends React.Component<SearchState> {
 
     return (
       <>
-        <InstantSearch indexName="products" searchClient={searchClient}>
+        <InstantSearch
+          indexName="products"
+          searchClient={searchClient}
+          searchState={this.state.search}
+          onSearchStateChange={searchState => {
+            this.setState({ search: searchState });
+          }}
+        >
           <SearchBox />
           <Results />
         </InstantSearch>
