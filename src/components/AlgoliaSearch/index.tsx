@@ -66,7 +66,7 @@ export default class AlgoliaSearch extends React.Component<SearchState> {
               e.preventDefault();
               const el = e.currentTarget.querySelector('input[type="search"]');
               if (el) {
-                const value = el.value;
+                const { value } = el;
                 window.location.href = `/search?q=${encodeURIComponent(value)}`;
               }
             }}
