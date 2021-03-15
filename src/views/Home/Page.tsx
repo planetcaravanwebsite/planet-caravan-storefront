@@ -64,7 +64,7 @@ const Page: React.FC<{
                 </Link>
               </div>
               <div className="home-page__categories__row">
-                <Link to="/category/smoke-shop/56/">
+                <Link to="/category/smoke-shop/95/">
                   <div className="home-page__categories__list__image--no-photo">
                     Smoke Shop
                   </div>
