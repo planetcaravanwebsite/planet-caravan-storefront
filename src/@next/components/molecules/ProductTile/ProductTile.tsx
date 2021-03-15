@@ -19,7 +19,10 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
-        <CachedImage alt={product.name} url={product.images[0] && product.images[0].url} />
+        <CachedImage
+          alt={product.name}
+          url={product.images[0] && product.images[0].url}
+        />
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
       <S.Price data-test="productPrice">
