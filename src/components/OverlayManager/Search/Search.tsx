@@ -28,7 +28,10 @@ interface SearchState {
 
 const Results = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
-    <Hits hitComponent={Hit} />
+    <>
+      <div id="search-dummy" tabIndex={1} />
+      <Hits hitComponent={Hit} />
+    </>
   ) : // <div>No query</div>
   null
 );

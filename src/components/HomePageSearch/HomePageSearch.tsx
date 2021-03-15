@@ -12,6 +12,13 @@ import { OverlayContext, OverlayTheme, OverlayType } from "..";
 
 // import algoliasearch from "algoliasearch/lite";
 
+function stopScroll() {
+  console.log("touch detected");
+  $("#search-dummy").focus();
+  // $('input[type="search"]').focus();
+}
+document.addEventListener("touchend", stopScroll);
+
 const HomePageSearch: React.FC = () => {
   return (
     <OverlayContext.Consumer>
