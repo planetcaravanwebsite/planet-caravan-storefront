@@ -27,6 +27,7 @@ const Results = connectStateResults(({ searchState }) =>
 
 const Hit = hit => {
   const result = hit.hit;
+  console.log(result);
   return (
     <a href={`/product/${result.slug}/${result.objectID}`}>
       {!!result.image && (
@@ -42,7 +43,7 @@ const Hit = hit => {
             {result.name}
           </h4>
           <p data-test="productPrice" className="serp-price">
-            <span>$119.99</span>
+            <span>{result.price}</span>
           </p>
         </div>
       )}
@@ -67,6 +68,7 @@ export default class AlgoliaSearchPage extends React.Component<SearchState> {
 
     return (
       <>
+        <h1>Search Results</h1>
         <InstantSearch
           indexName="products"
           searchClient={searchClient}

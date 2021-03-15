@@ -159,6 +159,7 @@ $drawer-width: 25rem;
     {
       flex: 1;
       border: 0;
+      border-bottom: 1px gray solid;
       padding: 10px;
       font-size: 1rem;
       outline: 0;
@@ -188,6 +189,7 @@ $drawer-width: 25rem;
   .ais-Hits
   {
     position: relative;
+    top: 41px;
     border-top: 1px solid rgba(0, 0, 0, 0.25);
 
     .ais-Hits-item
