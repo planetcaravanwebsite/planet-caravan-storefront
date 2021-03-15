@@ -15,7 +15,10 @@ interface SearchState {
 
 const Results = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
-    <Hits hitComponent={Hit} />
+    <>
+      <Hits hitComponent={Hit} />
+      <div id="search-dummy" tabIndex={1} />
+    </>
   ) : // <div>No query</div>
   null
 );
@@ -37,9 +40,9 @@ const Hit = hit => {
 };
 
 // @ts-ignore
-class Search extends React.Component<SearchState> {
+export default class AlgoliaSearch extends React.Component<SearchState> {
   // eslint-disable-next-line react/no-unused-state
-  state = { search: "" };
+  state = { search: { query: this.props.search || "" } };
 
   submitBtnRef = React.createRef<HTMLButtonElement>();
 
@@ -53,8 +56,24 @@ class Search extends React.Component<SearchState> {
 
     return (
       <>
-        <InstantSearch indexName="products" searchClient={searchClient}>
-          <SearchBox />
+        <InstantSearch
+          indexName="products"
+          searchClient={searchClient}
+          searchState={this.state.search}
+          onSearchStateChange={searchState => {
+            this.setState({ search: searchState });
+          }}
+        >
+          <SearchBox
+            onSubmit={e => {
+              e.preventDefault();
+              const el = e.currentTarget.querySelector('input[type="search"]');
+              if (el) {
+                const { value } = el;
+                window.location.href = `/search?q=${encodeURIComponent(value)}`;
+              }
+            }}
+          />
           <Results />
         </InstantSearch>
       </>

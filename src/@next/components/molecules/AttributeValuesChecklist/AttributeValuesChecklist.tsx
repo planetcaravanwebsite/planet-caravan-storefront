@@ -16,6 +16,10 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
 }: IProps) => {
   const [viewAll, setViewAll] = React.useState(false);
 
+  if (values.length < 1) {
+    return null;
+  }
+
   return (
     <S.Wrapper>
       {title && (
