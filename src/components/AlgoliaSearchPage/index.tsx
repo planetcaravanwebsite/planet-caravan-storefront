@@ -27,7 +27,6 @@ const Results = connectStateResults(({ searchState }) =>
 
 const Hit = hit => {
   const result = hit.hit;
-  console.log(result);
   return (
     <a href={`/product/${result.slug}/${result.objectID}`}>
       {!!result.image && (
@@ -51,6 +50,10 @@ const Hit = hit => {
   );
 };
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const searchParam = urlParams.get("q");
+
 // @ts-ignore
 export default class AlgoliaSearchPage extends React.Component<SearchState> {
   // eslint-disable-next-line react/no-unused-state
@@ -68,7 +71,7 @@ export default class AlgoliaSearchPage extends React.Component<SearchState> {
 
     return (
       <>
-        <h1>Search Results</h1>
+        <h1>Results for: {searchParam}</h1>
         <InstantSearch
           indexName="products"
           searchClient={searchClient}
