@@ -17,6 +17,7 @@ const Results = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
     <>
       <Hits hitComponent={Hit} />
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive */}
       <div id="search-dummy" tabIndex={1} />
     </>
   ) : // <div>No query</div>
