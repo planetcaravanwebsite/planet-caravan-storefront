@@ -7,6 +7,7 @@ import { commonMessages } from "@temp/intl";
 import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import { orderBy } from "lodash";
+import { Fab } from "react-tiny-fab";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { Breadcrumbs, MainMenu, ProductsFeatured } from "../../components";
@@ -118,6 +119,21 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <>
+      <Fab
+        mainButtonStyles={{
+          backgroundColor: "#E43024",
+        }}
+        style={{
+          bottom: 50,
+          right: 100,
+        }}
+        icon="&uarr;"
+        event="click"
+        key={-1}
+        alwaysShowTitle={false}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        text="Back to top"
+      />
       <MainMenu demoMode={demoMode} whichMenu="fullPage" />
       <div className="collection">
         <div className="container">
