@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { find } from "lodash";
+import { find, orderBy } from "lodash";
 
 import { commonMessages } from "@temp/intl";
 import { demoMode } from "@temp/constants";
@@ -90,6 +90,32 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  console.log(activeSortOption);
+  let sorted = products.edges;
+  if (activeSortOption === "price") {
+    sorted = orderBy(
+      products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.gross.amount;
+        },
+      ],
+      ["asc"]
+    );
+  } else if (activeSortOption === "-price") {
+    sorted = orderBy(
+      products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.gross.amount;
+        },
+      ],
+      ["desc"]
+    );
+  }
+  console.log(products.edges);
+  console.log(sorted);
+
   return (
     <>
       <TypedMainMenuQuery renderOnError displayLoader={false}>
@@ -113,7 +139,7 @@ const Page: React.FC<PageProps> = ({
                     attributes={attributes}
                     filters={filters}
                     category={categoryData}
-                    products={products.edges.map(edge => edge.node)}
+                    products={sorted.map(edge => edge.node)}
                   />
                   <ProductListHeader
                     activeSortOption={activeSortOption}
@@ -128,7 +154,7 @@ const Page: React.FC<PageProps> = ({
                   />
                   {canDisplayProducts && (
                     <ProductList
-                      products={products.edges.map(edge => edge.node)}
+                      products={sorted.map(edge => edge.node)}
                       canLoadMore={hasNextPage}
                       loading={displayLoader}
                       onLoadMore={onLoadMore}
