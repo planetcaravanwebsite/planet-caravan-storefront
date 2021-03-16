@@ -56,7 +56,7 @@ const Page: React.FC<PageProps> = ({
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
   );
-  const hasProducts = canDisplayProducts && !!products.totalCount;
+  // const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
@@ -127,11 +127,9 @@ const Page: React.FC<PageProps> = ({
           )}
         </div>
 
-        {!hasProducts && (
-          <ProductsFeatured
-            title={intl.formatMessage(commonMessages.youMightLike)}
-          />
-        )}
+        <ProductsFeatured
+          title={intl.formatMessage(commonMessages.youMightLike)}
+        />
       </div>
     </>
   );
