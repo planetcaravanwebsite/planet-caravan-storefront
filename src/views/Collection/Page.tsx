@@ -14,6 +14,7 @@ import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection } from "./gqlTypes/Collection";
 import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
+import { orderBy } from "lodash";
 
 interface SortItem {
   label: string;
@@ -92,6 +93,29 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  let sorted = products.edges;
+  if (activeSortOption === "price") {
+    sorted = orderBy(
+      products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.gross.amount;
+        },
+      ],
+      ["asc"]
+    );
+  } else if (activeSortOption === "-price") {
+    sorted = orderBy(
+      products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.gross.amount;
+        },
+      ],
+      ["desc"]
+    );
+  }
+
   return (
     <>
       <MainMenu demoMode={demoMode} whichMenu="fullPage" />
@@ -104,7 +128,7 @@ const Page: React.FC<PageProps> = ({
             onAttributeFiltersChange={onAttributeFiltersChange}
             attributes={attributes}
             filters={filters}
-            products={products.edges.map(edge => edge.node)}
+            products={sorted.map(edge => edge.node)}
           />
           <ProductListHeader
             activeSortOption={activeSortOption}
@@ -119,7 +143,7 @@ const Page: React.FC<PageProps> = ({
           />
           {canDisplayProducts && (
             <ProductList
-              products={products.edges.map(edge => edge.node)}
+              products={sorted.map(edge => edge.node)}
               canLoadMore={hasNextPage}
               loading={displayLoader}
               onLoadMore={onLoadMore}
