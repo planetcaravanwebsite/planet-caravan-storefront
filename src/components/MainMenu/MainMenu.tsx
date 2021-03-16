@@ -123,16 +123,21 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                     )}
                     {whichMenu !== "homePage" && (
                       <>
-                        <li
-                          data-test="mainMenuItem"
-                          className="main-menu__item"
-                        >
-                          <ul className="main-menu__nav-dropdown">
-                            <li>
-                              <a href="/collection/drops/250/">Drops</a>
+                        <Media
+                          query={{ minWidth: mediumScreen }}
+                          render={() => (
+                            <li
+                              data-test="mainMenuItem"
+                              className="main-menu__item"
+                            >
+                              <ul className="main-menu__nav-dropdown">
+                                <li>
+                                  <a href="/collection/drops/250/">Drops</a>
+                                </li>
+                              </ul>
                             </li>
-                          </ul>
-                        </li>
+                          )}
+                        />
                         <Media
                           query={{ minWidth: mediumScreen }}
                           render={() =>

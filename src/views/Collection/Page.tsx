@@ -94,7 +94,7 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="homePage" />
+      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
       <div className="collection">
         <div className="container">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
