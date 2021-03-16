@@ -6,6 +6,7 @@ import { useIntl } from "react-intl";
 import { commonMessages } from "@temp/intl";
 import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
+import { orderBy } from "lodash";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { Breadcrumbs, MainMenu, ProductsFeatured } from "../../components";
@@ -14,7 +15,6 @@ import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection } from "./gqlTypes/Collection";
 import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
-import { orderBy } from "lodash";
 
 interface SortItem {
   label: string;
