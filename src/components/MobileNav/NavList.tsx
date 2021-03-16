@@ -97,6 +97,18 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           </>
         )}
 
+        {more && (
+          <li className="side-nav__menu-item">
+            <Link
+              to="/collection/drops/250/"
+              className="side-nav__menu-item-link"
+              onClick={hideOverlay}
+            >
+              Drops
+            </Link>
+          </li>
+        )}
+
         {displayedItems.map(item => (
           <NavItem
             key={item.id}
