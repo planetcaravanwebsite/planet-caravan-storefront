@@ -209,3 +209,13 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+.rtf {
+  right: 5%;
+  bottom: 5%;
+
+  @media screen and (max-width: 750px) {
+    right: 1%;
+    bottom: 1%;
+  }
+}
