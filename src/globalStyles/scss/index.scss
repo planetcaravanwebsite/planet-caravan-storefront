@@ -199,7 +199,7 @@ body {
     display: none;
   }
 }
-
+q
 .slider-control-bottomcenter {
   width: 100%;
   bottom: -25px!important;
@@ -215,7 +215,7 @@ body {
   bottom: 5%;
 
   @media screen and (max-width: 750px) {
-    right: 1%;
-    bottom: 1%;
+    right: -3%!important;
+    bottom: -1%!important;
   }
 }

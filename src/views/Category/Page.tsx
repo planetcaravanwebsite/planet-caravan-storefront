@@ -131,6 +131,10 @@ const Page: React.FC<PageProps> = ({
                 mainButtonStyles={{
                   backgroundColor: "#E43024",
                 }}
+                style={{
+                  bottom: 50,
+                  right: "10%",
+                }}
                 icon="&uarr;"
                 event="click"
                 key={-1}
