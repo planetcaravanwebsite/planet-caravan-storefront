@@ -59,8 +59,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const API_URL = process.env.API_URI || "/graphql/";
 
   const [isFetched, setIsFetched] = useState(false);
-  const [anyData, setAnyData] = useState(false);
-  const [pelicanData, setPelicanData] = useState();
+  const [attributesFetched, setAttributesFetched] = useState(false);
+  const [pricingData, setPricingData] = useState();
+  const [attributesData, setAttributesData] = useState();
 
   if (!sort) {
     sort = "updated_at";
@@ -114,11 +115,54 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  variables.pageSize = 50;
-
+  variables.pageSize = 40;
   // console.log(variables);
 
-  const queryData = async () => {
+  const queryAttrributesData = async () => {
+    const query = JSON.stringify({
+      query: `
+      query ProductAttributes($id: ID!, $attributes: [AttributeInput], $after: String, $pageSize: Int, $sortBy: ProductOrder, $priceLte: Float, $priceGte: Float) {
+  products(after: $after, first: $pageSize, sortBy: $sortBy, filter: {attributes: $attributes, categories: [$id], minimalPrice: {gte: $priceGte, lte: $priceLte}}) {
+    totalCount
+    edges {
+      node {
+        id
+        name
+        attributes {
+          values {
+            id
+            name
+          }
+          attribute {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
+    `,
+      variables,
+    });
+
+    const response = await fetch(API_URL, {
+      headers: { "content-type": "application/json" },
+      method: "POST",
+      body: query,
+    });
+
+    const responseJson = await response.json();
+    return responseJson.data;
+  };
+
+  const fetchAttributes = async () => {
+    const res = await queryAttrributesData();
+    setAttributesData(res);
+    console.log(res);
+  };
+
+  const queryPricingData = async () => {
     const query = JSON.stringify({
       query: `
       query ProductPrices(
@@ -172,25 +216,27 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     return responseJson.data;
   };
 
-  const fetchData = async () => {
-    const res = await queryData();
-    setPelicanData(res);
-    if (res.products.edges.length > 0) {
-      setAnyData(true);
-    }
+  const fetchPricing = async () => {
+    const res = await queryPricingData();
+    setPricingData(res);
     // console.log(res);
   };
 
   useEffect(() => {
     let mounted = true;
-    fetchData().then(r => {
+    fetchAttributes().then(r =>{
+      if (mounted) {
+        setAttributesFetched(true);
+      }
+    });
+    fetchPricing().then(r => {
       if (mounted) {
         setIsFetched(true);
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
-  }, [isFetched]);
+  }, [isFetched, attributesFetched]);
 
   const sortOptions = [
     {
@@ -256,9 +302,27 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               !!categoryData.data?.attributes?.edges &&
               !!categoryData.data?.category?.name;
 
-            merge(categoryData.data, pelicanData);
+            merge(categoryData.data, pricingData);
 
-            return <Page products={categoryData.data} />;
+            return (
+              <>
+                <Page
+                  products={categoryData.data}
+                  sortOptions={sortOptions}
+                  clearFilters={clearFilters}
+                  filters={filters}
+                  onAttributeFiltersChange={onFiltersChange}
+                  activeFilters={
+                    filters!.attributes
+                      ? Object.keys(filters!.attributes).length
+                      : 0
+                  }
+                  onOrder={value => {
+                    setSort(value.value);
+                  }}
+                />
+              </>
+            );
           }}
         </TypedCategoryProductsQueryNew>
       )}
