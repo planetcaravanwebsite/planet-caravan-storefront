@@ -77,7 +77,7 @@ const Page: React.FC<PageProps> = ({
       valueName: attributes
         .find(({ slug }) => attributeSlug === slug)
         .values.find(({ slug }) => valueSlug === slug).name,
-      valueSlug,
+      valueSlug,``
     };
   };
 

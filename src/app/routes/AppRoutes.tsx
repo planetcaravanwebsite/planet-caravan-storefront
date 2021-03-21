@@ -30,7 +30,7 @@ export const Routes: React.FC = () => (
   <Switch>
     <PrivateRoute exact path={paths.baseUrl} component={HomePage} />
     <PrivateRoute path={paths.searchUrl} component={SearchPage} />
-    <PrivateRoute path={paths.categoryUrl} component={CategoryPage} />
+    <Route path={paths.categoryUrl} component={CategoryPage} />
     <PrivateRoute path={paths.collectionUrl} component={CollectionPage} />
     <Route path={paths.productUrl} component={ProductPage} />
     <PrivateRoute path={paths.cartUrl} component={CartPage} />
