@@ -57,14 +57,14 @@ const Page: React.FC<{
                 </Link>
               </div>
               <div className="home-page__categories__row">
-                <Link to="/category/headies/52/">
+                <Link to="/category/headies/104/">
                   <div className="home-page__categories__list__image--no-photo">
                     Headies
                   </div>
                 </Link>
               </div>
               <div className="home-page__categories__row">
-                <Link to="/category/smoke-shop/95/">
+                <Link to="/category/smoke-shop/113/">
                   <div className="home-page__categories__list__image--no-photo">
                     Smoke Shop
                   </div>
