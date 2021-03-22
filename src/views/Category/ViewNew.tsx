@@ -118,50 +118,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   variables.pageSize = 40;
   // console.log(variables);
 
-  const queryAttrributesData = async () => {
-    const query = JSON.stringify({
-      query: `
-      query ProductAttributes($id: ID!, $attributes: [AttributeInput], $after: String, $pageSize: Int, $sortBy: ProductOrder, $priceLte: Float, $priceGte: Float) {
-  products(after: $after, first: $pageSize, sortBy: $sortBy, filter: {attributes: $attributes, categories: [$id], minimalPrice: {gte: $priceGte, lte: $priceLte}}) {
-    totalCount
-    edges {
-      node {
-        id
-        name
-        attributes {
-          values {
-            id
-            name
-          }
-          attribute {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-}
-    `,
-      variables,
-    });
-
-    const response = await fetch(API_URL, {
-      headers: { "content-type": "application/json" },
-      method: "POST",
-      body: query,
-    });
-
-    const responseJson = await response.json();
-    return responseJson.data;
-  };
-
-  const fetchAttributes = async () => {
-    const res = await queryAttrributesData();
-    setAttributesData(res);
-    console.log(res);
-  };
-
   const queryPricingData = async () => {
     const query = JSON.stringify({
       query: `
@@ -224,11 +180,11 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   useEffect(() => {
     let mounted = true;
-    fetchAttributes().then(r =>{
+  /*  fetchAttributes().then(r =>{
       if (mounted) {
         setAttributesFetched(true);
       }
-    });
+    }); */
     fetchPricing().then(r => {
       if (mounted) {
         setIsFetched(true);
@@ -236,7 +192,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
-  }, [isFetched, attributesFetched]);
+  }, [isFetched, /* attributesFetched */]);
 
   const sortOptions = [
     {
@@ -307,6 +263,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
             return (
               <>
                 <Page
+                  match={match}
                   products={categoryData.data}
                   sortOptions={sortOptions}
                   clearFilters={clearFilters}

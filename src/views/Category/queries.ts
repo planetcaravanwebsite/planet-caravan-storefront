@@ -36,6 +36,16 @@ export const CategoryProductsQueryNew = gql`
         node {
           id
           name
+          attributes {
+          values {
+            id
+            name
+          }
+          attribute {
+            id
+            name
+          }
+        }
           thumbnail {
             url
             alt
