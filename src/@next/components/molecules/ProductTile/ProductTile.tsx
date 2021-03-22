@@ -10,7 +10,7 @@ import { IProps } from "./types";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   const image = product.images
-    ? product.images[0].url
+    ? product.images[0] && product.images[0].url
     : product.thumbnail && product.thumbnail.url;
   const price =
     product.pricing &&

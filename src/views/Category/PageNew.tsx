@@ -270,6 +270,7 @@ const Page: React.FC<PageProps> = ({
                       filters={filters}
                       // @ts-ignore
                       products={products.products.edges.map(edge => edge.node)}
+                      category={categoryData}
                     />
 
                     <ProductListHeader
