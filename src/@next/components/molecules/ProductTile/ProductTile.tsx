@@ -9,6 +9,9 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
+  const image = product.images
+    ? product.images[0].url
+    : product.thumbnail && product.thumbnail.url;
   const price =
     product.pricing &&
     product.pricing.priceRange &&
@@ -19,10 +22,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
-        <CachedImage
-          alt={product.name}
-          url={product.images[0] && product.images[0].url}
-        />
+        <CachedImage alt={product.name} url={image} />
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
       <S.Price data-test="productPrice">

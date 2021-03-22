@@ -34,7 +34,7 @@ export const FilterSidebar: React.FC<IProps> = ({
   attributes,
   target,
   onAttributeFiltersChange,
-  category,
+  /*  category, */
   products,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
@@ -91,34 +91,6 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        <S.SubCat>
-          {category && <S.SmHeader2>Categories</S.SmHeader2>}
-          <ul>
-            {category &&
-              category.children.map(
-                (child: {
-                  category: { id: string; name: {} | null | undefined };
-                }) => {
-                  if (child.category) {
-                    return (
-                      <li>
-                        <Link
-                          to={generateCategoryUrl(
-                            child.category.id,
-                            // @ts-ignore
-                            child.category.name
-                          )}
-                        >
-                          {child.category.name}
-                        </Link>
-                      </li>
-                    );
-                  }
-                  return <></>;
-                }
-              )}
-          </ul>
-        </S.SubCat>
         {attributes.map(({ id, name, slug, values }) => {
           return (
             <AttributeValuesChecklist

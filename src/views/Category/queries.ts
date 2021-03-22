@@ -11,6 +11,66 @@ import {
   CategoryProductsVariables,
 } from "./gqlTypes/CategoryProducts";
 
+export const CategoryProductsQueryNew = gql`
+  query CategoryProductsNew(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $pageSize: Int
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
+    products(
+      after: $after
+      first: $pageSize
+      sortBy: $sortBy
+      filter: {
+        attributes: $attributes
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          category {
+            id
+            name
+          }
+          attributes {
+            values {
+              id
+              name
+            }
+            attribute {
+              id
+              name
+            }
+          }
+          thumbnail {
+            url
+            alt
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+`;
+
+export const TypedCategoryProductsQueryNew = TypedQuery<
+  Category,
+  CategoryVariables
+>(CategoryProductsQueryNew);
+
 export const categoryProductsDataQuery = gql`
   query Category($id: ID!) {
     category(id: $id) {
