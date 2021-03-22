@@ -8,7 +8,7 @@ import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
 import { useEffect, useState } from "react";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
@@ -19,7 +19,6 @@ import {
 // import Page from "./Page";
 import Page from "./PageNew";
 import {
-  TypedCategoryProductsQuery,
   TypedCategoryProductsDataQuery,
   TypedCategoryProductsQueryNew,
 } from "./queries";
@@ -59,9 +58,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const API_URL = process.env.API_URI || "/graphql/";
 
   const [isFetched, setIsFetched] = useState(false);
-  const [attributesFetched, setAttributesFetched] = useState(false);
   const [pricingData, setPricingData] = useState();
-  const [attributesData, setAttributesData] = useState();
 
   if (!sort) {
     sort = "updated_at";
@@ -116,7 +113,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   variables.pageSize = 40;
-  // console.log(variables);
 
   const queryPricingData = async () => {
     const query = JSON.stringify({
@@ -175,16 +171,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const fetchPricing = async () => {
     const res = await queryPricingData();
     setPricingData(res);
-    // console.log(res);
   };
 
   useEffect(() => {
     let mounted = true;
-  /*  fetchAttributes().then(r =>{
-      if (mounted) {
-        setAttributesFetched(true);
-      }
-    }); */
     fetchPricing().then(r => {
       if (mounted) {
         setIsFetched(true);
@@ -192,7 +182,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
-  }, [isFetched, /* attributesFetched */]);
+  }, [isFetched /* attributesFetched */]);
 
   const sortOptions = [
     {
@@ -230,58 +220,92 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCategoryProductsQueryNew
+        <TypedCategoryProductsDataQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
-          {categoryData => {
-            if (!isFetched) {
-              return <Loader />;
-            }
-
-            if (categoryData.loading) {
-              return <Loader />;
-            }
-
-            if (categoryData.data && categoryData.data.category === null) {
-              // console.log("not found");
-              return <NotFound />;
-            }
-
-            if (!isOnline) {
-              // console.log("not found");
-              return <OfflinePlaceholder />;
-            }
-
-            const canDisplayFilters =
-              !!categoryData.data?.attributes?.edges &&
-              !!categoryData.data?.category?.name;
-
-            merge(categoryData.data, pricingData);
-
+          {category => {
             return (
-              <>
-                <Page
-                  match={match}
-                  products={categoryData.data}
-                  sortOptions={sortOptions}
-                  clearFilters={clearFilters}
-                  filters={filters}
-                  onAttributeFiltersChange={onFiltersChange}
-                  activeFilters={
-                    filters!.attributes
-                      ? Object.keys(filters!.attributes).length
-                      : 0
+              <TypedCategoryProductsQueryNew
+                variables={variables}
+                errorPolicy="all"
+                loaderFull
+              >
+                {categoryData => {
+                  if (!isFetched) {
+                    return <Loader />;
                   }
-                  onOrder={value => {
-                    setSort(value.value);
-                  }}
-                />
-              </>
+
+                  if (categoryData.loading) {
+                    return <Loader />;
+                  }
+
+                  if (
+                    categoryData.data &&
+                    categoryData.data.category === null
+                  ) {
+                    return <NotFound />;
+                  }
+
+                  if (!isOnline) {
+                    return <OfflinePlaceholder />;
+                  }
+
+                  merge(categoryData.data, pricingData);
+
+                  const handleLoadMore = () =>
+                    categoryData.loadMore(
+                      (prev, next) => ({
+                        ...prev,
+                        products: {
+                          // @ts-ignore
+                          ...prev.products,
+                          edges: [
+                            // @ts-ignore
+                            ...prev.products.edges,
+                            // @ts-ignore
+                            ...next.products.edges,
+                          ],
+                          // @ts-ignore
+                          pageInfo: next.products.pageInfo,
+                        },
+                      }),
+                      {
+                        // @ts-ignore
+                        after: categoryData.data.products.pageInfo.endCursor,
+                      }
+                    );
+
+                  return (
+                    <>
+                      <Page
+                        match={match}
+                        category={category.data.category}
+                        // @ts-ignore
+                        products={categoryData.data}
+                        sortOptions={sortOptions}
+                        clearFilters={clearFilters}
+                        filters={filters}
+                        displayLoader={categoryData.loading}
+                        onAttributeFiltersChange={onFiltersChange}
+                        activeFilters={
+                          filters!.attributes
+                            ? Object.keys(filters!.attributes).length
+                            : 0
+                        }
+                        onOrder={value => {
+                          setSort(value.value);
+                        }}
+                        onLoadMore={handleLoadMore}
+                      />
+                    </>
+                  );
+                }}
+              </TypedCategoryProductsQueryNew>
             );
           }}
-        </TypedCategoryProductsQueryNew>
+        </TypedCategoryProductsDataQuery>
       )}
     </NetworkStatus>
   );
