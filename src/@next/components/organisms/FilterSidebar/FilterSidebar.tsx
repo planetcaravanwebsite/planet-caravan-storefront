@@ -49,7 +49,10 @@ export const FilterSidebar: React.FC<IProps> = ({
       if (hasProducts) {
         return false; // break
       }
-      console.log(product);
+      // console.log(product);
+      if (!product.attributes) {
+        return false;
+      }
       // @ts-ignore
       product.attributes.forEach(attribute => {
         if (hasProducts) {

@@ -195,11 +195,11 @@ const Page: React.FC<PageProps> = ({
         <div className="category">
           <div className="container">
             <Loader />
-            {/* @ts-ignore */}
             <ProductListHeader
               activeSortOption={activeSortOption}
               openFiltersMenu={() => setShowFilters(true)}
-              numberOfProducts={products ? products.totalCount : 0}
+              // @ts-ignore
+              numberOfProducts={products ? products.products.totalCount : 0}
               activeFilters={activeFilters}
               clearFilters={clearFilters}
               sortOptions={sortOptions}
@@ -276,7 +276,10 @@ const Page: React.FC<PageProps> = ({
                     <ProductListHeader
                       activeSortOption={activeSortOption}
                       openFiltersMenu={() => setShowFilters(true)}
-                      numberOfProducts={products ? products.totalCount : 0}
+                      numberOfProducts={
+                        // @ts-ignore
+                        products ? products.products.totalCount : 0
+                      }
                       activeFilters={activeFilters}
                       activeFiltersAttributes={activeFiltersAttributes}
                       clearFilters={clearFilters}
