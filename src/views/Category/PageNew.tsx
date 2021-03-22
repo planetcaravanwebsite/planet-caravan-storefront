@@ -200,7 +200,6 @@ const Page: React.FC<PageProps> = ({
               openFiltersMenu={() => setShowFilters(true)}
               // @ts-ignore
               numberOfProducts={products ? products.products.totalCount : 0}
-              activeFiltersAttributes={activeFiltersAttributes}
               activeFilters={activeFilters}
               clearFilters={clearFilters}
               sortOptions={sortOptions}
