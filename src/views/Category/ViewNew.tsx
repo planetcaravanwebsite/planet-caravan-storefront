@@ -112,7 +112,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  variables.pageSize = 40;
+  variables.pageSize = 1;
 
   const queryPricingData = async () => {
     const query = JSON.stringify({
@@ -170,19 +170,32 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const fetchPricing = async () => {
     const res = await queryPricingData();
-    setPricingData(res);
+    if (
+      !pricingData ||
+      pricingData.products.edges[0].node.name !==
+        res.products.edges[0].node.name
+    ) {
+      setIsFetched(true);
+      setPricingData(res);
+    }
+    return true;
   };
 
   useEffect(() => {
+    console.log("useeff");
     let mounted = true;
     fetchPricing().then(r => {
       if (mounted) {
-        setIsFetched(true);
+        // setIsFetched(true);
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
   }, [isFetched /* attributesFetched */]);
+
+  const handleRefresh = () => {
+    setIsFetched(false);
+  };
 
   const sortOptions = [
     {
@@ -227,12 +240,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
         >
           {category => {
             return (
+              fetchPricing() ?
               <TypedCategoryProductsQueryNew
                 variables={variables}
                 errorPolicy="all"
                 loaderFull
               >
                 {categoryData => {
+                  // console.log(categoryData.data.products.edges[0].node);
                   if (!isFetched) {
                     return <Loader />;
                   }
@@ -252,6 +267,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
+                  console.log("category: %o", categoryData.data.products.edges[0].node);
+                  console.log("pricing: %o", pricingData.products.edges[0].node);
                   merge(categoryData.data, pricingData);
 
                   const handleLoadMore = () =>
@@ -276,7 +293,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                         after: categoryData.data.products.pageInfo.endCursor,
                       }
                     );
-
                   return (
                     <>
                       <Page
@@ -298,11 +314,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           setSort(value.value);
                         }}
                         onLoadMore={handleLoadMore}
+                        onRefresh={handleRefresh}
                       />
                     </>
                   );
                 }}
-              </TypedCategoryProductsQueryNew>
+              </TypedCategoryProductsQueryNew> : null
             );
           }}
         </TypedCategoryProductsDataQuery>

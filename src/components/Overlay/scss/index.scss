@@ -130,8 +130,13 @@ $close-width: ($button-size / 10);
   }
 
   &__left {
-    position: fixed;
+    position: relative;
+    overflow: scroll;
+    height: 100vh;
+    width: 495px;
+    max-width: 100vw;
     min-height: 100%;
+    padding-bottom: 60px;
     background-color: $white;
     animation: sidenavLeftOpen 0.3s;
   }

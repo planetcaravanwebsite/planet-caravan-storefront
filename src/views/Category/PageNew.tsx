@@ -53,6 +53,7 @@ interface PageProps {
   onLoadMore: () => void;
   displayLoader: boolean;
   category: Category_category;
+  onRefresh: () => void;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -69,6 +70,7 @@ const Page: React.FC<PageProps> = ({
   onLoadMore,
   displayLoader,
   category,
+  onRefresh,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
@@ -182,11 +184,14 @@ const Page: React.FC<PageProps> = ({
     fetchAttributes().then(r => {
       if (mounted) {
         setAttributesFetched(true);
+        console.log("fetched");
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
   }, [attributesFetched]);
+
+  // console.log(products.products.edges[0].node);
 
   if (!attributesFetched) {
     return (
