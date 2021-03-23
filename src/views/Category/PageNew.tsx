@@ -74,6 +74,10 @@ const Page: React.FC<PageProps> = ({
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
+
+  const [isProductsFetched, setIsProductsFetched] = useState(false);
+  const [productData, setProductData] = useState();
+
   const API_URL = process.env.API_URI || "/graphql/";
 
   const variables = {
@@ -120,6 +124,81 @@ const Page: React.FC<PageProps> = ({
         ),
       []
     );
+
+  const queryAllProducts = async () => {
+    const query = JSON.stringify({
+      query: `
+query CategoryProductsNew(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
+    products(
+      after: $after
+      first: 1000
+      sortBy: $sortBy
+      filter: {
+        attributes: $attributes
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          category {
+            id
+            name
+          }
+          attributes {
+            values {
+              id
+              name
+            }
+            attribute {
+              id
+              name
+            }
+          }
+          thumbnail {
+            url
+            alt
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+    `,
+      variables,
+    });
+
+    const response = await fetch(API_URL, {
+      headers: { "content-type": "application/json" },
+      method: "POST",
+      body: query,
+    });
+
+    const responseJson = await response.json();
+    return responseJson.data;
+  };
+
+  const fetchAllProducts = async () => {
+    const res = await queryAllProducts();
+    console.log(res);
+    setProductData(res);
+    return true;
+  };
 
   const queryAttrributesData = async () => {
     const query = JSON.stringify({
@@ -176,24 +255,31 @@ const Page: React.FC<PageProps> = ({
 
   const fetchAttributes = async () => {
     const res = await queryAttrributesData();
+    console.log(res);
     setAttributesData(res);
   };
 
   useEffect(() => {
     let mounted = true;
+    fetchAllProducts().then(r => {
+      if (mounted) {
+        setIsProductsFetched(true);
+        console.log("fetched prod");
+      }
+    });
     fetchAttributes().then(r => {
       if (mounted) {
         setAttributesFetched(true);
-        console.log("fetched");
+        console.log("fetched attr");
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
-  }, [attributesFetched]);
+  }, [attributesFetched, isProductsFetched]);
 
   // console.log(products.products.edges[0].node);
 
-  if (!attributesFetched) {
+  if (!attributesFetched || !isProductsFetched) {
     return (
       <>
         <MainMenu demoMode={demoMode} whichMenu="fullPage" />
@@ -274,7 +360,9 @@ const Page: React.FC<PageProps> = ({
                       )}
                       filters={filters}
                       // @ts-ignore
-                      products={products.products.edges.map(edge => edge.node)}
+                      products={productData.products.edges.map(
+                        edge => edge.node
+                      )}
                       category={categoryData}
                     />
 
