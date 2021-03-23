@@ -130,20 +130,15 @@ const Page: React.FC<PageProps> = ({
       query: `
 query CategoryProductsNew(
     $id: ID!
-    $attributes: [AttributeInput]
     $after: String
     $sortBy: ProductOrder
-    $priceLte: Float
-    $priceGte: Float
   ) {
     products(
       after: $after
       first: 1000
       sortBy: $sortBy
       filter: {
-        attributes: $attributes
         categories: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
       }
     ) {
       totalCount
@@ -151,10 +146,6 @@ query CategoryProductsNew(
         node {
           id
           name
-          category {
-            id
-            name
-          }
           attributes {
             values {
               id
@@ -165,17 +156,7 @@ query CategoryProductsNew(
               name
             }
           }
-          thumbnail {
-            url
-            alt
-          }
         }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
       }
     }
   }
