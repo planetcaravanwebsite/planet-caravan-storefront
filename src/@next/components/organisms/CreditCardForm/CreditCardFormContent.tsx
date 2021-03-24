@@ -59,7 +59,6 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
         <S.PaymentInput>
           <NumberFormat
             autoComplete="cc-csc"
-            format="####"
             name="ccCsc"
             {...basicInputProps(ccCscText, [ccCscError], values.ccCsc)}
           />
