@@ -18,7 +18,6 @@ import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
-import { demoMode } from "@temp/constants";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -31,7 +30,6 @@ import {
   ICheckoutShippingSubpageHandles,
 } from "./subpages";
 import { IProps } from "./types";
-import { MainMenu } from "../../../components";
 
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
@@ -187,6 +185,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
+    console.log(getActiveStep().index);
     switch (getActiveStep().index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
@@ -199,6 +198,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         }
         break;
       case 2:
+        console.log(checkoutPaymentSubpageRef);
         if (checkoutPaymentSubpageRef.current?.submitPayment) {
           checkoutPaymentSubpageRef.current?.submitPayment();
         }
@@ -463,7 +463,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
       <Checkout
         loading={submitInProgress}
         navigation={getCheckoutProgress(

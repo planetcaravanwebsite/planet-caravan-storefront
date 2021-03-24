@@ -58,7 +58,7 @@ export const Contact: React.FC<any> = () => {
             <b>
               Note: Phone lines are busy every day at 7:10PM EST for Instagram
               Lives. Please leave us a voicemail if there is no one available to
-              to take your call.
+              take your call.
             </b>
           </p>
 
