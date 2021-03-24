@@ -3,6 +3,7 @@ import * as React from "react";
 import { About } from "./pages/about";
 import { Contact } from "./pages/contact";
 import { Locations } from "./pages/locations";
+import { Confirmation } from "./pages/confirmation";
 
 import {
   ProductsList_categories,
@@ -28,6 +29,7 @@ const Page: React.FC<{
         {slug === "about" && <About />}
         {slug === "contact" && <Contact />}
         {slug === "locations" && <Locations />}
+        {slug === "confirmation" && <Confirmation />}
       </div>
     </>
   );
