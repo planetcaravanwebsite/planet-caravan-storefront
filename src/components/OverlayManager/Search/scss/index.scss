@@ -215,6 +215,16 @@ $drawer-width: 25rem;
         p
         {
           padding: 0 5px;
+
+          span
+          {
+            display: block;
+            &:nth-child(2)
+            {
+              font-size: 0.8rem;
+              color: #888888;
+            }
+          }
         }
 
         &:hover

@@ -36,7 +36,11 @@ const Hit = hit => {
           alt={result.name}
         />
       )}
-      <p>{result.name}</p>
+      <p>
+        <span>{result.name}</span>
+
+        {!!result.price && <span>${result.price}</span>}
+      </p>
     </a>
   );
 };
