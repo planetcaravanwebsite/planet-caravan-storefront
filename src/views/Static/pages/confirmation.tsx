@@ -6,9 +6,7 @@ export const Confirmation: React.FC<any> = () => {
     <>
       <div className="container">
         <div className="about-page">
-          <p>
-            Thank you for your submission. We will be in touch shortly.
-          </p>
+          <p>Thank you for your submission. We will be in touch shortly.</p>
         </div>
       </div>
     </>
