@@ -1,6 +1,9 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .social-container {
+  svg {
+    margin-left: 7px;
+  }
   margin-bottom: 20px;
   // width: 30%;
   @media screen and (max-width: 750px) {

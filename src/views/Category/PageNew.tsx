@@ -6,7 +6,6 @@ import { find } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
-import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "@components/molecules";
 import { useEffect, useState } from "react";
@@ -16,7 +15,6 @@ import { commonMessages } from "@temp/intl";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
-  MainMenu,
   ProductsFeatured,
 } from "../../components";
 
@@ -263,7 +261,6 @@ query CategoryProductsNew(
   if (!attributesFetched || !isProductsFetched) {
     return (
       <>
-        <MainMenu demoMode={demoMode} whichMenu="fullPage" />
         <div className="category">
           <div className="container">
             <Loader />
@@ -305,7 +302,7 @@ query CategoryProductsNew(
           // @ts-ignore
           const categoryData = find(items, function (item) {
             // @ts-ignore
-            return item.category.id === category.id;
+            return item.category && item.category.id === category.id;
           });
 
           return (
@@ -326,7 +323,6 @@ query CategoryProductsNew(
                 text="Back to top"
               />
 
-              <MainMenu demoMode={demoMode} whichMenu="fullPage" />
               <div className="category">
                 <div className="container">
                   <>

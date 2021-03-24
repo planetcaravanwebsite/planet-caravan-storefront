@@ -34,6 +34,7 @@ export const FiltersButton = styled.button`
 
 export const Clear = styled.button`
   padding-left: 2rem;
+  font-size: 16px;
   cursor: pointer;
   font-size: ${props => props.theme.typography.smallFontSize};
   color: ${props => props.theme.colors.lightFont};
@@ -52,14 +53,17 @@ export const ElementAnother = styled.span`
 export const Filters = styled.span`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   padding: 0 0.6rem;
+  font-size: 16px;
 `;
 
 export const Label = styled.span`
   color: ${props => props.theme.colors.lightFont};
+  font-size: 16px;
 `;
 
 export const Sort = styled.div`
   width: 12rem;
+  font-size: 16px;
   display: inline-block;
 `;
 

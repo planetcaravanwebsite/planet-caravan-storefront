@@ -1,8 +1,5 @@
 import "./scss/index.scss";
 import * as React from "react";
-import { demoMode } from "@temp/constants";
-
-import { MainMenu } from "../../components";
 import { About } from "./pages/about";
 import { Contact } from "./pages/contact";
 import { Locations } from "./pages/locations";
@@ -24,7 +21,6 @@ const Page: React.FC<{
 }> = ({ loading, categories, backgroundImage, shop, slug }) => {
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="page" />
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>

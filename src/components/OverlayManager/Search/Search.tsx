@@ -39,7 +39,7 @@ class Search extends React.Component<SearchProps, SearchState> {
         className={
           this.props.overlay.theme === OverlayTheme.modalFull
             ? ""
-            : "overlay--no-background"
+            : "overlay"
         }
       >
         <AlgoliaSearch search="" />
