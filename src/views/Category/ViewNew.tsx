@@ -170,19 +170,32 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const fetchPricing = async () => {
     const res = await queryPricingData();
-    setPricingData(res);
+    if (
+      !pricingData ||
+      // @ts-ignore
+      pricingData.products.edges[0].node.name !==
+        res.products.edges[0].node.name
+    ) {
+      setIsFetched(true);
+      setPricingData(res);
+    }
+    return true;
   };
 
   useEffect(() => {
     let mounted = true;
     fetchPricing().then(r => {
       if (mounted) {
-        setIsFetched(true);
+        // setIsFetched(true);
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
   }, [isFetched /* attributesFetched */]);
+
+  const handleRefresh = () => {
+    setIsFetched(false);
+  };
 
   const sortOptions = [
     {
@@ -226,7 +239,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {category => {
-            return (
+            return fetchPricing() ? (
               <TypedCategoryProductsQueryNew
                 variables={variables}
                 errorPolicy="all"
@@ -276,7 +289,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                         after: categoryData.data.products.pageInfo.endCursor,
                       }
                     );
-
                   return (
                     <>
                       <Page
@@ -298,12 +310,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           setSort(value.value);
                         }}
                         onLoadMore={handleLoadMore}
+                        onRefresh={handleRefresh}
                       />
                     </>
                   );
                 }}
               </TypedCategoryProductsQueryNew>
-            );
+            ) : null;
           }}
         </TypedCategoryProductsDataQuery>
       )}

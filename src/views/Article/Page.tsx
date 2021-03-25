@@ -1,8 +1,7 @@
 import * as React from "react";
 
 import { RichTextContent } from "@components/atoms";
-import { demoMode } from "@temp/constants";
-import { Breadcrumb, Breadcrumbs, MainMenu } from "../../components";
+import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
   active: boolean;
@@ -26,7 +25,6 @@ export const Page: React.FC<PageProps> = ({
   page,
 }) => (
   <>
-    <MainMenu demoMode={demoMode} whichMenu="fullPage" />
     <div className="article-page">
       <div className="container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />

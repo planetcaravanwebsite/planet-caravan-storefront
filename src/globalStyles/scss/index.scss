@@ -211,11 +211,20 @@ q
 }
 
 .rtf {
-  right: 5%;
-  bottom: 5%;
+  right: 10px!important;
+  bottom: 10px!important;
+  z-index: 4!important;
 
   @media screen and (max-width: 750px) {
     right: -3%!important;
     bottom: -1%!important;
+  }
+}
+
+.rtf--mb {
+  z-index: 4!important;
+  @media screen and (max-width: 750px) {
+    height: 45px!important;
+    width: 45px!important;
   }
 }

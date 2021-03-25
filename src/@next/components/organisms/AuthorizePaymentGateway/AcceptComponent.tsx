@@ -8,8 +8,8 @@ export enum AuthorizeNetScriptUrl {
 export default class AcceptComponent extends React.Component {
   componentDidMount() {
     const script = document.createElement("script");
-    // script.src = AuthorizeNetScriptUrl.Production;
-    script.src = AuthorizeNetScriptUrl.Sandbox;
+    script.src = AuthorizeNetScriptUrl.Production;
+    // script.src = AuthorizeNetScriptUrl.Sandbox;
 
     document.head.appendChild(script);
   }

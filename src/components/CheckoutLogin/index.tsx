@@ -5,14 +5,7 @@ import { Redirect } from "react-router";
 
 import { useAuth } from "@saleor/sdk";
 
-import { demoMode } from "@temp/constants";
-import {
-  MainMenu,
-  Offline,
-  OfflinePlaceholder,
-  Online,
-  OverlayContext,
-} from "..";
+import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
@@ -32,7 +25,6 @@ const CheckoutLogin: React.FC<{}> = () => {
   }
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
       <div className="container">
         <Online>
           <div className="checkout-login">

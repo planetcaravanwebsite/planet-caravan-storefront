@@ -7,12 +7,10 @@ import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
 import { commonMessages } from "@temp/intl";
-import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
-  MainMenu,
   ProductsFeatured,
 } from "../../components";
 
@@ -142,7 +140,6 @@ const Page: React.FC<PageProps> = ({
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 text="Back to top"
               />
-              <MainMenu demoMode={demoMode} whichMenu="fullPage" />
               <div className="category">
                 <div className="container">
                   <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />

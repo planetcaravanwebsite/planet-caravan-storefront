@@ -6,7 +6,6 @@ import { find } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
-import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "@components/molecules";
 import { useEffect, useState } from "react";
@@ -16,7 +15,6 @@ import { commonMessages } from "@temp/intl";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
-  MainMenu,
   ProductsFeatured,
 } from "../../components";
 
@@ -53,6 +51,7 @@ interface PageProps {
   onLoadMore: () => void;
   displayLoader: boolean;
   category: Category_category;
+  onRefresh: () => void;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -69,9 +68,14 @@ const Page: React.FC<PageProps> = ({
   onLoadMore,
   displayLoader,
   category,
+  onRefresh,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
+
+  const [isProductsFetched, setIsProductsFetched] = useState(false);
+  const [productData, setProductData] = useState();
+
   const API_URL = process.env.API_URI || "/graphql/";
 
   const variables = {
@@ -118,6 +122,62 @@ const Page: React.FC<PageProps> = ({
         ),
       []
     );
+
+  const queryAllProducts = async () => {
+    const query = JSON.stringify({
+      query: `
+query CategoryProductsNew(
+    $id: ID!
+    $after: String
+    $sortBy: ProductOrder
+  ) {
+    products(
+      after: $after
+      first: 1000
+      sortBy: $sortBy
+      filter: {
+        categories: [$id]
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          attributes {
+            values {
+              id
+              name
+            }
+            attribute {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+    `,
+      variables,
+    });
+
+    const response = await fetch(API_URL, {
+      headers: { "content-type": "application/json" },
+      method: "POST",
+      body: query,
+    });
+
+    const responseJson = await response.json();
+    return responseJson.data;
+  };
+
+  const fetchAllProducts = async () => {
+    const res = await queryAllProducts();
+    console.log(res);
+    setProductData(res);
+    return true;
+  };
 
   const queryAttrributesData = async () => {
     const query = JSON.stringify({
@@ -174,24 +234,33 @@ const Page: React.FC<PageProps> = ({
 
   const fetchAttributes = async () => {
     const res = await queryAttrributesData();
+    console.log(res);
     setAttributesData(res);
   };
 
   useEffect(() => {
     let mounted = true;
+    fetchAllProducts().then(r => {
+      if (mounted) {
+        setIsProductsFetched(true);
+        console.log("fetched prod");
+      }
+    });
     fetchAttributes().then(r => {
       if (mounted) {
         setAttributesFetched(true);
+        console.log("fetched attr");
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
-  }, [attributesFetched]);
+  }, [attributesFetched, isProductsFetched]);
 
-  if (!attributesFetched) {
+  // console.log(products.products.edges[0].node);
+
+  if (!attributesFetched || !isProductsFetched) {
     return (
       <>
-        <MainMenu demoMode={demoMode} whichMenu="fullPage" />
         <div className="category">
           <div className="container">
             <Loader />
@@ -200,7 +269,6 @@ const Page: React.FC<PageProps> = ({
               openFiltersMenu={() => setShowFilters(true)}
               // @ts-ignore
               numberOfProducts={products ? products.products.totalCount : 0}
-              activeFiltersAttributes={activeFiltersAttributes}
               activeFilters={activeFilters}
               clearFilters={clearFilters}
               sortOptions={sortOptions}
@@ -234,7 +302,7 @@ const Page: React.FC<PageProps> = ({
           // @ts-ignore
           const categoryData = find(items, function (item) {
             // @ts-ignore
-            return item.category.id === category.id;
+            return item.category && item.category.id === category.id;
           });
 
           return (
@@ -255,7 +323,6 @@ const Page: React.FC<PageProps> = ({
                 text="Back to top"
               />
 
-              <MainMenu demoMode={demoMode} whichMenu="fullPage" />
               <div className="category">
                 <div className="container">
                   <>
@@ -270,7 +337,9 @@ const Page: React.FC<PageProps> = ({
                       )}
                       filters={filters}
                       // @ts-ignore
-                      products={products.products.edges.map(edge => edge.node)}
+                      products={productData.products.edges.map(
+                        edge => edge.node
+                      )}
                       category={categoryData}
                     />
 

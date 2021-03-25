@@ -9,6 +9,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
+  // console.log(product);
   const image = product.images
     ? product.images[0] && product.images[0].url
     : product.thumbnail && product.thumbnail.url;

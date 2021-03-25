@@ -17,10 +17,9 @@ import { checkoutMessages } from "@temp/intl";
 /* import { IImage, ITaxedMoney } from "@types"; */
 import { ITaxedMoney } from "@types";
 
-import { demoMode } from "@temp/constants";
 import * as S from "./styles";
 import { IProps } from "./types";
-import { MainMenu, Pelican } from "../../../components";
+import { Pelican } from "../../../components";
 
 const title = (
   <S.PageHeader className="" data-test="cartPageTitle">
@@ -230,7 +229,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     // console.log(items);
     return (
       <>
-        <MainMenu demoMode={demoMode} whichMenu="fullPage" />
         <Cart
           title={title}
           button={getCheckoutButton(history, user)}

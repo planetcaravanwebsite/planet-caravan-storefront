@@ -6,7 +6,7 @@
 
 .bottom-bar {
   min-height: 40px;
-  background: $light-gray;
+  // background: $light-gray;
 }
 
 
@@ -55,7 +55,7 @@
     padding-top: 5px;
 
     @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+      flex-basis: calc(50% + 4rem);
     }
 
     ul {
@@ -135,7 +135,7 @@
   }
 
   &__icon {
-    padding: 0 $spacer;
+    padding: 6px $spacer 0 $spacer;
     cursor: pointer;
 
     svg * {

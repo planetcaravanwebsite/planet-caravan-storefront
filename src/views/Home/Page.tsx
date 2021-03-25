@@ -4,10 +4,9 @@ import "./scss/index.scss";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
-import { demoMode } from "@temp/constants";
 import logoImg from "../../images/pc-logo.png";
 
-import { HomePageSearch, MainMenu, ProductsFeatured } from "../../components";
+import { HomePageSearch, ProductsFeatured } from "../../components";
 // import { generateCategoryUrl } from "../../core/utils";
 
 import {
@@ -33,7 +32,6 @@ const Page: React.FC<{
 
   return (
     <>
-      <MainMenu demoMode={demoMode} whichMenu="homePage" />
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>
@@ -50,7 +48,7 @@ const Page: React.FC<{
           <div>
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
-                <Link to="/collection/drops/250/">
+                <Link to="/collection/drops/419/">
                   <div className="home-page__categories__list__image--no-photo">
                     Drops
                   </div>

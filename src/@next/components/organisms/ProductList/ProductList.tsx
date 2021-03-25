@@ -18,6 +18,7 @@ export const ProductList: React.FC<IProps> = ({
   onLoadMore = () => null,
   numPerRow = 4,
 }: IProps) => {
+  // console.log(products[0]);
   return (
     <>
       <S.List

@@ -12,7 +12,7 @@ interface ActiveFiltersAttribute {
 export interface IProps {
   activeSortOption?: string;
   activeFilters: number;
-  activeFiltersAttributes: ActiveFiltersAttribute[];
+  activeFiltersAttributes?: ActiveFiltersAttribute[];
   numberOfProducts: number;
   sortOptions: SortOptions[];
   onChange: (order: { value?: string; label: string }) => void;

@@ -4,13 +4,12 @@ import * as React from "react";
 import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
-import { demoMode } from "@temp/constants";
 import { IFilterAttributes, IFilters } from "@types";
 import { orderBy } from "lodash";
 import { Fab } from "react-tiny-fab";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { Breadcrumbs, MainMenu, ProductsFeatured } from "../../components";
+import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
@@ -134,7 +133,6 @@ const Page: React.FC<PageProps> = ({
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         text="Back to top"
       />
-      <MainMenu demoMode={demoMode} whichMenu="fullPage" />
       <div className="collection">
         <div className="container">
           <Breadcrumbs breadcrumbs={breadcrumbs} />

@@ -21,7 +21,6 @@ import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/noun_cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/pc-logo.png";
 import searchImg from "../../images/search.svg";
@@ -86,7 +85,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                               className="main-menu__hamburger--icon"
                             />
                             <ReactSVG
-                              path={hamburgerHoverImg}
+                              path={hamburgerImg}
                               className="main-menu__hamburger--hover"
                             />
                           </li>
@@ -110,7 +109,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                           className="main-menu__hamburger--icon"
                         />
                         <ReactSVG
-                          path={hamburgerHoverImg}
+                          path={hamburgerImg}
                           className="main-menu__hamburger--hover"
                         />
                       </li>
@@ -118,7 +117,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
 
                     {whichMenu !== "homePage" && (
                       <Link to={appPaths.baseUrl}>
-                        <img src={logoImg} style={{ width: "120px" }} alt="" />
+                        <img
+                          src={logoImg}
+                          style={{ width: "145px", paddingTop: "28px" }}
+                          alt=""
+                        />
                       </Link>
                     )}
                     {whichMenu !== "homePage" && (
@@ -132,7 +135,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                             >
                               <ul className="main-menu__nav-dropdown">
                                 <li>
-                                  <a href="/collection/drops/250/">Drops</a>
+                                  <a href="/collection/drops/419/">Drops</a>
                                 </li>
                               </ul>
                             </li>
@@ -208,27 +211,18 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
             <Online>
               <li
                 data-test="menuSearchOverlayLink"
-                className="main-menu__search"
+                className="main-menu__icon"
                 onClick={() =>
                   overlayContext.show(OverlayType.search, OverlayTheme.right)
                 }
               >
                 <Media
                   query={{ minWidth: mediumScreen }}
-                  render={() => (
-                    <span>
-                      <FormattedMessage {...commonMessages.search} />
-                    </span>
-                  )}
+                  render={() => <></>}
                 />
                 <ReactSVG path={searchImg} />
               </li>
-              <Media
-                query={{ minWidth: mediumScreen }}
-                render={() => (
-                  <li className="main-menu__phone">(800) 123-1234</li>
-                )}
-              />
+              <Media query={{ minWidth: mediumScreen }} render={() => <></>} />
               <>
                 {user ? (
                   <MenuDropdown

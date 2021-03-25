@@ -42,10 +42,9 @@ class Provider extends React.Component<
     theme?: OverlayTheme,
     context?: InnerOverlayContextInterface
   ) => {
-    console.log(type);
     this.setState({ type, theme, context });
     document.body.style.overflow = type !== OverlayType.message ? "hidden" : "";
-    if (type === "search") {
+    if (type === "search" || type === "side-nav") {
       document.body.classList.add("noscroll");
     }
     if (type === OverlayType.message) {
@@ -55,9 +54,7 @@ class Provider extends React.Component<
 
   hide = () => {
     this.setState({ type: null });
-    // if (type === "search") {
     document.body.classList.remove("noscroll");
-    // }
     document.body.style.overflow = "";
   };
 

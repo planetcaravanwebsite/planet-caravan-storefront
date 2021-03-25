@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LoadingImage } from "@components/atoms";
+import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
 import NoPhoto from "images/no-photo.svg";
 
@@ -42,7 +42,7 @@ export const CachedImage: React.FC<IImage> = ({
   }
 
   if (!url || isUnavailable) {
-    return children || <LoadingImage alt={alt} />;
+    return children || <PlaceholderImage alt={alt} />;
   }
 
   return (

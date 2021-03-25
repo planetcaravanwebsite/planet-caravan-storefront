@@ -35,16 +35,18 @@ const Overlay: React.FC<OverlayProps> = ({
         <>
           {children}
           {more && <div>hello</div>}
-          <div onClick={hide} className="close-button">
-            <div className="in">
-              <div className="close-button-block" />
-              <div className="close-button-block" />
+          {type === "search" && (
+            <div onClick={hide} className="close-button">
+              <div className="in">
+                <div className="close-button-block" />
+                <div className="close-button-block" />
+              </div>
+              <div className="out">
+                <div className="close-button-block" />
+                <div className="close-button-block" />
+              </div>
             </div>
-            <div className="out">
-              <div className="close-button-block" />
-              <div className="close-button-block" />
-            </div>
-          </div>
+          )}
         </>
       </div>
     </div>

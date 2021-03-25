@@ -5,8 +5,10 @@ import { InstantSearch } from "react-instantsearch-dom"; // , SearchBox, Hits } 
 import { useAuth } from "@saleor/sdk";
 import { DemoBanner, Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
+import { withRouter } from "react-router";
 import {
   Footer,
+  MainMenu,
   MetaConsumer,
   OverlayManager,
   OverlayProvider,
@@ -15,6 +17,23 @@ import ShopProvider from "../components/ShopProvider";
 import "../globalStyles/scss/index.scss";
 import { Routes } from "./routes";
 import Notifications from "./Notifications";
+
+// eslint-disable-next-line react/prefer-stateless-function
+class ShowTheLocation extends React.Component {
+  render() {
+    // @ts-ignore
+    const { location } = this.props;
+
+    if (location.pathname === "/") {
+      return <MainMenu demoMode={demoMode} whichMenu="homePage" />;
+    }
+
+    return <MainMenu demoMode={demoMode} whichMenu="fullPage" />;
+  }
+}
+
+// @ts-ignore
+const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
 
 const searchClient = algoliasearch(
   "RZFI9YHKMB",
@@ -34,6 +53,7 @@ const App: React.FC = () => {
         <OverlayProvider>
           <MetaConsumer />
           {demoMode && <DemoBanner />}
+          <ShowTheLocationWithRouter />
           <Routes />
           <Footer />
           <OverlayManager />
