@@ -120,7 +120,7 @@ const Page: React.FC<PageProps> = ({
     <>
       <Fab
         mainButtonStyles={{
-          backgroundColor: "#E43024",
+          backgroundColor: "#50C878",
         }}
         style={{
           bottom: 50,
