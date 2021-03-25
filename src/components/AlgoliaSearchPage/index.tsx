@@ -42,7 +42,7 @@ const Hit = hit => {
             {result.name}
           </h4>
           <p data-test="productPrice" className="serp-price">
-            <span>{result.price}</span>
+            <span>${result.price}</span>
           </p>
         </div>
       )}
