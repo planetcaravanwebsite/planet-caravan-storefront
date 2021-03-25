@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { find } from "lodash";
+import { find, orderBy } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
@@ -98,6 +98,33 @@ const Page: React.FC<PageProps> = ({
   const intl = useIntl();
   const [showFilters, setShowFilters] = React.useState(false);
 
+  // @ts-ignore
+  let sorted = products.products.edges;
+  if (activeSortOption === "price") {
+    sorted = orderBy(
+      // @ts-ignore
+      products.products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.net.amount;
+        },
+      ],
+      ["asc"]
+    );
+  } else if (activeSortOption === "-price") {
+    sorted = orderBy(
+      // @ts-ignore
+      products.products.edges,
+      [
+        function (o) {
+          return o.node.pricing.priceRange.start.net.amount;
+        },
+      ],
+      ["desc"]
+    );
+  }
+  // console.log("sorted: ", sorted);
+
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     if (attributesData) {
       return {
@@ -174,7 +201,7 @@ query CategoryProductsNew(
 
   const fetchAllProducts = async () => {
     const res = await queryAllProducts();
-    console.log(res);
+    // console.log(res);
     setProductData(res);
     return true;
   };
@@ -234,7 +261,7 @@ query CategoryProductsNew(
 
   const fetchAttributes = async () => {
     const res = await queryAttrributesData();
-    console.log(res);
+    // console.log(res);
     setAttributesData(res);
   };
 
@@ -243,13 +270,13 @@ query CategoryProductsNew(
     fetchAllProducts().then(r => {
       if (mounted) {
         setIsProductsFetched(true);
-        console.log("fetched prod");
+        // console.log("fetched prod");
       }
     });
     fetchAttributes().then(r => {
       if (mounted) {
         setAttributesFetched(true);
-        console.log("fetched attr");
+        // console.log("fetched attr");
       }
     });
     // eslint-disable-next-line no-return-assign
@@ -278,7 +305,7 @@ query CategoryProductsNew(
             {canDisplayProducts && (
               <ProductList
                 // @ts-ignore
-                products={products.products.edges.map(edge => edge.node)}
+                products={sorted.map(edge => edge.node)}
                 // @ts-ignore
                 canLoadMore={products.products?.pageInfo.hasNextPage}
                 loading={displayLoader}
@@ -360,9 +387,7 @@ query CategoryProductsNew(
                     {canDisplayProducts && (
                       <ProductList
                         // @ts-ignore
-                        products={products.products.edges.map(
-                          edge => edge.node
-                        )}
+                        products={sorted.map(edge => edge.node)}
                         // @ts-ignore
                         canLoadMore={products.products?.pageInfo.hasNextPage}
                         loading={displayLoader}

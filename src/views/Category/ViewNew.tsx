@@ -299,6 +299,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                         sortOptions={sortOptions}
                         clearFilters={clearFilters}
                         filters={filters}
+                        activeSortOption={filters.sortBy}
                         displayLoader={categoryData.loading}
                         onAttributeFiltersChange={onFiltersChange}
                         activeFilters={
