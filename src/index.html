@@ -31,10 +31,12 @@
       (function(w,d) {
         var config = {
           element: "#checkoutBtn",
-          key: "tKsdUF9b2VbJXf3cGTKxroQmdhh9rdeP", // 8bO3WnMcCVyvp9zWnsfxA9kVkoYbWI0k
-          fields: { address: "input[name=streetAddress1]"},
+          key: "8bO3WnMcCVyvp9zWnsfxA9kVkoYbWI0k", // tKsdUF9b2VbJXf3cGTKxroQmdhh9rdeP
+          // ignore_fields: true,
+          // disable_fields: false,
+          // fields: { address: "input[name=streetAddress1]"},
           // data: {country: document.getElementsByClassName("select-country__single-value")[0].innerText }
-          /*mode: "manual",
+          mode: "manual",
           onready: function() {
             var find = function() {
               if(location.pathname.indexOf("/checkout/shipping") != -1) {
@@ -44,7 +46,7 @@
                 setTimeout(find, 500);
             }
             setTimeout(find, 500);
-          }*/
+          }
         };
 
         w.AgeCheckerConfig=config;if(config.path&&(w.location.pathname+w.location.search).indexOf(config.path)) return;

@@ -80,57 +80,59 @@ const CheckoutAddress: React.FC<IProps> = ({
           <S.Divider />
         </>
       )}
-      <section>
-        <S.Title data-test="checkoutPageSubtitle">
-          <FormattedMessage {...checkoutMessages.billingAddress} />
-        </S.Title>
-        {shippingAddressRequired && (
-          <Checkbox
-            data-test="checkoutAddressBillingAsShippingCheckbox"
-            name="billing-same-as-shipping"
-            checked={billingAsShippingAddress}
-            onChange={() =>
-              setBillingAsShippingAddress(!billingAsShippingAddress)
-            }
-          >
-            <FormattedMessage defaultMessage="Same as shipping address" />
-          </Checkbox>
-        )}
-        {!billingAsShippingAddress && (
-          <>
-            {shippingAddressRequired && <S.Divider />}
-            {userAddresses ? (
-              <AddressGridSelector
-                testingContext="billing"
-                formId={billingFormId}
-                formRef={billingFormRef}
-                addresses={userAddresses}
-                selectedAddressId={selectedUserBillingAddressId}
-                countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
-                userId={userId}
-                errors={billingErrors}
-                onSelect={(address, id) =>
-                  setBillingAddress(address, undefined, id)
-                }
-                newAddressFormId={newAddressFormId}
-              />
-            ) : (
-              <AddressForm
-                testingContext="billingAddressForm"
-                formId={billingFormId}
-                formRef={billingFormRef}
-                countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
-                address={checkoutBillingAddress || undefined}
-                handleSubmit={address =>
-                  setBillingAddress(address, address?.email)
-                }
-                includeEmail={!shippingAddressRequired}
-                errors={billingErrors}
-              />
-            )}
-          </>
-        )}
-      </section>
+      {checkoutShippingAddress && (
+        <section>
+          <S.Title data-test="checkoutPageSubtitle">
+            <FormattedMessage {...checkoutMessages.billingAddress} />
+          </S.Title>
+          {shippingAddressRequired && (
+            <Checkbox
+              data-test="checkoutAddressBillingAsShippingCheckbox"
+              name="billing-same-as-shipping"
+              checked={billingAsShippingAddress}
+              onChange={() =>
+                setBillingAsShippingAddress(!billingAsShippingAddress)
+              }
+            >
+              <FormattedMessage defaultMessage="Same as shipping address" />
+            </Checkbox>
+          )}
+          {!billingAsShippingAddress && (
+            <>
+              {shippingAddressRequired && <S.Divider />}
+              {userAddresses ? (
+                <AddressGridSelector
+                  testingContext="billing"
+                  formId={billingFormId}
+                  formRef={billingFormRef}
+                  addresses={userAddresses}
+                  selectedAddressId={selectedUserBillingAddressId}
+                  countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
+                  userId={userId}
+                  errors={billingErrors}
+                  onSelect={(address, id) =>
+                    setBillingAddress(address, undefined, id)
+                  }
+                  newAddressFormId={newAddressFormId}
+                />
+              ) : (
+                <AddressForm
+                  testingContext="billingAddressForm"
+                  formId={billingFormId}
+                  formRef={billingFormRef}
+                  countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
+                  address={checkoutBillingAddress || undefined}
+                  handleSubmit={address =>
+                    setBillingAddress(address, address?.email)
+                  }
+                  includeEmail={!shippingAddressRequired}
+                  errors={billingErrors}
+                />
+              )}
+            </>
+          )}
+        </section>
+      )}
     </S.Wrapper>
   );
 };
