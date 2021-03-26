@@ -51,7 +51,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
   postalCode,
   onError,
 }: IProps) => {
-  const [submitErrors] = useState<IFormError[]>([]);
+  const [submitErrors, setSubmitErrors] = useState<IFormError[]>([]);
 
   const key = config.find(({ field }) => field === "client_key");
   const login = config.find(({ field }) => field === "api_login_id");
@@ -91,6 +91,12 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
       })
       .catch(response => {
         // console.log(response);
+        const errors = [
+          {
+            message: response.messages.mesage[0].text || "",
+          },
+        ];
+        setSubmitErrors(errors);
       });
     // setSubmitErrors([]);
     // const creditCard: ICardPaymentInput = {
