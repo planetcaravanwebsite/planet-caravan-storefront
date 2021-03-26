@@ -86,7 +86,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         checkoutShippingAddressFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
-        if(!billingAsShippingState) {
+        if (!billingAsShippingState) {
           checkoutBillingAddressFormRef.current?.dispatchEvent(
             new Event("submit", { cancelable: true })
           );
