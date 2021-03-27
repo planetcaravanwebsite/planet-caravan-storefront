@@ -10,6 +10,10 @@
     //display: grid;
     min-height: $item-height;
 
+    &:last-child {
+      padding-bottom:50px;
+    }
+
     &-link,
     &-back span {
       // font-family: "Coda Caption", serif;
