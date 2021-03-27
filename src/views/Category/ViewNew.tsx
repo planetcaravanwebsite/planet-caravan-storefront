@@ -251,7 +251,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   }
 
                   if (categoryData.loading) {
-                    return <Loader />;
+                    // return <Loader />;
                   }
 
                   if (

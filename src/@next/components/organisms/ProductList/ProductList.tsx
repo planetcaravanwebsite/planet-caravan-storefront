@@ -1,10 +1,9 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Button, Loader } from "@components/atoms";
+import { Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 
 import { generateProductUrl } from "../../../../core/utils";
@@ -26,14 +25,10 @@ export const ProductList: React.FC<IProps> = ({
       <InfiniteScroll
         dataLength={products.length} // This is important field to render the next data
         next={onLoadMore}
-        hasMore
+        hasMore={canLoadMore}
         scrollableTarget={testingContextId}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
+        loader={<Loader />}
+        scrollThreshold={0.6}
       >
         <S.List
           data-test="productList"
@@ -53,22 +48,6 @@ export const ProductList: React.FC<IProps> = ({
           })}
         </S.List>
       </InfiniteScroll>
-
-      <S.Loader>
-        {loading ? (
-          <Loader />
-        ) : (
-          canLoadMore && (
-            <Button
-              testingContext="loadMoreProductsButton"
-              color="secondary"
-              onClick={onLoadMore}
-            >
-              <FormattedMessage defaultMessage="More +" />
-            </Button>
-          )
-        )}
-      </S.Loader>
     </>
   );
 };
