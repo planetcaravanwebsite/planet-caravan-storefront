@@ -15,6 +15,7 @@ import "./scss/index.scss";
 export interface Breadcrumb {
   value: string;
   link: string;
+  id?: string;
 }
 
 export const extractBreadcrumbs = (category: Category_category) => {
@@ -43,52 +44,60 @@ export const extractBreadcrumbs = (category: Category_category) => {
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
-}> = ({ breadcrumbs }) => (
-  <Media
-    query={{
-      minWidth: smallScreen,
-    }}
-  >
-    {matches =>
-      matches ? (
-        <ul className="breadcrumbs">
-          <li>
-            <Link to={baseUrl}>
-              <FormattedMessage {...commonMessages.home} />
-            </Link>
-          </li>
-          {breadcrumbs.map((breadcrumb, index) => (
-            <li
-              key={breadcrumb.value}
-              className={classNames({
-                breadcrumbs__active: index === breadcrumbs.length - 1,
-              })}
-            >
-              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+}> = ({ breadcrumbs }) => {
+  return (
+    <Media
+      query={{
+        minWidth: smallScreen,
+      }}
+    >
+      {matches =>
+        matches ? (
+          <ul className="breadcrumbs">
+            <li>
+              <Link to={baseUrl}>
+                <FormattedMessage {...commonMessages.home} />
+              </Link>
             </li>
-          ))}
-        </ul>
-      ) : (
-        <ul className="breadcrumbs">
-          <li>
-            <Link to={baseUrl}>
-              <FormattedMessage {...commonMessages.home} />
-            </Link>
-          </li>
-          {breadcrumbs.map((breadcrumb, index) => (
-            <li
-              key={breadcrumb.value}
-              className={classNames({
-                breadcrumbs__active: index === breadcrumbs.length - 1,
-              })}
-            >
-              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+            {breadcrumbs.map((breadcrumb, index) => (
+              <li
+                key={breadcrumb.value}
+                className={classNames({
+                  breadcrumbs__active: index === breadcrumbs.length - 1,
+                })}
+              >
+                {breadcrumb.id ? (
+                  <Link to={`${breadcrumb.link}#${breadcrumb.id}`}>
+                    {breadcrumb.value}
+                  </Link>
+                ) : (
+                  <Link to={`${breadcrumb.link}`}>{breadcrumb.value}</Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <ul className="breadcrumbs">
+            <li>
+              <Link to={baseUrl}>
+                <FormattedMessage {...commonMessages.home} />
+              </Link>
             </li>
-          ))}
-        </ul>
-      )
-    }
-  </Media>
-);
+            {breadcrumbs.map((breadcrumb, index) => (
+              <li
+                key={breadcrumb.value}
+                className={classNames({
+                  breadcrumbs__active: index === breadcrumbs.length - 1,
+                })}
+              >
+                <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </Media>
+  );
+};
 
 export default Breadcrumbs;

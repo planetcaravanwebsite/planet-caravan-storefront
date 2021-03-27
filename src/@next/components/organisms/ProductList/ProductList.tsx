@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import HashLinkObserver from "react-hash-link";
 
 import { Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
@@ -19,9 +20,9 @@ export const ProductList: React.FC<IProps> = ({
   onLoadMore = () => null,
   numPerRow = 4,
 }: IProps) => {
-  // console.log(products[0]);
   return (
     <>
+      <HashLinkObserver />
       <InfiniteScroll
         dataLength={products.length} // This is important field to render the next data
         next={onLoadMore}

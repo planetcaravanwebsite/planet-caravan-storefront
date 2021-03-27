@@ -24,6 +24,7 @@ const populateBreadcrumbs = product => [
   {
     link: generateCategoryUrl(product.category.id, product.category.name),
     value: product.category.name,
+    id: product.id,
   },
   {
     link: generateProductUrl(product.id, product.name),

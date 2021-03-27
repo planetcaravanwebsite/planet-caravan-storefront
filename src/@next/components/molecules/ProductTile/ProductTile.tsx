@@ -21,7 +21,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       : undefined;
 
   return (
-    <S.Wrapper>
+    <S.Wrapper id={product.id}>
       <S.Image data-test="productThumbnail">
         <CachedImage alt={product.name} url={image} />
       </S.Image>
