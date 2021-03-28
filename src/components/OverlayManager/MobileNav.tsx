@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { useEffect } from "react";
-// @ts-ignore
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -16,12 +15,13 @@ const MobileNav: React.FC<{ overlay: OverlayContextInterface }> = ({
 
   useEffect(() => {
     console.log("mounted");
-    // const targetElement = document.querySelector("#side-nav");
-    // disableBodyScroll(targetElement);
+    const targetElement = document.querySelector(".overlay__left");
+    console.log(targetElement);
+    disableBodyScroll(targetElement);
     return () => {
       console.log("unmount");
-      // enableBodyScroll(targetElement);
-      // clearAllBodyScrollLocks();
+      enableBodyScroll(targetElement);
+      clearAllBodyScrollLocks();
     };
   });
 
