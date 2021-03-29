@@ -2,7 +2,6 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
@@ -87,13 +86,14 @@ export const FilterSidebar: React.FC<IProps> = ({
           <span>
             <FormattedMessage {...commonMessages.filterHeader} />
           </span>
-          <IconButton
-            testingContext="hideFilters"
+          <button
+            className="button-arrow"
+            data-testid="main-button"
+            aria-label="Floating menu"
             onClick={hide}
-            name="x"
-            size={18}
-            color="000"
-          />
+          >
+            &rarr;
+          </button>
         </S.Header>
         <S.SubCat>
           {category && <S.SmHeader2>Categories</S.SmHeader2>}

@@ -264,9 +264,9 @@ query CategoryProductsNew(
     // console.log(res);
     setAttributesData(res);
   };
-
+  let mounted = true;
   useEffect(() => {
-    let mounted = true;
+    // console.log(mounted);
     fetchAllProducts().then(r => {
       if (mounted) {
         setIsProductsFetched(true);
@@ -280,8 +280,24 @@ query CategoryProductsNew(
       }
     });
     // eslint-disable-next-line no-return-assign
-    return () => (mounted = false);
+    return () => {
+      // console.log("hello");
+      // console.log(mounted);
+      mounted = false;
+    };
   }, [attributesFetched, isProductsFetched]);
+
+  useEffect(() => {
+    // console.log("changed");
+    fetchAllProducts().then(r => {
+      setIsProductsFetched(true);
+      // console.log("fetched prod");
+    });
+    fetchAttributes().then(r => {
+      setAttributesFetched(true);
+      // console.log("fetched attr");
+    });
+  }, [products]);
 
   // console.log(products.products.edges[0].node);
 

@@ -1,6 +1,7 @@
 import { DefaultTheme, media, styled } from "@styles";
 
 export const Wrapper = styled.div<{ mobileCartOpened: boolean }>`
+  z-index: 2;
   background-color: ${props => props.theme.colors.light};
   ${media.mediumScreen`
     width: 100%;

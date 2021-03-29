@@ -50,6 +50,7 @@ export const PaymentGateways = styled.div<{ hide: boolean }>`
 `;
 export const CartSummary = styled.div`
   grid-area: cartSummary;
+  z-index: 2;
 
   ${media.mediumScreen`
     position: fixed;
