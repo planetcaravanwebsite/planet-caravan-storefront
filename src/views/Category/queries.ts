@@ -54,6 +54,15 @@ export const CategoryProductsQueryNew = gql`
             url
             alt
           }
+          pricing {
+            priceRange {
+              start {
+                net {
+                  amount
+                }
+              }
+            }
+          }
         }
       }
       pageInfo {

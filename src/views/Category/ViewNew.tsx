@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
-import { merge } from "lodash";
+// import { merge } from "lodash";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
@@ -265,7 +265,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
-                  merge(categoryData.data, pricingData);
+                  // merge(categoryData.data, pricingData);
 
                   const handleLoadMore = () =>
                     categoryData.loadMore(
