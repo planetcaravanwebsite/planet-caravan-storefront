@@ -287,7 +287,6 @@ query CategoryProductsNew(
     };
   }, [attributesFetched, isProductsFetched]);
 
-
   function usePrevious(value) {
     const ref = useRef();
     useEffect(() => {
