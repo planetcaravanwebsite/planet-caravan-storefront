@@ -8,7 +8,7 @@ import "react-tiny-fab/dist/styles.css";
 
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "@components/molecules";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader } from "@components/atoms";
 import { Category_category } from "@temp/views/Category/gqlTypes/Category";
 import { commonMessages } from "@temp/intl";
@@ -287,8 +287,24 @@ query CategoryProductsNew(
     };
   }, [attributesFetched, isProductsFetched]);
 
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+
+  const prevAmount = usePrevious(products);
+
+  let showLoad = false;
+
   useEffect(() => {
-    // console.log("changed");
+    console.log("changed");
+    showLoad = true;
+    console.log("prevAmount: %o", prevAmount);
+    console.log("products: %o", products);
     fetchAllProducts().then(r => {
       setIsProductsFetched(true);
       // console.log("fetched prod");
@@ -297,6 +313,10 @@ query CategoryProductsNew(
       setAttributesFetched(true);
       // console.log("fetched attr");
     });
+    return () => {
+      // console.log('unmount');
+      showLoad = false;
+    };
   }, [products]);
 
   // console.log(products.products.edges[0].node);
@@ -385,7 +405,7 @@ query CategoryProductsNew(
                       )}
                       category={categoryData}
                     />
-
+                    {showLoad && <Loader />}
                     <ProductListHeader
                       activeSortOption={activeSortOption}
                       openFiltersMenu={() => setShowFilters(true)}

@@ -107,6 +107,7 @@ export const FilterSidebar: React.FC<IProps> = ({
                     return (
                       <li>
                         <Link
+                          onClick={hide}
                           to={generateCategoryUrl(
                             child.category.id,
                             // @ts-ignore
