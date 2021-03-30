@@ -20,6 +20,9 @@ export const Wrapper = styled.div`
     ". . totalPrice";
     padding: 1rem 0rem;
   `};
+  @media screen and (max-device-width: 375px) {
+    grid-column-gap: 4px;
+  }
 `;
 
 export const QuantityButtons = styled.div`

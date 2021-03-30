@@ -27,7 +27,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
       <S.Price data-test="productPrice">
-        $<TaxedMoney taxedMoney={price} />
+        <TaxedMoney taxedMoney={price} />
       </S.Price>
     </S.Wrapper>
   );

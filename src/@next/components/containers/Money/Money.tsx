@@ -16,7 +16,10 @@ export const Money: React.FC<IProps> = ({
             currency: money.currency,
             style: "currency",
           })
-        : money.amount.toString()}
+        : money.amount.toLocaleString(undefined, {
+            currency: "USD",
+            style: "currency",
+          })}
     </span>
   );
 };
