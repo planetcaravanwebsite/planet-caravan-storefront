@@ -6,9 +6,11 @@ import { find, orderBy } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
+import { useLocation } from "react-router-dom";
+
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "@components/molecules";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader } from "@components/atoms";
 import { Category_category } from "@temp/views/Category/gqlTypes/Category";
 import { commonMessages } from "@temp/intl";
@@ -75,11 +77,6 @@ const Page: React.FC<PageProps> = ({
 
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   const [productData, setProductData] = useState();
-
-  const [fetchingProducts, setFetchingProducts] = useState(false);
-  const [fetchingAttributes, setFetchingAttributes] = useState(false);
-
-  const [count, setCount] = useState(0);
 
   const API_URL = process.env.API_URI || "/graphql/";
 
@@ -204,12 +201,8 @@ query CategoryProductsNew(
   };
 
   const fetchAllProducts = async () => {
-    setFetchingProducts(true);
-    // eslint-disable-next-line no-const-assign
-    setProductData(null);
     const res = await queryAllProducts();
     setProductData(res);
-    setFetchingProducts(false);
     return true;
   };
 
@@ -267,11 +260,8 @@ query CategoryProductsNew(
   };
 
   const fetchAttributes = async () => {
-    setAttributesData(null);
-    setFetchingAttributes(true);
     const res = await queryAttrributesData();
     setAttributesData(res);
-    setFetchingAttributes(false);
   };
   let mounted = true;
   useEffect(() => {
@@ -291,32 +281,27 @@ query CategoryProductsNew(
     };
   }, [attributesFetched, isProductsFetched]);
 
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
-  usePrevious(products);
   useEffect(() => {
-    setCount(count + 1);
-
+    // console.log("changed");
     fetchAllProducts().then(r => {
       setIsProductsFetched(true);
+      // console.log("fetched prod");
     });
     fetchAttributes().then(r => {
       setAttributesFetched(true);
+      // console.log("fetched attr");
     });
-    return () => {};
   }, [products]);
 
-  if (
-    !attributesFetched ||
-    !isProductsFetched ||
-    fetchingAttributes ||
-    fetchingProducts
-  ) {
+  // console.log(products.products.edges[0].node);
+
+  const location = useLocation();
+  useEffect(() => {
+    setIsProductsFetched(false);
+    setAttributesFetched(false);
+  }, [location]);
+
+  if (!attributesFetched || !isProductsFetched) {
     return (
       <>
         <div className="category">
@@ -380,7 +365,7 @@ query CategoryProductsNew(
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 text="Back to top"
               />
-              {fetchingAttributes && fetchingProducts ? <Loader /> : null}
+
               <div className="category">
                 <div className="container">
                   <>
@@ -400,6 +385,7 @@ query CategoryProductsNew(
                       )}
                       category={categoryData}
                     />
+
                     <ProductListHeader
                       activeSortOption={activeSortOption}
                       openFiltersMenu={() => setShowFilters(true)}
