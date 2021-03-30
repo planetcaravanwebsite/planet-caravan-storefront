@@ -76,6 +76,11 @@ const Page: React.FC<PageProps> = ({
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   const [productData, setProductData] = useState();
 
+  const [fetchingProducts, setFetchingProducts] = useState(false);
+  const [fetchingAttributes, setFetchingAttributes] = useState(false);
+
+  const [count, setCount] = useState(0);
+
   const API_URL = process.env.API_URI || "/graphql/";
 
   const variables = {
@@ -123,7 +128,6 @@ const Page: React.FC<PageProps> = ({
       ["desc"]
     );
   }
-  // console.log("sorted: ", sorted);
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     if (attributesData) {
@@ -200,9 +204,12 @@ query CategoryProductsNew(
   };
 
   const fetchAllProducts = async () => {
+    setFetchingProducts(true);
+    // eslint-disable-next-line no-const-assign
+    setProductData(null);
     const res = await queryAllProducts();
-    // console.log(res);
     setProductData(res);
+    setFetchingProducts(false);
     return true;
   };
 
@@ -260,29 +267,26 @@ query CategoryProductsNew(
   };
 
   const fetchAttributes = async () => {
+    setAttributesData(null);
+    setFetchingAttributes(true);
     const res = await queryAttrributesData();
-    // console.log(res);
     setAttributesData(res);
+    setFetchingAttributes(false);
   };
   let mounted = true;
   useEffect(() => {
-    // console.log(mounted);
     fetchAllProducts().then(r => {
       if (mounted) {
         setIsProductsFetched(true);
-        // console.log("fetched prod");
       }
     });
     fetchAttributes().then(r => {
       if (mounted) {
         setAttributesFetched(true);
-        // console.log("fetched attr");
       }
     });
     // eslint-disable-next-line no-return-assign
     return () => {
-      // console.log("hello");
-      // console.log(mounted);
       mounted = false;
     };
   }, [attributesFetched, isProductsFetched]);
@@ -294,33 +298,25 @@ query CategoryProductsNew(
     });
     return ref.current;
   }
-
-  const prevAmount = usePrevious(products);
-
-  let showLoad = false;
-
+  usePrevious(products);
   useEffect(() => {
-    console.log("changed");
-    showLoad = true;
-    console.log("prevAmount: %o", prevAmount);
-    console.log("products: %o", products);
+    setCount(count + 1);
+
     fetchAllProducts().then(r => {
       setIsProductsFetched(true);
-      // console.log("fetched prod");
     });
     fetchAttributes().then(r => {
       setAttributesFetched(true);
-      // console.log("fetched attr");
     });
-    return () => {
-      // console.log('unmount');
-      showLoad = false;
-    };
+    return () => {};
   }, [products]);
 
-  // console.log(products.products.edges[0].node);
-
-  if (!attributesFetched || !isProductsFetched) {
+  if (
+    !attributesFetched ||
+    !isProductsFetched ||
+    fetchingAttributes ||
+    fetchingProducts
+  ) {
     return (
       <>
         <div className="category">
@@ -384,7 +380,7 @@ query CategoryProductsNew(
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 text="Back to top"
               />
-
+              {fetchingAttributes && fetchingProducts ? <Loader /> : null}
               <div className="category">
                 <div className="container">
                   <>
@@ -404,7 +400,6 @@ query CategoryProductsNew(
                       )}
                       category={categoryData}
                     />
-                    {showLoad && <Loader />}
                     <ProductListHeader
                       activeSortOption={activeSortOption}
                       openFiltersMenu={() => setShowFilters(true)}
