@@ -46,57 +46,73 @@ const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
 }> = ({ breadcrumbs }) => {
   return (
-    <Media
-      query={{
-        minWidth: smallScreen,
-      }}
-    >
-      {matches =>
-        matches ? (
-          <ul className="breadcrumbs">
-            <li>
-              <Link to={baseUrl}>
-                <FormattedMessage {...commonMessages.home} />
-              </Link>
-            </li>
-            {breadcrumbs.map((breadcrumb, index) => (
-              <li
-                key={breadcrumb.value}
-                className={classNames({
-                  breadcrumbs__active: index === breadcrumbs.length - 1,
-                })}
-              >
-                {breadcrumb.id ? (
-                  <Link to={`${breadcrumb.link}#${breadcrumb.id}`}>
-                    {breadcrumb.value}
-                  </Link>
-                ) : (
-                  <Link to={`${breadcrumb.link}`}>{breadcrumb.value}</Link>
-                )}
-              </li>
-            ))}
-          </ul>
+    <div className="breadcrumb__wrapper">
+      {breadcrumbs.map((breadcrumb, index) =>
+        breadcrumb.id ? (
+          <button
+            className="button-arrow-breadcrumb"
+            data-testid="main-button"
+            aria-label="Floating menu"
+          >
+            <Link to={`${breadcrumb.link}#${breadcrumb.id}`}>&larr;</Link>
+          </button>
         ) : (
-          <ul className="breadcrumbs">
-            <li>
-              <Link to={baseUrl}>
-                <FormattedMessage {...commonMessages.home} />
-              </Link>
-            </li>
-            {breadcrumbs.map((breadcrumb, index) => (
-              <li
-                key={breadcrumb.value}
-                className={classNames({
-                  breadcrumbs__active: index === breadcrumbs.length - 1,
-                })}
-              >
-                <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
-              </li>
-            ))}
-          </ul>
+          <></>
         )
-      }
-    </Media>
+      )}
+
+      <Media
+        query={{
+          minWidth: smallScreen,
+        }}
+      >
+        {matches =>
+          matches ? (
+            <ul className="breadcrumbs">
+              <li>
+                <Link to={baseUrl}>
+                  <FormattedMessage {...commonMessages.home} />
+                </Link>
+              </li>
+              {breadcrumbs.map((breadcrumb, index) => (
+                <li
+                  key={breadcrumb.value}
+                  className={classNames({
+                    breadcrumbs__active: index === breadcrumbs.length - 1,
+                  })}
+                >
+                  {breadcrumb.id ? (
+                    <Link to={`${breadcrumb.link}#${breadcrumb.id}`}>
+                      {breadcrumb.value}
+                    </Link>
+                  ) : (
+                    <Link to={`${breadcrumb.link}`}>{breadcrumb.value}</Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="breadcrumbs">
+              <li>
+                <Link to={baseUrl}>
+                  <FormattedMessage {...commonMessages.home} />
+                </Link>
+              </li>
+              {breadcrumbs.map((breadcrumb, index) => (
+                <li
+                  key={breadcrumb.value}
+                  className={classNames({
+                    breadcrumbs__active: index === breadcrumbs.length - 1,
+                  })}
+                >
+                  <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </Media>
+    </div>
   );
 };
 
