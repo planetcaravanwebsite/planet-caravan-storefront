@@ -293,9 +293,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     <>
                       <MetaWrapper
                         meta={{
-                          description:
-                          category.data.category.name + " | Planet Caravan | Cincinnati, Oh",
-                          title: category.data.category.name + " | Planet Caravan | Cincinnati, Oh",
+                          description: `${category.data.category.name} | Planet Caravan | Cincinnati, Oh`,
+                          title: `${category.data.category.name} | Planet Caravan | Cincinnati, Oh`,
                           type: "product.category",
                         }}
                       >
