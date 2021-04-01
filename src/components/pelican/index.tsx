@@ -47,28 +47,11 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const [isFetched, setIsFetched] = useState(false);
   const [anyData, setAnyData] = useState(false);
   const [pelicanData, setPelicanData] = useState({
-    products: {
-      edges: [
+    product: {
+      variants: [
         {
-          node: {
-            id: {},
-            name: {},
-            pricing: {
-              priceRange: {
-                start: {
-                  net: {
-                    amount: {},
-                  },
-                },
-              },
-            },
-            variants: [
-              {
-                id: {},
-                name: {},
-              },
-            ],
-          },
+          id: {},
+          name: {},
         },
       ],
     },
@@ -78,32 +61,32 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     const query = JSON.stringify({
       query: `
       {
-    products(first: 1, filter: { search: "pelican" }) {
-      edges {
-        node {
-          id
-          name
-          thumbnail(size: 100) {
-            url
-            alt
-          }
-          pricing {
-            priceRange {
-              start {
-                net {
-                  amount
-                }
-              }
-            }
-          }
-          variants {
-            id
-            name
+  product(id: "UHJvZHVjdDozODU4") {
+    name
+    description
+    images {
+      url
+      id
+    }
+    variants {
+      id
+      sku
+      name
+      images {
+        url
+        id
+      }
+      pricing {
+        price {
+          gross {
+            amount
+            currency
           }
         }
       }
     }
   }
+}
     `,
     });
 
@@ -120,10 +103,9 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const fetchData = async () => {
     const res = await queryData();
     setPelicanData(res);
-    if (res.products.edges.length > 0) {
+    if (res.product.name.length > 0) {
       setAnyData(true);
     }
-    // console.log(res);
   };
 
   useEffect(() => {
@@ -155,22 +137,12 @@ export const Pelican: React.FC<PelicanInterface> = () => {
       <Wrapper>
         <CenterDiv>
           <FLeft>
-            <b>
-              Add a {pelicanData.products.edges[0].node.name} for $
-              {
-                pelicanData.products.edges[0].node.pricing.priceRange.start.net
-                  .amount
-              }
-              ?{" "}
-            </b>
+            <b>Do you want us to pack your heady glass in your pelican case?</b>
           </FLeft>
           <ButtonWrapper>
             <AddToCartButton
               onSubmit={() =>
-                handleAddToCart(
-                  pelicanData.products.edges[0].node.variants[0].id,
-                  1
-                )
+                handleAddToCart(pelicanData.product.variants[0].id, 1)
               }
               disabled={false}
               specialColor={false}

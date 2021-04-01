@@ -8,7 +8,7 @@ import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
 import { useEffect, useState } from "react";
-import { NotFound, OfflinePlaceholder } from "../../components";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
@@ -291,28 +291,37 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     );
                   return (
                     <>
-                      <Page
-                        match={match}
-                        category={category.data.category}
-                        // @ts-ignore
-                        products={categoryData.data}
-                        sortOptions={sortOptions}
-                        clearFilters={clearFilters}
-                        filters={filters}
-                        activeSortOption={filters.sortBy}
-                        displayLoader={categoryData.loading}
-                        onAttributeFiltersChange={onFiltersChange}
-                        activeFilters={
-                          filters!.attributes
-                            ? Object.keys(filters!.attributes).length
-                            : 0
-                        }
-                        onOrder={value => {
-                          setSort(value.value);
+                      <MetaWrapper
+                        meta={{
+                          description:
+                          category.data.category.name + " | Planet Caravan | Cincinnati, Oh",
+                          title: category.data.category.name + " | Planet Caravan | Cincinnati, Oh",
+                          type: "product.category",
                         }}
-                        onLoadMore={handleLoadMore}
-                        onRefresh={handleRefresh}
-                      />
+                      >
+                        <Page
+                          match={match}
+                          category={category.data.category}
+                          // @ts-ignore
+                          products={categoryData.data}
+                          sortOptions={sortOptions}
+                          clearFilters={clearFilters}
+                          filters={filters}
+                          activeSortOption={filters.sortBy}
+                          displayLoader={categoryData.loading}
+                          onAttributeFiltersChange={onFiltersChange}
+                          activeFilters={
+                            filters!.attributes
+                              ? Object.keys(filters!.attributes).length
+                              : 0
+                          }
+                          onOrder={value => {
+                            setSort(value.value);
+                          }}
+                          onLoadMore={handleLoadMore}
+                          onRefresh={handleRefresh}
+                        />
+                      </MetaWrapper>
                     </>
                   );
                 }}

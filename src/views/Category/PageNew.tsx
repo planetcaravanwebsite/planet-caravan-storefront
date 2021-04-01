@@ -282,23 +282,20 @@ query CategoryProductsNew(
   }, [attributesFetched, isProductsFetched]);
 
   useEffect(() => {
-    // console.log("changed");
     fetchAllProducts().then(r => {
       setIsProductsFetched(true);
-      // console.log("fetched prod");
     });
     fetchAttributes().then(r => {
       setAttributesFetched(true);
-      // console.log("fetched attr");
     });
   }, [products]);
 
-  // console.log(products.products.edges[0].node);
-
   const location = useLocation();
   useEffect(() => {
-    setIsProductsFetched(false);
-    setAttributesFetched(false);
+    if (location.search.length === 0) {
+      setIsProductsFetched(false);
+      setAttributesFetched(false);
+    }
   }, [location]);
 
   if (!attributesFetched || !isProductsFetched) {

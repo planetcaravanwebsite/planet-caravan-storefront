@@ -8,7 +8,11 @@
   z-index: 4!important;
   position: absolute;
   left: 30px;
-  top: 32px;
+  top: 30px;
+  @media screen and (max-width: 540px) {
+    left: 22px;
+    top:4px;
+  }
   height: 30px;
   width: 30px;
   z-index: 9999;

@@ -74,8 +74,18 @@ const prepareCartFooter = (
 );
 
 const hasPelican = (items: IItems) => {
-  // console.log(find(items, ({ id }) => id === "UHJvZHVjdFZhcmlhbnQ6MzI1"));
-  return true;
+  console.log(items);
+
+  if (
+    find(items, function (item) {
+      // @ts-ignore
+      return item.variant.name.indexOf("Pelican") !== -1;
+    })
+  ) {
+    return true;
+  }
+
+  return false;
 };
 
 const generateCart = (
@@ -226,7 +236,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   };
 
   if (loaded && items?.length) {
-    // console.log(items);
     return (
       <>
         <Cart
@@ -247,7 +256,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
             }) */
           }
         />
-        {hasPelican && <Pelican />}
+        {hasPelican(items) && <Pelican />}
       </>
     );
   }
