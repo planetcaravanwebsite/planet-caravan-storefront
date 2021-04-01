@@ -6,8 +6,9 @@ import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-
 import { find } from "lodash";
+import { Pelican } from "../..";
+
 // import { useEffect, useState } from "react";
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
@@ -15,22 +16,28 @@ import removeImg from "../../../images/garbage.svg";
 const ProductList: React.FC<{
   lines: ICheckoutModelLine[];
   remove(variantId: string): void;
-}> = ({ lines, remove }) => (
-  <ul className="cart__list">
-    {lines.map((line, index) => {
-      // console.log(line);
+}> = ({ lines, remove }) => {
+  let showPelican = true;
+  const removePelican = () => {
+    console.log("remove");
+    showPelican = false;
+  };
+  return (
+    <ul className="cart__list">
+      {lines.map((line, index) => {
+        // console.log(line);
 
-      // const [isFetched, setIsFetched] = useState(false);
-      // const [varImage, setVarImage] = useState("");
+        // const [isFetched, setIsFetched] = useState(false);
+        // const [varImage, setVarImage] = useState("");
 
-      const API_URL = process.env.API_URI || "/graphql/";
+        const API_URL = process.env.API_URI || "/graphql/";
 
-      const queryData = async () => {
-        // let query: string;
-        // if (loaded) {
-        // @ts-ignore
-        const query = JSON.stringify({
-          query: `
+        const queryData = async () => {
+          // let query: string;
+          // if (loaded) {
+          // @ts-ignore
+          const query = JSON.stringify({
+            query: `
       {
   product(id: "${line.variant.product.id}") {
     name
@@ -59,88 +66,91 @@ const ProductList: React.FC<{
   }
 }
     `,
-        });
-        // }
+          });
+          // }
 
-        // @ts-ignore
-        const response = await fetch(API_URL, {
-          headers: { "content-type": "application/json" },
-          method: "POST",
-          body: query,
-        });
-
-        const responseJson = await response.json();
-        return responseJson.data;
-      };
-
-      // @ts-ignore
-      const fetchData = async () => {
-        const res = await queryData();
-        // console.log(res);
-        // @ts-ignore
-        const z = find(res.product.variants, function (o) {
           // @ts-ignore
-          return o.id === line.variant.id;
-        });
-        // console.log(z.images[0]);
-        // setVarImage(z.images[0].url);
-      };
+          const response = await fetch(API_URL, {
+            headers: { "content-type": "application/json" },
+            method: "POST",
+            body: query,
+          });
 
-      // @ts-ignore
-      //    useEffect(() => {
-      //      let mounted = true;
-      //      fetchData().then(r => {
-      //        if (mounted) {
-      //          setIsFetched(true);
-      //        }
-      //      });
-      // eslint-disable-next-line no-return-assign
-      //      return () => (mounted = false);
-      //    }, [isFetched]);
+          const responseJson = await response.json();
+          return responseJson.data;
+        };
 
-      const productUrl = generateProductUrl(
-        line.variant.product.id,
-        line.variant.product.name
-      );
-      const key = line.id ? `id-${line.id}` : `idx-${index}`;
+        // @ts-ignore
+        const fetchData = async () => {
+          const res = await queryData();
+          // console.log(res);
+          // @ts-ignore
+          const z = find(res.product.variants, function (o) {
+            // @ts-ignore
+            return o.id === line.variant.id;
+          });
+          // console.log(z.images[0]);
+          // setVarImage(z.images[0].url);
+        };
 
-      return (
-        <li
-          key={key}
-          className="cart__list__item"
-          data-test="cartRow"
-          data-test-id={line.variant.sku}
-        >
-          <Link to={productUrl}>
-            <Thumbnail source={line.variant.product} />
-            {/* image={varImage} /> */}
-          </Link>
-          <div className="cart__list__item__details">
-            <p data-test="price">
-              <TaxedMoney taxedMoney={line.variant.pricing.price} />
-            </p>
+        // @ts-ignore
+        //    useEffect(() => {
+        //      let mounted = true;
+        //      fetchData().then(r => {
+        //        if (mounted) {
+        //          setIsFetched(true);
+        //        }
+        //      });
+        // eslint-disable-next-line no-return-assign
+        //      return () => (mounted = false);
+        //    }, [isFetched]);
+
+        const productUrl = generateProductUrl(
+          line.variant.product.id,
+          line.variant.product.name
+        );
+        const key = line.id ? `id-${line.id}` : `idx-${index}`;
+
+        return (
+          <li
+            key={key}
+            className="cart__list__item"
+            data-test="cartRow"
+            data-test-id={line.variant.sku}
+          >
             <Link to={productUrl}>
-              <p data-test="name">{line.variant.product.name}</p>
+              <Thumbnail source={line.variant.product} />
+              {/* image={varImage} /> */}
             </Link>
-            <span className="cart__list__item__details__variant">
-              <span>{line.variant.name}</span>
-              <span data-test="quantity">
-                <FormattedMessage
-                  defaultMessage="Qty: {quantity}"
-                  values={{ quantity: line.quantity }}
-                />
+            <div className="cart__list__item__details">
+              <p data-test="price">
+                <TaxedMoney taxedMoney={line.variant.pricing.price} />
+              </p>
+              <Link to={productUrl}>
+                <p data-test="name">{line.variant.product.name}</p>
+              </Link>
+              <span className="cart__list__item__details__variant">
+                <span>{line.variant.name}</span>
+                <span data-test="quantity">
+                  <FormattedMessage
+                    defaultMessage="Qty: {quantity}"
+                    values={{ quantity: line.quantity }}
+                  />
+                </span>
               </span>
-            </span>
-            <ReactSVG
-              path={removeImg}
-              className="cart__list__item__details__delete-icon"
-              data-test="deleteButton"
-              onClick={() => remove(line.variant.id)}
-            />
-          </div>
-        </li>
-      );
-    })}
-  </ul>
-);
+              <ReactSVG
+                path={removeImg}
+                className="cart__list__item__details__delete-icon"
+                data-test="deleteButton"
+                onClick={() => remove(line.variant.id)}
+              />
+            </div>
+          </li>
+        );
+      })}
+      {showPelican && <Pelican onRemove={removePelican} />}
+    </ul>
+  );
+};
+
 export default ProductList;

@@ -11,6 +11,10 @@ export const Bar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
+  @media screen and (max-width: 500px) {
+    padding: 0;
+  }
+
   font-size: ${props => props.theme.typography.smallFontSize};
   margin-top: 1rem;
   margin-bottom: 1.4rem;
@@ -41,6 +45,9 @@ export const Clear = styled.button`
 `;
 export const Element = styled.span`
   padding-left: 2rem;
+  @media screen and (max-width: 500px) {
+    padding-left: .2rem;
+  }
 `;
 
 export const ElementAnother = styled.span`

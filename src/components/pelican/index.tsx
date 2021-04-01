@@ -2,48 +2,24 @@ import React, { useState, useEffect } from "react";
 
 import { useCart } from "@saleor/sdk";
 
-import { media, styled } from "@styles";
+import { styled } from "@styles";
 
-import AddToCartButton from "../../@next/components/molecules/AddToCartButton";
+import { ButtonSmall } from "@components/atoms";
 
 const API_URL = process.env.API_URI || "/graphql/";
 
 export interface PelicanInterface {
-  // onAddToCart(variantId: string, quantity?: number): void;
+  onRemove(): void;
 }
 
-export const Wrapper = styled.div`
-  margin: 30px 0 100px 0;
+export const Title = styled.h1`
+  color: red;
+  font-size: 1.2rem;
+  line-height: 2;
+  font-weight: bold;
 `;
 
-export const CenterDiv = styled.div`
-  margin: 0 auto;
-`;
-
-export const FLeft = styled.div`
-  float: left;
-`;
-
-export const ButtonWrapper = styled.div`
-  float: left;
-  margin-left: 20px;
-`;
-
-export const Container = styled.div`
-  border: 1px gray solid;
-  width: ${props => `${props.theme.container.width}px`};
-  max-width: 100vw;
-  margin: 0 auto 20px auto;
-  padding: 0 ${props => props.theme.spacing.spacer};
-  ${media.xxxLargeScreen`
-    width: 40%;      
-  `}
-  ${media.largeScreen`
-    width: 90%;      
-  `}
-`;
-
-export const Pelican: React.FC<PelicanInterface> = () => {
+export const Pelican: React.FC<PelicanInterface> = (onRemove) => {
   const [isFetched, setIsFetched] = useState(false);
   const [anyData, setAnyData] = useState(false);
   const [pelicanData, setPelicanData] = useState({
@@ -133,23 +109,25 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     return <></>;
   }
   return (
-    <Container>
-      <Wrapper>
-        <CenterDiv>
-          <FLeft>
-            <b>Do you want us to pack your heady glass in your pelican case?</b>
-          </FLeft>
-          <ButtonWrapper>
-            <AddToCartButton
-              onSubmit={() =>
-                handleAddToCart(pelicanData.product.variants[0].id, 1)
-              }
-              disabled={false}
-              specialColor={false}
-            />
-          </ButtonWrapper>
-        </CenterDiv>
-      </Wrapper>
-    </Container>
+    <>
+      <Title>Buying a Pelican?</Title>
+      <div>Do you want us to pack your heady glass in your pelican case?</div>
+      <ButtonSmall
+        size="sm"
+        fullWidth={false}
+        onClick={() => handleAddToCart(pelicanData.product.variants[0].id, 1)}
+        testingContext="submit"
+      >
+        Yes
+      </ButtonSmall>
+      <ButtonSmall
+        onClick={() => onRemove}
+        size="sm"
+        fullWidth={false}
+        testingContext="submit"
+      >
+        No
+      </ButtonSmall>
+    </>
   );
 };
