@@ -2,30 +2,33 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { Button } from ".";
+import { ButtonSmall } from ".";
 
 storiesOf("@components/atoms/Button", module)
-  .addParameters({ component: Button })
+  .addParameters({ component: ButtonSmall })
   .add("Primary", () => (
-    <Button fullWidth={boolean("FullWidth", false)} testingContext="testButton">
+    <ButtonSmall
+      fullWidth={boolean("FullWidth", false)}
+      testingContext="testButton"
+    >
       Primary Button
-    </Button>
+    </ButtonSmall>
   ))
   .add("Secondary", () => (
-    <Button
+    <ButtonSmall
       color="secondary"
       fullWidth={boolean("FullWidth", false)}
       testingContext="testButton"
     >
       Secondary Button
-    </Button>
+    </ButtonSmall>
   ))
   .add("Size sm", () => (
-    <Button
+    <ButtonSmall
       size="sm"
       fullWidth={boolean("FullWidth", false)}
       testingContext="testButton"
     >
       Small Button
-    </Button>
+    </ButtonSmall>
   ));

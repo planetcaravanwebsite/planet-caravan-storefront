@@ -46,7 +46,7 @@ export const Clear = styled.button`
 export const Element = styled.span`
   padding-left: 2rem;
   @media screen and (max-width: 500px) {
-    padding-left: .2rem;
+    padding-left: 0.2rem;
   }
 `;
 

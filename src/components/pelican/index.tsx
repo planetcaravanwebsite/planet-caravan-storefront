@@ -9,7 +9,7 @@ import { ButtonSmall } from "@components/atoms";
 const API_URL = process.env.API_URI || "/graphql/";
 
 export interface PelicanInterface {
-  onRemove(): void;
+  // onRemove(): void;
 }
 
 export const Title = styled.h1`
@@ -19,7 +19,7 @@ export const Title = styled.h1`
   font-weight: bold;
 `;
 
-export const Pelican: React.FC<PelicanInterface> = (onRemove) => {
+export const Pelican: React.FC<PelicanInterface> = () => {
   const [isFetched, setIsFetched] = useState(false);
   const [anyData, setAnyData] = useState(false);
   const [pelicanData, setPelicanData] = useState({
@@ -119,14 +119,6 @@ export const Pelican: React.FC<PelicanInterface> = (onRemove) => {
         testingContext="submit"
       >
         Yes
-      </ButtonSmall>
-      <ButtonSmall
-        onClick={() => onRemove}
-        size="sm"
-        fullWidth={false}
-        testingContext="submit"
-      >
-        No
       </ButtonSmall>
     </>
   );

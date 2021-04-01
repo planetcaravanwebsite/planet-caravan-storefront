@@ -19,7 +19,7 @@ import { ITaxedMoney } from "@types";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-import { Pelican } from "../../../components";
+/* import { Pelican } from "../../../components"; */
 
 const title = (
   <S.PageHeader className="" data-test="cartPageTitle">
@@ -73,7 +73,7 @@ const prepareCartFooter = (
   />
 );
 
-const hasPelican = (items: IItems) => {
+/* const hasPelican = (items: IItems) => {
   console.log(items);
 
   if (
@@ -86,7 +86,7 @@ const hasPelican = (items: IItems) => {
   }
 
   return false;
-};
+}; */
 
 const generateCart = (
   items: IItems,
@@ -256,7 +256,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
             }) */
           }
         />
-        {hasPelican(items) && <Pelican />}
+        {/* hasPelican(items) && <Pelican /> */}
       </>
     );
   }

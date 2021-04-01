@@ -18,14 +18,13 @@ const ProductList: React.FC<{
   remove(variantId: string): void;
 }> = ({ lines, remove }) => {
   let showPelican = true;
-  const removePelican = () => {
-    console.log("remove");
-    showPelican = false;
-  };
   return (
     <ul className="cart__list">
       {lines.map((line, index) => {
-        // console.log(line);
+        console.log(line.variant.product.id);
+        if (line.variant.product.id === "UHJvZHVjdDozODU4") {
+          showPelican = false;
+        }
 
         // const [isFetched, setIsFetched] = useState(false);
         // const [varImage, setVarImage] = useState("");
@@ -148,7 +147,7 @@ const ProductList: React.FC<{
           </li>
         );
       })}
-      {showPelican && <Pelican onRemove={removePelican} />}
+      {showPelican && <Pelican />}
     </ul>
   );
 };

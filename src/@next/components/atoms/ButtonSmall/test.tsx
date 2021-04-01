@@ -3,14 +3,14 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { Button } from ".";
+import { ButtonSmall } from ".";
 import * as S from "./styles";
 
 describe("<Button />", () => {
   it("renders children", () => {
     const text = "test";
     const wrapper = shallow(
-      <Button testingContext="testButton">{text}</Button>
+      <ButtonSmall testingContext="testButton">{text}</ButtonSmall>
     );
 
     expect(wrapper.text()).toEqual(text);
@@ -19,7 +19,7 @@ describe("<Button />", () => {
   it("simulates click events", () => {
     const onButtonClick = jest.fn();
     const wrapper = shallow(
-      <Button onClick={onButtonClick} testingContext="testButton" />
+      <ButtonSmall onClick={onButtonClick} testingContext="testButton" />
     );
 
     wrapper.simulate("click");
@@ -27,9 +27,9 @@ describe("<Button />", () => {
   });
 
   it("uses correct theme based on color prop", () => {
-    const PrimaryButton = mount(<Button testingContext="testButton" />);
+    const PrimaryButton = mount(<ButtonSmall testingContext="testButton" />);
     const SecondaryButton = mount(
-      <Button color="secondary" testingContext="testButton" />
+      <ButtonSmall color="secondary" testingContext="testButton" />
     );
 
     expect(PrimaryButton).toHaveStyleRule(
@@ -45,10 +45,10 @@ describe("<Button />", () => {
 
   it("uses correct theme based on size prop", () => {
     const NormalButtonText = mount(
-      <Button size="md" testingContext="testButton" />
+      <ButtonSmall size="md" testingContext="testButton" />
     ).find(S.Text);
     const SmallButtonText = mount(
-      <Button size="sm" testingContext="testButton" />
+      <ButtonSmall size="sm" testingContext="testButton" />
     ).find(S.Text);
 
     expect(NormalButtonText).toHaveStyleRule(

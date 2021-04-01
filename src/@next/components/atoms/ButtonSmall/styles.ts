@@ -3,7 +3,7 @@ import { Size } from "./types";
 
 const padding = {
   md: "0.9rem 3.7rem",
-  sm: "0.1rem 2rem",
+  sm: "0.5rem 2rem",
 };
 
 const fontSize = (fontSize: string, smallFontSize: string) => ({
