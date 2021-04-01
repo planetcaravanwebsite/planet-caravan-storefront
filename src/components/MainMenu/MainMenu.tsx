@@ -117,11 +117,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
 
                     {whichMenu !== "homePage" && (
                       <Link to={appPaths.baseUrl}>
-                        <img
-                          src={logoImg}
-                          style={{ width: "145px", paddingTop: "28px" }}
-                          alt=""
-                        />
+                        <img src={logoImg} alt="" />
                       </Link>
                     )}
                     {whichMenu !== "homePage" && (
