@@ -264,8 +264,7 @@ export const META_DEFAULTS = {
   description:
     "Planet Caravan Smoke Shop has 4 convenient locations (Jefferson, West McMillan, West Chester, Colerain). Open 7 days a week.",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title:
-    "Planet Caravan Smoke Shop has 4 convenient locations (Jefferson, West McMillan, West Chester, Colerain). Open 7 days a week.",
+  title: "Cincinnati Smoke Shop | Planet Caravan",
   type: "website",
   url: window.location.origin,
 };

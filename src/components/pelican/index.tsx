@@ -37,7 +37,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     const query = JSON.stringify({
       query: `
       {
-  product(id: "UHJvZHVjdDozODU4") {
+  product(id: "UHJvZHVjdDoyNTc1") {
     name
     description
     images {
@@ -79,6 +79,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const fetchData = async () => {
     const res = await queryData();
     setPelicanData(res);
+    console.log(res);
     if (res.product.name.length > 0) {
       setAnyData(true);
     }
@@ -98,7 +99,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const { addItem } = useCart();
 
   const handleAddToCart = (variantId, quantity) => {
-    // console.log("adding %o %o", variantId, quantity);
+    console.log("adding %o %o", variantId, quantity);
     addItem(variantId, quantity);
   };
 

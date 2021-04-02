@@ -15,7 +15,7 @@ const View: React.FC = () => (
             meta={{
               description: data.shop ? data.shop.description : "",
               title:
-                "Planet Caravan Smoke Shop has 4 convenient locations (Jefferson, West McMillan, West Chester, Colerain). Open 7 days a week.",
+                "Cincinnati Smoke Shop | Planet Caravan.",
             }}
           >
             <Page

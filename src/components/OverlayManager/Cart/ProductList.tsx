@@ -17,15 +17,23 @@ const ProductList: React.FC<{
   lines: ICheckoutModelLine[];
   remove(variantId: string): void;
 }> = ({ lines, remove }) => {
-  let showPelican = true;
+  let showPelican = false;
+
+  const hasAPelican = !!find(lines, function (o) {
+    return o.variant.name.indexOf("Pelican") !== -1;
+  });
+
+  const packInCart = !!find(lines, function (o) {
+    return o.variant.product.id === "UHJvZHVjdDoyNTc1";
+  });
+
+  if (hasAPelican && !packInCart) {
+    showPelican = true;
+  }
+
   return (
     <ul className="cart__list">
       {lines.map((line, index) => {
-        console.log(line.variant.product.id);
-        if (line.variant.product.id === "UHJvZHVjdDozODU4") {
-          showPelican = false;
-        }
-
         // const [isFetched, setIsFetched] = useState(false);
         // const [varImage, setVarImage] = useState("");
 

@@ -12,7 +12,7 @@ export const Bar = styled.div`
   align-items: center;
   padding: 0 2rem;
   @media screen and (max-width: 500px) {
-    padding: 0;
+    padding: 0 10px;
   }
 
   font-size: ${props => props.theme.typography.smallFontSize};
