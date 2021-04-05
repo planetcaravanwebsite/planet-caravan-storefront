@@ -7,7 +7,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -27,7 +27,7 @@ type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
-const FilterQuerySet = {
+export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
     Object.keys(valueObj).forEach(value => {
@@ -171,8 +171,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   const fetchPricing = async () => {
-    // eslint-disable-next-line eqeqeq
-    if (retrievedCount == processedCount) {
+
+    if(retrievedCount == processedCount) {
       return true;
     }
 
@@ -264,7 +264,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
-                  // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
 
                   const handleLoadMore = () =>
@@ -333,5 +332,4 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   );
 };
 
-// @ts-ignore
 export default View;

@@ -340,6 +340,7 @@ query CategoryProductsNew(
             return item.category && item.category.id === category.id;
           });
 
+          // @ts-ignore
           return (
             <>
               <Fab
@@ -367,14 +368,10 @@ query CategoryProductsNew(
                       hide={() => setShowFilters(false)}
                       onAttributeFiltersChange={onAttributeFiltersChange}
                       // @ts-ignore
-                      attributes={attributesData.attributes.edges.map(
-                        edge => edge.node
-                      )}
+                      attributes={ attributesData ? attributesData.attributes.edges.map( edge => edge.node) : [] }
                       filters={filters}
                       // @ts-ignore
-                      products={productData.products.edges.map(
-                        edge => edge.node
-                      )}
+                      products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
                     />
 
