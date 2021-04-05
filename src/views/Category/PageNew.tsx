@@ -341,7 +341,6 @@ query CategoryProductsNew(
           });
 
           // @ts-ignore
-          // @ts-ignore
           return (
             <>
               <Fab
@@ -369,22 +368,10 @@ query CategoryProductsNew(
                       hide={() => setShowFilters(false)}
                       onAttributeFiltersChange={onAttributeFiltersChange}
                       // @ts-ignore
-                      attributes={
-                        attributesData
-                          ? // @ts-ignore
-                            attributesData.attributes.edges.map(
-                              edge => edge.node
-                            )
-                          : []
-                      }
+                      attributes={ attributesData ? attributesData.attributes.edges.map( edge => edge.node) : [] }
                       filters={filters}
                       // @ts-ignore
-                      products={
-                        productData
-                          ? // @ts-ignore
-                            productData.products.edges.map(edge => edge.node)
-                          : []
-                      }
+                      products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
                     />
 
