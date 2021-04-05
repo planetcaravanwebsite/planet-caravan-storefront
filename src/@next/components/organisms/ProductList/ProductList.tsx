@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import HashLinkObserver from "react-hash-link";
 
 import { Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { boolean } from "@storybook/addon-knobs";
 import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
@@ -17,12 +18,18 @@ export const ProductList: React.FC<IProps> = ({
   canLoadMore = false,
   loading = false,
   testingContextId,
-  onLoadMore = () => null,
+  onLoadMore = () => boolean,
   numPerRow = 4,
 }: IProps) => {
+  const [hashProductLoaded, setHashProductLoaded] = useState(false);
+  const [hashValue, setHashValue] = useState("");
+
+  React.useEffect(function () {
+    setHashValue(window.location.hash);
+  });
+
   return (
     <>
-      <HashLinkObserver />
       <InfiniteScroll
         dataLength={products.length} // This is important field to render the next data
         next={onLoadMore}
@@ -36,17 +43,28 @@ export const ProductList: React.FC<IProps> = ({
           data-test-id={testingContextId}
           numPerRow={numPerRow}
         >
-          {products.map(product => {
-            const { id, name } = product;
-            return (
-              id &&
-              name && (
-                <Link to={generateProductUrl(id, name)} key={id}>
-                  <ProductTile product={product} />
-                </Link>
-              )
-            );
-          })}
+          {((hashValue && !hashProductLoaded && onLoadMore()) || true) &&
+            products.map(product => {
+              const { id, name } = product;
+              // eslint-disable-next-line eqeqeq
+              if (hashValue == `#${id}` && !hashProductLoaded) {
+                const element = document.getElementById(id);
+                if (element) {
+                  console.log("scrolling to");
+                  setHashProductLoaded(true);
+                  element.scrollIntoView();
+                  return;
+                }
+              }
+              return (
+                id &&
+                name && (
+                  <Link to={generateProductUrl(id, name)} key={id}>
+                    <ProductTile product={product} />
+                  </Link>
+                )
+              );
+            })}
         </S.List>
       </InfiniteScroll>
     </>

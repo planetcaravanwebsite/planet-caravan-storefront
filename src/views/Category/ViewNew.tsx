@@ -7,7 +7,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -59,6 +59,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const [isFetched, setIsFetched] = useState(false);
   const [pricingData, setPricingData] = useState();
+  const [retrievedCount, setRetrievedCount] = useState(0);
+  const [processedCount, setProcessedCount] = useState(-1);
 
   if (!sort) {
     sort = "updated_at";
@@ -169,6 +171,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   const fetchPricing = async () => {
+    // eslint-disable-next-line eqeqeq
+    if (retrievedCount == processedCount) {
+      return true;
+    }
+
+    setProcessedCount(retrievedCount);
+    setIsFetched(true);
+
     const res = await queryPricingData();
     if (
       !pricingData ||
@@ -181,17 +191,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     }
     return true;
   };
-
-  useEffect(() => {
-    let mounted = true;
-    fetchPricing().then(r => {
-      if (mounted) {
-        // setIsFetched(true);
-      }
-    });
-    // eslint-disable-next-line no-return-assign
-    return () => (mounted = false);
-  }, [isFetched /* attributesFetched */]);
 
   const handleRefresh = () => {
     setIsFetched(false);
@@ -265,7 +264,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
-                  // merge(categoryData.data, pricingData);
+                  // @ts-ignore
+                  setRetrievedCount(categoryData.data.products.totalCount);
 
                   const handleLoadMore = () =>
                     categoryData.loadMore(
@@ -333,4 +333,4 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   );
 };
 
-export default View;
+// export default View;

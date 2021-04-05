@@ -265,30 +265,24 @@ query CategoryProductsNew(
   };
   let mounted = true;
   useEffect(() => {
-    fetchAllProducts().then(r => {
-      if (mounted) {
-        setIsProductsFetched(true);
-      }
-    });
-    fetchAttributes().then(r => {
-      if (mounted) {
-        setAttributesFetched(true);
-      }
-    });
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    !isProductsFetched &&
+      fetchAllProducts().then(r => {
+        if (mounted) {
+          setIsProductsFetched(true);
+        }
+      });
+    !attributesFetched &&
+      fetchAttributes().then(r => {
+        if (mounted) {
+          setAttributesFetched(true);
+        }
+      });
     // eslint-disable-next-line no-return-assign
     return () => {
       mounted = false;
     };
   }, [attributesFetched, isProductsFetched]);
-
-  useEffect(() => {
-    fetchAllProducts().then(r => {
-      setIsProductsFetched(true);
-    });
-    fetchAttributes().then(r => {
-      setAttributesFetched(true);
-    });
-  }, [products]);
 
   const location = useLocation();
   useEffect(() => {
@@ -298,7 +292,7 @@ query CategoryProductsNew(
     }
   }, [location]);
 
-  if (!attributesFetched || !isProductsFetched) {
+  if (!isProductsFetched) {
     return (
       <>
         <div className="category">
@@ -315,7 +309,7 @@ query CategoryProductsNew(
               onChange={onOrder}
               onCloseFilterAttribute={onAttributeFiltersChange}
             />
-            {canDisplayProducts && (
+            {/* {canDisplayProducts && (
               <ProductList
                 // @ts-ignore
                 products={sorted.map(edge => edge.node)}
@@ -324,7 +318,7 @@ query CategoryProductsNew(
                 loading={displayLoader}
                 onLoadMore={onLoadMore}
               />
-            )}
+            )} */}
           </div>
           <ProductsFeatured
             title={intl.formatMessage(commonMessages.youMightLike)}
