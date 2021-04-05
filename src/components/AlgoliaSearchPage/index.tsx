@@ -8,7 +8,7 @@ import {
   InstantSearch,
   SearchBox,
   connectStateResults,
-  Pagination
+  Pagination,
 } from "react-instantsearch-dom";
 
 interface SearchState {

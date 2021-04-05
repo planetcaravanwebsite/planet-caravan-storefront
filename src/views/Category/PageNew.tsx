@@ -272,6 +272,7 @@ query CategoryProductsNew(
           setIsProductsFetched(true);
         }
       });
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     !attributesFetched &&
       fetchAttributes().then(r => {
         if (mounted) {

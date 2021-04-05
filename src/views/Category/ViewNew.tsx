@@ -27,7 +27,7 @@ type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
-export const FilterQuerySet = {
+const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
     Object.keys(valueObj).forEach(value => {
@@ -333,4 +333,5 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   );
 };
 
-// export default View;
+// @ts-ignore
+export default View;
