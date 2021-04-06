@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
     color: #66b1e1;
   }
   p {
-    margin-top: 20px;
+    margin-top: 0px;
     font-size: 1.2rem;
   }
   b {

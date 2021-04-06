@@ -21,7 +21,7 @@ export const Locations: React.FC<any> = () => {
                 <p>2826 Jefferson Ave</p>
                 <p>Cincinnati, OH 45219</p>
                 <p>
-                  <a href="tel:513860420">(513) 861-0420</a>
+                  <a href="tel:5138610420">(513) 861-0420</a>
                 </p>
               </div>
               <div className="store-hours">
@@ -42,7 +42,7 @@ export const Locations: React.FC<any> = () => {
                 <p>243 W McMillan St</p>
                 <p>Cincinnati, OH 45219</p>
                 <p>
-                  <a href="tel:513860420">(513) 861-0420</a>
+                  <a href="tel:5135790420">(513) 579-0420</a>
                 </p>
               </div>
               <div className="store-hours">
@@ -63,7 +63,7 @@ export const Locations: React.FC<any> = () => {
                 <p>8097 Beckett Center Dr</p>
                 <p>West Chester Township, OH 45069</p>
                 <p>
-                  <a href="tel:513860710">(513) 868-0710</a>
+                  <a href="tel:5138680710">(513) 868-0710</a>
                 </p>
               </div>
               <div className="store-hours">
@@ -84,7 +84,7 @@ export const Locations: React.FC<any> = () => {
                 <p>9268 Colerain Ave</p>
                 <p>Cincinnati, OH 45251</p>
                 <p>
-                  <a href="tel:513860710">(513) 381-0710</a>
+                  <a href="tel:5133810710">(513) 381-0710</a>
                 </p>
               </div>
               <div className="store-hours">

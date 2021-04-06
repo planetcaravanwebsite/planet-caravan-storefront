@@ -40,10 +40,16 @@
     &-more,
     &-back,
     &-close {
+
+      font-size: 1.2rem;
+      @media screen and (max-width: 750px) {
+        font-size: 1rem;
+      }
+
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $yellow;
       }
 
       svg * {
@@ -84,7 +90,7 @@
       }
 
       &:hover {
-        color: $turquoise;
+        color: $yellow;
       }
     }
 
@@ -123,7 +129,7 @@
 
     &:hover > span
     {
-      color: $turquoise;
+      color: $yellow;
     }
 
 

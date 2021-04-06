@@ -67,7 +67,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     variantId,
     variantStock
   );
-  const isOutOfStock = !!variantId && variantStock === 0;
+  const isOutOfStock = !!variantId && variantStock <= 0;
   const noPurchaseAvailable = !isAvailableForPurchase && !availableForPurchase;
   const purchaseAvailableDate =
     !isAvailableForPurchase &&

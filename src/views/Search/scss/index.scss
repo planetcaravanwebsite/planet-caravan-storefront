@@ -31,4 +31,30 @@
       }
     }
   }
+
+  .ais-Pagination {
+    margin-top: 10px;
+  }
+
+  .ais-Pagination-list {
+    text-align: center;
+  }
+
+  .ais-Pagination-list li {
+    list-style: none;
+    display: inline-block;
+  }
+  .ais-Pagination-list li a {
+    color: #002646;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #EFEFEF;
+  }
+  .ais-Pagination-list li.ais-Pagination-item--selected a {
+    background: #50C878;
+  }
+  .ais-Pagination-list li.ais-Pagination-item--selected a {
+    color: #fff
+  }
+
 }

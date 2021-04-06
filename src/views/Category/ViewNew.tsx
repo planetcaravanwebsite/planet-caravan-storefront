@@ -27,6 +27,10 @@ type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const searchParam = urlParams.get("cache_bust");
+
 export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
@@ -55,7 +59,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     FilterQuerySet
   );
   const intl = useIntl();
-  const API_URL = process.env.API_URI || "/graphql/";
+  let API_URL = process.env.API_URI || "/graphql/";
+  if (searchParam) {
+    API_URL += "?cache_bust=1";
+  }
 
   const [isFetched, setIsFetched] = useState(false);
   const [pricingData, setPricingData] = useState();
