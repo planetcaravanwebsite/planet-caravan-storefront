@@ -32,6 +32,10 @@ import {
 
 import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const searchParam = urlParams.get("cache_bust");
+
 interface SortItem {
   label: string;
   value?: string;
@@ -78,7 +82,10 @@ const Page: React.FC<PageProps> = ({
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   const [productData, setProductData] = useState();
 
-  const API_URL = process.env.API_URI || "/graphql/";
+  let API_URL = process.env.API_URI || "/graphql/";
+  if (searchParam) {
+    API_URL += "?cache_bust=1";
+  }
 
   const variables = {
     ...filters,
