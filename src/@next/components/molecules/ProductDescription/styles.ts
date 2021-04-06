@@ -1,7 +1,7 @@
 import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
-  padding-left: 25px;
+  padding-left: 0px;
 `;
 
 export const Title = styled.h2`
