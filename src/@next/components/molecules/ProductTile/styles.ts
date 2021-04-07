@@ -59,6 +59,6 @@ export const OutOfStock = styled.div`
   width: auto;
   height: auto;
   max-width: 100%;
-  padding-bottom:10px;
-  color:red;
+  padding-bottom: 10px;
+  color: red;
 `;

@@ -29,7 +29,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       <S.Price data-test="productPrice">
         <TaxedMoney taxedMoney={price} />
       </S.Price>
-      { !product.isAvailable ? <S.OutOfStock>Out of Stock</S.OutOfStock> : null }
+      {!product.isAvailable ? <S.OutOfStock>Out of Stock</S.OutOfStock> : null}
     </S.Wrapper>
   );
 };
