@@ -70,7 +70,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const [processedCount, setProcessedCount] = useState(-1);
 
   if (!sort) {
-    sort = "updated_at";
+    sort = "-updated_at";
   }
 
   const clearFilters = () => {
@@ -226,13 +226,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     },
     {
       label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
-      value: "updated_at",
+      value: "-updated_at",
     },
     {
       label: intl.formatMessage(
         prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
       ),
-      value: "-updated_at",
+      value: "updated_at",
     },
   ];
 
