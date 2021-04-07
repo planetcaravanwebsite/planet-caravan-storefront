@@ -36,6 +36,7 @@ export const CategoryProductsQueryNew = gql`
         node {
           id
           name
+          isAvailable
           category {
             id
             name

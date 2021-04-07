@@ -43,14 +43,14 @@ interface ErrorData {
  * Dummy payment gateway.
  */
 const AuthorizePaymentGateway: React.FC<IProps> = ({
-  config,
-  processPayment,
-  formRef,
-  formId,
-  errors = [],
-  postalCode,
-  onError,
-}: IProps) => {
+                                                     config,
+                                                     processPayment,
+                                                     formRef,
+                                                     formId,
+                                                     errors = [],
+                                                     postalCode,
+                                                     onError,
+                                                   }: IProps) => {
   const [submitErrors, setSubmitErrors] = useState<IFormError[]>([]);
 
   const key = config.find(({ field }) => field === "client_key");
@@ -93,7 +93,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
         // console.log(response);
         const errors = [
           {
-            message: response.messages.mesage[0].text || "",
+            message: response.messages.message[0].text || "",
           },
         ];
         setSubmitErrors(errors);

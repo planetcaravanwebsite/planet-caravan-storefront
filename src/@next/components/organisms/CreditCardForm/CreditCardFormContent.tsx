@@ -60,6 +60,8 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
           <NumberFormat
             autoComplete="cc-csc"
             name="ccCsc"
+            // @ts-ignore
+            allowLeadingZeros
             {...basicInputProps(ccCscText, [ccCscError], values.ccCsc)}
           />
         </S.PaymentInput>
