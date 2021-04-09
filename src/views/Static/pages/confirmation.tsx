@@ -2,7 +2,6 @@ import "../scss/index.scss";
 import * as React from "react";
 import confImage from "images/confirmation.png";
 
-
 export const Confirmation: React.FC<any> = () => {
   return (
     <>
