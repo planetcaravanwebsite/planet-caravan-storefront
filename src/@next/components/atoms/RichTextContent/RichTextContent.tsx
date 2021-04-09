@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   p {
     margin-top: 0px;
     font-size: 1.2rem;
+    margin-bottom: 20px;
   }
   b {
     font-weight: bold;
