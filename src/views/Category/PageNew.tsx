@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { find, orderBy, filter, concat } from "lodash";
+import { find, orderBy, /* filter, concat */ } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
@@ -126,6 +126,7 @@ const Page: React.FC<PageProps> = ({
     );
   }
 
+  /*
   const productsAvailable = filter(
     // @ts-ignore
     products.products.edges,
@@ -144,6 +145,7 @@ const Page: React.FC<PageProps> = ({
 
   // @ts-ignore
   const resorted = concat(productsAvailable, productsUnavailable);
+  */
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     if (attributesData) {
@@ -412,7 +414,7 @@ query CategoryProductsNew(
                     {canDisplayProducts && (
                       <ProductList
                         // @ts-ignore
-                        products={resorted.map(edge => edge.node)}
+                        products={sorted.map(edge => edge.node)}
                         // @ts-ignore
                         canLoadMore={products.products?.pageInfo.hasNextPage}
                         loading={displayLoader}
