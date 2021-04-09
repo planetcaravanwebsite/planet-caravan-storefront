@@ -52,6 +52,21 @@
     }
   }
 
+  .confirmation-page {
+    h1 {
+      margin: 15px 0 30px 0;
+    }
+    p {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    padding: 100px;
+    text-align: center;
+    @media screen and (max-width: 750px) {
+      padding: 100px 20px;
+    }
+  }
+
   .contact-page {
 
     p.margin-bottom-small {

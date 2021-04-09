@@ -51,7 +51,7 @@ export const CategoryProductsQueryNew = gql`
               name
             }
           }
-          thumbnail {
+          images {
             url
           }
           pricing {

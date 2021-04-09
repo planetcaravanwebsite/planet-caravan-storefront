@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
 import { CheckoutLogin, NotFound } from "../../components";
@@ -17,40 +16,28 @@ import { SearchPage } from "../../views/Search";
 
 import * as paths from "./paths";
 
-const PrivateRoute = ({ component, ...args }) => (
-  <Route
-    component={withAuthenticationRequired(component, {
-      returnTo: args.path,
-    })}
-    {...args}
-  />
-);
-
 export const Routes: React.FC = () => (
   <Switch>
-    <PrivateRoute exact path={paths.baseUrl} component={HomePage} />
-    <PrivateRoute path={paths.searchUrl} component={SearchPage} />
+    <Route exact path={paths.baseUrl} component={HomePage} />
+    <Route path={paths.searchUrl} component={SearchPage} />
     <Route path={paths.categoryUrl} component={CategoryPage} />
-    <PrivateRoute path={paths.collectionUrl} component={CollectionPage} />
+    <Route path={paths.collectionUrl} component={CollectionPage} />
     <Route path={paths.productUrl} component={ProductPage} />
-    <PrivateRoute path={paths.cartUrl} component={CartPage} />
-    <PrivateRoute path={paths.checkoutLoginUrl} component={CheckoutLogin} />
-    <PrivateRoute path={paths.pageUrl} component={ArticlePage} />
-    <PrivateRoute path={paths.staticUrl} component={StaticPage} />
-    <PrivateRoute path={accountPaths.baseUrl} component={UserAccount} />
-    <PrivateRoute
-      path={accountPaths.userOrderDetailsUrl}
-      component={OrderDetails}
-    />
-    <PrivateRoute path={paths.guestOrderDetailsUrl} component={OrderDetails} />
-    <PrivateRoute path={paths.accountUrl} component={Account} />
-    <PrivateRoute path={paths.accountConfirmUrl} component={AccountConfirm} />
-    <PrivateRoute path={paths.orderHistoryUrl} component={Account} />
-    <PrivateRoute path={paths.addressBookUrl} component={Account} />
-    <PrivateRoute path={paths.passwordResetUrl} component={PasswordReset} />
-    <PrivateRoute path={paths.checkoutUrl} component={CheckoutPage} />
-    <PrivateRoute path={paths.orderFinalizedUrl} component={ThankYouPage} />
-    <PrivateRoute component={NotFound} />
+    <Route path={paths.cartUrl} component={CartPage} />
+    <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
+    <Route path={paths.pageUrl} component={ArticlePage} />
+    <Route path={paths.staticUrl} component={StaticPage} />
+    <Route path={accountPaths.baseUrl} component={UserAccount} />
+    <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
+    <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
+    <Route path={paths.accountUrl} component={Account} />
+    <Route path={paths.accountConfirmUrl} component={AccountConfirm} />
+    <Route path={paths.orderHistoryUrl} component={Account} />
+    <Route path={paths.addressBookUrl} component={Account} />
+    <Route path={paths.passwordResetUrl} component={PasswordReset} />
+    <Route path={paths.checkoutUrl} component={CheckoutPage} />
+    <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
+    <Route component={NotFound} />
   </Switch>
 );
 
