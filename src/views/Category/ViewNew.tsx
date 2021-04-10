@@ -256,8 +256,11 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <Loader />;
                   }
 
-                  if (categoryData.loading) {
-                    // return <Loader />;
+                  if (
+                    categoryData.loading &&
+                    categoryData.networkStatus === 1
+                  ) {
+                    return <Loader />;
                   }
 
                   if (

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { commonMessages } from "@temp/intl";
 
 import { baseUrl } from "../../app/routes";
@@ -45,6 +45,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
 }> = ({ breadcrumbs }) => {
+  const history = useHistory();
   return (
     <div className="breadcrumb__wrapper">
       {breadcrumbs.map((breadcrumb, index) =>
@@ -53,8 +54,11 @@ const Breadcrumbs: React.FC<{
             className="button-arrow-breadcrumb"
             data-testid="main-button"
             aria-label="Floating menu"
+            onClick={() => {
+              history.goBack();
+            }}
           >
-            <Link to={`${breadcrumb.link}#${breadcrumb.id}`}>&larr;</Link>
+            &larr;
           </button>
         ) : (
           <></>

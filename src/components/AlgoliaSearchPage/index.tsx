@@ -9,6 +9,7 @@ import {
   SearchBox,
   connectStateResults,
   Pagination,
+  ScrollTo,
 } from "react-instantsearch-dom";
 
 interface SearchState {
@@ -91,7 +92,10 @@ export default class AlgoliaSearchPage extends React.Component<SearchState> {
               }
             }}
           />
-          <Results />
+
+          <ScrollTo>
+            <Results />
+          </ScrollTo>
 
           <Pagination />
         </InstantSearch>

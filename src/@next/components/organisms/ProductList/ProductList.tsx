@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -27,6 +27,8 @@ export const ProductList: React.FC<IProps> = ({
   React.useEffect(function () {
     setHashValue(window.location.hash);
   });
+
+  const history = useHistory();
 
   return (
     <>
@@ -59,7 +61,14 @@ export const ProductList: React.FC<IProps> = ({
               return (
                 id &&
                 name && (
-                  <Link to={generateProductUrl(id, name)} key={id}>
+                  // @ts-ignore
+                  <Link
+                    to={generateProductUrl(id, name)}
+                    key={id}
+                    onClick={() =>
+                      history.replace(`${history.location.pathname}#${id}`)
+                    }
+                  >
                     <ProductTile product={product} />
                   </Link>
                 )

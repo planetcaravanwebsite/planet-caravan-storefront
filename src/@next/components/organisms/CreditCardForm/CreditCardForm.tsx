@@ -18,6 +18,14 @@ export const CreditCardForm: React.FC<IProps> = ({
     <Formik
       initialValues={INITIAL_CARD_VALUES_STATE}
       onSubmit={(values, { setSubmitting }) => {
+        if (
+          values.ccCsc.length === 0 ||
+          values.ccExp.length === 0 ||
+          values.ccNumber.length === 0
+        ) {
+          setSubmitting(false);
+          return;
+        }
         handleSubmit(values);
         setSubmitting(false);
       }}

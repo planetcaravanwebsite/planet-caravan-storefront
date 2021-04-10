@@ -25,6 +25,7 @@
     </script>
 
     <script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
     <noscript><meta http-equiv="refresh" content="0;url=https://agechecker.net/noscript"></noscript>
     <script>
@@ -60,5 +61,30 @@
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
+    <div id="age-confirm">
+      <section class="hero" style="display: none;">
+        <div class="brandmark">
+          <div class="statement">
+            <img src="images/pc-logo.png" alt="Planet Caravan Smokeshop">
+          </div>
+        </div>
+        <div class="content">
+          <h1>ARE YOU 21 OR OLDER?</h1>
+          <p>You must be of legal adulting age to enter this site.</p>
+          <button onclick="ageConfirmed()">Yes, I am 21</button>
+          <a class="decline" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Nope</a>
+        </div>
+      </section>
+    </div>
+    <script>
+      var ageConfirmed = Cookies.get('age-confirmed');
+      if(!ageConfirmed) {
+        $('#age-confirm').addClass('active')
+      }
+      var ageConfirmed = function() {
+        Cookies.set('age-confirmed', true, { expires: 30 });
+        $('#age-confirm').removeClass('active');
+      }
+    </script>
   </body>
 </html>
