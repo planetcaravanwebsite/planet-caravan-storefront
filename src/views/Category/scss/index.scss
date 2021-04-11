@@ -39,3 +39,9 @@
 [data-test=productThumbnail] {
   min-height: 273px;
 }
+
+@media (max-width:500px) {
+  [data-test=productList] [data-test=productThumbnail] img {
+    height: 275px;
+  }  
+}
