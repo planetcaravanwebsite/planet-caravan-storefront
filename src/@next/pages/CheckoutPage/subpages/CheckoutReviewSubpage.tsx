@@ -71,7 +71,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       return `Adyen payments`;
     }
     if (payment?.creditCard) {
-      return `Ending in ${payment?.creditCard.lastDigits}`;
+      return `Credit Card`;
     }
     return ``;
   };
