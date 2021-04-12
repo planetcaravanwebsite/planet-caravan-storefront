@@ -161,7 +161,7 @@ const Page: React.FC<PageProps> = ({
     }
   };
 
-  const activeFiltersAttributes =
+  let activeFiltersAttributes =
     filters &&
     filters.attributes &&
     Object.keys(filters.attributes).reduce(
@@ -171,6 +171,16 @@ const Page: React.FC<PageProps> = ({
         ),
       []
     );
+
+  if (activeFiltersAttributes === undefined) {
+    activeFiltersAttributes = [];
+  }
+
+  for (let i = 0; i < activeFiltersAttributes.length; i++) {
+    if (activeFiltersAttributes[i] === undefined) {
+      activeFiltersAttributes = [];
+    }
+  }
 
   const queryAllProducts = async () => {
     const query = JSON.stringify({

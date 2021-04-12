@@ -186,15 +186,19 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     setProcessedCount(retrievedCount);
     setIsFetched(true);
 
-    const res = await queryPricingData();
-    if (
-      !pricingData ||
-      // @ts-ignore
-      pricingData.products.edges[0].node.name !==
-        res.products.edges[0].node.name
-    ) {
-      setIsFetched(true);
-      setPricingData(res);
+    try {
+      const res = await queryPricingData();
+      if (
+        !pricingData ||
+        // @ts-ignore
+        pricingData.products.edges[0].node.name !==
+          res.products.edges[0].node.name
+      ) {
+        setIsFetched(true);
+        setPricingData(res);
+      }
+    } catch (e) {
+      console.log(e);
     }
     return true;
   };
