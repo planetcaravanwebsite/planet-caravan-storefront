@@ -24,7 +24,7 @@ const ProductList: React.FC<{
   });
 
   const packInCart = !!find(lines, function (o) {
-    return o.variant.product.id === "UHJvZHVjdDoyNTc1";
+    return o.variant.product.id === "UHJvZHVjdDozODY0";
   });
 
   if (hasAPelican && !packInCart) {

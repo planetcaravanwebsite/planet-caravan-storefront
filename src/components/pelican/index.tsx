@@ -37,7 +37,7 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     const query = JSON.stringify({
       query: `
       {
-  product(id: "UHJvZHVjdDoyNTc1") {
+  product(id: "UHJvZHVjdDozODY0") {
     name
     description
     images {

@@ -394,6 +394,7 @@ query CategoryProductsNew(
               <div className="category">
                 <div className="container">
                   <>
+                    {displayLoader?<Loader />:null}
                     <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
                     <FilterSidebar
                       show={showFilters}

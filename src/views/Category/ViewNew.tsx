@@ -257,6 +257,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               >
                 {categoryData => {
                   if (!isFetched) {
+                    console.log("!isFetched");
                     return <Loader />;
                   }
 
@@ -264,7 +265,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     categoryData.loading &&
                     categoryData.networkStatus === 1
                   ) {
-                    return <Loader />;
+                    // return <Loader />;
                   }
 
                   if (
