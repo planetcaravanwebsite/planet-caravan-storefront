@@ -263,7 +263,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
                   if (
                     categoryData.loading &&
-                    categoryData.networkStatus === 1
+                    categoryData.networkStatus === 1 &&
+                    !filters!.attributes
                   ) {
                     return <Loader />;
                   }
