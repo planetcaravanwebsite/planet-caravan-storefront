@@ -31,6 +31,12 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchParam = urlParams.get("cache_bust");
 
+let pageData = {
+  page: 0,
+  pageCursors: [null],
+  startCursor: null,
+};
+
 export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
@@ -73,11 +79,25 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sort = "-updated_at";
   }
 
+  const savePageData = () => {
+    window.sessionStorage.setItem("pageData", JSON.stringify(pageData));
+  };
+
+  const clearPageData = () => {
+    pageData.page = 0;
+    pageData.pageCursors = [null];
+    pageData.startCursor = null;
+    savePageData();
+  };
+
   const clearFilters = () => {
+    clearPageData();
     setAttributeFilters({});
   };
 
   const onFiltersChange = (name, value) => {
+    clearPageData();
+
     if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
         if (filters.attributes[`${name}`].length === 1) {
@@ -122,6 +142,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   variables.pageSize = 40;
+
+  const pd = sessionStorage.getItem("pageData");
+  if (pd && window.location.hash.length > 1) {
+    pageData = JSON.parse(pd);
+    // @ts-ignore
+    variables.after = pageData.startCursor;
+  }
 
   const queryPricingData = async () => {
     const query = JSON.stringify({
@@ -203,9 +230,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     return true;
   };
 
-  const handleRefresh = () => {
-    setIsFetched(false);
-  };
+  const handleRefresh = () => {};
 
   const sortOptions = [
     {
@@ -262,7 +287,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
                   if (
                     categoryData.loading &&
-                    categoryData.networkStatus === 1 &&
+                    // categoryData.networkStatus === 1 &&
                     !filters!.attributes
                   ) {
                     return <Loader />;
@@ -282,28 +307,37 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
 
-                  const handleLoadMore = () =>
-                    categoryData.loadMore(
-                      (prev, next) => ({
-                        ...prev,
-                        products: {
-                          // @ts-ignore
-                          ...prev.products,
-                          edges: [
-                            // @ts-ignore
-                            ...prev.products.edges,
-                            // @ts-ignore
-                            ...next.products.edges,
-                          ],
-                          // @ts-ignore
-                          pageInfo: next.products.pageInfo,
-                        },
-                      }),
-                      {
+                  const loadPrevPage = () => {
+                    if (pageData.page <= 0) {
+                      return;
+                    }
+
+                    pageData.page--;
+                    pageData.startCursor = pageData.pageCursors[pageData.page];
+                    // @ts-ignore
+                    variables.after = pageData.startCursor;
+
+                    savePageData();
+                    categoryData.refetch(variables);
+                  };
+
+                  const loadNextPage = () => {
+                    pageData.page++;
+                    if (pageData.page === pageData.pageCursors.length) {
+                      pageData.pageCursors.push(
                         // @ts-ignore
-                        after: categoryData.data.products.pageInfo.endCursor,
-                      }
-                    );
+                        categoryData.data.products.pageInfo.endCursor
+                      );
+                    }
+                    pageData.startCursor = pageData.pageCursors[pageData.page];
+                    // @ts-ignore
+                    variables.after = pageData.startCursor;
+                    savePageData();
+                    categoryData.refetch(variables);
+                  };
+
+                  const handleLoadMore = () => {};
+
                   return (
                     <>
                       <MetaWrapper
@@ -334,6 +368,16 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           }}
                           onLoadMore={handleLoadMore}
                           onRefresh={handleRefresh}
+                          nextPage={
+                            // @ts-ignore
+                            categoryData.data.products.pageInfo.hasNextPage
+                          }
+                          prevPage={
+                            // @ts-ignore
+                            categoryData.data.products.pageInfo.hasPreviousPage
+                          }
+                          loadNextPage={loadNextPage}
+                          loadPrevPage={loadPrevPage}
                         />
                       </MetaWrapper>
                     </>

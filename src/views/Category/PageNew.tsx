@@ -54,6 +54,10 @@ interface PageProps {
   displayLoader: boolean;
   category: Category_category;
   onRefresh: () => void;
+  nextPage: boolean;
+  prevPage: boolean;
+  loadNextPage: () => void;
+  loadPrevPage: () => void;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -71,6 +75,10 @@ const Page: React.FC<PageProps> = ({
   displayLoader,
   category,
   onRefresh,
+  nextPage,
+  prevPage,
+  loadNextPage,
+  loadPrevPage
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
@@ -433,6 +441,34 @@ query CategoryProductsNew(
                     )}
                   </>
                 </div>
+                { (nextPage || prevPage) ? 
+                  <div className="pagination">
+
+                    { prevPage ? 
+                      <button
+                        onClick={() => {
+                          loadPrevPage();
+                        }}
+                      >
+                        Prev Page
+                      </button>
+                      : null
+                    }
+
+                    { nextPage ? 
+                      <button
+                        onClick={() => {
+                          loadNextPage();
+                        }}
+                      >
+                        Next Page
+                      </button>
+                      : null
+                    }
+                  </div>
+                  : null
+                }
+                
                 <ProductsFeatured
                   title={intl.formatMessage(commonMessages.youMightLike)}
                 />
