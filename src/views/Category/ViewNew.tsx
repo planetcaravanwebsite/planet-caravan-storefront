@@ -141,7 +141,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  variables.pageSize = 40;
+  variables.pageSize = 28;
 
   const pd = sessionStorage.getItem("pageData");
   if (pd && window.location.hash.length > 1) {
