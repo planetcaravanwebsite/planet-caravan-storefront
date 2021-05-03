@@ -57,6 +57,7 @@ const Page: React.FC<
   };
 
   const handleAddToCart = (variantId, quantity) => {
+    console.log(variantId, quantity);
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };

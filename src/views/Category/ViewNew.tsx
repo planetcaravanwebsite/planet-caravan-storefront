@@ -282,6 +282,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               >
                 {categoryData => {
                   if (!isFetched) {
+                    console.log("!isFetched");
                     return <Loader />;
                   }
 
