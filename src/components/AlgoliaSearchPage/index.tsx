@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 
 import "./scss/index.scss";
 
@@ -16,23 +17,43 @@ interface SearchState {
   search: string;
 }
 
-const Results = connectStateResults(({ searchState }) =>
-  searchState && searchState.query ? (
+let url = "";
+const Results = connectStateResults(({ searchState }) => {
+  const history = useHistory();
+  url = `${history.location.pathname}?q=${searchState.query}`;
+  const page = sessionStorage.getItem("searchPage");
+  if (page && window.location.hash.length > 1) {
+    searchState.page = page;
+    setTimeout(function () {
+      window.location.hash = "";
+    }, 1000);
+  } else {
+    sessionStorage.setItem("searchPage", searchState.page);
+  }
+
+  return searchState && searchState.query ? (
     <>
       <Hits hitComponent={Hit} />
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive */}
       <div id="search-dummy" tabIndex={1} />
     </>
   ) : // <div>No query</div>
-  null
-);
+  null;
+});
 
 const Hit = hit => {
   const result = hit.hit;
+  const history = useHistory();
   return (
-    <a href={`/product/${result.slug}/${result.objectID}`}>
+    <a
+      href={`/product/${result.slug}/${result.objectID}`}
+      onClick={() => {
+        url = `${url}#${result.objectID}`;
+        history.replace(url);
+      }}
+    >
       {!!result.image && (
-        <div className="serp-item">
+        <div className="serp-item" id={result.objectID}>
           <div data-test="productThumbnail" className="serp-image">
             <img
               src={result.image}
