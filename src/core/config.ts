@@ -87,6 +87,7 @@ export const BRANDS = [
   {
     name: "05",
     path: require("../images/brands-footer/esb.png"),
+    target: "/collection/evan-shore/598/",
   },
   {
     name: "07",
@@ -216,6 +217,7 @@ export const BRANDS = [
   {
     name: "39",
     path: require("../images/brands-footer/elementsp.png"),
+    target: "/collection/captive-elements/614",
   },
   {
     name: "40",

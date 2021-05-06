@@ -12,6 +12,7 @@ import {
   Pagination,
   ScrollTo,
 } from "react-instantsearch-dom";
+import { PlaceholderImage } from "@components/atoms";
 
 interface SearchState {
   search: string;
@@ -43,6 +44,7 @@ const Results = connectStateResults(({ searchState }) => {
 
 const Hit = hit => {
   const result = hit.hit;
+  const noImage = result.image.indexOf("None") !== -1;
   const history = useHistory();
   return (
     <a
@@ -54,19 +56,25 @@ const Hit = hit => {
     >
       {!!result.image && (
         <div className="serp-item" id={result.objectID}>
-          <div data-test="productThumbnail" className="serp-image">
-            <img
-              src={result.image}
-              style={{ height: 100, width: 100 }}
-              alt={result.name}
-            />
-          </div>
+          {noImage && (
+            <PlaceholderImage />
+          )}
+          {noImage === false && (
+            <div data-test="productThumbnail" className="serp-image">
+              <img
+                src={result.image}
+                style={{ height: 100, width: 100 }}
+                alt={result.name}
+              />
+            </div>
+          )}
           <h4 data-test="productTile" className="serp-title">
             {result.name}
           </h4>
           <p data-test="productPrice" className="serp-price">
             <span>${result.price}</span>
           </p>
+          {result.in_stock !== true && <p className="serp-oos">Out of Stock</p>}
         </div>
       )}
     </a>
