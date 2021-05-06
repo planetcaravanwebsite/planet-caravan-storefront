@@ -48,6 +48,77 @@ export const TypedCollectionProductsDataQuery = TypedQuery<
   CollectionVariables
 >(collectionProductsDataQuery);
 
+export const collectionProductsQueryNew = gql`
+  query CollectionProducts(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $pageSize: Int
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
+    collection(id: $id) {
+      id
+      products(
+        after: $after
+        first: $pageSize
+        sortBy: $sortBy
+        filter: {
+          attributes: $attributes
+          minimalPrice: { gte: $priceGte, lte: $priceLte }
+        }
+      ) {
+        totalCount
+        edges {
+          node {
+            id
+            name
+            isAvailable
+            category {
+              id
+              name
+            }
+            attributes {
+              values {
+                id
+                name
+              }
+              attribute {
+                id
+                name
+              }
+            }
+            images {
+              url
+            }
+            pricing {
+              priceRange {
+                start {
+                  net {
+                    amount
+                  }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+      }
+    }
+  }
+`;
+
+export const TypedCollectionProductsQueryNew = TypedQuery<
+  CollectionProducts,
+  CollectionProductsVariables
+>(collectionProductsQueryNew);
+
 export const collectionProductsQuery = gql`
   ${basicProductFragment}
   ${productPricingFragment}

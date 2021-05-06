@@ -73,10 +73,12 @@ export const BRANDS = [
   {
     name: "01",
     path: require("../images/brands-footer/blazer.png"),
+    target: "/collection/blazer/480/",
   },
   {
     name: "03",
     path: require("../images/brands-footer/dcg.png"),
+    target: "/collection/dark-crystal/561/",
   },
   {
     name: "04",
@@ -101,10 +103,12 @@ export const BRANDS = [
   {
     name: "10",
     path: require("../images/brands-footer/pelicon.png"),
+    target: "/collection/pelican/155/",
   },
   {
     name: "12",
     path: require("../images/brands-footer/raw.png"),
+    target: "/collection/raw/183/",
   },
   {
     name: "13",
@@ -113,6 +117,7 @@ export const BRANDS = [
   {
     name: "16",
     path: require("../images/brands-footer/vibes.png"),
+    target: "/collection/vibes/365/",
   },
   {
     name: "17",
@@ -129,6 +134,7 @@ export const BRANDS = [
   {
     name: "20",
     path: require("../images/brands-footer/zb.png"),
+    target: "/collection/zack-brown/1415/",
   },
   {
     name: "21",
@@ -137,6 +143,7 @@ export const BRANDS = [
   {
     name: "22",
     path: require("../images/brands-footer/randy.png"),
+    target: "/collection/randy-s/1076/",
   },
   {
     name: "23",
@@ -169,6 +176,7 @@ export const BRANDS = [
   {
     name: "30",
     path: require("../images/brands-footer/santa.png"),
+    target: "/collection/santa-cruz/963/",
   },
   {
     name: "31",
@@ -177,14 +185,17 @@ export const BRANDS = [
   {
     name: "32",
     path: require("../images/brands-footer/milkyway.png"),
+    target: "/collection/milkyway/1/",
   },
   {
     name: "33",
     path: require("../images/brands-footer/dividerpro.png"),
+    target: "/collection/divider-pro/393/",
   },
   {
     name: "34",
     path: require("../images/brands-footer/elbo.png"),
+    target: "/collection/elbo/352/",
   },
   {
     name: "35",
@@ -217,22 +228,27 @@ export const BRANDS = [
   {
     name: "42",
     path: require("../images/brands-footer/grungeoff.png"),
+    target: "/collection/grunge-off/545/",
   },
   {
     name: "43",
     path: require("../images/brands-footer/710.png"),
+    target: "/collection/710-funnel/509/",
   },
   {
     name: "44",
     path: require("../images/brands-footer/str8.png"),
+    target: "/collection/str8/511/",
   },
   {
     name: "45",
     path: require("../images/brands-footer/tag.png"),
+    target: "/collection/tag/337/",
   },
   {
     name: "46",
     path: require("../images/brands-footer/disorderlyconduction.png"),
+    target: "/collection/disorderly-conduction/518/",
   },
   {
     name: "47",
@@ -241,10 +257,12 @@ export const BRANDS = [
   {
     name: "48",
     path: require("../images/brands-footer/formula420.png"),
+    target: "/collection/formula-420/555/",
   },
   {
     name: "49",
     path: require("../images/brands-footer/ruby.png"),
+    target: "/collection/ruby-pearl-co/1081/",
   },
   {
     name: "50",
@@ -253,10 +271,12 @@ export const BRANDS = [
   {
     name: "51",
     path: require("../images/brands-footer/juicyjays.png"),
+    target: "/collection/juicy-jay/261/",
   },
   {
     name: "52",
     path: require("../images/brands-footer/freshglass.png"),
+    target: "/collection/fresh-glass-co/544/",
   },
 ];
 export const META_DEFAULTS = {

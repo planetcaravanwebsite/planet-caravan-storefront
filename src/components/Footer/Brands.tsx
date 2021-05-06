@@ -46,7 +46,9 @@ class Brands extends React.PureComponent {
               <Slider {...settings}>
                 {BRANDS.map((brand, i) => (
                   <span className="footer-nav__section-logo" key={i}>
-                    <img src={brand.path} alt={brand.name} />
+                    <a href={brand.target}>
+                      <img src={brand.path} alt={brand.name} />
+                    </a>
                   </span>
                 ))}
               </Slider>
