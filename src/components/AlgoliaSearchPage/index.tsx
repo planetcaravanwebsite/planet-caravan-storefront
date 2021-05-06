@@ -56,9 +56,7 @@ const Hit = hit => {
     >
       {!!result.image && (
         <div className="serp-item" id={result.objectID}>
-          {noImage && (
-            <PlaceholderImage />
-          )}
+          {noImage && <PlaceholderImage />}
           {noImage === false && (
             <div data-test="productThumbnail" className="serp-image">
               <img
