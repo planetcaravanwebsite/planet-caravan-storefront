@@ -30,7 +30,7 @@ const Hit = hit => {
   const result = hit.hit;
   const noImage = result.image.indexOf("None") !== -1;
   return (
-    <a href={`/product/${result.slug}/${result.objectID}`}>
+    <a href={`/product/${result.slug}/${result.objectID}`} className="sidebar">
       {noImage && <PlaceholderImage />}
       {noImage === false && (
         <img
