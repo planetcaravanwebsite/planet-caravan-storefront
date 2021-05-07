@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React /* , { useState } */ from "react";
 
-import { useCart } from "@saleor/sdk";
+// import { useCart } from "@saleor/sdk";
 
 import { styled } from "@styles";
 
 import { ButtonSmall } from "@components/atoms";
 
-const API_URL = process.env.API_URI || "/graphql/";
+// const API_URL = process.env.API_URI || "/graphql/";
 
 export interface PelicanInterface {
   // onRemove(): void;
@@ -20,9 +20,9 @@ export const Title = styled.h1`
 `;
 
 export const Pelican: React.FC<PelicanInterface> = () => {
-  const [isFetched, setIsFetched] = useState(false);
-  const [anyData, setAnyData] = useState(false);
-  const [pelicanData, setPelicanData] = useState({
+  // const [isFetched, setIsFetched] = useState(false);
+  // const [anyData, setAnyData] = useState(false);
+  /* const [pelicanData, setPelicanData] = useState({
     product: {
       variants: [
         {
@@ -31,9 +31,9 @@ export const Pelican: React.FC<PelicanInterface> = () => {
         },
       ],
     },
-  });
+  }); */
 
-  const queryData = async () => {
+  /* const queryData = async () => {
     const query = JSON.stringify({
       query: `
       {
@@ -74,17 +74,17 @@ export const Pelican: React.FC<PelicanInterface> = () => {
 
     const responseJson = await response.json();
     return responseJson.data;
-  };
+  }; */
 
-  const fetchData = async () => {
+  /* const fetchData = async () => {
     const res = await queryData();
     setPelicanData(res);
     console.log(res);
     if (res.product.name.length > 0) {
       setAnyData(true);
     }
-  };
-
+  }; */
+  /*
   useEffect(() => {
     let mounted = true;
     fetchData().then(r => {
@@ -95,20 +95,20 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
   }, [isFetched]);
+*/
+  // const { addItem } = useCart();
 
-  const { addItem } = useCart();
-
-  const handleAddToCart = (variantId, quantity) => {
-    console.log("adding %o %o", variantId, quantity);
-    addItem(variantId, quantity);
+  const handleAddToCart = (/* variantId, quantity */) => {
+    // console.log("adding %o %o", variantId, quantity);
+    // addItem(variantId, quantity);
   };
 
-  if (!isFetched) {
+  /* if (!isFetched) {
     return <div>loading...</div>;
   }
   if (!anyData) {
     return <></>;
-  }
+  } */
   return (
     <>
       <Title>Buying a Pelican?</Title>
@@ -116,7 +116,9 @@ export const Pelican: React.FC<PelicanInterface> = () => {
       <ButtonSmall
         size="sm"
         fullWidth={false}
-        onClick={() => handleAddToCart(pelicanData.product.variants[0].id, 1)}
+        onClick={() =>
+          handleAddToCart(/* pelicanData.product.variants[0].id, 1 */)
+        }
         testingContext="submit"
       >
         Yes
