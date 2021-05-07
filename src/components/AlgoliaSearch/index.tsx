@@ -9,6 +9,7 @@ import {
   SearchBox,
   connectStateResults,
 } from "react-instantsearch-dom";
+import { PlaceholderImage } from "@components/atoms";
 
 interface SearchState {
   search: string;
@@ -27,9 +28,11 @@ const Results = connectStateResults(({ searchState }) =>
 
 const Hit = hit => {
   const result = hit.hit;
+  const noImage = result.image.indexOf("None") !== -1;
   return (
     <a href={`/product/${result.slug}/${result.objectID}`}>
-      {!!result.image && (
+      {noImage && <PlaceholderImage />}
+      {noImage === false && (
         <img
           src={result.image}
           style={{ height: 100, width: 100 }}
