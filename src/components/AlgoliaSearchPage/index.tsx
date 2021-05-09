@@ -26,9 +26,9 @@ const Results = connectStateResults(({ searchState }) => {
   if (page && window.location.hash.length > 1) {
     searchState.page = page;
     setTimeout(function () {
-      let uri = window.location.toString();
+      const uri = window.location.toString();
       if (uri.indexOf("#") > 0) {
-        var clean_uri = uri.substring(0, uri.indexOf("#"));
+        const clean_uri = uri.substring(0, uri.indexOf("#"));
         window.history.replaceState({}, document.title, clean_uri);
       }
     }, 1000);

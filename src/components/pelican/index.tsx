@@ -22,33 +22,34 @@ export const Pelican: React.FC<PelicanInterface> = () => {
   const [packIsLoaded, setPackIsLoaded] = useState(false);
 
   const handlePackingChange = () => {
-
-    if(!pack) {
-      sessionStorage.setItem('pack_heady', 'true');
-    }
-    else {
-      sessionStorage.setItem('pack_heady', 'false');
+    if (!pack) {
+      sessionStorage.setItem("pack_heady", "true");
+    } else {
+      sessionStorage.setItem("pack_heady", "false");
     }
     setPack(!pack);
   };
 
-  if(!packIsLoaded) {
-    setPack(sessionStorage.getItem('pack_heady') == 'true' ? true : false);
+  if (!packIsLoaded) {
+    setPack(sessionStorage.getItem("pack_heady") === "true");
     setPackIsLoaded(true);
   }
 
   return (
     <div className="packing">
       <Title>Buying a Pelican?</Title>
-      <div>If you're ordering heady glass, do you want us to pack it in your pelican case?</div>
+      <div>
+        If you are ordering heady glass, do you want us to pack it in your
+        pelican case?
+      </div>
 
       <Checkbox
-          name="packing"
-          checked={pack}
-          onChange={() => handlePackingChange()}
-        >
-          Yes, pack my heady glass
-        </Checkbox>
+        name="packing"
+        checked={pack}
+        onChange={() => handlePackingChange()}
+      >
+        Yes, pack my heady glass
+      </Checkbox>
     </div>
   );
 };
