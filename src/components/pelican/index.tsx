@@ -1,12 +1,10 @@
-import React /* , { useState } */ from "react";
+import React, { useState } from "react";
 
 // import { useCart } from "@saleor/sdk";
 
 import { styled } from "@styles";
 
-import { ButtonSmall } from "@components/atoms";
-
-// const API_URL = process.env.API_URI || "/graphql/";
+import { Checkbox } from "@components/atoms";
 
 export interface PelicanInterface {
   // onRemove(): void;
@@ -20,109 +18,37 @@ export const Title = styled.h1`
 `;
 
 export const Pelican: React.FC<PelicanInterface> = () => {
-  // const [isFetched, setIsFetched] = useState(false);
-  // const [anyData, setAnyData] = useState(false);
-  /* const [pelicanData, setPelicanData] = useState({
-    product: {
-      variants: [
-        {
-          id: {},
-          name: {},
-        },
-      ],
-    },
-  }); */
+  const [pack, setPack] = useState(false);
+  const [packIsLoaded, setPackIsLoaded] = useState(false);
 
-  /* const queryData = async () => {
-    const query = JSON.stringify({
-      query: `
-      {
-  product(id: "UHJvZHVjdDozODY0") {
-    name
-    description
-    images {
-      url
-      id
+  const handlePackingChange = () => {
+
+    if(!pack) {
+      sessionStorage.setItem('pack_heady', 'true');
     }
-    variants {
-      id
-      sku
-      name
-      images {
-        url
-        id
-      }
-      pricing {
-        price {
-          gross {
-            amount
-            currency
-          }
-        }
-      }
+    else {
+      sessionStorage.setItem('pack_heady', 'false');
     }
-  }
-}
-    `,
-    });
-
-    const response = await fetch(API_URL, {
-      headers: { "content-type": "application/json" },
-      method: "POST",
-      body: query,
-    });
-
-    const responseJson = await response.json();
-    return responseJson.data;
-  }; */
-
-  /* const fetchData = async () => {
-    const res = await queryData();
-    setPelicanData(res);
-    console.log(res);
-    if (res.product.name.length > 0) {
-      setAnyData(true);
-    }
-  }; */
-  /*
-  useEffect(() => {
-    let mounted = true;
-    fetchData().then(r => {
-      if (mounted) {
-        setIsFetched(true);
-      }
-    });
-    // eslint-disable-next-line no-return-assign
-    return () => (mounted = false);
-  }, [isFetched]);
-*/
-  // const { addItem } = useCart();
-
-  const handleAddToCart = (/* variantId, quantity */) => {
-    // console.log("adding %o %o", variantId, quantity);
-    // addItem(variantId, quantity);
+    setPack(!pack);
   };
 
-  /* if (!isFetched) {
-    return <div>loading...</div>;
+  if(!packIsLoaded) {
+    setPack(sessionStorage.getItem('pack_heady') == 'true' ? true : false);
+    setPackIsLoaded(true);
   }
-  if (!anyData) {
-    return <></>;
-  } */
+
   return (
-    <>
+    <div className="packing">
       <Title>Buying a Pelican?</Title>
-      <div>Do you want us to pack your heady glass in your pelican case?</div>
-      <ButtonSmall
-        size="sm"
-        fullWidth={false}
-        onClick={() =>
-          handleAddToCart(/* pelicanData.product.variants[0].id, 1 */)
-        }
-        testingContext="submit"
-      >
-        Yes
-      </ButtonSmall>
-    </>
+      <div>If you're ordering heady glass, do you want us to pack it in your pelican case?</div>
+
+      <Checkbox
+          name="packing"
+          checked={pack}
+          onChange={() => handlePackingChange()}
+        >
+          Yes, pack my heady glass
+        </Checkbox>
+    </div>
   );
 };

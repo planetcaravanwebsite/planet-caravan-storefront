@@ -17,6 +17,16 @@
     width: 100vw;
   }
 
+  .packing {
+    margin:15px;
+    div {
+      margin-bottom: 10px;
+    }
+    label {
+      padding-right:5px;
+    }
+  }
+
   .overlay__header {
     grid-area: header;
     justify-content: initial;

@@ -23,11 +23,7 @@ const ProductList: React.FC<{
     return o.variant.name.indexOf("Pelican") !== -1;
   });
 
-  const packInCart = !!find(lines, function (o) {
-    return o.variant.product.id === "UHJvZHVjdDozODY0";
-  });
-
-  if (hasAPelican && !packInCart) {
+  if (hasAPelican && lines.length > 1) {
     showPelican = true;
   }
 
