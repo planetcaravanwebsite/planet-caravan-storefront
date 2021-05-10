@@ -228,15 +228,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
   const handleNextStepClick = () => {
-    // Do we need to add metadata?
-    const pack = sessionStorage.getItem("pack_heady");
-    if (checkout?.id && pack && !metadataSet) {
-      variables.id = checkout.id;
-      variables.pack = pack;
-      updateHeadyPacking();
-      setMetadatSet(true);
-    }
-
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
@@ -249,6 +240,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
       case 1:
         if (checkoutShippingSubpageRef.current?.submitShipping) {
+          // If we need to add metadata, go ahead and do it here.
+          const pack = sessionStorage.getItem("pack_heady");
+          if (checkout?.id && pack && !metadataSet) {
+            variables.id = checkout.id;
+            variables.pack = pack;
+            updateHeadyPacking();
+            setMetadatSet(true);
+          }
           checkoutShippingSubpageRef.current?.submitShipping();
         }
         break;
