@@ -121,8 +121,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   } = useCheckout();
   const intl = useIntl();
 
-  const [metadataSet, setMetadatSet] = useState(false);
-
   const variables = {
     id: checkout?.id,
     pack: "false",
@@ -151,16 +149,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       variables,
     });
 
-    console.log(API_URL);
-    console.log(query);
-    // const response = await fetch(API_URL, {
-    //   headers: { "content-type": "application/json" },
-    //   method: "POST",
-    //   body: query,
-    // });
+    const response = await fetch(API_URL, {
+      headers: { "content-type": "application/json" },
+      method: "POST",
+      body: query,
+    });
 
-    // const responseJson = await response.json();
-    // return responseJson.data;
+    const responseJson = await response.json();
+    return responseJson.data;
   };
 
   const updateHeadyPacking = async () => {
@@ -244,17 +240,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         if (checkoutShippingSubpageRef.current?.submitShipping) {
           // If we need to add metadata, go ahead and do it here.
           const pack = sessionStorage.getItem("pack_heady");
-          if (checkout?.id && pack && !metadataSet) {
+          if (checkout?.id && pack) {
             variables.id = checkout.id;
             variables.pack = pack;
             updateHeadyPacking();
-            setMetadatSet(true);
           }
           checkoutShippingSubpageRef.current?.submitShipping();
         }
         break;
       case 2:
-        console.log(checkoutPaymentSubpageRef);
         if (checkoutPaymentSubpageRef.current?.submitPayment) {
           checkoutPaymentSubpageRef.current?.submitPayment();
         }
