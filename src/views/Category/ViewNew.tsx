@@ -146,8 +146,19 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const pd = sessionStorage.getItem("pageData");
   if (pd && window.location.hash.length > 1) {
     pageData = JSON.parse(pd);
+
     // @ts-ignore
     variables.after = pageData.startCursor;
+
+    setTimeout(function () {
+      const uri = window.location.toString();
+      if (uri.indexOf("#") > 0) {
+        const clean_uri = uri.substring(0, uri.indexOf("#"));
+        window.history.replaceState({}, document.title, clean_uri);
+      }
+    }, 3000);
+  } else {
+    clearPageData();
   }
 
   const queryPricingData = async () => {

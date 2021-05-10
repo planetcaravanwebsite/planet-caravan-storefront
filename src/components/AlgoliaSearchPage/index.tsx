@@ -22,6 +22,9 @@ let url = "";
 const Results = connectStateResults(({ searchState }) => {
   const history = useHistory();
   url = `${history.location.pathname}?q=${searchState.query}`;
+
+  if (!searchState.page) searchState.page = 1;
+
   const page = sessionStorage.getItem("searchPage");
   if (page && window.location.hash.length > 1) {
     searchState.page = page;
