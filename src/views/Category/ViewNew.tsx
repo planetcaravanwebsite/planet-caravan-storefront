@@ -388,6 +388,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                             // @ts-ignore
                             categoryData.data.products.pageInfo.hasPreviousPage
                           }
+                          currentPage={pageData.page}
                           loadNextPage={loadNextPage}
                           loadPrevPage={loadPrevPage}
                         />

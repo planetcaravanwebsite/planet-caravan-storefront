@@ -56,6 +56,7 @@ interface PageProps {
   onRefresh: () => void;
   nextPage: boolean;
   prevPage: boolean;
+  currentPage: number;
   loadNextPage: () => void;
   loadPrevPage: () => void;
 }
@@ -77,6 +78,7 @@ const Page: React.FC<PageProps> = ({
   onRefresh,
   nextPage,
   prevPage,
+  currentPage,
   loadNextPage,
   loadPrevPage
 }) => {
@@ -369,6 +371,13 @@ query CategoryProductsNew(
     );
   }
 
+  let numPages = 0;
+  // @ts-ignore
+  if(products && products.products.totalCount > 0) {
+    // @ts-ignore
+    numPages = Math.ceil(products.products.totalCount / 28);
+  }
+
   return (
     <>
       <TypedMainMenuQuery renderOnError displayLoader={false}>
@@ -451,8 +460,14 @@ query CategoryProductsNew(
                           loadPrevPage();
                         }}
                       >
-                        Prev Page
+                        Page { currentPage }
                       </button>
+                      : null
+                    }
+                    
+                    {
+                      (numPages > 0) ?
+                      <span className="page-count">Page { currentPage + 1 } of { numPages } </span>
                       : null
                     }
 
@@ -462,7 +477,7 @@ query CategoryProductsNew(
                           loadNextPage();
                         }}
                       >
-                        Next Page
+                        Page { currentPage + 2 }
                       </button>
                       : null
                     }
