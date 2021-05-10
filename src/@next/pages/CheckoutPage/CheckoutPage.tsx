@@ -31,6 +31,8 @@ import {
 } from "./subpages";
 import { IProps } from "./types";
 
+const API_URL = process.env.API_URI || "/graphql/";
+
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
   subtotalPrice?: ITaxedMoney | null,
@@ -119,6 +121,52 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   } = useCheckout();
   const intl = useIntl();
 
+  const [metadataSet, setMetadatSet] = useState(false);
+
+  const variables = {
+    id: checkout?.id,
+    pack: "false",
+  };
+
+  const updateMetadata = async () => {
+    const query = JSON.stringify({
+      query: `
+        mutation updateCheckoutMetadata($id: ID!, $pack: String!){
+          updateMetadata(
+            id: $id
+            input: [{ key: "pack_heady_in_case", value: $pack }]
+          ) {
+            metadataErrors {
+              field
+              code
+            }
+            item {
+              metadata {
+                key
+                value
+              }
+            }
+          }
+        }`,
+      variables,
+    });
+
+    console.log(API_URL);
+    console.log(query);
+    // const response = await fetch(API_URL, {
+    //   headers: { "content-type": "application/json" },
+    //   method: "POST",
+    //   body: query,
+    // });
+
+    // const responseJson = await response.json();
+    // return responseJson.data;
+  };
+
+  const updateHeadyPacking = async () => {
+    await updateMetadata();
+  };
+
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect to="/cart/" />;
   }
@@ -194,6 +242,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
       case 1:
         if (checkoutShippingSubpageRef.current?.submitShipping) {
+          // If we need to add metadata, go ahead and do it here.
+          const pack = sessionStorage.getItem("pack_heady");
+          if (checkout?.id && pack && !metadataSet) {
+            variables.id = checkout.id;
+            variables.pack = pack;
+            updateHeadyPacking();
+            setMetadatSet(true);
+          }
           checkoutShippingSubpageRef.current?.submitShipping();
         }
         break;
