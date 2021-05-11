@@ -28,7 +28,7 @@ export const CategoryProductsQueryNew = gql`
       filter: {
         attributes: $attributes
         categories: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
+        price: { gte: $priceGte, lte: $priceLte }
       }
     ) {
       totalCount

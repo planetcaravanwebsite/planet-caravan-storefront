@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { find, orderBy, /* filter, concat */ } from "lodash";
+import { find, /* orderBy, filter, concat */ } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
@@ -48,6 +48,7 @@ interface PageProps {
   sortOptions: SortOptions;
   onOrder: (order: { value?: string; label: string }) => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
+  onPriceFilterChange: (field: "priceLte" | "priceGte", value: number) => void;
   attributes: IFilterAttributes[];
   match: any;
   onLoadMore: () => void;
@@ -70,6 +71,7 @@ const Page: React.FC<PageProps> = ({
   sortOptions,
   onOrder,
   onAttributeFiltersChange,
+  onPriceFilterChange,
   attributes,
   match,
   onLoadMore,
@@ -111,7 +113,7 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
 
   // @ts-ignore
-  let sorted = products.products.edges;
+/*  let sorted = products.products.edges;
   if (activeSortOption === "price") {
     sorted = orderBy(
       // @ts-ignore
@@ -134,7 +136,7 @@ const Page: React.FC<PageProps> = ({
       ],
       ["desc"]
     );
-  }
+  } */
 
   /*
   const productsAvailable = filter(
@@ -413,12 +415,15 @@ query CategoryProductsNew(
                   <>
                     {displayLoader?<Loader />:null}
                     <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+
                     <FilterSidebar
                       show={showFilters}
                       hide={() => setShowFilters(false)}
                       onAttributeFiltersChange={onAttributeFiltersChange}
                       // @ts-ignore
                       attributes={ attributesData ? attributesData.attributes.edges.map( edge => edge.node) : [] }
+                      // @ts-ignore
+                      onPriceFilterChange={onPriceFilterChange}
                       filters={filters}
                       // @ts-ignore
                       products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
@@ -440,14 +445,19 @@ query CategoryProductsNew(
                       onCloseFilterAttribute={onAttributeFiltersChange}
                     />
                     {canDisplayProducts && (
+<>
+
+
+
                       <ProductList
                         // @ts-ignore
-                        products={sorted.map(edge => edge.node)}
+                        products={products.products.edges.map(edge => edge.node)}
                         // @ts-ignore
                         canLoadMore={products.products?.pageInfo.hasNextPage}
                         loading={displayLoader}
                         onLoadMore={onLoadMore}
                       />
+</>
                     )}
                   </>
                 </div>

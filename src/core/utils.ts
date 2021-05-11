@@ -108,7 +108,7 @@ export const convertSortByFromString = (sortBy: string) => {
       break;
 
     case "price":
-      field = ProductOrderField.MINIMAL_PRICE;
+      field = ProductOrderField.PRICE;
       break;
 
     case "updated_at":

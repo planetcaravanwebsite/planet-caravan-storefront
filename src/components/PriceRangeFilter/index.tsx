@@ -1,9 +1,8 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { components } from "react-select";
 
-import { SelectField, TextField } from "..";
+import { TextField } from "..";
 import { getValueOrEmpty } from "../../core/utils";
 
 interface PriceRangeFilterProps {
@@ -63,10 +62,6 @@ class PriceRangeFilter extends React.Component<
   }
 
   render() {
-    const Control = props => (
-      <components.Control {...props} isFocused={this.state.active} />
-    );
-
     const { from, onChange, to } = this.props;
 
     return (
@@ -75,37 +70,18 @@ class PriceRangeFilter extends React.Component<
         ref={this.filterRef}
         onClick={this.handleClick}
       >
-        <SelectField
-          placeholder="Price range"
-          menuIsOpen={false}
-          components={{ Control }}
-          value={
-            this.createLabel()
-              ? {
-                  label: this.createLabel(),
-                  value: "",
-                }
-              : undefined
-          }
+        <TextField
+          type="number"
+          placeholder="From"
+          onChange={event => onChange("priceGte", event.target.value as any)}
+          value={getValueOrEmpty(from)}
         />
-        <div
-          className={`price-filter__dropdown${
-            this.state.active ? " price-filter__dropdown--visible" : ""
-          }`}
-        >
-          <TextField
-            type="number"
-            placeholder="From"
-            onChange={event => onChange("priceGte", event.target.value as any)}
-            value={getValueOrEmpty(from)}
-          />
-          <TextField
-            type="number"
-            placeholder="To"
-            onChange={event => onChange("priceLte", event.target.value as any)}
-            value={getValueOrEmpty(to)}
-          />
-        </div>
+        <TextField
+          type="number"
+          placeholder="To"
+          onChange={event => onChange("priceLte", event.target.value as any)}
+          value={getValueOrEmpty(to)}
+        />
       </div>
     );
   }

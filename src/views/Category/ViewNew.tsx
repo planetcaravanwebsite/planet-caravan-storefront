@@ -31,6 +31,14 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchParam = urlParams.get("cache_bust");
 
+const queryFilters = window.location.search;
+console.log(queryFilters);
+
+let priceFilters = {
+  priceGte: [null],
+  priceLte: [null],
+};
+
 let pageData = {
   page: 0,
   pageCursors: [null],
@@ -51,7 +59,18 @@ export const FilterQuerySet = {
     const propsWithValues = strValue.split(".").filter(n => n);
     propsWithValues.map(value => {
       const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
+      if (propWithValues[0] === "priceGte") {
+        priceFilters.priceGte = propWithValues.slice(1);
+      }
+      if (propWithValues[0] === "priceLte") {
+        priceFilters.priceLte = propWithValues.slice(1);
+      }
+      if (
+        propWithValues[0] !== "priceGte" &&
+        propWithValues[0] !== "priceLte"
+      ) {
+        obj[propWithValues[0]] = propWithValues.slice(1);
+      }
     });
     return obj;
   },
@@ -65,6 +84,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     FilterQuerySet
   );
   const intl = useIntl();
+  console.log(priceFilters.priceGte[0]);
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
     API_URL += "?cache_bust=1";
@@ -128,8 +148,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: null,
-    priceLte: null,
+    priceGte: priceFilters.priceGte[0],
+    priceLte: priceFilters.priceLte[0],
     sortBy: sort || null,
   };
   const variables = {
@@ -180,7 +200,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       filter: {
         attributes: $attributes
         categories: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
+        price: { gte: $priceGte, lte: $priceLte }
       }
     ) {
       totalCount
@@ -316,6 +336,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
+                  console.log(attributeFilters);
+
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
 
@@ -370,6 +392,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           activeSortOption={filters.sortBy}
                           displayLoader={categoryData.loading}
                           onAttributeFiltersChange={onFiltersChange}
+                          onPriceFilterChange={onFiltersChange}
                           activeFilters={
                             filters!.attributes
                               ? Object.keys(filters!.attributes).length
