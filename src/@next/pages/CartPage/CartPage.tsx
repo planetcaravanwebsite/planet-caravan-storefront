@@ -19,7 +19,6 @@ import { ITaxedMoney } from "@types";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-/* import { Pelican } from "../../../components"; */
 
 const title = (
   <S.PageHeader className="" data-test="cartPageTitle">
@@ -73,20 +72,21 @@ const prepareCartFooter = (
   />
 );
 
-/* const hasPelican = (items: IItems) => {
+const hasPelican = (items: IItems) => {
   console.log(items);
 
   if (
     find(items, function (item) {
       // @ts-ignore
       return item.variant.name.indexOf("Pelican") !== -1;
-    })
+    }) &&
+    // @ts-ignore
+    items.length > 1
   ) {
     return true;
   }
-
   return false;
-}; */
+};
 
 const generateCart = (
   items: IItems,
@@ -239,6 +239,8 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     return (
       <>
         <Cart
+          // @ts-ignore
+          hasPelican={hasPelican(items)}
           title={title}
           button={getCheckoutButton(history, user)}
           cartHeader={cartHeader}
@@ -256,7 +258,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
             }) */
           }
         />
-        {/* hasPelican(items) && <Pelican /> */}
       </>
     );
   }

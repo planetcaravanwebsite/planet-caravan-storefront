@@ -149,10 +149,10 @@ const Page: React.FC<
               }
             </Media>
           </div>
+          {DisclaimerSection}
         </div>
         <OtherProducts products={product.category.products.edges} />
       </div>
-      {DisclaimerSection}
     </>
   );
 };
