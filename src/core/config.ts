@@ -73,12 +73,12 @@ export const BRANDS = [
   {
     name: "01",
     path: require("../images/brands-footer/blazer.png"),
-    target: "/collection/blazer/480/",
+    target: "/collection/blazer/919/",
   },
   {
     name: "03",
     path: require("../images/brands-footer/dcg.png"),
-    target: "/collection/dark-crystal/561/",
+    target: "/collection/dark-crystal/1000/",
   },
   {
     name: "04",
@@ -87,7 +87,7 @@ export const BRANDS = [
   {
     name: "05",
     path: require("../images/brands-footer/esb.png"),
-    target: "/collection/evan-shore/598/",
+    target: "/collection/evan-shore/1239/",
   },
   {
     name: "07",
@@ -104,12 +104,12 @@ export const BRANDS = [
   {
     name: "10",
     path: require("../images/brands-footer/pelicon.png"),
-    target: "/collection/pelican/155/",
+    target: "/collection/pelican/220/",
   },
   {
     name: "12",
     path: require("../images/brands-footer/raw.png"),
-    target: "/collection/raw/183/",
+    target: "/collection/raw/248/",
   },
   {
     name: "13",
@@ -118,7 +118,7 @@ export const BRANDS = [
   {
     name: "16",
     path: require("../images/brands-footer/vibes.png"),
-    target: "/collection/vibes/365/",
+    target: "/collection/vibes/547/",
   },
   {
     name: "17",
@@ -135,7 +135,7 @@ export const BRANDS = [
   {
     name: "20",
     path: require("../images/brands-footer/zb.png"),
-    target: "/collection/zack-brown/1415/",
+    target: "/collection/zack-brown/2205/",
   },
   {
     name: "21",
@@ -144,7 +144,7 @@ export const BRANDS = [
   {
     name: "22",
     path: require("../images/brands-footer/randy.png"),
-    target: "/collection/randy-s/1076/",
+    target: "/collection/randy-s/1601/",
   },
   {
     name: "23",
@@ -177,7 +177,7 @@ export const BRANDS = [
   {
     name: "30",
     path: require("../images/brands-footer/santa.png"),
-    target: "/collection/santa-cruz/963/",
+    target: "/collection/santa-cruz/1711/",
   },
   {
     name: "31",
@@ -186,17 +186,17 @@ export const BRANDS = [
   {
     name: "32",
     path: require("../images/brands-footer/milkyway.png"),
-    target: "/collection/milkyway/1/",
+    target: "/collection/milkyway/65/",
   },
   {
     name: "33",
     path: require("../images/brands-footer/dividerpro.png"),
-    target: "/collection/divider-pro/393/",
+    target: "/collection/divider-pro/832/",
   },
   {
     name: "34",
     path: require("../images/brands-footer/elbo.png"),
-    target: "/collection/elbo/352/",
+    target: "/collection/elbo/659/",
   },
   {
     name: "35",
@@ -217,7 +217,7 @@ export const BRANDS = [
   {
     name: "39",
     path: require("../images/brands-footer/elementsp.png"),
-    target: "/collection/captive-elements/614",
+    target: "/collection/captive-elements/1255",
   },
   {
     name: "40",
@@ -230,27 +230,27 @@ export const BRANDS = [
   {
     name: "42",
     path: require("../images/brands-footer/grungeoff.png"),
-    target: "/collection/grunge-off/545/",
+    target: "/collection/grunge-off/984/",
   },
   {
     name: "43",
     path: require("../images/brands-footer/710.png"),
-    target: "/collection/710-funnel/509/",
+    target: "/collection/710-funnel/948/",
   },
   {
     name: "44",
     path: require("../images/brands-footer/str8.png"),
-    target: "/collection/str8/511/",
+    target: "/collection/str8/968/",
   },
   {
     name: "45",
     path: require("../images/brands-footer/tag.png"),
-    target: "/collection/tag/337/",
+    target: "/collection/tag/486/",
   },
   {
     name: "46",
     path: require("../images/brands-footer/disorderlyconduction.png"),
-    target: "/collection/disorderly-conduction/518/",
+    target: "/collection/disorderly-conduction/656/",
   },
   {
     name: "47",
@@ -259,12 +259,12 @@ export const BRANDS = [
   {
     name: "48",
     path: require("../images/brands-footer/formula420.png"),
-    target: "/collection/formula-420/555/",
+    target: "/collection/formula-420/994/",
   },
   {
     name: "49",
     path: require("../images/brands-footer/ruby.png"),
-    target: "/collection/ruby-pearl-co/1081/",
+    target: "/collection/ruby-pearl-co/1871/",
   },
   {
     name: "50",
@@ -273,12 +273,12 @@ export const BRANDS = [
   {
     name: "51",
     path: require("../images/brands-footer/juicyjays.png"),
-    target: "/collection/juicy-jay/261/",
+    target: "/collection/juicy-jay/406/",
   },
   {
     name: "52",
     path: require("../images/brands-footer/freshglass.png"),
-    target: "/collection/fresh-glass-co/544/",
+    target: "/collection/fresh-glass-co/983/",
   },
 ];
 export const META_DEFAULTS = {
