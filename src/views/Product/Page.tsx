@@ -62,6 +62,17 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
+  const DisclaimerSection = (
+    <div className="container" style={{ marginBottom: "30px" }}>
+      <div>
+        All measurements and colors described above are approximations.
+        <br />
+        Please add a pelican case to your cart if you wish for us to pack your
+        heady glass within it.
+      </div>
+    </div>
+  );
+
   const addToCartSection = (
     <AddToCartSection
       items={items}
@@ -141,6 +152,7 @@ const Page: React.FC<
         </div>
         <OtherProducts products={product.category.products.edges} />
       </div>
+      {DisclaimerSection}
     </>
   );
 };
