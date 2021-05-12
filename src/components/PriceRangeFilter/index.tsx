@@ -101,6 +101,7 @@ class PriceRangeFilter extends React.Component<
     return undefined;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareStates(oldVal, newVal) {
     return oldVal !== newVal;
   }
