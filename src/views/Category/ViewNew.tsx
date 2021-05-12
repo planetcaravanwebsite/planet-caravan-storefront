@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
-// import { merge } from "lodash";
+import { maxBy } from "lodash";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
@@ -31,10 +31,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchParam = urlParams.get("cache_bust");
 
-const queryFilters = window.location.search;
-console.log(queryFilters);
-
-let priceFilters = {
+const priceFilters = {
   priceGte: [null],
   priceLte: [null],
 };
@@ -83,8 +80,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  const [max, setMax] = useState();
   const intl = useIntl();
-  console.log(priceFilters.priceGte[0]);
+  // console.log(priceFilters.priceGte[0]);
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
     API_URL += "?cache_bust=1";
@@ -246,6 +244,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
     try {
       const res = await queryPricingData();
+      const maxVal = maxBy(res.products.edges, function (o) {
+        // @ts-ignore
+        return o.node.pricing.priceRange.start.net.amount;
+      });
+      // @ts-ignore
+      setMax(maxVal);
       if (
         !pricingData ||
         // @ts-ignore
@@ -313,7 +317,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               >
                 {categoryData => {
                   if (!isFetched) {
-                    console.log("!isFetched");
+                    // console.log("!isFetched");
                     return <Loader />;
                   }
 
@@ -336,7 +340,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
-                  console.log(attributeFilters);
+                  console.log(max);
 
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
@@ -398,6 +402,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                               ? Object.keys(filters!.attributes).length
                               : 0
                           }
+                          max={max}
                           onOrder={value => {
                             setSort(value.value);
                           }}

@@ -60,6 +60,7 @@ interface PageProps {
   currentPage: number;
   loadNextPage: () => void;
   loadPrevPage: () => void;
+  max: number;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -82,7 +83,8 @@ const Page: React.FC<PageProps> = ({
   prevPage,
   currentPage,
   loadNextPage,
-  loadPrevPage
+  loadPrevPage,
+  max,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
@@ -111,6 +113,12 @@ const Page: React.FC<PageProps> = ({
   // const hasProducts = canDisplayProducts && !!products.totalCount;
   const intl = useIntl();
   const [showFilters, setShowFilters] = React.useState(false);
+
+  // @ts-ignore
+  let maxVal = (max ? max.node.pricing.priceRange.start.net.amount : null);
+  if (maxVal < 200) {
+    maxVal = 200;
+  }
 
   // @ts-ignore
 /*  let sorted = products.products.edges;
@@ -428,6 +436,8 @@ query CategoryProductsNew(
                       // @ts-ignore
                       products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
+                      // @ts-ignore
+                      max={maxVal}
                     />
 
                     <ProductListHeader
@@ -461,10 +471,10 @@ query CategoryProductsNew(
                     )}
                   </>
                 </div>
-                { (nextPage || prevPage) ? 
+                { (nextPage || prevPage) ?
                   <div className="pagination">
 
-                    { prevPage ? 
+                    { prevPage ?
                       <button
                         onClick={() => {
                           loadPrevPage();
@@ -474,14 +484,14 @@ query CategoryProductsNew(
                       </button>
                       : null
                     }
-                    
+
                     {
                       (numPages > 0) ?
                       <span className="page-count">Page { currentPage + 1 } of { numPages } </span>
                       : null
                     }
 
-                    { nextPage ? 
+                    { nextPage ?
                       <button
                         onClick={() => {
                           loadNextPage();
@@ -494,7 +504,7 @@ query CategoryProductsNew(
                   </div>
                   : null
                 }
-                
+
                 <ProductsFeatured
                   title={intl.formatMessage(commonMessages.youMightLike)}
                 />

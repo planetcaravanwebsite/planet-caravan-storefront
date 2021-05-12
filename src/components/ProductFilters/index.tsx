@@ -5,6 +5,8 @@ import * as React from "react";
 import PriceRangeFilter from "../PriceRangeFilter";
 // import SelectField, { SelectValue } from "../SelectField";
 
+import "rsuite/dist/styles/rsuite-default.css";
+
 export interface AttributeList {
   [attributeSlug: string]: string[];
 }
@@ -20,17 +22,23 @@ export interface Filters {
 export interface ProductFiltersProps {
   filters: Filters;
   onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
+  max: number;
 }
 
 export const ProductFilters: React.FC<ProductFiltersProps> = ({
   filters,
   onPriceChange,
-}) => (
-  <div className="product-filters">
-    <PriceRangeFilter
-      from={filters.priceGte}
-      to={filters.priceLte}
-      onChange={onPriceChange}
-    />
-  </div>
-);
+  max,
+}) => {
+  console.log(max);
+  return (
+    <div className="product-filters">
+      <PriceRangeFilter
+        from={filters.priceGte}
+        to={filters.priceLte}
+        onChange={onPriceChange}
+        max={max}
+      />
+    </div>
+  );
+};

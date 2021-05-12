@@ -38,6 +38,8 @@ export const FilterSidebar: React.FC<IProps> = ({
   onPriceFilterChange,
   category,
   products,
+  // @ts-ignore
+  max,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -98,7 +100,7 @@ export const FilterSidebar: React.FC<IProps> = ({
             &rarr;
           </button>
         </S.Header>
-        <ProductFilters filters={filters} onPriceChange={onPriceFilterChange} />
+        <ProductFilters filters={filters} onPriceChange={onPriceFilterChange} max={max} />
         <S.SubCat>
           {category && <S.SmHeader2>Categories</S.SmHeader2>}
           <ul>

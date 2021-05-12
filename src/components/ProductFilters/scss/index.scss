@@ -1,7 +1,23 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .product-filters {
-  background-color: $gray-light;
+  width: 88%;
+  margin-left: 36px;
+  margin-bottom: 20px;
+
+  .styledSlider {
+    background: #88ddff;
+    margin-bottom: 16px;
+    &:hover {
+      background: #88ddff;
+    }
+  }
+
+  .p_heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+  }
 
   &__grid {
     display: grid;
