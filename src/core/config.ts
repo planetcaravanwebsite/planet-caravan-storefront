@@ -92,14 +92,11 @@ export const BRANDS = [
   {
     name: "07",
     path: require("../images/brands-footer/afm.png"),
+    target: "/collection/alien-flower-monkey/1/",
   },
   {
     name: "08",
     path: require("../images/brands-footer/moodmatas.png"),
-  },
-  {
-    name: "09",
-    path: require("../images/brands-footer/pax.png"),
   },
   {
     name: "10",
@@ -121,16 +118,13 @@ export const BRANDS = [
     target: "/collection/vibes/547/",
   },
   {
-    name: "17",
-    path: require("../images/brands-footer/storz.png"),
-  },
-  {
     name: "18",
     path: require("../images/brands-footer/evolempire.png"),
   },
   {
     name: "19",
     path: require("../images/brands-footer/tsnami.png"),
+    target: "/collection/tsunami/699/",
   },
   {
     name: "20",
@@ -140,6 +134,7 @@ export const BRANDS = [
   {
     name: "21",
     path: require("../images/brands-footer/colibri.png"),
+    target: "/collection/calibri/935/",
   },
   {
     name: "22",
@@ -163,14 +158,6 @@ export const BRANDS = [
     path: require("../images/brands-footer/cyclonescones.png"),
   },
   {
-    name: "27",
-    path: require("../images/brands-footer/exoticsoda.png"),
-  },
-  {
-    name: "28",
-    path: require("../images/brands-footer/cbdaxis.png"),
-  },
-  {
     name: "29",
     path: require("../images/brands-footer/toro.png"),
   },
@@ -182,6 +169,7 @@ export const BRANDS = [
   {
     name: "31",
     path: require("../images/brands-footer/ozium.png"),
+    target: "/collection/ozium/1133/",
   },
   {
     name: "32",
@@ -201,14 +189,12 @@ export const BRANDS = [
   {
     name: "35",
     path: require("../images/brands-footer/hisiglass.png"),
-  },
-  {
-    name: "36",
-    path: require("../images/brands-footer/kingpalm.png"),
+    target: "/collection/hisi/722/",
   },
   {
     name: "37",
     path: require("../images/brands-footer/mav.png"),
+    target: "/collection/mav/719/",
   },
   {
     name: "38",
@@ -218,10 +204,6 @@ export const BRANDS = [
     name: "39",
     path: require("../images/brands-footer/elementsp.png"),
     target: "/collection/captive-elements/1255",
-  },
-  {
-    name: "40",
-    path: require("../images/brands-footer/magicalbutter.png"),
   },
   {
     name: "41",
@@ -265,10 +247,6 @@ export const BRANDS = [
     name: "49",
     path: require("../images/brands-footer/ruby.png"),
     target: "/collection/ruby-pearl-co/1871/",
-  },
-  {
-    name: "50",
-    path: require("../images/brands-footer/nogoo.png"),
   },
   {
     name: "51",
