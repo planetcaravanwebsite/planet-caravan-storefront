@@ -707,6 +707,7 @@ export interface ProductDetails_product {
    */
   pricing: ProductDetails_product_pricing | null;
   descriptionJson: any;
+  description: string | null;
   category: ProductDetails_product_category | null;
   /**
    * List of images for the product.
