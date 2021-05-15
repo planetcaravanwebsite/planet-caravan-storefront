@@ -2,6 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+// import "rsuite/dist/styles/rsuite-default.css";
 import { RangeSlider } from "rsuite";
 import { debounce } from "lodash";
 import { TextField } from "..";

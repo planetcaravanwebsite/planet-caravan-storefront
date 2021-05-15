@@ -7,7 +7,7 @@ import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 import { generateCategoryUrl } from "@temp/core/utils";
 
-import { ProductFilters } from "@temp/components";
+// import { ProductFilters } from "@temp/components";
 import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
@@ -100,11 +100,11 @@ export const FilterSidebar: React.FC<IProps> = ({
             &rarr;
           </button>
         </S.Header>
-        <ProductFilters
+        {/* <ProductFilters
           filters={filters}
           onPriceChange={onPriceFilterChange}
           max={max}
-        />
+        /> */}
         <S.SubCat>
           {category && <S.SmHeader2>Categories</S.SmHeader2>}
           <ul>
