@@ -34,14 +34,14 @@ const Hit = hit => {
       {noImage && <PlaceholderImage />}
       {noImage === false && (
         <img
-          src={result.image}
+          src={result.image.replace("#", "%23")}
           style={{ height: 100, width: 100 }}
           alt={result.name}
         />
       )}
+
       <p>
         <span>{result.name}</span>
-
         {!!result.price && <span>${result.price}</span>}
       </p>
     </a>

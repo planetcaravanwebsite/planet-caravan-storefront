@@ -67,7 +67,7 @@ const Hit = hit => {
           {noImage === false && (
             <div data-test="productThumbnail" className="serp-image">
               <img
-                src={result.image}
+                src={result.image.replace("#", "%23")}
                 style={{ height: 100, width: 100 }}
                 alt={result.name}
               />

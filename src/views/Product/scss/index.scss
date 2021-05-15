@@ -122,3 +122,27 @@
     }
   }
 }
+
+.product-page__product__description {
+  text-align: left;
+}
+.product-page__product__description strong {
+  font-weight: bold;
+}
+.product-page__product__description em {
+  font-style: italic;
+}
+.product-page__product__description p {
+  margin-bottom: 10px;
+}
+.product-page__product__description h1,.product-page__product__description h2,.product-page__product__description h3,.product-page__product__description h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.product-page__product__description ul {
+  margin: 10px 0 10px 25px;
+  list-style: disc;
+}
+.product-page__product__description ul li {
+  margin-bottom: 5px;
+}
