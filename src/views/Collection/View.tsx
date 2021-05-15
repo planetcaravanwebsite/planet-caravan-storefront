@@ -18,7 +18,7 @@ import {
 import Page from "./Page";
 import {
   TypedCollectionProductsDataQuery,
-  TypedCollectionProductsQuery,
+  TypedCollectionProductsQueryNew,
 } from "./queries";
 
 type ViewProps = RouteComponentProps<{
@@ -161,9 +161,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
             const canDisplayFilters =
               !!collectionData.data?.attributes?.edges &&
               !!collectionData.data?.collection?.name;
-
+            console.log(variables);
             return (
-              <TypedCollectionProductsQuery variables={variables}>
+              <TypedCollectionProductsQueryNew variables={variables}>
                 {collectionProductsData => {
                   if (!canDisplayFilters && collectionProductsData.loading) {
                     return <Loader />;
@@ -237,7 +237,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
                   return null;
                 }}
-              </TypedCollectionProductsQuery>
+              </TypedCollectionProductsQueryNew>
             );
           }}
         </TypedCollectionProductsDataQuery>

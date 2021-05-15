@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
-// import { merge } from "lodash";
+import { maxBy } from "lodash";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
@@ -31,6 +31,11 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchParam = urlParams.get("cache_bust");
 
+const priceFilters = {
+  priceGte: [null],
+  priceLte: [null],
+};
+
 let pageData = {
   page: 0,
   pageCursors: [null],
@@ -51,7 +56,18 @@ export const FilterQuerySet = {
     const propsWithValues = strValue.split(".").filter(n => n);
     propsWithValues.map(value => {
       const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
+      if (propWithValues[0] === "priceGte") {
+        priceFilters.priceGte = propWithValues.slice(1);
+      }
+      if (propWithValues[0] === "priceLte") {
+        priceFilters.priceLte = propWithValues.slice(1);
+      }
+      if (
+        propWithValues[0] !== "priceGte" &&
+        propWithValues[0] !== "priceLte"
+      ) {
+        obj[propWithValues[0]] = propWithValues.slice(1);
+      }
     });
     return obj;
   },
@@ -64,7 +80,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  const [max, setMax] = useState();
   const intl = useIntl();
+  // console.log(priceFilters.priceGte[0]);
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
     API_URL += "?cache_bust=1";
@@ -128,8 +146,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: null,
-    priceLte: null,
+    priceGte: priceFilters.priceGte[0],
+    priceLte: priceFilters.priceLte[0],
     sortBy: sort || null,
   };
   const variables = {
@@ -146,8 +164,19 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const pd = sessionStorage.getItem("pageData");
   if (pd && window.location.hash.length > 1) {
     pageData = JSON.parse(pd);
+
     // @ts-ignore
     variables.after = pageData.startCursor;
+
+    setTimeout(function () {
+      const uri = window.location.toString();
+      if (uri.indexOf("#") > 0) {
+        const clean_uri = uri.substring(0, uri.indexOf("#"));
+        window.history.replaceState({}, document.title, clean_uri);
+      }
+    }, 3000);
+  } else {
+    clearPageData();
   }
 
   const queryPricingData = async () => {
@@ -169,7 +198,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       filter: {
         attributes: $attributes
         categories: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
+        price: { gte: $priceGte, lte: $priceLte }
       }
     ) {
       totalCount
@@ -215,6 +244,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
     try {
       const res = await queryPricingData();
+      const maxVal = maxBy(res.products.edges, function (o) {
+        // @ts-ignore
+        return o.node.pricing.priceRange.start.net.amount;
+      });
+      // @ts-ignore
+      setMax(maxVal);
       if (
         !pricingData ||
         // @ts-ignore
@@ -282,7 +317,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               >
                 {categoryData => {
                   if (!isFetched) {
-                    console.log("!isFetched");
+                    // console.log("!isFetched");
                     return <Loader />;
                   }
 
@@ -304,6 +339,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   if (!isOnline) {
                     return <OfflinePlaceholder />;
                   }
+
+                  console.log(max);
 
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
@@ -359,11 +396,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           activeSortOption={filters.sortBy}
                           displayLoader={categoryData.loading}
                           onAttributeFiltersChange={onFiltersChange}
+                          onPriceFilterChange={onFiltersChange}
                           activeFilters={
                             filters!.attributes
                               ? Object.keys(filters!.attributes).length
                               : 0
                           }
+                          max={max}
                           onOrder={value => {
                             setSort(value.value);
                           }}
@@ -377,6 +416,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                             // @ts-ignore
                             categoryData.data.products.pageInfo.hasPreviousPage
                           }
+                          currentPage={pageData.page}
                           loadNextPage={loadNextPage}
                           loadPrevPage={loadPrevPage}
                         />

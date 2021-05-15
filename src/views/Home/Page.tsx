@@ -48,21 +48,21 @@ const Page: React.FC<{
           <div>
             <div className="home-page__categories__row-list">
               <div className="home-page__categories__row">
-                <Link to="/collection/drops/419/">
+                <Link to="/collection/drops/2496/">
                   <div className="home-page__categories__list__image--no-photo">
                     Drops
                   </div>
                 </Link>
               </div>
               <div className="home-page__categories__row">
-                <Link to="/category/headies/104/">
+                <Link to="/category/headies/239/">
                   <div className="home-page__categories__list__image--no-photo">
                     Headies
                   </div>
                 </Link>
               </div>
               <div className="home-page__categories__row">
-                <Link to="/category/smoke-shop/113/">
+                <Link to="/category/smoke-shop/1/">
                   <div className="home-page__categories__list__image--no-photo">
                     Smoke Shop
                   </div>

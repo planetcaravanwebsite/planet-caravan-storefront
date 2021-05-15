@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { find, orderBy, /* filter, concat */ } from "lodash";
+import { find, /* orderBy, filter, concat */ } from "lodash";
 import { Fab } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
 
@@ -48,6 +48,7 @@ interface PageProps {
   sortOptions: SortOptions;
   onOrder: (order: { value?: string; label: string }) => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
+  onPriceFilterChange: (field: "priceLte" | "priceGte", value: number) => void;
   attributes: IFilterAttributes[];
   match: any;
   onLoadMore: () => void;
@@ -56,8 +57,10 @@ interface PageProps {
   onRefresh: () => void;
   nextPage: boolean;
   prevPage: boolean;
+  currentPage: number;
   loadNextPage: () => void;
   loadPrevPage: () => void;
+  max: number;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -69,6 +72,7 @@ const Page: React.FC<PageProps> = ({
   sortOptions,
   onOrder,
   onAttributeFiltersChange,
+  onPriceFilterChange,
   attributes,
   match,
   onLoadMore,
@@ -77,8 +81,10 @@ const Page: React.FC<PageProps> = ({
   onRefresh,
   nextPage,
   prevPage,
+  currentPage,
   loadNextPage,
-  loadPrevPage
+  loadPrevPage,
+  max,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
@@ -109,7 +115,13 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
 
   // @ts-ignore
-  let sorted = products.products.edges;
+  let maxVal = (max ? max.node.pricing.priceRange.start.net.amount : null);
+  if (maxVal < 200) {
+    maxVal = 200;
+  }
+
+  // @ts-ignore
+/*  let sorted = products.products.edges;
   if (activeSortOption === "price") {
     sorted = orderBy(
       // @ts-ignore
@@ -132,7 +144,7 @@ const Page: React.FC<PageProps> = ({
       ],
       ["desc"]
     );
-  }
+  } */
 
   /*
   const productsAvailable = filter(
@@ -369,6 +381,13 @@ query CategoryProductsNew(
     );
   }
 
+  let numPages = 0;
+  // @ts-ignore
+  if(products && products.products.totalCount > 0) {
+    // @ts-ignore
+    numPages = Math.ceil(products.products.totalCount / 28);
+  }
+
   return (
     <>
       <TypedMainMenuQuery renderOnError displayLoader={false}>
@@ -404,16 +423,21 @@ query CategoryProductsNew(
                   <>
                     {displayLoader?<Loader />:null}
                     <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+
                     <FilterSidebar
                       show={showFilters}
                       hide={() => setShowFilters(false)}
                       onAttributeFiltersChange={onAttributeFiltersChange}
                       // @ts-ignore
                       attributes={ attributesData ? attributesData.attributes.edges.map( edge => edge.node) : [] }
+                      // @ts-ignore
+                      onPriceFilterChange={onPriceFilterChange}
                       filters={filters}
                       // @ts-ignore
                       products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
+                      // @ts-ignore
+                      max={maxVal}
                     />
 
                     <ProductListHeader
@@ -431,45 +455,56 @@ query CategoryProductsNew(
                       onCloseFilterAttribute={onAttributeFiltersChange}
                     />
                     {canDisplayProducts && (
+<>
+
+
+
                       <ProductList
                         // @ts-ignore
-                        products={sorted.map(edge => edge.node)}
+                        products={products.products.edges.map(edge => edge.node)}
                         // @ts-ignore
                         canLoadMore={products.products?.pageInfo.hasNextPage}
                         loading={displayLoader}
                         onLoadMore={onLoadMore}
                       />
+</>
                     )}
                   </>
                 </div>
-                { (nextPage || prevPage) ? 
+                { (nextPage || prevPage) ?
                   <div className="pagination">
 
-                    { prevPage ? 
+                    { prevPage ?
                       <button
                         onClick={() => {
                           loadPrevPage();
                         }}
                       >
-                        Prev Page
+                        Page { currentPage }
                       </button>
                       : null
                     }
 
-                    { nextPage ? 
+                    {
+                      (numPages > 0) ?
+                      <span className="page-count">Page { currentPage + 1 } of { numPages } </span>
+                      : null
+                    }
+
+                    { nextPage ?
                       <button
                         onClick={() => {
                           loadNextPage();
                         }}
                       >
-                        Next Page
+                        Page { currentPage + 2 }
                       </button>
                       : null
                     }
                   </div>
                   : null
                 }
-                
+
                 <ProductsFeatured
                   title={intl.formatMessage(commonMessages.youMightLike)}
                 />
