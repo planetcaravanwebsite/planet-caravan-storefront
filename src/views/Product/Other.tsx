@@ -7,15 +7,24 @@ import { ProductDetails_product_category_products_edges } from "./gqlTypes/Produ
 
 const OtherProducts: React.FC<{
   products: ProductDetails_product_category_products_edges[];
-}> = ({ products }) => (
-  <div className="product-page__other-products">
-    <div className="container">
-      <h4 className="product-page__other-products__title">
-        <FormattedMessage defaultMessage="Other products you may be interested in" />
-      </h4>
-      <ProductList products={products.map(({ node }) => node)} numPerRow={3} />
+}> = ({ products }) => {
+  products.forEach(product => {
+    // @ts-ignore
+    product.node.isAvailable = true;
+  });
+  return (
+    <div className="product-page__other-products">
+      <div className="container">
+        <h4 className="product-page__other-products__title">
+          <FormattedMessage defaultMessage="Other products you may be interested in" />
+        </h4>
+        <ProductList
+          products={products.map(({ node }) => node)}
+          numPerRow={3}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default OtherProducts;
