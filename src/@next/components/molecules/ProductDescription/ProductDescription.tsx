@@ -1,8 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { RichTextContent } from "@components/atoms";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -51,7 +49,7 @@ export const ProductDescription: React.FC<IProps> = ({
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (
           <>
-            <RichTextContent descriptionJson={descriptionJson} />
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </>
         ) : (
           <p>{description}</p>

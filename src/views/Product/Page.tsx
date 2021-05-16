@@ -57,7 +57,7 @@ const Page: React.FC<
   };
 
   const handleAddToCart = (variantId, quantity) => {
-    console.log(variantId, quantity);
+    // console.log(variantId, quantity);
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
@@ -113,6 +113,7 @@ const Page: React.FC<
                         <div className="product-page__product__description">
                           <ProductDescription
                             descriptionJson={product.descriptionJson}
+                            description={product.description}
                             attributes={product.attributes}
                           />
                         </div>
@@ -138,6 +139,7 @@ const Page: React.FC<
                           <div className="product-page__product__description">
                             <ProductDescription
                               descriptionJson={product.descriptionJson}
+                              description={product.description}
                               attributes={product.attributes}
                             />
                           </div>
