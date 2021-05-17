@@ -4,6 +4,7 @@ import Media from "react-media";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
+import { filter } from "lodash";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
@@ -41,6 +42,14 @@ const Page: React.FC<
   const overlayContext = React.useContext(OverlayContext);
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
   const [variantId, setVariantId] = React.useState("");
+
+  const related = filter(product.category.products.edges, function (prod) {
+    return prod.node.id !== product.id;
+  });
+
+  if (related.length > 3) {
+    related.pop();
+  }
 
   const getImages = () => {
     if (product.variants && variantId) {
@@ -153,7 +162,7 @@ const Page: React.FC<
           </div>
           {DisclaimerSection}
         </div>
-        <OtherProducts products={product.category.products.edges} />
+        <OtherProducts products={related} />
       </div>
     </>
   );
