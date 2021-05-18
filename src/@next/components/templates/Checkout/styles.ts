@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   margin: 45px 0;
   display: grid;
 
-  grid-template-columns: 8fr 4fr;
+  grid-template-columns: 12fr 0;
   grid-template-rows: 85px auto auto;
   grid-column-gap: 30px;
   grid-template-areas:
