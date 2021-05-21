@@ -202,7 +202,6 @@ export const BRANDS = [
   {
     name: "38",
     path: require("../images/brands-footer/puffco.png"),
-    path: require("../images/brands-footer/mav.png"),
     target: "/collection/puffco/735/",
   },
   {
