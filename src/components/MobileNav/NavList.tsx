@@ -100,7 +100,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         {more && (
           <li className="side-nav__menu-item">
             <Link
-              to="/collection/drops/2496/"
+              to="/collection/drops/4759/"
               className="side-nav__menu-item-link"
               onClick={hideOverlay}
             >

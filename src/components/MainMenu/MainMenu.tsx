@@ -131,7 +131,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                             >
                               <ul className="main-menu__nav-dropdown">
                                 <li>
-                                  <a href="/collection/drops/2496/">Drops</a>
+                                  <a href="/collection/drops/4759/">Drops</a>
                                 </li>
                               </ul>
                             </li>
