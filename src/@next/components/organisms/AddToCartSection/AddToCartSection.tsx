@@ -82,7 +82,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     !isNoItemsAvailable &&
     availableQuantity < LOW_STOCK_QUANTITY;
 
-  const disableButton = !canAddToCart(
+  let disableButton = !canAddToCart(
     items,
     !!isAvailableForPurchase,
     variantId,
@@ -130,6 +130,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           drops = `${dropDate.toLocaleDateString(
             "en-us"
           )} ${dropDate.toLocaleTimeString("en-us")}`;
+          disableButton = true;
         }
       } catch (e) {
         //
@@ -199,15 +200,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
-      {drops === null ? (
-        <AddToCartButton
-          onSubmit={() => onAddToCart(variantId, quantity)}
-          disabled={disableButton}
-          specialColor={outOfStock}
-        />
-      ) : (
-        <p>Drops {drops}</p>
-      )}
+      <AddToCartButton
+        onSubmit={() => onAddToCart(variantId, quantity)}
+        disabled={disableButton}
+        specialColor={outOfStock}
+      />
+      {!!drops && <p>Drops {drops}</p>}
     </S.AddToCartSelection>
   );
 };
