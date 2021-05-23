@@ -160,6 +160,10 @@ export const productDetailsQuery = gql`
       isAvailable
       isAvailableForPurchase
       availableForPurchase
+      metadata {
+        key
+        value
+      }
     }
   }
 `;

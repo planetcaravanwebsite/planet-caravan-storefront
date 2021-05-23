@@ -732,6 +732,7 @@ export interface ProductDetails_product {
    */
   isAvailableForPurchase: boolean | null;
   availableForPurchase: any | null;
+  metadata: any;
 }
 
 export interface ProductDetails {

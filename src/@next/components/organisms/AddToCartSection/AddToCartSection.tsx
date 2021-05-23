@@ -34,6 +34,7 @@ export interface IAddToCartSection {
   availableForPurchase: string | null;
   variantId: string;
   description: string;
+  metadata: any;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
@@ -52,6 +53,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   setVariantId,
   description,
   variantId,
+  metadata,
 }) => {
   const intl = useIntl();
 
@@ -113,6 +115,27 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     setVariantPricing(selectedVariant?.pricing);
     setVariantStock(selectedVariant?.quantityAvailable);
   };
+
+  let drops = null;
+  if (
+    Object.keys(metadata).indexOf("COMING_SOON") > -1 &&
+    Object.keys(metadata).indexOf("DROP_DATE") > -1
+  ) {
+    if (metadata.COMING_SOON.toLowerCase() === "true") {
+      try {
+        const dropDate = new Date(metadata.DROP_DATE);
+        const now = new Date().valueOf();
+
+        if (dropDate.valueOf() > now) {
+          drops = `${dropDate.toLocaleDateString(
+            "en-us"
+          )} ${dropDate.toLocaleTimeString("en-us")}`;
+        }
+      } catch (e) {
+        //
+      }
+    }
+  }
 
   return (
     <S.AddToCartSelection>
@@ -176,11 +199,15 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
-      <AddToCartButton
-        onSubmit={() => onAddToCart(variantId, quantity)}
-        disabled={disableButton}
-        specialColor={outOfStock}
-      />
+      {drops === null ? (
+        <AddToCartButton
+          onSubmit={() => onAddToCart(variantId, quantity)}
+          disabled={disableButton}
+          specialColor={outOfStock}
+        />
+      ) : (
+        <p>Drops {drops}</p>
+      )}
     </S.AddToCartSelection>
   );
 };

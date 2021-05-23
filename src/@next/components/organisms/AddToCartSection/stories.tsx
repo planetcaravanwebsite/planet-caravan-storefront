@@ -39,6 +39,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
     },
     __typename: "ProductPricingInfo",
   },
+  metadata: [],
   items: [],
   queryAttributes: {},
   setVariantId: variantId => undefined,

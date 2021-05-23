@@ -97,6 +97,7 @@ const Page: React.FC<
       isAvailableForPurchase={product.isAvailableForPurchase}
       availableForPurchase={product.availableForPurchase}
       description={product.descriptionJson}
+      metadata={Object.fromEntries(product.metadata.map(m => [m.key, m.value]))}
     />
   );
 
