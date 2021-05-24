@@ -81,7 +81,6 @@ const Page: React.FC<
       </div>
     </div>
   );
-
   const addToCartSection = (
     <AddToCartSection
       items={items}
@@ -99,7 +98,11 @@ const Page: React.FC<
       description={product.descriptionJson}
       metadata={
         product.metadata
-          ? Object.fromEntries(product.metadata.map(m => [m.key, m.value]))
+          ? Object.fromEntries(
+              product.metadata.map(m =>
+                m && m.key && m.value ? [m.key, m.value] : []
+              )
+            )
           : {}
       }
     />
