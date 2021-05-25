@@ -1,12 +1,10 @@
 import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage /* , useIntl */ } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { TaxedMoney, Money } from "@components/containers";
 import {
-  checkoutMessages,
-  translatePaymentStatus,
-  translateOrderStatus,
+  checkoutMessages /* translatePaymentStatus, translateOrderStatus */,
 } from "@temp/intl";
 import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 import { DropdownMenu, IconButton } from "@components/atoms";
@@ -34,7 +32,7 @@ const Page: React.FC<{
   order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
   downloadInvoice: () => void;
 }> = ({ guest, order, downloadInvoice }) => {
-  const intl = useIntl();
+  // const intl = useIntl();
 
   const tax = {
     amount: order.total.gross.amount - order.total.net.amount,
@@ -52,7 +50,7 @@ const Page: React.FC<{
         <div>
           <h3>
             <FormattedMessage
-              defaultMessage="Your order #{orderNum}"
+              defaultMessage="Your Order #{orderNum}"
               values={{ orderNum: order.number }}
             />
           </h3>
