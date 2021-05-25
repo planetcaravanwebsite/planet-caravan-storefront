@@ -52,14 +52,14 @@ const Page: React.FC<{
         <div>
           <h3>
             <FormattedMessage
-              defaultMessage="Your order no.: {orderNum}"
+              defaultMessage="Your order #{orderNum}"
               values={{ orderNum: order.number }}
             />
           </h3>
-          <p className="order-details__status">
+          {/* <p className="order-details__status">
             {translatePaymentStatus(order.paymentStatusDisplay, intl)} /{" "}
             {translateOrderStatus(order.statusDisplay, intl)}
-          </p>
+          </p> */}
         </div>
         {"invoices" in order && order.invoices?.length > 0 && (
           <div className="order-details__header-menu">
