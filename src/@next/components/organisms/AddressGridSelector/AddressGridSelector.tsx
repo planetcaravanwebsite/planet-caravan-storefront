@@ -34,9 +34,23 @@ const AddressGridSelector: React.FC<IProps> = ({
       data-test={`${testingContext}AddressTileAddNew`}
       key="newTile"
       type={intl.formatMessage({ defaultMessage: "address" })}
-      onClick={() => setDisplayNewModal(true)}
+      onClick={() => showTile()}
     />
   );
+
+  const showTile = () => {
+    console.log("show");
+    setDisplayNewModal(true);
+    // @ts-ignore
+    document.querySelector("body").style.height = "100vh";
+  };
+
+  const hideTile = () => {
+    console.log("hide");
+    setDisplayNewModal(false);
+    // @ts-ignore
+    document.querySelector("body").style.height = "auto";
+  };
 
   return (
     <>
@@ -98,7 +112,7 @@ const AddressGridSelector: React.FC<IProps> = ({
       {displayNewModal && (
         <AddressFormModal
           hideModal={() => {
-            setDisplayNewModal(false);
+            hideTile();
           }}
           submitBtnText="Add"
           title={intl.formatMessage(checkoutMessages.addNewAddress)}

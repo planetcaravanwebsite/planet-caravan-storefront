@@ -89,13 +89,17 @@ const AddressBook: React.FC<{
       <AddressGrid
         addresses={userAddresses}
         addNewAddress={() => {
+          console.log("open modal");
           setDisplayNewModal(true);
+          document.querySelector("body").style.height = "100vh";
         }}
       />
       {displayNewModal && (
         <AddressFormModal
           hideModal={() => {
+            console.log("close modal");
             setDisplayNewModal(false);
+            document.querySelector("body").style.height = "auto";
           }}
           userId={user.id}
           {...{ defaultValue: defaultCountry || {} }}

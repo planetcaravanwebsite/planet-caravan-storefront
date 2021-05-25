@@ -82,7 +82,8 @@ export const Overlay = styled.div<IStyleProps>`
   z-index: 6;
   transition: opacity 0.2s ease;
   transition-delay: ${({ open }) => (open ? 0 : ".4s")};
-  background-color: white;
+  background-color: ${({ transparent, theme }) =>
+    transparent ? "" : theme.colors.overlay};
   align-items: center;
   justify-content: ${({ position }) => justify[position]};
   opacity: ${({ state }) => opacity[state]};

@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as ReactDOM from "react-dom";
 import { Transition } from "react-transition-group";
-
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -28,20 +22,7 @@ export const Overlay: React.FC<IProps> = ({
     open: show,
     position,
   };
-  useEffect(() => {
-    const targetElement = document.querySelector("#mylightbox:first-child");
-    // @ts-ignore
-    document.querySelector("body").style.height = "100vh";
-    // @ts-ignore
-    disableBodyScroll(targetElement);
-    return () => {
-      // @ts-ignore
-      document.querySelector("body").style.height = "auto";
-      // @ts-ignore
-      enableBodyScroll(targetElement);
-      clearAllBodyScrollLocks();
-    };
-  });
+
   return (
     target &&
     ReactDOM.createPortal(
