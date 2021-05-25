@@ -23,9 +23,7 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       disabled={disabled}
       outOfStock={specialColor}
     >
-      {specialColor ? "Out of Stock" : (
-          message || "Add to Cart"
-      )}
+      {specialColor ? "Out of Stock" : message || "Add to Cart"}
     </Button>
   );
 };
