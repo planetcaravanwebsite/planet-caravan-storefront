@@ -51,7 +51,7 @@ export const Modal: React.FC<IProps> = ({
       hide={hide}
       target={target}
     >
-      <S.Modal>
+      <S.Modal id="mymodal">
         <CardHeader divider onHide={hide}>
           {title}
         </CardHeader>

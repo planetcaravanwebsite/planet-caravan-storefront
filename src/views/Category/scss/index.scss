@@ -68,3 +68,21 @@
     height: 275px;
   }  
 }
+
+.collection {
+  h3.normal {
+    text-align: left;
+    margin-bottom: 7px;
+    font-size: 1.25rem;
+  }
+  ul.normal {
+    margin-bottom: 13px;
+    text-align: left;
+    li {
+      margin-left: 20px;
+      list-style: disc;
+      padding-bottom: 4px;
+      font-size: .9rem;
+    }
+  }
+}

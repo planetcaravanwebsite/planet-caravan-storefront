@@ -38,11 +38,11 @@ const justify = {
   right: "flex-end",
 };
 
-const lightboxWidth = {
+/* const lightboxWidth = {
   center: "auto",
   left: "100%",
   right: "100%",
-};
+}; */
 
 const lightboxHeight = (width: number) => ({
   center: `${width}px`,
@@ -56,8 +56,8 @@ export const Lightbox = styled.div<IStyleProps>`
   width: ${({ position, theme: { modal } }) =>
     lightboxHeight(modal.modalWidth)[position]};
   min-height: ${props => props.theme.modal.modalMinHeight}px;
-  height: ${({ position }) => lightboxWidth[position]};
-  background-color: ${props => props.theme.colors.white};
+  height: 100%;
+  background-color: white;
   ${({ open, position }) => {
     if (position === "left" || position === "right") {
       return css`
@@ -82,8 +82,7 @@ export const Overlay = styled.div<IStyleProps>`
   z-index: 6;
   transition: opacity 0.2s ease;
   transition-delay: ${({ open }) => (open ? 0 : ".4s")};
-  background-color: ${({ transparent, theme }) =>
-    transparent ? "" : theme.colors.overlay};
+  background-color: white;
   align-items: center;
   justify-content: ${({ position }) => justify[position]};
   opacity: ${({ state }) => opacity[state]};
