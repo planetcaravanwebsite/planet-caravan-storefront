@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Checkbox } from "@components/atoms";
+import { ErrorMessage, Checkbox } from "@components/atoms";
 import { checkoutMessages } from "@temp/intl";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
@@ -35,6 +35,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   shippingErrors,
   billingErrors,
   newAddressFormId,
+  errors,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -133,6 +134,7 @@ const CheckoutAddress: React.FC<IProps> = ({
           )}
         </section>
       )}
+      <ErrorMessage errors={errors} />
     </S.Wrapper>
   );
 };

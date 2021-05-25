@@ -59,6 +59,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
   const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
   const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
+  const [errors, setErrors] = useState<IFormError[]>([]);
 
   const intl = useIntl();
 
@@ -146,6 +147,11 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     console.log(errors);
     if (errors) {
       setShippingErrors(errors);
+
+      if (errors[0].code === "INSUFFICIENT_STOCK") {
+        setErrors(errors);
+      }
+
       changeSubmitProgress(false);
     } else {
       console.log("next if/then");
@@ -213,6 +219,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress(false);
     if (errors) {
       setBillingErrors(errors);
+      setErrors(errors);
     } else {
       setBillingErrors([]);
       onSubmitSuccess();
@@ -255,6 +262,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setShippingAddress={handleSetShippingAddress}
       setBillingAddress={handleSetBillingAddress}
       setBillingAsShippingAddress={setBillingAsShippingState}
+      errors={errors}
     />
   );
 };
