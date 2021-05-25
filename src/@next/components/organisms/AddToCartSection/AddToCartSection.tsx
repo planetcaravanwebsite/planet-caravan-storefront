@@ -204,8 +204,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
         specialColor={outOfStock}
+        message={drops ? "Coming Soon" : "Add to Cart"}
       />
-      {!!drops && <p>Drops {drops}</p>}
+      {!!drops && <S.DropsAt>Drops {drops}</S.DropsAt>}
     </S.AddToCartSelection>
   );
 };

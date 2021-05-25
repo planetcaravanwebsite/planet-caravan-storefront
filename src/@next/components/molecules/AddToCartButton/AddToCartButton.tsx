@@ -1,17 +1,18 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import { Button } from "@components/atoms";
 
 export interface IAddToCartButton {
   disabled: boolean;
   onSubmit: () => void;
   specialColor: boolean;
+  message: string;
 }
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({
   onSubmit,
   disabled,
   specialColor,
+  message,
 }) => {
   return (
     <Button
@@ -22,10 +23,8 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       disabled={disabled}
       outOfStock={specialColor}
     >
-      {specialColor ? (
-        <FormattedMessage defaultMessage="Out of Stock" />
-      ) : (
-        <FormattedMessage defaultMessage="Add to cart" />
+      {specialColor ? "Out of Stock" : (
+          message || "Add to Cart"
       )}
     </Button>
   );

@@ -9,6 +9,7 @@ const DEFAULT_PROPS: IAddToCartButton = {
   disabled: false,
   onSubmit: () => undefined,
   specialColor: false,
+  message: "Add to Cart",
 };
 
 storiesOf("@components/molecules/AddToCartButton", module)

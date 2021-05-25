@@ -45,3 +45,10 @@ export const QuantityInput = styled.div`
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
 `;
+
+export const DropsAt = styled.p`
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+`;
