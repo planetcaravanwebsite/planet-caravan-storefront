@@ -53,6 +53,7 @@ const lightboxHeight = (width: number) => ({
 export const Lightbox = styled.div<IStyleProps>`
   display: flex;
   position: relative;
+  overflow-y: auto;
   width: ${({ position, theme: { modal } }) =>
     lightboxHeight(modal.modalWidth)[position]};
   min-height: ${props => props.theme.modal.modalMinHeight}px;
@@ -74,7 +75,6 @@ Lightbox.displayName = "S.Lightbox";
 export const Overlay = styled.div<IStyleProps>`
   display: flex;
   position: fixed;
-  overflow-y: auto;
   width: 100%;
   height: 100%;
   min-height: 100vh;
