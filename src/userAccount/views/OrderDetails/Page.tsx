@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { TaxedMoney } from "@components/containers";
+import { TaxedMoney, Money } from "@components/containers";
 import {
   checkoutMessages,
   translatePaymentStatus,
@@ -35,6 +35,12 @@ const Page: React.FC<{
   downloadInvoice: () => void;
 }> = ({ guest, order, downloadInvoice }) => {
   const intl = useIntl();
+
+  const tax = {
+    amount: order.total.gross.amount - order.total.net.amount,
+    currency: "USD",
+  };
+
   return order ? (
     <>
       {!guest && (
@@ -88,6 +94,9 @@ const Page: React.FC<{
         totalCost={<TaxedMoney taxedMoney={order.total} />}
         deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
         subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
+        total={<Money money={order.total.gross} />}
+        tax={<Money money={tax} />}
+        taxAmount={tax.amount}
       />
       <div className="order-details__summary">
         <div>

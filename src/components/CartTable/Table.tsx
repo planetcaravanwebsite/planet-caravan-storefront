@@ -16,6 +16,9 @@ interface TableProps extends EditableProductRowProps {
   totalCost?: React.ReactNode;
   discount?: React.ReactNode;
   discountName?: string;
+  total?: React.ReactNode;
+  tax?: React.ReactNode;
+  taxAmount: number;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -25,6 +28,9 @@ const Table: React.FC<TableProps> = ({
   discount,
   discountName,
   lines,
+  total,
+  tax,
+  taxAmount,
   ...rowProps
 }) => {
   const intl = useIntl();
@@ -87,16 +93,23 @@ const Table: React.FC<TableProps> = ({
               <CostRow
                 mediumScreen={mediumScreen}
                 heading={intl.formatMessage({
-                  defaultMessage: "Delivery Cost",
+                  defaultMessage: "Shipping",
                 })}
                 cost={deliveryCost}
               />
             )}
-            {totalCost && (
+            {taxAmount > 0 && tax && (
               <CostRow
                 mediumScreen={mediumScreen}
-                heading={intl.formatMessage({ defaultMessage: "Total Cost" })}
-                cost={totalCost}
+                heading={intl.formatMessage({ defaultMessage: "Tax" })}
+                cost={tax}
+              />
+            )}
+            {total && taxAmount > 0 && (
+              <CostRow
+                mediumScreen={mediumScreen}
+                heading={intl.formatMessage({ defaultMessage: "Total" })}
+                cost={total}
               />
             )}
           </tfoot>
