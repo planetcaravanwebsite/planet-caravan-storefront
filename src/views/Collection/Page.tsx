@@ -5,7 +5,6 @@ import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
-import { orderBy } from "lodash";
 import { Fab } from "react-tiny-fab";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
@@ -94,13 +93,15 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
-  let sorted = products.edges;
+  console.log(products.edges);
+
+  /* let sorted = products.edges;
   if (activeSortOption === "price") {
     sorted = orderBy(
       products.edges,
       [
         function (o) {
-          return o.node.pricing.priceRange.start.gross.amount;
+          return o.node.pricing.priceRange.start.net.amount;
         },
       ],
       ["asc"]
@@ -110,12 +111,12 @@ const Page: React.FC<PageProps> = ({
       products.edges,
       [
         function (o) {
-          return o.node.pricing.priceRange.start.gross.amount;
+          return o.node.pricing.priceRange.start.net.amount;
         },
       ],
       ["desc"]
     );
-  }
+  } */
 
   return (
     <>
@@ -194,7 +195,7 @@ const Page: React.FC<PageProps> = ({
             onAttributeFiltersChange={onAttributeFiltersChange}
             attributes={attributes}
             filters={filters}
-            products={sorted.map(edge => edge.node)}
+            products={products.edges.map(edge => edge.node)}
           />
           <ProductListHeader
             activeSortOption={activeSortOption}
@@ -209,7 +210,7 @@ const Page: React.FC<PageProps> = ({
           />
           {canDisplayProducts && (
             <ProductList
-              products={sorted.map(edge => edge.node)}
+              products={products.edges.map(edge => edge.node)}
               canLoadMore={hasNextPage}
               loading={displayLoader}
               onLoadMore={onLoadMore}
