@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import { generatePath, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
@@ -17,7 +17,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { baseUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
+import { checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
 import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
@@ -143,11 +143,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     </div>
 
                     <div className="cart__footer__button">
-                      <Link to={generatePath(baseUrl)}>
-                        <Button testingContext="gotoBagViewButton" secondary>
-                          <FormattedMessage defaultMessage="Continue Shopping" />
-                        </Button>
-                      </Link>
+                      <Button
+                        testingContext="gotoBagViewButton"
+                        onClick={overlay.hide}
+                      >
+                        <FormattedMessage defaultMessage="Continue Shopping" />
+                      </Button>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
