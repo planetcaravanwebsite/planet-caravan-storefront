@@ -154,9 +154,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
       changeSubmitProgress(false);
     } else {
-      console.log("next if/then");
-      console.log(billingAsShippingState);
       setShippingErrors([]);
+      changeSubmitProgress(false);
       if (billingAsShippingState) {
         handleSetBillingAddress();
       } else {
@@ -172,9 +171,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     email?: string,
     userAddressId?: string
   ) => {
-    console.log("handleSetBillingAddress()");
     if (!address && !billingAsShippingState) {
-      console.log("next part");
+      changeSubmitProgress(false);
       setBillingErrors([
         {
           message: intl.formatMessage({

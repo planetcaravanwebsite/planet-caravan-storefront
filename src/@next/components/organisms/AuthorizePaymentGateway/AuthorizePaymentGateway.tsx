@@ -136,7 +136,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
         cardErrors={cardErrors.fieldErrors}
         labelsText={{
           ccCsc: "CVC",
-          ccExp: "ExpiryDate",
+          ccExp: "Exp Date",
           ccNumber: "Number",
         }}
         disabled={false}

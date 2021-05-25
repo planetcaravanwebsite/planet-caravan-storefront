@@ -17,7 +17,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
+import { baseUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
 import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
@@ -143,13 +143,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     </div>
 
                     <div className="cart__footer__button">
-                      <Link
-                        to={generatePath(cartUrl, {
-                          token: null,
-                        })}
-                      >
+                      <Link to={generatePath(baseUrl)}>
                         <Button testingContext="gotoBagViewButton" secondary>
-                          <FormattedMessage defaultMessage="Go to my cart" />
+                          <FormattedMessage defaultMessage="Continue Shopping" />
                         </Button>
                       </Link>
                     </div>
