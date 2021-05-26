@@ -141,12 +141,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
-      {isOutOfStock ? (
-        renderErrorMessage(
-          intl.formatMessage(commonMessages.outOfStock),
-          "outOfStock"
-        )
-      ) : (
+      {!isOutOfStock && (
         <S.ProductPricing>
           {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
