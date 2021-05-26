@@ -37,9 +37,4 @@ export const TextSummary = styled.p`
 
 export const ErrorMessages = styled.div`
   margin-top: 30px;
-  background: #e43024;
-  padding: 15px;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
 `;
