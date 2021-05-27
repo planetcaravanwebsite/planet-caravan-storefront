@@ -25,9 +25,7 @@ const Radio: React.FC<IProps> = ({
         <div>
           <span />
         </div>
-      )
-      }
-
+      )}
       {children}
     </StyledInput>
   );
