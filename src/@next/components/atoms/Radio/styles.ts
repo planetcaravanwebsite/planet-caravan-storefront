@@ -8,6 +8,7 @@ const inputStyle = css<{ checked: boolean }>`
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
 
   input[type="radio"] {
     opacity: 0;

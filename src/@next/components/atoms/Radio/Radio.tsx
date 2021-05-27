@@ -17,9 +17,17 @@ const Radio: React.FC<IProps> = ({
   return (
     <StyledInput checked={checked || false}>
       <input type="radio" checked={checked} {...props} />{" "}
-      <div>
-        <span />
-      </div>
+      {props.absolute ? (
+        <div style={{ position: "absolute", top: 0 }}>
+          <span />
+        </div>
+      ) : (
+        <div>
+          <span />
+        </div>
+      )
+      }
+
       {children}
     </StyledInput>
   );

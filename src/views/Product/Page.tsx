@@ -87,8 +87,8 @@ const Page: React.FC<
           target="_blank"
         >
           @planetcaravansmokeshop
-        </a>
-        /
+        </a>{" "}
+        /{" "}
         <a
           href="https://instagram.com/planetcaravandrops"
           rel="noreferrer"

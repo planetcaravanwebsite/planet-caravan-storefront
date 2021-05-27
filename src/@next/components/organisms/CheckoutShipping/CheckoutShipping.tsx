@@ -24,9 +24,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const fedExDomestic = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        FedEx 2Day shipping should get your package there by the end of the second
-        business day. Packages will arrive by 4:30 p.m. to most areas and by 8
-        p.m. to residences
+        FedEx 2Day shipping should get your package there by the end of the
+        second second second second second second business day. Packages will
+        arrive by p.m. to areas and p.m. to residences
       </li>
       <li style={{ marginTop: "10px" }}>
         Any package over 645 cubic inches will ship via FedEx Home Delivery.
@@ -37,16 +37,28 @@ const CheckoutShipping: React.FC<IProps> = ({
   const fedExDomesticOvernight = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Choose FedEx Priority Overnight® for a delivery in 1 or 2 days, depending on the area of delivery
+        Choose FedEx Priority Overnight® for a delivery in 1 or 2 days,
+        depending on the area of delivery
       </li>
     </ul>
   );
   const signature = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Someone at the recipient’s address may sign for the delivery. Direct signature deliveries are made to the address on the mailing label, not to an individual recipient. If no one is at the address, FedEx may reattempt the delivery</li>
+        Someone at the recipient’s address may sign for the delivery. Direct
+        signature deliveries are made to the address on the mailing label, not
+        to an individual recipient. If no one is at the address, FedEx may
+        reattempt the delivery
+      </li>
       <li style={{ marginTop: "10px" }}>
-        For more information about FedEx Direct Signature option please visit <a href="https://www.fedex.com/en-us/delivery-options/signature-services.html" target="_blank">https://www.fedex.com/en-us/delivery-options/signature-services.html</a>
+        For more information about FedEx Direct Signature option please visit
+        <a
+          href="https://www.fedex.com/en-us/delivery-options/signature-services.html"
+          rel="noreferrer"
+          target="_blank"
+        >
+          https://www.fedex.com/en-us/delivery-options/signature-services.html
+        </a>
       </li>
     </ul>
   );
@@ -125,6 +137,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                     data-test-id={id}
                   >
                     <Radio
+                      absolute
                       name="shippingMethod"
                       value={id}
                       checked={checked}
@@ -160,10 +173,27 @@ const CheckoutShipping: React.FC<IProps> = ({
       <div style={{ marginTop: "40px", fontSize: ".85rem" }}>
         <ul>
           <li style={{ marginTop: "10px" }}>
-            All packages will come with tracking from FedEx.  Please refer to your tracking number for your personal shipping specifications
+            All packages will come with tracking from FedEx. Please refer to
+            your tracking number for your personal shipping specifications
           </li>
           <li style={{ marginTop: "10px" }}>
-            Please DM us via instagram <a href="https://www.instagram.com/planetcaravansmokeshop/" rel="noreferrer" target="_blank">@planetcaravansmokeshop</a> / <a href="https://www.instagram.com/planetcaravandrops/" rel="noreferrer" target="_blank">@planetcaravandrops</a> for any shipping questions
+            Please DM us via instagram{" "}
+            <a
+              href="https://www.instagram.com/planetcaravansmokeshop/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              @planetcaravansmokeshop
+            </a>{" "}
+            /{" "}
+            <a
+              href="https://www.instagram.com/planetcaravandrops/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              @planetcaravandrops
+            </a>{" "}
+            for any shipping questions
           </li>
         </ul>
       </div>

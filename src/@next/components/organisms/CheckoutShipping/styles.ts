@@ -20,6 +20,7 @@ export const Tile = styled.label<{ checked: boolean }>`
 
 export const TileTitle = styled.span`
   font-size: ${props => props.theme.typography.smallFontSize};
+  margin-left: 30px;
 `;
 
 export const Price = styled.span`

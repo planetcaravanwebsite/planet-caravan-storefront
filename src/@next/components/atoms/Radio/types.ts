@@ -7,4 +7,5 @@ export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
    * If true, it will not wrap radio input in label tag.
    */
   customLabel?: boolean;
+  absolute?: boolean;
 }
