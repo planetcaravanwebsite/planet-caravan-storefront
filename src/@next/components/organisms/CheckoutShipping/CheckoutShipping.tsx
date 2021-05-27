@@ -12,6 +12,7 @@ import { IProps } from "./types";
 /**
  * Shipping method selector used in checkout.
  */
+
 const CheckoutShipping: React.FC<IProps> = ({
   shippingMethods,
   selectedShippingMethodId,
@@ -20,6 +21,38 @@ const CheckoutShipping: React.FC<IProps> = ({
   formId,
   formRef,
 }: IProps) => {
+  const fedExDomestic = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        FedEx 2Day shipping should get your package there by the end of the second
+        business day. Packages will arrive by 4:30 p.m. to most areas and by 8
+        p.m. to residences
+      </li>
+      <li style={{ marginTop: "10px" }}>
+        Any package over 645 cubic inches will ship via FedEx Home Delivery.
+        Please see your tracking number for specifications
+      </li>
+    </ul>
+  );
+  const fedExDomesticOvernight = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Choose FedEx Priority Overnight® for a delivery in 1 or 2 days, depending on the area of delivery
+      </li>
+    </ul>
+  );
+  const signature = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Someone at the recipient’s address may sign for the delivery. Direct signature deliveries are made to the address on the mailing label, not to an individual recipient. If no one is at the address, FedEx may reattempt the delivery</li>
+      <li style={{ marginTop: "10px" }}>
+        For more information about FedEx Direct Signature option please visit <a href="https://www.fedex.com/en-us/delivery-options/signature-services.html" target="_blank">https://www.fedex.com/en-us/delivery-options/signature-services.html</a>
+      </li>
+    </ul>
+  );
+
+  console.log(shippingMethods);
+
   return (
     <section>
       <S.Title data-test="checkoutPageSubtitle">
@@ -55,6 +88,35 @@ const CheckoutShipping: React.FC<IProps> = ({
                 const checked =
                   !!values.shippingMethod && values.shippingMethod === id;
 
+                let shippingDisclaimer;
+
+                switch (id) {
+                  case "U2hpcHBpbmdNZXRob2Q6OA==":
+                    shippingDisclaimer = fedExDomesticOvernight;
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6MTA=":
+                    shippingDisclaimer = (
+                      <>
+                        {fedExDomesticOvernight}
+                        {signature}
+                      </>
+                    );
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6Nw==":
+                    shippingDisclaimer = fedExDomestic;
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6MTE=":
+                    shippingDisclaimer = (
+                      <>
+                        {fedExDomestic}
+                        {signature}
+                      </>
+                    );
+                    break;
+                  default:
+                    shippingDisclaimer = <></>;
+                }
+
                 return (
                   <S.Tile
                     checked={checked}
@@ -70,7 +132,10 @@ const CheckoutShipping: React.FC<IProps> = ({
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
                       <S.TileTitle>
-                        <span data-test="checkoutShippingMethodOptionName">
+                        <span
+                          data-test="checkoutShippingMethodOptionName"
+                          style={{ fontWeight: "bold" }}
+                        >
                           {name}
                         </span>
                         <S.Price>
@@ -81,6 +146,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                             money={price}
                           />
                         </S.Price>
+                        {shippingDisclaimer}
                       </S.TileTitle>
                     </Radio>
                   </S.Tile>
@@ -91,6 +157,16 @@ const CheckoutShipping: React.FC<IProps> = ({
           );
         }}
       </Formik>
+      <div style={{ marginTop: "40px", fontSize: ".85rem" }}>
+        <ul>
+          <li style={{ marginTop: "10px" }}>
+            All packages will come with tracking from FedEx.  Please refer to your tracking number for your personal shipping specifications
+          </li>
+          <li style={{ marginTop: "10px" }}>
+            Please DM us via instagram <a href="https://www.instagram.com/planetcaravansmokeshop/" rel="noreferrer" target="_blank">@planetcaravansmokeshop</a> / <a href="https://www.instagram.com/planetcaravandrops/" rel="noreferrer" target="_blank">@planetcaravandrops</a> for any shipping questions
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };

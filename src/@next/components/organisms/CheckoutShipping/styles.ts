@@ -24,4 +24,5 @@ export const TileTitle = styled.span`
 
 export const Price = styled.span`
   color: #21125e;
+  font-weight: bold;
 `;

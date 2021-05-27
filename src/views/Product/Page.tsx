@@ -78,6 +78,25 @@ const Page: React.FC<
         <br />
         Please add a pelican case to your cart if you wish for us to pack your
         heady glass within it.
+        <br />
+        If you have any questions about the product above or would like to see
+        more photos or videos please DM us on Instagram
+        <a
+          href="https://instagram.com/planetcaravansmokeshop"
+          rel="noreferrer"
+          target="_blank"
+        >
+          @planetcaravansmokeshop
+        </a>
+        /
+        <a
+          href="https://instagram.com/planetcaravandrops"
+          rel="noreferrer"
+          target="_blank"
+        >
+          @planetcaravandrops
+        </a>
+        . DMs are open daily from 9am-10pm EST
       </div>
     </div>
   );
