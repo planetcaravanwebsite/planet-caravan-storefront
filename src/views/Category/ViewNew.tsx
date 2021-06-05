@@ -339,7 +339,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <OfflinePlaceholder />;
                   }
 
-
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);
 
