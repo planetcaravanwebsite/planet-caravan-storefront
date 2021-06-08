@@ -54,7 +54,7 @@ export const CachedImage: React.FC<IImage> = ({
     return <InnerImageZoom src={url} zoomSrc={url} fullscreenOnMobile />;
   }
 
-  return(
+  return (
     <img
       {...props}
       src={url}
