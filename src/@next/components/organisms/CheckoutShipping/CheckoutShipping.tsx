@@ -114,7 +114,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                       </>
                     );
                     break;
-                  case "U2hpcHBpbmdNZXRob2Q6Nw==":
+                  case "U2hpcHBpbmdNZXRob2Q6MTQ=":
                     shippingDisclaimer = fedExDomestic;
                     break;
                   case "U2hpcHBpbmdNZXRob2Q6MTE=":
