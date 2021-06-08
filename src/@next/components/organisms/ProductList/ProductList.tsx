@@ -45,6 +45,7 @@ export const ProductList: React.FC<IProps> = ({
               return;
             }
           }
+
           return (
             id &&
             name && (

@@ -92,9 +92,6 @@ const Page: React.FC<PageProps> = ({
         ),
       []
     );
-
-  console.log(products.edges);
-
   /* let sorted = products.edges;
   if (activeSortOption === "price") {
     sorted = orderBy(

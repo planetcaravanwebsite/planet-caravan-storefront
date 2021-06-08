@@ -260,7 +260,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
         setPricingData(res);
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
     return true;
   };
@@ -338,8 +338,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   if (!isOnline) {
                     return <OfflinePlaceholder />;
                   }
-
-                  console.log(max);
 
                   // @ts-ignore
                   setRetrievedCount(categoryData.data.products.totalCount);

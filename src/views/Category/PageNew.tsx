@@ -211,6 +211,7 @@ query CategoryProductsNew(
     $sortBy: ProductOrder
   ) {
     products(
+      stockAvailability: IN_STOCK
       after: $after
       first: 1000
       sortBy: $sortBy
