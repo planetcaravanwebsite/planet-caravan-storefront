@@ -119,6 +119,8 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
       <S.Preview data-test="imagePreview">
         {images && images.length > 0 && imageIndex < images.length && (
           <CachedImage
+            // @ts-ignore
+            zoom
             alt={images[imageIndex].alt}
             url={images[imageIndex].url}
           />

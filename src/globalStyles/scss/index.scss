@@ -376,3 +376,12 @@ body {
     
   }
 }
+
+.iiz {
+  img.iiz__img {
+    max-height: 2000px;
+    @media (max-width: 540px) {
+      max-height: 500px;
+    }
+  }
+}

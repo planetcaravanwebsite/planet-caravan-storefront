@@ -3,6 +3,9 @@ import React from "react";
 import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
 import NoPhoto from "images/no-photo.svg";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+// @ts-ignore
+import InnerImageZoom from "react-inner-image-zoom";
 
 import { IImage } from "@types";
 
@@ -12,6 +15,8 @@ export const CachedImage: React.FC<IImage> = ({
   alt,
   children,
   defaultImage = NoPhoto,
+  // @ts-ignore
+  zoom,
   ...props
 }: IImage) => {
   const [isUnavailable, setUnavailable] = React.useState(false);
@@ -45,7 +50,11 @@ export const CachedImage: React.FC<IImage> = ({
     return children || <PlaceholderImage alt={alt} />;
   }
 
-  return (
+  if (zoom) {
+    return <InnerImageZoom src={url} zoomSrc={url} fullscreenOnMobile />;
+  }
+
+  return(
     <img
       {...props}
       src={url}
