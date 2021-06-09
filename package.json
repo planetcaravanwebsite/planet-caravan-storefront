@@ -46,6 +46,7 @@
     "js-base64": "^2.4.8",
     "lodash": "^4.17.19",
     "nuka-carousel": "^4.6.0",
+    "patch-package": "^6.4.7",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^16.9.9",

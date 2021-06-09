@@ -79,8 +79,8 @@ export const Preview = styled.div`
   max-height: 560px;
   overflow: hidden;
   img {
-    // max-height: 560px;
-    max-height: 2000px;
+    max-height: 560px;
+    // max-height: 2000px;
     max-width: 100%;
     object-fit: contain;
   }
