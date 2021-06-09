@@ -1,8 +1,8 @@
 diff --git a/node_modules/react-inner-image-zoom/es/InnerImageZoom/InnerImageZoom.js b/node_modules/react-inner-image-zoom/es/InnerImageZoom/InnerImageZoom.js
-index c96b4a8..105ebe0 100644
+index c96b4a8..6dad057 100644
 --- a/node_modules/react-inner-image-zoom/es/InnerImageZoom/InnerImageZoom.js
 +++ b/node_modules/react-inner-image-zoom/es/InnerImageZoom/InnerImageZoom.js
-@@ -101,7 +101,12 @@ var InnerImageZoom = function InnerImageZoom(_ref) {
+@@ -101,9 +101,16 @@ var InnerImageZoom = function InnerImageZoom(_ref) {
        handleLoad({
          target: zoomImg.current
        });
@@ -14,5 +14,26 @@ index c96b4a8..105ebe0 100644
 +
 +      zoomIn(imgProps.current.offsets.x + imgProps.current.bounds.width/2, imgProps.current.offsets.y + imgProps.current.bounds.height/2);
      } else {
-       imgProps.current.onLoadCallback = zoomIn.bind(_this, e.pageX, e.pageY);
+-      imgProps.current.onLoadCallback = zoomIn.bind(_this, e.pageX, e.pageY);
++
++      imgProps.current.offsets = getOffsets(window.pageXOffset, window.pageYOffset, -imgProps.current.bounds.left, -imgProps.current.bounds.top);
++      imgProps.current.onLoadCallback = zoomIn.bind(_this, e.pageX, e.pageY, true);
      }
+   };
+ 
+@@ -202,7 +209,14 @@ var InnerImageZoom = function InnerImageZoom(_ref) {
+     });
+   };
+ 
+-  var zoomIn = function zoomIn(pageX, pageY) {
++  var zoomIn = function zoomIn(pageX, pageY, isBind) {
++
++    if (isBind) {
++      imgProps.current.offsets = getOffsets(window.pageXOffset, window.pageYOffset, -imgProps.current.bounds.left, -imgProps.current.bounds.top);
++      pageX = imgProps.current.offsets.x + imgProps.current.bounds.width/2;
++      pageY = imgProps.current.offsets.y + imgProps.current.bounds.height/2;
++    }
++
+     setIsZoomed(true);
+     currentMoveType === 'drag' ? initialDrag(pageX, pageY) : initialMove(pageX, pageY);
+     afterZoomIn && afterZoomIn();
