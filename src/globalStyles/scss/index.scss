@@ -385,3 +385,9 @@ body {
     }
   }
 }
+
+.serp-item {
+  > img {
+    max-width: 223px;
+  }
+}
