@@ -217,7 +217,9 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress(false);
     if (errors) {
       setBillingErrors(errors);
-      setErrors(errors);
+      if (errors[0].code === "INSUFFICIENT_STOCK") {
+        setErrors(errors);
+      }
     } else {
       setBillingErrors([]);
       onSubmitSuccess();
