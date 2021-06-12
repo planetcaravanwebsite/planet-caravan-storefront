@@ -26,7 +26,6 @@ export const CategoryProductsQueryNew = gql`
       first: $pageSize
       sortBy: $sortBy
       filter: {
-        stockAvailability: IN_STOCK
         attributes: $attributes
         categories: [$id]
         price: { gte: $priceGte, lte: $priceLte }
