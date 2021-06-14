@@ -101,6 +101,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
+  variables.pageSize = 100;
+
   const sortOptions = [
     {
       label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
