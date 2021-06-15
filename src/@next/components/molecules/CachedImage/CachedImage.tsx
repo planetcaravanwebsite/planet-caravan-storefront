@@ -7,7 +7,7 @@ import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 // @ts-ignore
 import InnerImageZoom from "react-inner-image-zoom";
 // @ts-ignore
-import ReactImageZoom from 'react-image-zoom';
+import ReactImageZoom from "react-image-zoom";
 
 import { IImage } from "@types";
 
