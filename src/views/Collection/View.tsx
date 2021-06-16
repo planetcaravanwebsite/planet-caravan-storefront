@@ -59,7 +59,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     if (url.indexOf("headies") > -1) {
       sort = "-price";
     } else if (url.indexOf("drops") > -1 || url.indexOf("smoke-shop") > -1) {
-      sort = "-updated_at";
+      sort = "updated_at";
     } else {
       sort = "-updated_at";
     }
