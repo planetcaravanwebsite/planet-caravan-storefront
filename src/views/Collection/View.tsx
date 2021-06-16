@@ -105,7 +105,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: sort || null,
   };
 
-
   const variables = {
     ...filters,
     attributes: filters.attributes
