@@ -73,7 +73,7 @@ const prepareCartFooter = (
 );
 
 const hasPelican = (items: IItems) => {
-  console.log(items);
+  // console.log(items);
 
   if (
     find(items, function (item) {
@@ -94,7 +94,6 @@ const generateCart = (
   updateItem: (variantId: string, quantity: number) => any
   // newImage: IImage
 ) => {
-  // console.log(items);
   return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}

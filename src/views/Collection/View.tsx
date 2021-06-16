@@ -46,12 +46,24 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
-  const [sort, setSort] = useQueryParam("sortBy", StringParam);
+  // eslint-disable-next-line prefer-const
+  let [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
   const intl = useIntl();
+
+  if (!sort) {
+    const url = window.location.href.toLowerCase();
+    if (url.indexOf("headies") > -1) {
+      sort = "-price";
+    } else if (url.indexOf("drops") > -1 || url.indexOf("smoke-shop") > -1) {
+      sort = "-updated_at";
+    } else {
+      sort = "-updated_at";
+    }
+  }
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -92,6 +104,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     priceLte: null,
     sortBy: sort || null,
   };
+
+
   const variables = {
     ...filters,
     attributes: filters.attributes
@@ -163,7 +177,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
             const canDisplayFilters =
               !!collectionData.data?.attributes?.edges &&
               !!collectionData.data?.collection?.name;
-            console.log(variables);
+            // console.log(variables);
             return (
               <TypedCollectionProductsQueryNew variables={variables}>
                 {collectionProductsData => {

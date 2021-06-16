@@ -94,7 +94,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const [processedCount, setProcessedCount] = useState(-1);
 
   if (!sort) {
-    sort = "-updated_at";
+    const url = window.location.href.toLowerCase();
+    if (url.indexOf("headies") > -1) {
+      sort = "-price";
+    } else if (url.indexOf("drops") > -1 || url.indexOf("smoke-shop") > -1) {
+      sort = "-updated_at";
+    } else {
+      sort = "-updated_at";
+    }
   }
 
   const savePageData = () => {
@@ -150,6 +157,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     priceLte: priceFilters.priceLte[0],
     sortBy: sort || null,
   };
+
   const variables = {
     ...filters,
     attributes: filters.attributes

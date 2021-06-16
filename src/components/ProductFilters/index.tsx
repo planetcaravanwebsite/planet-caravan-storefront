@@ -28,7 +28,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   onPriceChange,
   max,
 }) => {
-  console.log(max);
+  // console.log(max);
   return (
     <div className="product-filters">
       <PriceRangeFilter
