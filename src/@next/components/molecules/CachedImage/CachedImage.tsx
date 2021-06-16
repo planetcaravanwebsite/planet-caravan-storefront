@@ -6,8 +6,6 @@ import NoPhoto from "images/no-photo.svg";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 // @ts-ignore
 import InnerImageZoom from "react-inner-image-zoom";
-// @ts-ignore
-import ReactImageZoom from "react-image-zoom";
 
 import { IImage } from "@types";
 
@@ -53,9 +51,8 @@ export const CachedImage: React.FC<IImage> = ({
   }
 
   if (zoom) {
-    return <InnerImageZoom src={url} zoomSrc={url} fullscreenOnMobile />;
+    // return <InnerImageZoom src={url} zoomSrc={url} fullscreenOnMobile />;
     // const props = { width: 400, height: 250, zoomWidth: 800, img: url };
-    // return <ReactImageZoom {...props} />;
   }
 
   return (
