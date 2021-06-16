@@ -101,7 +101,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  variables.pageSize = 100;
+  variables.pageSize = 160;
 
   const sortOptions = [
     {
