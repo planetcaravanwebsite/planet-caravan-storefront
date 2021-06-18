@@ -10,6 +10,8 @@ import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
+import * as Cookies from "es-cookie";
+
 import styled from "styled-components";
 
 import { find } from "lodash";
@@ -76,15 +78,15 @@ class Modal extends React.Component {
   shownPelicanUpsell: string;
 
   onClose = e => {
-    sessionStorage["shown-pelican-upsell"] = "true";
+    Cookies.set("shown-pelican-upsell", "true", { expires: 1 });
     // @ts-ignore
     this.props.onClose(e);
   };
 
   render() {
-    this.shownPelicanUpsell = sessionStorage["shown-pelican-upsell"];
+    this.shownPelicanUpsell = Cookies.get("shown-pelican-upsell");
 
-    if (this.shownPelicanUpsell === "true") {
+    if (this.shownPelicanUpsell) {
       return null;
     }
 
@@ -118,7 +120,9 @@ class Modal extends React.Component {
           <Link to={this.pelicanUrl.value}>
             <this.Button onClick={this.onClose}>Yes, I Would</this.Button>
           </Link>
-          <div onClick={this.onClose}>Nope</div>
+          <div style={{ cursor: "pointer" }} onClick={this.onClose}>
+            Nope
+          </div>
         </this.Content>
       </this.StyledModal>
     );
