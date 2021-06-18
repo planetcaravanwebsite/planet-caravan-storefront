@@ -10,8 +10,6 @@ import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
-import * as Cookies from "es-cookie";
-
 import styled from "styled-components";
 
 import { find } from "lodash";
@@ -78,15 +76,15 @@ class Modal extends React.Component {
   shownPelicanUpsell: string;
 
   onClose = e => {
-    Cookies.set("shown-pelican-upsell", "true", { expires: 30 });
+    sessionStorage["shown-pelican-upsell"] = "true";
     // @ts-ignore
     this.props.onClose(e);
   };
 
   render() {
-    this.shownPelicanUpsell = Cookies.get("shown-pelican-upsell");
+    this.shownPelicanUpsell = sessionStorage["shown-pelican-upsell"];
 
-    if (this.shownPelicanUpsell) {
+    if (this.shownPelicanUpsell === "true") {
       return null;
     }
 
