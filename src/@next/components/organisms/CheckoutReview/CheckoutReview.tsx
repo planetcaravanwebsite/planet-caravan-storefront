@@ -63,7 +63,13 @@ const CheckoutReview: React.FC<IProps> = ({
       <S.ErrorMessages>
         <ErrorMessage errors={errors} />
       </S.ErrorMessages>
-      <div>{cartSummary}</div>
+      <div>
+        <S.SubTitle>
+          <FormattedMessage defaultMessage="Order Summary" />
+        </S.SubTitle>
+        <S.Divider />
+        {cartSummary}
+      </div>
     </S.Wrapper>
   );
 };
