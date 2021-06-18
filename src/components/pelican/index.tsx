@@ -35,8 +35,10 @@ export const Pelican: React.FC<PelicanInterface> = () => {
     setPackIsLoaded(true);
   }
 
+  sessionStorage.setItem("pack_heady", "true"); // if we have a pelican, set this for zoho
+
   return (
-    <div className="packing">
+    <div className="packing" style={{ display: "none" }}>
       <Title>Buying a Pelican?</Title>
       <div>
         If you are ordering heady glass, do you want us to pack it in your
