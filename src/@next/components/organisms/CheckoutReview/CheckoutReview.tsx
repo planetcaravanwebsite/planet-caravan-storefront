@@ -18,6 +18,8 @@ const CheckoutReview: React.FC<IProps> = ({
   paymentMethodName,
   email,
   errors,
+  // @ts-ignore
+  cartSummary,
 }: IProps) => {
   return (
     <S.Wrapper data-test="sectionTitle">
@@ -61,6 +63,7 @@ const CheckoutReview: React.FC<IProps> = ({
       <S.ErrorMessages>
         <ErrorMessage errors={errors} />
       </S.ErrorMessages>
+      <div>{cartSummary}</div>
     </S.Wrapper>
   );
 };
