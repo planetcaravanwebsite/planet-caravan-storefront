@@ -10,8 +10,6 @@ import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
-import * as Cookies from "es-cookie";
-
 import styled from "styled-components";
 
 import { find } from "lodash";
@@ -59,6 +57,7 @@ class Modal extends React.Component {
   `;
 
   H1 = styled.h1`
+    font-family: Yukarimobile;
     font-size: 2rem;
     margin-bottom: 20px;
   `;
@@ -78,15 +77,27 @@ class Modal extends React.Component {
   shownPelicanUpsell: string;
 
   onClose = e => {
-    Cookies.set("shown-pelican-upsell", "true", { expires: 1 });
+    // @ts-ignore
+    if (this.props.item) {
+      // @ts-ignore
+      sessionStorage[`shown-pelican-upsell-${this.props.item.variant.id}`] =
+        "true";
+    }
     // @ts-ignore
     this.props.onClose(e);
   };
 
   render() {
-    this.shownPelicanUpsell = Cookies.get("shown-pelican-upsell");
+    // @ts-ignore
+    if (!this.props.item) {
+      return null;
+    }
 
-    if (this.shownPelicanUpsell) {
+    this.shownPelicanUpsell =
+      // @ts-ignore
+      sessionStorage[`shown-pelican-upsell-${this.props.item.variant.id}`];
+
+    if (this.shownPelicanUpsell === "true") {
       return null;
     }
 
@@ -168,7 +179,6 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const API_URL = process.env.API_URI || "/graphql/";
 
   const queryData = async () => {
-    console.log("queryData(): %o", items);
     const query = JSON.stringify({
       query: `
         {
@@ -197,27 +207,20 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
   // @ts-ignore
   const fetchData = async () => {
-    console.log("fetchData(): %o", items);
     const res = await queryData();
     // @ts-ignore
-    console.log("response from queryData: %o", res);
     const foundUpsell = find(res.productVariant.product.metadata, function (o) {
       // @ts-ignore
       return o.key === "CROSS_SELL" && o.value === "True";
     });
-    console.log(foundUpsell);
     if (foundUpsell) {
-      console.log("found it");
       setShowModal(true);
       setPelicanProduct(res.productVariant.product.metadata);
-      console.log(pelicanProduct);
     }
   };
 
   // @ts-ignore
   useEffect(() => {
-    console.log(loaded);
-    console.log(items);
     let mounted = true;
     fetchData().then(r => {
       if (mounted) {
@@ -229,15 +232,19 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   }, [isFetched, loaded]);
 
   const onShowModal = e => {
-    console.log("onShowModal");
     setShowModal(false);
   };
 
   return (
     // eslint-disable-next-line react/jsx-no-comment-textnodes
     <>
-      // @ts-ignore
-      <Modal onClose={onShowModal} show={showModal} data={pelicanProduct}>
+      <Modal
+        // @ts-ignore
+        onClose={onShowModal}
+        show={showModal}
+        data={pelicanProduct}
+        item={items[0]}
+      >
         Message in Modal
       </Modal>
       <Overlay testingContext="cartOverlay" context={overlay}>
