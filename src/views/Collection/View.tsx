@@ -115,6 +115,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   variables.pageSize = 160;
+  // @ts-ignore
+  variables.sortBy.direction =
+    variables.sortBy.direction === "ASC" ? "DESC" : "ASC";
 
   const sortOptions = [
     {
