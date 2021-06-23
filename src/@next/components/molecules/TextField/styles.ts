@@ -14,4 +14,5 @@ export const HelpText = styled.span`
 export const ErrorMessages = styled.div`
   position: absolute;
   top: 100%;
+  z-index: 10;
 `;
