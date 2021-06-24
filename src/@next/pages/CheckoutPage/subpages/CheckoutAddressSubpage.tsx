@@ -122,6 +122,29 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       ]);
       return;
     }
+    const pattern = new RegExp(/[Pp]\.?\s?[Oo]\.?\s[Bb][Oo][Xx]/);
+    // @ts-ignore
+    if (address.streetAddress1 && address.streetAddress1.match(pattern)) {
+      setShippingErrors([
+        {
+          field: "streetAddress1",
+          message:
+            "Sorry, but we are unable to ship to P.O. Boxes at this time",
+        },
+      ]);
+      return;
+    }
+    // @ts-ignore
+    if (address.streetAddress2 && address.streetAddress2.match(pattern)) {
+      setShippingErrors([
+        {
+          field: "streetAddress2",
+          message:
+            "Sorry, but we are unable to ship to P.O. Boxes at this time",
+        },
+      ]);
+      return;
+    }
 
     const shippingEmail = user?.email || email || "";
 
