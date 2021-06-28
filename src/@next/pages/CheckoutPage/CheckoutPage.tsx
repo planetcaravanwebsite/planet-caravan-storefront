@@ -328,6 +328,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         )}
         renderReview={props => (
           <CheckoutReviewSubpage
+            cartSummary={prepareCartSummary(
+              totalPrice,
+              subtotalPrice,
+              shippingTaxedPrice,
+              promoTaxedPrice,
+              items
+            )}
             ref={checkoutReviewSubpageRef}
             paymentGatewayFormRef={checkoutGatewayFormRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
