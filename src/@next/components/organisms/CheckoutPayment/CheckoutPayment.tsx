@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-// import { Checkbox } from "@components/atoms";
+import { Checkbox } from "@components/atoms";
 import { checkoutMessages } from "@temp/intl";
 
-// import { DiscountForm } from "../DiscountForm";
-// import { IDiscountFormData } from "../DiscountForm/types";
+import { DiscountForm } from "../DiscountForm";
+import { IDiscountFormData } from "../DiscountForm/types";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -22,20 +22,22 @@ const CheckoutPayment: React.FC<IProps> = ({
   removeVoucherCode,
   submitUnchangedDiscount,
 }: IProps) => {
-  // const [setShowPromoCodeForm] = useState(!!promoCodeDiscount?.voucherCode);
+  const [showPromoCodeForm, setShowPromoCodeForm] = useState(
+    !!promoCodeDiscount?.voucherCode
+  );
 
   useEffect(() => {
     const isVoucherCode = !!promoCodeDiscount?.voucherCode;
     if (isVoucherCode) {
-      // setShowPromoCodeForm(isVoucherCode);
+      setShowPromoCodeForm(isVoucherCode);
     }
   }, [promoCodeDiscount?.voucherCode]);
 
-  /* const handleChangeShowPromoCodeForm = () => {
+  const handleChangeShowPromoCodeForm = () => {
     setShowPromoCodeForm(!showPromoCodeForm);
-  }; */
+  };
 
-  /* const handleSubmitPromoCode = (discountForm?: IDiscountFormData) => {
+  const handleSubmitPromoCode = (discountForm?: IDiscountFormData) => {
     const newPromoCode = discountForm?.promoCode;
     const savedPromoCode = promoCodeDiscount?.voucherCode;
 
@@ -46,7 +48,7 @@ const CheckoutPayment: React.FC<IProps> = ({
     } else {
       submitUnchangedDiscount();
     }
-  }; */
+  };
 
   return (
     <S.Wrapper>
@@ -54,6 +56,25 @@ const CheckoutPayment: React.FC<IProps> = ({
         <S.Title data-test="checkoutPageSubtitle">
           <FormattedMessage {...checkoutMessages.paymentMethod} />
         </S.Title>
+        <Checkbox
+          data-test="checkoutPaymentPromoCodeCheckbox"
+          name="payment-promo-code"
+          checked={showPromoCodeForm}
+          onChange={handleChangeShowPromoCodeForm}
+        >
+          <FormattedMessage defaultMessage="Do you have a gift card voucher or discount code?" />
+        </Checkbox>
+        {showPromoCodeForm && (
+          <S.DiscountField>
+            <DiscountForm
+              discount={{ promoCode: promoCodeDiscount?.voucherCode }}
+              formId={promoCodeDiscountFormId}
+              formRef={promoCodeDiscountFormRef}
+              handleSubmit={handleSubmitPromoCode}
+              errors={promoCodeErrors}
+            />
+          </S.DiscountField>
+        )}
         <S.Divider />
       </section>
     </S.Wrapper>
