@@ -26,7 +26,6 @@ interface IProps extends RouteComponentProps<any> {
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   onSubmitSuccess: (data: ISubmitCheckoutData) => void;
-  cartSummary?: any;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
@@ -115,8 +114,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       paymentMethodName={getPaymentMethodDescription()}
       email={checkout?.email}
       errors={errors}
-      // @ts-ignore
-      cartSummary={props.cartSummary}
     />
   );
 };
