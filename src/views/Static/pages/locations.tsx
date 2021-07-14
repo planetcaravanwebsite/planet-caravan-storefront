@@ -25,7 +25,7 @@ export const Locations: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-hours">
-                <p>Mon-Sat: 9AM–10PM</p>
+                <p>Mon-Sat: 9AM–9PM</p>
                 <p>Sunday 10AM–9PM</p>
               </div>
             </div>
@@ -46,8 +46,7 @@ export const Locations: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-hours">
-                <p>Mon-Sat: 10AM–11PM</p>
-                <p>Sun: 10AM–10PM</p>
+                <p>Everyday: 10AM-10PM</p>
               </div>
             </div>
             <div className="locations-grid-item">
@@ -67,7 +66,7 @@ export const Locations: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-hours">
-                <p>Mon-Sat: 9AM–10PM</p>
+                <p>Mon-Sat: 9AM–9PM</p>
                 <p>Sunday 10AM–9PM</p>
               </div>
             </div>
@@ -88,7 +87,7 @@ export const Locations: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-hours">
-                <p>Mon-Sat: 9AM–10PM</p>
+                <p>Mon-Sat: 9AM–9PM</p>
                 <p>Sunday 10AM–9PM</p>
               </div>
             </div>
