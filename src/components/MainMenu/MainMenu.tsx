@@ -51,9 +51,12 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
   return (
     <header>
       {whichMenu === "homePage" && (
-        <div className="coupon-bar-home">
-          Use code <b>710sale</b> for 20% off your purchase!
-        </div>
+        <>
+          <div className="coupon-bar-home">
+            Use code <b>710sale</b> for 20% off your purchase!
+          </div>
+          <div className="free-bar">Free PC Merch With Every Purchase</div>
+        </>
       )}
       <nav
         className={
@@ -304,9 +307,12 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         </div>
       </nav>
       {whichMenu !== "homePage" && (
-        <div className="coupon-bar">
-          Use code <b>710sale</b> for 20% off your purchase!
-        </div>
+        <>
+          <div className="coupon-bar">
+            Use code <b>710sale</b> for 20% off your purchase!
+          </div>
+          <div className="free-bar">Free PC Merch With Every Purchase</div>
+        </>
       )}
       {whichMenu !== "homePage" && <div className="bottom-bar" />}
     </header>
