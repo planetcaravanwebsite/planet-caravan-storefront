@@ -114,7 +114,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  variables.pageSize = 160;
+  variables.pageSize = 500;
   // @ts-ignore
   variables.sortBy.direction =
     variables.sortBy.direction === "ASC" ? "DESC" : "ASC";

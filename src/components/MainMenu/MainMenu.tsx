@@ -53,8 +53,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu === "homePage" && (
         <>
           <div className="coupon-bar-home">
-            <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
-            slurper accessories & pearls. Use code <b>slurper30</b>
+            <Link to="/collection/slurpin-summer-sale/83445/">
+              <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
+              slurper accessories & pearls. Use code <b>slurper30</b>
+            </Link>
           </div>
           <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
@@ -310,8 +312,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu !== "homePage" && (
         <>
           <div className="coupon-bar">
-            <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
-            slurper accessories & pearls. Use code <b>slurper30</b>
+            <Link to="/collection/slurpin-summer-sale/83445/">
+              <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
+              slurper accessories & pearls. Use code <b>slurper30</b>
+            </Link>
           </div>
           <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
