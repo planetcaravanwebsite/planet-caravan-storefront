@@ -53,7 +53,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu === "homePage" && (
         <>
           <div className="coupon-bar-home">
-            Use code <b>710sale</b> for 20% off your purchase!
+            <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz, slurper accessories & pearls. Use code <b>slurper30</b>
           </div>
           <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
@@ -309,7 +309,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu !== "homePage" && (
         <>
           <div className="coupon-bar">
-            Use code <b>710sale</b> for 20% off your purchase!
+            <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz, slurper accessories & pearls. Use code <b>slurper30</b>
           </div>
           <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
