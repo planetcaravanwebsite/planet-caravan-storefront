@@ -243,7 +243,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
         onClose={onShowModal}
         show={showModal}
         data={pelicanProduct}
-        item={items[0]}
+        item={items ? items[0] : null}
       >
         Message in Modal
       </Modal>
