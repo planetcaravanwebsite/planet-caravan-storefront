@@ -385,7 +385,7 @@ query CategoryProductsNew(
   // @ts-ignore
   if(products && products.products.totalCount > 0) {
     // @ts-ignore
-    numPages = Math.ceil(products.products.totalCount / 28);
+    numPages = Math.ceil(products.products.totalCount / 100);
   }
 
   return (
