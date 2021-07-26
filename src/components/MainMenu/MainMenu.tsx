@@ -58,7 +58,6 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
               slurper accessories & pearls. Use code <b>slurper30</b>
             </Link>
           </div>
-          <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
       )}
       <nav
@@ -317,7 +316,6 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
               slurper accessories & pearls. Use code <b>slurper30</b>
             </Link>
           </div>
-          <div className="free-bar">Free PC Merch With Every Purchase</div>
         </>
       )}
       {whichMenu !== "homePage" && <div className="bottom-bar" />}
