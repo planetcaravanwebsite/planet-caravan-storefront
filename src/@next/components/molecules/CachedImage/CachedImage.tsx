@@ -4,8 +4,8 @@ import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
 import NoPhoto from "images/no-photo.svg";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
-// @ts-ignore
-import InnerImageZoom from "react-inner-image-zoom";
+
+import ReactImageMagnify from "react-image-magnify";
 
 import { IImage } from "@types";
 
@@ -51,7 +51,22 @@ export const CachedImage: React.FC<IImage> = ({
   }
 
   if (zoom) {
-    // return <InnerImageZoom src={url} zoomSrc={url} fullscreenOnMobile />;
+    return (
+      <ReactImageMagnify
+        {...{
+          smallImage: {
+            alt: "Wristwatch by Ted Baker London",
+            isFluidWidth: true,
+            src: url,
+          },
+          largeImage: {
+            src: url,
+            width: 1200,
+            height: 1800,
+          },
+        }}
+      />
+    );
     // const props = { width: 400, height: 250, zoomWidth: 800, img: url };
   }
 
