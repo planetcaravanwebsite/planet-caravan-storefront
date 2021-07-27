@@ -10,7 +10,7 @@ import noPhotoImg from "../../images/no-photo.svg";
 const GalleryCarousel: React.FC<{
   images: ProductDetails_product_images[];
 }> = ({ images }) => (
-  <div className="product-page__product__gallery">
+  <div className="product-page__product__gallery" id="zoom-image">
     <Carousel
       renderCenterLeftControls={() => null}
       renderCenterRightControls={() => null}
@@ -38,7 +38,7 @@ const GalleryCarousel: React.FC<{
     >
       {images.map(image => (
         // @ts-ignore
-        <CachedImage url={image.url || noPhotoImg} key={image.id} zoom>
+        <CachedImage url={image.url || noPhotoImg} key={image.id} zoom="mobile">
           <img src={noPhotoImg} alt={image.alt} />
         </CachedImage>
       ))}

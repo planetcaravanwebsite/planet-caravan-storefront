@@ -120,7 +120,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         {images && images.length > 0 && imageIndex < images.length && (
           <CachedImage
             // @ts-ignore
-            zoom
+            zoom="desktop"
             alt={images[imageIndex].alt}
             url={images[imageIndex].url}
           />
