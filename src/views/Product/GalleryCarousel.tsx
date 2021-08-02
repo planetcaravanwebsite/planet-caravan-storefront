@@ -2,47 +2,32 @@ import * as React from "react";
 
 import { CachedImage } from "@components/molecules";
 
-import { Carousel } from "../../components";
+// import { Carousel } from "../../components";
+import Slider from "react-slick";
 import { ProductDetails_product_images } from "./gqlTypes/ProductDetails";
 
 import noPhotoImg from "../../images/no-photo.svg";
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 
 const GalleryCarousel: React.FC<{
   images: ProductDetails_product_images[];
 }> = ({ images }) => (
   <div className="product-page__product__gallery" id="zoom-image">
-    <Carousel
-      renderCenterLeftControls={() => null}
-      renderCenterRightControls={() => null}
-      renderBottomCenterControls={props => {
-        const indexes = [];
-
-        for (let i = 0; i < props.slideCount; i++) {
-          indexes.push(i);
-        }
-
-        return (
-          <ul className="product-page__product__gallery__nav">
-            {indexes.map(index => (
-              <li
-                key={index}
-                onClick={props.goToSlide.bind(null, index)}
-                className={props.currentSlide === index ? "active" : ""}
-              >
-                <span />
-              </li>
-            ))}
-          </ul>
-        );
-      }}
-    >
+    <Slider {...settings}>
       {images.map(image => (
         // @ts-ignore
         <CachedImage url={image.url || noPhotoImg} key={image.id} zoom="mobile">
           <img src={noPhotoImg} alt={image.alt} />
         </CachedImage>
       ))}
-    </Carousel>
+    </Slider>
   </div>
 );
 

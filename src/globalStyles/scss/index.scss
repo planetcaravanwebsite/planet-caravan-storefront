@@ -188,10 +188,12 @@ body {
   color: $rose;
 }
 
-.slick-slide img {
-  max-height: 75px;
-  display: inline !important;
-  max-width: 150px;
+.footer {
+  .slick-slide img {
+    max-height: 75px;
+    display: inline !important;
+    max-width: 150px;
+  }
 }
 
 .slick-next, .slick-prev {
