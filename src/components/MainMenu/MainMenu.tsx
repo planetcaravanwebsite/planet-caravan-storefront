@@ -53,10 +53,9 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu === "homePage" && (
         <>
           <div className="coupon-bar-home">
-            <Link to="/collection/slurpin-summer-sale/83445/">
-              <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
-              slurper accessories & pearls. Use code <b>slurper30</b>
-            </Link>
+            <b>Back to School Sale:</b> 15% off entire order!! Use Code:{" "}
+            <b>BACK2SCHOOL</b>
+            <div className="exclusions">*Some exclusions apply</div>
           </div>
         </>
       )}
@@ -311,10 +310,9 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       {whichMenu !== "homePage" && (
         <>
           <div className="coupon-bar">
-            <Link to="/collection/slurpin-summer-sale/83445/">
-              <b>Slurpin summer sale:</b> 30% off all slurpers, import quartz,
-              slurper accessories & pearls. Use code <b>slurper30</b>
-            </Link>
+            <b>Back to School Sale:</b> 15% off entire order!! Use Code:{" "}
+            <b>BACK2SCHOOL</b>
+            <div className="exclusions">*Some exclusions apply</div>
           </div>
         </>
       )}
