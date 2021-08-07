@@ -38,6 +38,7 @@
 
   &__left {
     flex-basis: calc(57%);
+    z-index: 2;
 
     @media (min-width: $small-screen) {
       flex-basis: calc(50% - 4rem);
@@ -345,7 +346,8 @@
 }
 
 .coupon-bar {
-  background: #008ecf;
+  position: relative;
+  background: #08b657;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -359,7 +361,8 @@
 }
 
 .coupon-bar-home {
-  background: #008ecf;
+  position: relative;
+  background: #08b657;
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -370,10 +373,20 @@
 }
 
 .free-bar {
+  position: relative;
   background: #3fb233;
   color: white;
   text-align: center;
   text-transform: uppercase;
   padding: 10px;
   font-weight: 700;
+}
+
+.exclusions {
+  @media (min-width: 992px) {
+    position: absolute;
+    right: 10px;
+    top: 12px
+  }
+  font-size: 11px;
 }
