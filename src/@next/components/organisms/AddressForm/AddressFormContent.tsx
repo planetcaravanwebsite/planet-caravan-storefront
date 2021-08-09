@@ -85,7 +85,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         <S.RowWithOneCell>
           <TextField
             name="streetAddress1"
-            label={intl.formatMessage({ defaultMessage: "Address line 1" })}
+            label={intl.formatMessage({
+              defaultMessage: "Address line 1 (We do not ship to PO Boxes)",
+            })}
             value={values!.streetAddress1}
             autoComplete="address-line1"
             errors={fieldErrors!.streetAddress1}
