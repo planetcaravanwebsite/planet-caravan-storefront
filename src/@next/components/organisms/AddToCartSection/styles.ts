@@ -11,6 +11,15 @@ export const ProductNameHeader = styled.h3`
   line-height: 2rem;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
+  @media (max-width: 540px) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 export const ProductPricing = styled.h4`
@@ -18,12 +27,30 @@ export const ProductPricing = styled.h4`
   font-size: 1.5rem;
   color: #999999;
   margin-bottom: ${props => props.theme.spacing.spacer};
+  @media (max-width: 540px) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 export const UndiscountedPrice = styled.span`
   text-decoration: line-through;
   color: ${props => props.theme.colors.baseFontColorSemiTransparent};
   font-size: ${props => props.theme.typography.smallFontSize};
+  @media (max-width: 540px) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 export const VariantPicker = styled.div`
@@ -44,6 +71,15 @@ export const QuantityInput = styled.div`
 
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
+  @media (max-width: 540px) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 export const DropsAt = styled.p`
