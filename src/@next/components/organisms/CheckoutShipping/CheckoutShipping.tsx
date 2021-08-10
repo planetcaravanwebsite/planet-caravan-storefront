@@ -24,11 +24,6 @@ const CheckoutShipping: React.FC<IProps> = ({
   const fedExDomestic = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        FedEx 2Day shipping should get your package there by the end of the
-        second second second second second second business day. Packages will
-        arrive by p.m. to areas and p.m. to residences
-      </li>
-      <li style={{ marginTop: "10px" }}>
         Any package over 645 cubic inches will ship via FedEx Home Delivery.
         Please see your tracking number for specifications
       </li>
@@ -39,6 +34,14 @@ const CheckoutShipping: React.FC<IProps> = ({
       <li style={{ marginTop: "10px" }}>
         Choose FedEx Priority Overnight® for a delivery in 1 or 2 days,
         depending on the area of delivery
+      </li>
+    </ul>
+  );
+  const inStore = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Available for pick up at 2826 Jefferson Ave Cincinnati OH during store
+        hours
       </li>
     </ul>
   );
@@ -103,6 +106,9 @@ const CheckoutShipping: React.FC<IProps> = ({
                 let shippingDisclaimer;
 
                 switch (id) {
+                  case "U2hpcHBpbmdNZXRob2Q6MTU=":
+                    shippingDisclaimer = inStore;
+                    break;
                   case "U2hpcHBpbmdNZXRob2Q6OA==":
                     shippingDisclaimer = fedExDomesticOvernight;
                     break;
