@@ -40,7 +40,8 @@ const CheckoutShipping: React.FC<IProps> = ({
   const inStore = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Available for pick up at 2826 Jefferson Ave Cincinnati OH during store hours
+        Available for pick up at 2826 Jefferson Ave Cincinnati OH during store
+        hours
       </li>
     </ul>
   );
