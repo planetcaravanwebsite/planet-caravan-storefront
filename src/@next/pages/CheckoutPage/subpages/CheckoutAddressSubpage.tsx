@@ -112,6 +112,12 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     email?: string,
     userAddressId?: string
   ) => {
+
+    // fix for the Netherlands capitalization
+    if (address?.country?.code === "NL") {
+      address.postalCode = address.postalCode?.toUpperCase();
+    }
+
     if (!address && !billingAsShippingState) {
       setShippingErrors([
         {
@@ -122,9 +128,9 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       ]);
       return;
     }
-    const pattern = new RegExp(/[Pp]\.?\s?[Oo]\.?\s*[Bb][Oo][Xx]/);
+    const patternPOBox = new RegExp(/[Pp]\.?\s?[Oo]\.?\s*[Bb][Oo][Xx]/);
     // @ts-ignore
-    if (address.streetAddress1 && address.streetAddress1.match(pattern)) {
+    if (address.streetAddress1 && address.streetAddress1.match(patternPOBox)) {
       setShippingErrors([
         {
           field: "streetAddress1",
@@ -135,7 +141,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       return;
     }
     // @ts-ignore
-    if (address.streetAddress2 && address.streetAddress2.match(pattern)) {
+    if (address.streetAddress2 && address.streetAddress2.match(patternPOBox)) {
       setShippingErrors([
         {
           field: "streetAddress2",
@@ -167,7 +173,6 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       shippingEmail
     );
     const errors = dataError?.error;
-    console.log(errors);
     if (errors) {
       setShippingErrors(errors);
 
