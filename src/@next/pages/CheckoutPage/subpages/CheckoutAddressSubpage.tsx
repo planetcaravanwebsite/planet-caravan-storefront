@@ -112,7 +112,6 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     email?: string,
     userAddressId?: string
   ) => {
-
     // fix for the Netherlands capitalization
     if (address?.country?.code === "NL") {
       address.postalCode = address.postalCode?.toUpperCase();
