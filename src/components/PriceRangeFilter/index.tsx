@@ -4,7 +4,9 @@ import * as React from "react";
 
 import "rsuite/dist/styles/rsuite-default.css";
 import { RangeSlider } from "rsuite";
+import ReactSlider from "react-slider";
 import { debounce } from "lodash";
+import styled from "styled-components";
 import { TextField } from "..";
 
 interface PriceRangeFilterProps {
@@ -37,6 +39,31 @@ class PriceRangeFilter extends React.Component<
     oldTo: null,
     maxVal: null,
   };
+
+  StyledSlider = styled(ReactSlider)`
+    width: 100%;
+    height: 25px;
+  `;
+
+  StyledThumb = styled.div`
+    height: 25px;
+    line-height: 25px;
+    width: 25px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    cursor: grab;
+  `;
+
+  StyledTrack = styled.div`
+    top: 0;
+    bottom: 0;
+    background: ${props =>
+      // @ts-ignore
+      props.index === 2 ? "#f00" : props.index === 1 ? "#0f0" : "#ddd"};
+    border-radius: 999px;
+  `;
 
   constructor(props) {
     super(props);
@@ -74,6 +101,12 @@ class PriceRangeFilter extends React.Component<
     }
   }
 
+  Thumb = (props, state) => (
+    <this.StyledThumb {...props}>{state.valueNow}</this.StyledThumb>
+  );
+
+  Track = (props, state) => <this.StyledTrack {...props} index={state.index} />;
+
   handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     this.setState({ active: true });
     event.stopPropagation();
@@ -109,12 +142,21 @@ class PriceRangeFilter extends React.Component<
 
   changeValueandTrigger(val) {
     if (this.compareStates(this.state.oldFrom, val[0])) {
+      console.log("changing from");
+      console.log("new state: %o", val[0]);
+      console.log("old to: %o", parseInt(String(this.props.to), 10));
+      if (val[0] > parseInt(String(this.props.to), 10)) {
+        console.log("not changing");
+        return;
+      }
+      console.log("changing default");
       const e = new Event("input", { bubbles: true });
       const input = document.querySelector("#fromInput");
       this.setNativeValue(input, val[0]);
       input.dispatchEvent(e);
       this.setState({ oldFrom: val[0] });
     } else if (this.compareStates(this.state.oldTo, val[1])) {
+      console.log("changing to");
       const e = new Event("input", { bubbles: true });
       const input = document.querySelector("#toInput");
       this.setNativeValue(input, val[1]);
@@ -133,6 +175,19 @@ class PriceRangeFilter extends React.Component<
         onClick={this.handleClick}
       >
         <p className="p_heading">Price Filter</p>
+
+        <this.StyledSlider
+          // @ts-ignore
+          defaultValue={[0, this.state.maxVal]}
+          max={this.state.maxVal}
+          onChange={(value, index) => {
+            console.log(value);
+            this.changeValueandTrigger(value);
+          }}
+          renderTrack={this.Track}
+          renderThumb={this.Thumb}
+        />
+
         <RangeSlider
           progress
           barClassName="styledSlider"
@@ -149,14 +204,28 @@ class PriceRangeFilter extends React.Component<
           id="fromInput"
           type="number"
           placeholder="From"
-          onChange={event => onChange("priceGte", event.target.value as any)}
+          onChange={event => {
+            // @ts-ignore
+            if (parseInt(event.target.value, 10) > parseInt(to, 10)) {
+              onChange("priceGte", event.target.value as any);
+              return;
+            }
+            onChange("priceGte", event.target.value as any);
+          }}
           value={this.state.newFrom}
         />
         <TextField
           id="toInput"
           type="number"
           placeholder="To"
-          onChange={event => onChange("priceLte", event.target.value as any)}
+          onChange={event => {
+            // @ts-ignore
+            if (parseInt(from, 10) > parseInt(event.target.value, 10)) {
+              // onChange("priceGte", event.target.value as any);
+              return;
+            }
+            onChange("priceLte", event.target.value as any);
+          }}
           value={this.state.newTo}
         />
       </div>
