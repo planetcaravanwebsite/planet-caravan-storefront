@@ -5,8 +5,6 @@ import * as React from "react";
 import PriceRangeFilter from "../PriceRangeFilter";
 // import SelectField, { SelectValue } from "../SelectField";
 
-import "rsuite/dist/styles/rsuite-default.css";
-
 export interface AttributeList {
   [attributeSlug: string]: string[];
 }

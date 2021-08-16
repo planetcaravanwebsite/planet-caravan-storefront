@@ -2,8 +2,6 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import "rsuite/dist/styles/rsuite-default.css";
-import { RangeSlider } from "rsuite";
 import ReactSlider from "react-slider";
 import { debounce } from "lodash";
 import styled from "styled-components";
@@ -43,17 +41,23 @@ class PriceRangeFilter extends React.Component<
   StyledSlider = styled(ReactSlider)`
     width: 100%;
     height: 25px;
+    margin-bottom: 14px;
   `;
 
   StyledThumb = styled.div`
-    height: 25px;
-    line-height: 25px;
-    width: 25px;
+    top: -5px;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    font-size: 13px;
     text-align: center;
-    background-color: #000;
+    background-color: #002646;
     color: #fff;
     border-radius: 50%;
     cursor: grab;
+    &:focus {
+      outline: none;
+    }
   `;
 
   StyledTrack = styled.div`
@@ -61,7 +65,7 @@ class PriceRangeFilter extends React.Component<
     bottom: 0;
     background: ${props =>
       // @ts-ignore
-      props.index === 2 ? "#f00" : props.index === 1 ? "#0f0" : "#ddd"};
+      props.index === 2 ? "#ddd" : props.index === 1 ? "#88ddff" : "#ddd"};
     border-radius: 999px;
   `;
 
@@ -186,18 +190,6 @@ class PriceRangeFilter extends React.Component<
           }}
           renderTrack={this.Track}
           renderThumb={this.Thumb}
-        />
-
-        <RangeSlider
-          progress
-          barClassName="styledSlider"
-          style={{ marginTop: 16 }}
-          defaultValue={[from, to]}
-          max={this.state.maxVal}
-          onChange={value => {
-            // console.log(value);
-            this.changeValueandTrigger(value);
-          }}
         />
 
         <TextField
