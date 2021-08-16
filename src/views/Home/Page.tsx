@@ -6,7 +6,7 @@ import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import logoImg from "../../images/pc-logo.png";
 
-import { HomePageSearch, ProductsFeatured } from "../../components";
+import { HomePageSearch, ProductsFeatured, TakeShapeCMS } from "../../components";
 // import { generateCategoryUrl } from "../../core/utils";
 
 import {
@@ -72,6 +72,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <TakeShapeCMS></TakeShapeCMS>
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />

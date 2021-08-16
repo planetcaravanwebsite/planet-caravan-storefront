@@ -23,6 +23,7 @@ export { default as TextField } from "./TextField";
 export { default as AddressSummary } from "./AddressSummary";
 export { CartTable } from "./CartTable";
 export { default as ProductsFeatured } from "./ProductsFeatured";
+export { default as TakeShapeCMS } from "./TakeShapeCMS";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {
   default as Breadcrumbs,
