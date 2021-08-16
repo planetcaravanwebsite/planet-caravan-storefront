@@ -145,26 +145,43 @@ class PriceRangeFilter extends React.Component<
   }
 
   changeValueandTrigger(val) {
-    if (this.compareStates(this.state.oldFrom, val[0])) {
+    const e = new Event("input", { bubbles: true });
+    const inputFrom = document.querySelector("#fromInput");
+    const inputTo = document.querySelector("#toInput");
+
+    /* console.log(this.state.oldFrom);
+    console.log(val[0]);
+
+    console.log(this.compareStates(this.state.oldFrom, val[0]));
+
+    console.log(this.state.oldTo);
+    console.log(val[1]);
+
+    console.log(this.compareStates(this.state.oldTo, val[1])); */
+
+    if (!this.state.oldTo && val[1] < this.state.maxVal) {
+      console.log("changing TO from default");
+      this.setNativeValue(inputTo, val[1]);
+      inputTo.dispatchEvent(e);
+      this.setState({ oldTo: val[1] });
+    } else if (!this.state.oldFrom && val[0] > 0) {
+      console.log("changing FROM from default");
+      this.setNativeValue(inputFrom, val[0]);
+      inputFrom.dispatchEvent(e);
+      this.setState({ oldFrom: val[0] });
+    } else if (this.compareStates(this.state.oldFrom, val[0])) {
       console.log("changing from");
-      console.log("new state: %o", val[0]);
-      console.log("old to: %o", parseInt(String(this.props.to), 10));
-      if (val[0] > parseInt(String(this.props.to), 10)) {
+      /* if (val[0] > parseInt(String(this.props.to), 10)) {
         console.log("not changing");
         return;
-      }
-      console.log("changing default");
-      const e = new Event("input", { bubbles: true });
-      const input = document.querySelector("#fromInput");
-      this.setNativeValue(input, val[0]);
-      input.dispatchEvent(e);
+      } */
+      this.setNativeValue(inputFrom, val[0]);
+      inputFrom.dispatchEvent(e);
       this.setState({ oldFrom: val[0] });
     } else if (this.compareStates(this.state.oldTo, val[1])) {
       console.log("changing to");
-      const e = new Event("input", { bubbles: true });
-      const input = document.querySelector("#toInput");
-      this.setNativeValue(input, val[1]);
-      input.dispatchEvent(e);
+      this.setNativeValue(inputTo, val[1]);
+      inputTo.dispatchEvent(e);
       this.setState({ oldTo: val[1] });
     }
   }
@@ -185,7 +202,7 @@ class PriceRangeFilter extends React.Component<
           defaultValue={[0, this.state.maxVal]}
           max={this.state.maxVal}
           onChange={(value, index) => {
-            console.log(value);
+            // console.log(value);
             this.changeValueandTrigger(value);
           }}
           renderTrack={this.Track}
