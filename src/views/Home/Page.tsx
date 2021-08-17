@@ -72,7 +72,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      <TakeShape></TakeShape>
+      <TakeShape />
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
