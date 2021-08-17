@@ -63,9 +63,7 @@ class PriceRangeFilter extends React.Component<
   StyledTrack = styled.div`
     top: 0;
     bottom: 0;
-    background: ${props =>
-      // @ts-ignore
-      props.index === 2 ? "#ddd" : props.index === 1 ? "#ddd" : "#ddd"}; // #88ddff
+    background: #ddd;
     border-radius: 999px;
   `;
 
@@ -74,7 +72,7 @@ class PriceRangeFilter extends React.Component<
     // this.state.newFrom = this.props.from;
     // this.state.newTo = this.props.to;
     console.log(this.props.max);
-    let maxVal = (this.props.max);
+    let maxVal = this.props.max;
     if (maxVal < 200) {
       maxVal = 200;
     }
