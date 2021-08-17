@@ -60,7 +60,7 @@ interface PageProps {
   currentPage: number;
   loadNextPage: () => void;
   loadPrevPage: () => void;
-  max: number;
+  max: any;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -88,6 +88,7 @@ const Page: React.FC<PageProps> = ({
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
+  const [maximumValue, setMaximumValue] =  useState(0);
 
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   const [productData, setProductData] = useState();
@@ -115,10 +116,21 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
 
   // @ts-ignore
-  let maxVal = (max ? max.node.pricing.priceRange.start.net.amount : null);
+  console.log(maximumValue);
+
+  console.log(max? max.node.pricing.priceRange.start.net.amount : 'not def');
+  let maxVal = (max?.node.pricing.priceRange.start.net.amount);
+
   if (maxVal < 200) {
     maxVal = 200;
   }
+
+  if (maxVal > maximumValue) {
+    setMaximumValue(maxVal);
+  }
+
+  // console.log(maxVal);
+  // console.log(max);
 
   // @ts-ignore
 /*  let sorted = products.products.edges;
@@ -437,7 +449,7 @@ query CategoryProductsNew(
                       products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
                       // @ts-ignore
-                      max={maxVal}
+                      max={maximumValue}
                     />
 
                     <ProductListHeader

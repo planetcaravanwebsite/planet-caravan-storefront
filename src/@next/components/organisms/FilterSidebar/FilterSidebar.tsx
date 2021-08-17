@@ -77,6 +77,7 @@ export const FilterSidebar: React.FC<IProps> = ({
     return hasProducts;
   };
 
+  // console.log(max);
   return (
     <Overlay
       duration={0}

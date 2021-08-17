@@ -65,7 +65,7 @@ class PriceRangeFilter extends React.Component<
     bottom: 0;
     background: ${props =>
       // @ts-ignore
-      props.index === 2 ? "#ddd" : props.index === 1 ? "#88ddff" : "#ddd"};
+      props.index === 2 ? "#ddd" : props.index === 1 ? "#ddd" : "#ddd"}; // #88ddff
     border-radius: 999px;
   `;
 
@@ -73,11 +73,16 @@ class PriceRangeFilter extends React.Component<
     super(props);
     // this.state.newFrom = this.props.from;
     // this.state.newTo = this.props.to;
-    this.state.maxVal = this.props.max || 1000;
+    console.log(this.props.max);
+    let maxVal = (this.props.max);
+    if (maxVal < 200) {
+      maxVal = 200;
+    }
+    this.state.maxVal = maxVal || 1000;
     console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(
       this.changeValueandTrigger.bind(this),
-      500
+      250
     );
   }
 
