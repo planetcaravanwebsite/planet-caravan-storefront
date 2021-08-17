@@ -73,7 +73,7 @@ class PriceRangeFilter extends React.Component<
     super(props);
     // this.state.newFrom = this.props.from;
     // this.state.newTo = this.props.to;
-    this.state.maxVal = this.props.max || 200;
+    this.state.maxVal = this.props.max || 1000;
     console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(
       this.changeValueandTrigger.bind(this),
