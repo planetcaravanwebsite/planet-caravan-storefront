@@ -281,9 +281,18 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       // @ts-ignore
       console.log(maxVal.node.pricing.priceRange.start.net.amount);
       // @ts-ignore
-      if (!sessionStorage.getItem(variables.id) || maxVal.node.pricing.priceRange.start.net.amount > sessionStorage.getItem(variables.id)) {
+      if (
+        !sessionStorage.getItem(variables.id) ||
+        // @ts-ignore
+        maxVal.node.pricing.priceRange.start.net.amount >
+          sessionStorage.getItem(variables.id)
+      ) {
         console.log("setting session storage var");
-        sessionStorage.setItem(variables.id, maxVal.node.pricing.priceRange.start.net.amount);
+        sessionStorage.setItem(
+          variables.id,
+          // @ts-ignore
+          maxVal.node.pricing.priceRange.start.net.amount
+        );
       }
       console.log(
         "session storage for: %o: %o",
