@@ -86,7 +86,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   const intl = useIntl();
   const [itemId, setItemId] = useState();
 
-  // console.log(priceFilters.priceGte[0]);
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
     API_URL += "?cache_bust=1";
@@ -126,8 +125,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const onFiltersChange = (name, value) => {
     clearPageData();
-
-    console.log("filters change - use regular max");
 
     if (name === "priceLte") {
       setPriceLte(value);
@@ -178,10 +175,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   variables.pageSize = 100;
-  // console.log(filters);
-
-  // console.log(variables.id);
-  // console.log(itemId);
 
   const pd = sessionStorage.getItem("pageData");
   if (pd && window.location.hash.length > 1) {
@@ -203,7 +196,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const queryPricingData = async () => {
     if (variables.id !== itemId) {
-      console.log("chaning item it!!!");
       // @ts-ignore
       setItemId(variables.id);
       // @ts-ignore
@@ -211,8 +203,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       setPriceLte(variables.priceLte);
     }
 
-    // console.log("run query");
-    // console.log(variables.priceLte);
     const query = JSON.stringify({
       query: `
       query ProductPrices(
@@ -290,19 +280,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
         maxVal.node.pricing.priceRange.start.net.amount >
           sessionStorage.getItem(variables.id)
       ) {
-        console.log("setting session storage var");
         sessionStorage.setItem(
           variables.id,
           // @ts-ignore
           maxVal.node.pricing.priceRange.start.net.amount
         );
       }
-
-      console.log(
-        "session storage for: %o: %o",
-        variables.id,
-        sessionStorage.getItem(variables.id)
-      );
 
       if (
         !pricingData ||
@@ -320,7 +303,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   useEffect(() => {
-    // console.log(itemId);
     console.log("use effect");
   }, [itemId]);
 

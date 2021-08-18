@@ -172,6 +172,11 @@ class PriceRangeFilter extends React.Component<
       this.setNativeValue(inputFrom, val[0]);
       inputFrom.dispatchEvent(e);
       this.setState({ oldFrom: val[0] });
+    } else if (this.compareStates(this.state.oldTo, val[1])) {
+      console.log("changing to");
+      this.setNativeValue(inputTo, val[1]);
+      inputTo.dispatchEvent(e);
+      this.setState({ oldTo: val[1] });
     } else if (this.compareStates(this.state.oldFrom, val[0])) {
       console.log("changing from");
       /* if (val[0] > parseInt(String(this.props.to), 10)) {
@@ -181,11 +186,6 @@ class PriceRangeFilter extends React.Component<
       this.setNativeValue(inputFrom, val[0]);
       inputFrom.dispatchEvent(e);
       this.setState({ oldFrom: val[0] });
-    } else if (this.compareStates(this.state.oldTo, val[1])) {
-      console.log("changing to");
-      this.setNativeValue(inputTo, val[1]);
-      inputTo.dispatchEvent(e);
-      this.setState({ oldTo: val[1] });
     }
   }
 

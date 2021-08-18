@@ -53,7 +53,6 @@ export const FilterSidebar: React.FC<IProps> = ({
       if (hasProducts) {
         return false; // break
       }
-      // console.log(product);
       if (!product.attributes) {
         return false;
       }
@@ -77,7 +76,6 @@ export const FilterSidebar: React.FC<IProps> = ({
     return hasProducts;
   };
 
-  // console.log(max);
   return (
     <Overlay
       duration={0}
