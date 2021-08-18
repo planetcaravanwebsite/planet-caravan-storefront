@@ -82,6 +82,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   );
   // @ts-ignore
   const [max, setMax] = useState();
+  const [priceLte, setPriceLte] = useState(null);
   const intl = useIntl();
   const [itemId, setItemId] = useState();
 
@@ -127,6 +128,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     clearPageData();
 
     console.log("filters change - use regular max");
+
+    if (name === "priceLte") {
+      setPriceLte(value);
+    }
 
     if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
@@ -203,7 +208,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       setItemId(variables.id);
       // @ts-ignore
       variables.priceLte = sessionStorage.getItem(variables.id);
-      console.log(variables.priceLte);
+      setPriceLte(variables.priceLte);
     }
 
     // console.log("run query");
@@ -279,8 +284,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       // @ts-ignore
       setMax(maxVal);
       // @ts-ignore
-      console.log(maxVal.node.pricing.priceRange.start.net.amount);
-      // @ts-ignore
       if (
         !sessionStorage.getItem(variables.id) ||
         // @ts-ignore
@@ -294,6 +297,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           maxVal.node.pricing.priceRange.start.net.amount
         );
       }
+
       console.log(
         "session storage for: %o: %o",
         variables.id,
@@ -365,12 +369,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
         >
           {category => {
             fetchPricing();
-
-            // Make sure the scoped variable matches the possibly updated
-            // value in the global variable.
-            variables.priceLte = parseFloat(
-              sessionStorage.getItem(variables.id)
-            );
+            variables.priceLte = priceLte;
 
             return (
               <TypedCategoryProductsQueryNew
