@@ -7,7 +7,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -80,8 +80,11 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  // @ts-ignore
   const [max, setMax] = useState();
   const intl = useIntl();
+  const [itemId, setItemId] = useState();
+
   // console.log(priceFilters.priceGte[0]);
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
@@ -122,6 +125,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const onFiltersChange = (name, value) => {
     clearPageData();
+
+    console.log("filters change - use regular max");
 
     if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
@@ -168,6 +173,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   variables.pageSize = 100;
+  // console.log(filters);
+
+  // console.log(variables.id);
+  // console.log(itemId);
 
   const pd = sessionStorage.getItem("pageData");
   if (pd && window.location.hash.length > 1) {
@@ -188,6 +197,17 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   }
 
   const queryPricingData = async () => {
+    if (variables.id !== itemId) {
+      console.log("chaning item it!!!");
+      // @ts-ignore
+      setItemId(variables.id);
+      // @ts-ignore
+      variables.priceLte = sessionStorage.getItem(variables.id);
+      console.log(variables.priceLte);
+    }
+
+    // console.log("run query");
+    // console.log(variables.priceLte);
     const query = JSON.stringify({
       query: `
       query ProductPrices(
@@ -258,6 +278,19 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       });
       // @ts-ignore
       setMax(maxVal);
+      // @ts-ignore
+      console.log(maxVal.node.pricing.priceRange.start.net.amount);
+      // @ts-ignore
+      if (!sessionStorage.getItem(variables.id) || maxVal.node.pricing.priceRange.start.net.amount > sessionStorage.getItem(variables.id)) {
+        console.log("setting session storage var");
+        sessionStorage.setItem(variables.id, maxVal.node.pricing.priceRange.start.net.amount);
+      }
+      console.log(
+        "session storage for: %o: %o",
+        variables.id,
+        sessionStorage.getItem(variables.id)
+      );
+
       if (
         !pricingData ||
         // @ts-ignore
@@ -272,6 +305,11 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     }
     return true;
   };
+
+  useEffect(() => {
+    // console.log(itemId);
+    console.log("use effect");
+  }, [itemId]);
 
   const handleRefresh = () => {};
 
@@ -407,7 +445,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                               ? Object.keys(filters!.attributes).length
                               : 0
                           }
-                          max={max}
+                          max={sessionStorage.getItem(variables.id)}
                           onOrder={value => {
                             setSort(value.value);
                           }}

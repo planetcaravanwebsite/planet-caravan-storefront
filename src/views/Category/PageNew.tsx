@@ -116,10 +116,12 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
 
   // @ts-ignore
-  console.log(maximumValue);
+  // console.log(maximumValue);
 
-  console.log(max? max.node.pricing.priceRange.start.net.amount : 'not def');
-  let maxVal = (max?.node.pricing.priceRange.start.net.amount);
+  // console.log(max? max.node.pricing.priceRange.start.net.amount : 'not def');
+  // console.log(" ");
+
+  let maxVal = max;
 
   if (maxVal < 200) {
     maxVal = 200;
@@ -128,6 +130,8 @@ const Page: React.FC<PageProps> = ({
   if (maxVal > maximumValue) {
     setMaximumValue(maxVal);
   }
+
+  variables.priceLte = null;
 
   // console.log(maxVal);
   // console.log(max);
@@ -215,6 +219,7 @@ const Page: React.FC<PageProps> = ({
   }
 
   const queryAllProducts = async () => {
+    console.log(variables);
     const query = JSON.stringify({
       query: `
 query CategoryProductsNew(
