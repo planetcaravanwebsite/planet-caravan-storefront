@@ -364,7 +364,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {category => {
-            return fetchPricing() ? (
+            
+            fetchPricing();
+
+            // Make sure the scoped variable matches the possibly updated
+            // value in the global variable.
+            variables.priceLte = parseFloat(sessionStorage.getItem(variables.id));
+
+            return (
               <TypedCategoryProductsQueryNew
                 variables={variables}
                 errorPolicy="all"
@@ -477,7 +484,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   );
                 }}
               </TypedCategoryProductsQueryNew>
-            ) : null;
+            )
           }}
         </TypedCategoryProductsDataQuery>
       )}
