@@ -116,9 +116,9 @@ module.exports = ({ sourceDir, distDir }) => ({
     new webpack.EnvironmentPlugin({
       TAKESHAPE_ENDPOINT:
         process.env.TAKESHAPE_ENDPOINT ||
-        "https://api.takeshape.io/project/ee81e0e3-5742-4b4e-bf39-85c8bbc21b9d/v3/graphql",
+        "https://api.takeshape.io/project/abf15925-b846-4d3d-abb9-81ce77e02155/v3/graphql", // "https://api.takeshape.io/project/ee81e0e3-5742-4b4e-bf39-85c8bbc21b9d/v3/graphql",
       TAKESHAPE_KEY:
-        process.env.TAKESHAPE_KEY || "f8d80077c75d417da84ea1cff7060fd0",
+        process.env.TAKESHAPE_KEY || "1c6c30ebe8874e05a7880087a8f62893", // "f8d80077c75d417da84ea1cff7060fd0",
       API_URI:
         process.env.API_URI ||
         "https://planet-caravan-backend.herokuapp.com/graphql/",
