@@ -28,6 +28,8 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   onPriceChange,
   max,
 }) => {
+  console.log(filters.priceGte);
+  console.log(filters.priceLte);
   return (
     <div className="product-filters">
       <PriceRangeFilter

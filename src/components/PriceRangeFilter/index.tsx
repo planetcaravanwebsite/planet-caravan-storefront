@@ -21,6 +21,8 @@ interface PriceRangeFilterState {
   oldFrom: number;
   oldTo: number;
   maxVal: number;
+  myFrom: number;
+  myTo: number;
 }
 
 class PriceRangeFilter extends React.Component<
@@ -36,6 +38,8 @@ class PriceRangeFilter extends React.Component<
     oldFrom: null,
     oldTo: null,
     maxVal: null,
+    myFrom: null,
+    myTo: null,
   };
 
   StyledSlider = styled(ReactSlider)`
@@ -71,13 +75,20 @@ class PriceRangeFilter extends React.Component<
     super(props);
     // this.state.newFrom = this.props.from;
     // this.state.newTo = this.props.to;
-    console.log(this.props.max);
+    // console.log(this.props.max);
     let maxVal = this.props.max;
     if (maxVal < 200) {
       maxVal = 200;
     }
     this.state.maxVal = maxVal || 1000;
-    console.log(this.state.maxVal);
+
+    const from = this.props.from || 120;
+    this.state.myFrom = from;
+
+    const to = this.props.to || 10000;
+    this.state.myTo = to || 10000;
+
+    // console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(
       this.changeValueandTrigger.bind(this),
       250
@@ -192,6 +203,10 @@ class PriceRangeFilter extends React.Component<
   render() {
     const { from, onChange, to } = this.props;
 
+    console.log(this.state.myFrom);
+    console.log(this.state.myTo);
+    console.log(this.state.maxVal);
+
     return (
       <div
         className="price-filter"
@@ -202,7 +217,7 @@ class PriceRangeFilter extends React.Component<
 
         <this.StyledSlider
           // @ts-ignore
-          defaultValue={[0, this.state.maxVal]}
+          defaultValue={[this.state.myFrom, this.state.myTo]}
           max={this.state.maxVal}
           onChange={(value, index) => {
             // console.log(value);
@@ -219,7 +234,7 @@ class PriceRangeFilter extends React.Component<
           onChange={event => {
             // @ts-ignore
             if (parseInt(event.target.value, 10) > parseInt(to, 10)) {
-              onChange("priceGte", event.target.value as any);
+              // onChange("priceGte", event.target.value as any);
               return;
             }
             onChange("priceGte", event.target.value as any);
