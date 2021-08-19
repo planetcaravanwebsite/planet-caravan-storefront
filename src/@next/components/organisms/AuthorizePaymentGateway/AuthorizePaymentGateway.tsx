@@ -77,17 +77,27 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
 
     const secureData = { authData, cardData };
 
+    const promiseTimeout = function (time: number) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve(time);
+        }, time);
+      });
+    };
+
     return Accept.dispatchData(secureData)
       .then(response => {
-        processPayment(response.opaqueData?.dataValue, {
-          brand: "",
-          firstDigits: null,
-          lastDigits: "",
-          expMonth: null,
-          expYear: null,
-        });
+        promiseTimeout(1500).then(function () {
+          processPayment(response.opaqueData?.dataValue, {
+            brand: "",
+            firstDigits: null,
+            lastDigits: "",
+            expMonth: null,
+            expYear: null,
+          });
 
-        return response;
+          return response;
+        });
       })
       .catch(response => {
         // console.log(response);
