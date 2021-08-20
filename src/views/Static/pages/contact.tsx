@@ -1,7 +1,7 @@
 import "../scss/index.scss";
 import * as React from "react";
-
 import { styled } from "@styles";
+import { TakeShape } from "../../../components";
 
 export const Primary = styled.button`
   background-color: #66b1e1;
@@ -43,24 +43,7 @@ export const Contact: React.FC<any> = () => {
     <>
       <div className="container">
         <div className="contact-page">
-          <h1>Contact Us</h1>
-
-          <h2>There are a few ways you can contact us:</h2>
-          <a href="mailto:planetcaravanwebsite@gmail.com">
-            planetcaravanwebsite@gmail.com
-          </a>
-          <p>
-            Call/Text Everyday 9AM-10PM EST:
-            <br className="onlyMobile" />
-            <a href="tel:513447448">(513) 444-7448</a>
-          </p>
-          <p className="margin-bottom-small">
-            <b>
-              Note: Phone lines are busy every day at 7:10PM EST for Instagram
-              Lives. Please leave us a voicemail if there is no one available to
-              take your call.
-            </b>
-          </p>
+          <TakeShape position="contact" />
 
           <form
             action="https://formcarry.com/s/ydBVqqih4q"
