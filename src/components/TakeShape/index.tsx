@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from "react";
 
-import { styled } from "@styles";
+import { TakeShapeLocations } from "./locations";
 
-export interface TakeShapeInterface {}
+export interface TakeShapeInterface {
+  position: any;
+}
 
-export const Title = styled.h1`
-  color: red;
-  font-size: 1.2rem;
-  line-height: 2;
-  font-weight: bold;
-`;
-
-export const TakeShape: React.FC<TakeShapeInterface> = () => {
+export const TakeShape: React.FC<TakeShapeInterface> = position => {
   const [isFetched, setIsFetched] = useState(false);
   const [dynamicContent, setDynamicContent] = useState();
 
-  const queryData = async () => {
-    const query = JSON.stringify({
-      query: `
+  const locationsQuery = JSON.stringify({
+    query: `
         {
-          getPostList{items{bodyHtml}}
+          getLocations {
+            _id
+            locations {
+              location {
+                googleMapEmbedCode
+                leftBlock
+                name
+                rightBlock
+              }
+            }
+            title
+          }
         }
       `,
-    });
+  });
+
+  const queryData = async () => {
+    let query;
+
+    if (position.position === "locations") {
+      query = locationsQuery;
+    }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
       headers: {
@@ -54,20 +66,16 @@ export const TakeShape: React.FC<TakeShapeInterface> = () => {
     return () => (mounted = false);
   }, [isFetched]);
 
-  return (
-    <div>
-      <Title>Dynamic Data:</Title>
-      {
-        // @ts-ignore
-        dynamicContent?.getPostList.items.map((item, idx) => (
-          <li
-            key={idx}
-            dangerouslySetInnerHTML={{
-              __html: item.bodyHtml,
-            }}
-          />
-        ))
-      }
-    </div>
-  );
+  if (!dynamicContent) {
+    return null;
+  }
+
+  if (position.position === "locations") {
+    return (
+      <>
+        <TakeShapeLocations content={dynamicContent} />
+      </>
+    );
+  }
+  return <></>;
 };
