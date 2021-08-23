@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
+import { TakeShapeTopBanner } from "./topBanner";
 
 export interface TakeShapeInterface {
   position: any;
@@ -57,6 +58,25 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       `,
   });
 
+  const menuQuery = JSON.stringify({
+    query: `
+        {
+        getSiteSettings {
+          _id
+          helloBars {
+            topBar {
+              disclaimer
+              display
+              headline
+            }
+          }
+        }
+}
+
+
+      `,
+  });
+
   const queryData = async () => {
     let query;
 
@@ -70,6 +90,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
     if (position.position === "about") {
       query = aboutQuery;
+    }
+
+    if (position.position === "topBanner") {
+      query = menuQuery;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -124,6 +148,13 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeAbout content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "topBanner") {
+    return (
+      <>
+        <TakeShapeTopBanner content={dynamicContent} />
       </>
     );
   }
