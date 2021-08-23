@@ -5,6 +5,10 @@ export interface TakeShapeTopBannerInterface {
 }
 
 export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content => {
+  if (!content.content.getSiteSettings.helloBars.topBar.display) {
+    return <></>;
+  }
+
   return (
     <>
       <div className="coupon-bar-home">
