@@ -99,8 +99,7 @@ const CheckoutAddress: React.FC<IProps> = ({
                   setBillingAsShippingAddress(!billingAsShippingAddress)
                 }
               >
-
-                  <FormattedMessage defaultMessage="Same as shipping address" />
+                <FormattedMessage defaultMessage="Same as shipping address" />
               </Checkbox>
             </S.MTop>
           )}
