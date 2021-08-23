@@ -96,7 +96,7 @@ const Page: React.FC<
         >
           @planetcaravandrops
         </a>
-        . DMs are open daily from 9am-10pm EST
+        . DMs are open daily from 9am-9pm EST
       </div>
     </div>
   );
