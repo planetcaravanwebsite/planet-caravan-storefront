@@ -83,20 +83,26 @@ const CheckoutAddress: React.FC<IProps> = ({
       )}
       {checkoutShippingAddress && (
         <section>
-          <S.Title data-test="checkoutPageSubtitle">
+          <S.TitleInline data-test="checkoutPageSubtitle">
             <FormattedMessage {...checkoutMessages.billingAddress} />
-          </S.Title>
+          </S.TitleInline>
+          <S.SubTitle data-test="checkoutPageSubtitle">
+            (The address associated with your credit card)
+          </S.SubTitle>
           {shippingAddressRequired && (
-            <Checkbox
-              data-test="checkoutAddressBillingAsShippingCheckbox"
-              name="billing-same-as-shipping"
-              checked={billingAsShippingAddress}
-              onChange={() =>
-                setBillingAsShippingAddress(!billingAsShippingAddress)
-              }
-            >
-              <FormattedMessage defaultMessage="Same as shipping address" />
-            </Checkbox>
+            <S.MTop>
+              <Checkbox
+                data-test="checkoutAddressBillingAsShippingCheckbox"
+                name="billing-same-as-shipping"
+                checked={billingAsShippingAddress}
+                onChange={() =>
+                  setBillingAsShippingAddress(!billingAsShippingAddress)
+                }
+              >
+
+                  <FormattedMessage defaultMessage="Same as shipping address" />
+              </Checkbox>
+            </S.MTop>
           )}
           {!billingAsShippingAddress && (
             <>
