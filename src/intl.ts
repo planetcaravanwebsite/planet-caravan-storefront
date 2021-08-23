@@ -146,7 +146,7 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "Review",
   },
   addressNextActionName: {
-    defaultMessage: "Continue to Billing",
+    defaultMessage: "Continue",
   },
   shippingNextActionName: {
     defaultMessage: "Continue to Payment",
