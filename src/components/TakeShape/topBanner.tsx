@@ -18,7 +18,9 @@ export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content
               .text
           }
         </b>
-        <div className="exclusions">{content.content.getSiteSettings.helloBars.topBar.disclaimer}</div>
+        <div className="exclusions">
+          {content.content.getSiteSettings.helloBars.topBar.disclaimer}
+        </div>
       </div>
     </>
   );
