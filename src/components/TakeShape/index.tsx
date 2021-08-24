@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { TakeShapeBrandsFooter } from "@temp/components/TakeShape/brandsFooter";
 import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
@@ -72,8 +73,34 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
           }
         }
 }
+      `,
+  });
 
-
+  const brandsQuery = JSON.stringify({
+    query: `
+        {
+    getSiteSettings {
+    _id
+    brands {
+      brand {
+        imageAltTag
+        linkUrl
+        logo {
+          _id
+          caption
+          credit
+          description
+          filename
+          mimeType
+          path
+          sourceUrl
+          title
+          uploadStatus
+        }
+      }
+    }
+  }
+  }
       `,
   });
 
@@ -94,6 +121,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
     if (position.position === "topBanner") {
       query = menuQuery;
+    }
+
+    if (position.position === "brandsFooter") {
+      query = brandsQuery;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -155,6 +186,13 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeTopBanner content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "brandsFooter") {
+    return (
+      <>
+        <TakeShapeBrandsFooter content={dynamicContent} />
       </>
     );
   }

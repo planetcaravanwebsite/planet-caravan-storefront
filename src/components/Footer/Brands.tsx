@@ -2,7 +2,7 @@ import * as React from "react";
 import Slider from "react-slick";
 
 import "./scss/index.scss";
-import { BRANDS } from "../../core/config";
+import { TakeShape } from "../TakeShape";
 
 const settings = {
   dots: false,
@@ -44,13 +44,7 @@ class Brands extends React.PureComponent {
           <div className="footer-nav__section-content">
             <div style={{ maxWidth: "600px", margin: "0 auto" }}>
               <Slider {...settings}>
-                {BRANDS.map((brand, i) => (
-                  <span className="footer-nav__section-logo" key={i}>
-                    <a href={brand.target}>
-                      <img src={brand.path} alt={brand.name} />
-                    </a>
-                  </span>
-                ))}
+                <TakeShape position="brandsFooter" />
               </Slider>
             </div>
           </div>
