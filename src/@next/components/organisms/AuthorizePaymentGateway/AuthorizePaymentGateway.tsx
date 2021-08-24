@@ -87,7 +87,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
 
     return Accept.dispatchData(secureData)
       .then(response => {
-        promiseTimeout(1500).then(function () {
+        promiseTimeout(2000).then(function () {
           processPayment(response.opaqueData?.dataValue, {
             brand: "",
             firstDigits: null,
