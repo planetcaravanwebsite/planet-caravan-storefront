@@ -48,7 +48,7 @@ export const TakeShapeBrandsFooter: React.FC<TakeShapeBrandsFooterInterface> = c
                 <span className="footer-nav__section-logo" key={i}>
                   <a href={brand.brand.linkUrl}>
                     <img
-                      src={`https://images.takeshape.io/${brand.brand.logo.path}`}
+                      src={`https://images.takeshape.io/${brand.brand.logo?.path}`}
                       alt={brand.brand.imageAltTag}
                     />
                   </a>
