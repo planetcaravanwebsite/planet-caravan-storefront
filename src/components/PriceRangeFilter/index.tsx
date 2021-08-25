@@ -18,8 +18,6 @@ interface PriceRangeFilterState {
   active: boolean;
   newFrom: number;
   newTo: number;
-  oldFrom: number;
-  oldTo: number;
   maxVal: number;
   myFrom: number;
   myTo: number;
@@ -35,8 +33,6 @@ class PriceRangeFilter extends React.Component<
     active: false,
     newFrom: null,
     newTo: null,
-    oldFrom: null,
-    oldTo: null,
     maxVal: null,
     myFrom: null,
     myTo: null,
@@ -73,20 +69,18 @@ class PriceRangeFilter extends React.Component<
 
   constructor(props) {
     super(props);
-    // this.state.newFrom = this.props.from;
-    // this.state.newTo = this.props.to;
-    // console.log(this.props.max);
+
     let maxVal = this.props.max;
     if (maxVal < 200) {
       maxVal = 200;
     }
     this.state.maxVal = maxVal || 1000;
 
-    const from = this.props.from || 120;
+    const from = this.props.from || 0;
     this.state.myFrom = from;
 
     const to = this.props.to || 10000;
-    this.state.myTo = to || 10000;
+    this.state.myTo = to;
 
     // console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(
@@ -163,49 +157,29 @@ class PriceRangeFilter extends React.Component<
     const inputFrom = document.querySelector("#fromInput");
     const inputTo = document.querySelector("#toInput");
 
-    /* console.log(this.state.oldFrom);
-    console.log(val[0]);
+    const low = val[0] < val[1] ? val[0] : val[1];
+    let high = val[0] > val[1] ? val[0] : val[1];
 
-    console.log(this.compareStates(this.state.oldFrom, val[0]));
+    if (high > this.state.maxVal) high = this.state.maxVal;
 
-    console.log(this.state.oldTo);
-    console.log(val[1]);
+    this.setNativeValue(inputFrom, low);
+    inputFrom.dispatchEvent(e);
 
-    console.log(this.compareStates(this.state.oldTo, val[1])); */
+    this.setNativeValue(inputTo, high);
+    inputTo.dispatchEvent(e);
 
-    if (!this.state.oldTo && val[1] < this.state.maxVal) {
-      console.log("changing TO from default");
-      this.setNativeValue(inputTo, val[1]);
-      inputTo.dispatchEvent(e);
-      this.setState({ oldTo: val[1] });
-    } else if (!this.state.oldFrom && val[0] > 0) {
-      console.log("changing FROM from default");
-      this.setNativeValue(inputFrom, val[0]);
-      inputFrom.dispatchEvent(e);
-      this.setState({ oldFrom: val[0] });
-    } else if (this.compareStates(this.state.oldTo, val[1])) {
-      console.log("changing to");
-      this.setNativeValue(inputTo, val[1]);
-      inputTo.dispatchEvent(e);
-      this.setState({ oldTo: val[1] });
-    } else if (this.compareStates(this.state.oldFrom, val[0])) {
-      console.log("changing from");
-      /* if (val[0] > parseInt(String(this.props.to), 10)) {
-        console.log("not changing");
-        return;
-      } */
-      this.setNativeValue(inputFrom, val[0]);
-      inputFrom.dispatchEvent(e);
-      this.setState({ oldFrom: val[0] });
-    }
+    this.setState({
+      myFrom: low,
+      myTo: high,
+    });
   }
 
   render() {
     const { from, onChange, to } = this.props;
-
-    console.log(this.state.myFrom);
-    console.log(this.state.myTo);
-    console.log(this.state.maxVal);
+    const range = [
+      parseInt(String(this.state.myFrom), 10),
+      parseInt(String(this.state.myTo), 10),
+    ];
 
     return (
       <div
@@ -217,7 +191,7 @@ class PriceRangeFilter extends React.Component<
 
         <this.StyledSlider
           // @ts-ignore
-          defaultValue={[this.state.myFrom, this.state.myTo]}
+          defaultValue={range}
           max={this.state.maxVal}
           onChange={(value, index) => {
             // console.log(value);
