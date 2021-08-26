@@ -12,6 +12,7 @@ interface PriceRangeFilterProps {
   to: number;
   onChange: (field: "priceLte" | "priceGte", value: number) => void;
   max: number;
+  id: number;
 }
 
 interface PriceRangeFilterState {
@@ -21,6 +22,7 @@ interface PriceRangeFilterState {
   maxVal: number;
   myFrom: number;
   myTo: number;
+  eraseSliderValues: boolean;
 }
 
 class PriceRangeFilter extends React.Component<
@@ -36,6 +38,7 @@ class PriceRangeFilter extends React.Component<
     maxVal: null,
     myFrom: null,
     myTo: null,
+    eraseSliderValues: false,
   };
 
   StyledSlider = styled(ReactSlider)`
@@ -74,13 +77,25 @@ class PriceRangeFilter extends React.Component<
     if (maxVal < 200) {
       maxVal = 200;
     }
+
+    this.state.eraseSliderValues = props.eraseSliderValues;
+
     this.state.maxVal = maxVal || 1000;
 
-    const from = this.props.from || 0;
-    this.state.myFrom = from;
+    if (sessionStorage.getItem(`${this.props.id}-erase`) === "true") {
+      console.log("let's erase the values");
+      this.state.myFrom = 0;
+      this.state.myTo = 10000;
+      this.state.eraseSliderValues = false;
+      sessionStorage.setItem(`${this.props.id}-erase`, "false");
+    } else {
+      console.log("let's not erase them");
+      const from = this.props.from || 0;
+      this.state.myFrom = from;
 
-    const to = this.props.to || 10000;
-    this.state.myTo = to;
+      const to = this.props.to || 10000;
+      this.state.myTo = to;
+    }
 
     // console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(

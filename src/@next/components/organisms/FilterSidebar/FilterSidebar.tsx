@@ -40,6 +40,10 @@ export const FilterSidebar: React.FC<IProps> = ({
   products,
   // @ts-ignore
   max,
+  // @ts-ignore
+  eraseSliderValues,
+  // @ts-ignore
+  id,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -76,6 +80,7 @@ export const FilterSidebar: React.FC<IProps> = ({
     return hasProducts;
   };
 
+  // @ts-ignore
   return (
     <Overlay
       duration={0}
@@ -103,6 +108,8 @@ export const FilterSidebar: React.FC<IProps> = ({
           filters={filters}
           onPriceChange={onPriceFilterChange}
           max={max}
+          eraseSliderValues={eraseSliderValues}
+          id={id}
         />
         <S.SubCat>
           {category && <S.SmHeader2>Categories</S.SmHeader2>}

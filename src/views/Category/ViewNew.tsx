@@ -303,7 +303,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   useEffect(() => {
-    console.log("use effect");
+    console.log("category has changed - reset the filters");
+    sessionStorage.setItem(`${variables.id}-erase`, "true");
   }, [itemId]);
 
   const handleRefresh = () => {};
@@ -444,6 +445,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                               : 0
                           }
                           max={sessionStorage.getItem(variables.id)}
+                          eraseSliderValues={sessionStorage.getItem(
+                            `${variables.id}-erase`
+                          )}
                           onOrder={value => {
                             setSort(value.value);
                           }}

@@ -61,6 +61,7 @@ interface PageProps {
   loadNextPage: () => void;
   loadPrevPage: () => void;
   max: any;
+  eraseSliderValues: any;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -85,6 +86,7 @@ const Page: React.FC<PageProps> = ({
   loadNextPage,
   loadPrevPage,
   max,
+  eraseSliderValues,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
@@ -445,6 +447,8 @@ query CategoryProductsNew(
                       category={categoryData}
                       // @ts-ignore
                       max={maximumValue}
+                      id={variables.id}
+                      eraseSliderValues={eraseSliderValues}
                     />
 
                     <ProductListHeader
