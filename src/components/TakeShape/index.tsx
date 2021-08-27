@@ -79,28 +79,28 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
   const brandsQuery = JSON.stringify({
     query: `
         {
-    getSiteSettings {
-    _id
-    brands {
-      brand {
-        imageAltTag
-        linkUrl
-        logo {
+          getSiteSettings {
           _id
-          caption
-          credit
-          description
-          filename
-          mimeType
-          path
-          sourceUrl
-          title
-          uploadStatus
+          brands {
+            brand {
+              imageAltTag
+              linkUrl
+              logo {
+                _id
+                caption
+                credit
+                description
+                filename
+                mimeType
+                path
+                sourceUrl
+                title
+                uploadStatus
+              }
+            }
+          }
         }
       }
-    }
-  }
-  }
       `,
   });
 
