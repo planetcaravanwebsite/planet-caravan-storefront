@@ -5,7 +5,6 @@ export interface TakeShapeAboutInterface {
 }
 
 export const TakeShapeAbout: React.FC<TakeShapeAboutInterface> = content => {
-  console.log(content);
   return (
     <>
       <h1>{content.content.getPage.content.blocks[0].text}</h1>
