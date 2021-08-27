@@ -142,7 +142,6 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
   const fetchData = async () => {
     const res = await queryData();
-    console.log(res);
     setDynamicContent(res);
   };
 
