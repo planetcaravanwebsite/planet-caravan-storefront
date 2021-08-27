@@ -4,13 +4,13 @@ import * as React from "react";
 
 import { SocialMediaIcon } from "..";
 import { SOCIAL_MEDIA } from "../../core/config";
-import Brands from "./Brands";
+import { TakeShape } from "../TakeShape";
 import Copywrite from "./Copywrite";
 import Nav from "./Nav";
 
 const Footer: React.FC = () => (
   <div className="footer" id="footer">
-    <Brands />
+    <TakeShape position="brandsFooter" />
     <div className="footer__favicons container">
       <div className="margin">
         {SOCIAL_MEDIA.map(medium => (

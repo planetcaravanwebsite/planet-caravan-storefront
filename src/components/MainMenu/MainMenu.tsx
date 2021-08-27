@@ -6,6 +6,7 @@ import { useAuth, useCart } from "@saleor/sdk";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
+import { TakeShape } from "../TakeShape";
 
 import {
   MenuDropdown,
@@ -52,11 +53,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
     <header>
       {whichMenu === "homePage" && (
         <>
-          <div className="coupon-bar-home">
-            <b>Back to School Sale:</b> 15% off entire order!! Use Code:{" "}
-            <b>BACK2SCHOOL</b>
-            <div className="exclusions">*Some exclusions apply</div>
-          </div>
+          <TakeShape position="topBanner" />
         </>
       )}
       <nav
@@ -309,11 +306,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       </nav>
       {whichMenu !== "homePage" && (
         <>
-          <div className="coupon-bar">
-            <b>Back to School Sale:</b> 15% off entire order!! Use Code:{" "}
-            <b>BACK2SCHOOL</b>
-            <div className="exclusions">*Some exclusions apply</div>
-          </div>
+          <TakeShape position="topBanner" />
         </>
       )}
       {whichMenu !== "homePage" && <div className="bottom-bar" />}
