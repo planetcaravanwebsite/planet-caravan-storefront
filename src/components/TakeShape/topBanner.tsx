@@ -5,7 +5,6 @@ export interface TakeShapeTopBannerInterface {
 }
 
 export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content => {
-  console.log(content.content.getSiteSettings.helloBars.topBar);
   if (!content.content.getSiteSettings.helloBars.topBar.display) {
     return <></>;
   }
