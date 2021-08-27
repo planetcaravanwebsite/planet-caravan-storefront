@@ -5,14 +5,27 @@ export interface TakeShapeTopBannerInterface {
 }
 
 export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content => {
+  console.log(content.content.getSiteSettings.helloBars.topBar);
   if (!content.content.getSiteSettings.helloBars.topBar.display) {
     return <></>;
   }
 
   return (
     <>
-      <div className="coupon-bar-home">
-        <b>
+      <div
+        className="coupon-bar-home"
+        style={{
+          backgroundColor:
+            content.content.getSiteSettings.helloBars.topBar.backgroundColor
+              ?.hex,
+        }}
+      >
+        <b
+          style={{
+            color:
+              content.content.getSiteSettings.helloBars.topBar.fontColor?.hex,
+          }}
+        >
           {
             content.content.getSiteSettings.helloBars.topBar.headline.blocks[0]
               .text

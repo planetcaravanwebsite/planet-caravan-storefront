@@ -69,6 +69,12 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
               disclaimer
               display
               headline
+              backgroundColor {
+                hex
+              }
+              fontColor {
+                hex
+              }
             }
           }
         }
