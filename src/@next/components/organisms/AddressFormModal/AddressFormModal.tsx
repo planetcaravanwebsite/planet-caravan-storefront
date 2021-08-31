@@ -69,6 +69,18 @@ export const AddressFormModal: React.FC<IProps> = ({
         formId={formId}
         address={address ? address.address : undefined}
         handleSubmit={data => {
+          // fix: all postal codes with letters need to have them uppercase
+          if (data?.country?.code) {
+            data.postalCode = data.postalCode?.toUpperCase();
+          }
+
+          // fix: If no zip code, then we don't want whitespace either, just a blank field
+          if (data?.countryArea) {
+            if (!data?.countryArea.trim()) {
+              data.countryArea = "";
+            }
+          }
+
           if (userId) {
             setCreatUserAddress({
               input: {
