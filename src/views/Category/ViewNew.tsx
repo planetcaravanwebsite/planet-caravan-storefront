@@ -7,7 +7,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -80,9 +80,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  // @ts-ignore
   const [max, setMax] = useState();
+  const [priceLte, setPriceLte] = useState(null);
   const intl = useIntl();
-  // console.log(priceFilters.priceGte[0]);
+  const [itemId, setItemId] = useState();
+
   let API_URL = process.env.API_URI || "/graphql/";
   if (searchParam) {
     API_URL += "?cache_bust=1";
@@ -122,6 +125,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const onFiltersChange = (name, value) => {
     clearPageData();
+
+    if (name === "priceLte") {
+      setPriceLte(value);
+    }
 
     if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
@@ -188,6 +195,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   }
 
   const queryPricingData = async () => {
+    if (variables.id !== itemId) {
+      // @ts-ignore
+      setItemId(variables.id);
+      // @ts-ignore
+      variables.priceLte = sessionStorage.getItem(variables.id);
+      setPriceLte(variables.priceLte);
+    }
+
     const query = JSON.stringify({
       query: `
       query ProductPrices(
@@ -258,6 +273,20 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       });
       // @ts-ignore
       setMax(maxVal);
+      // @ts-ignore
+      if (
+        !sessionStorage.getItem(variables.id) ||
+        // @ts-ignore
+        maxVal.node.pricing.priceRange.start.net.amount >
+          sessionStorage.getItem(variables.id)
+      ) {
+        sessionStorage.setItem(
+          variables.id,
+          // @ts-ignore
+          maxVal.node.pricing.priceRange.start.net.amount
+        );
+      }
+
       if (
         !pricingData ||
         // @ts-ignore
@@ -272,6 +301,11 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     }
     return true;
   };
+
+  useEffect(() => {
+    console.log("category has changed - reset the filters");
+    sessionStorage.setItem(`${variables.id}-erase`, "true");
+  }, [itemId]);
 
   const handleRefresh = () => {};
 
@@ -317,7 +351,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {category => {
-            return fetchPricing() ? (
+            fetchPricing();
+            variables.priceLte = priceLte;
+
+            return (
               <TypedCategoryProductsQueryNew
                 variables={variables}
                 errorPolicy="all"
@@ -407,7 +444,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                               ? Object.keys(filters!.attributes).length
                               : 0
                           }
-                          max={max}
+                          max={sessionStorage.getItem(variables.id)}
+                          eraseSliderValues={sessionStorage.getItem(
+                            `${variables.id}-erase`
+                          )}
                           onOrder={value => {
                             setSort(value.value);
                           }}
@@ -430,7 +470,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   );
                 }}
               </TypedCategoryProductsQueryNew>
-            ) : null;
+            );
           }}
         </TypedCategoryProductsDataQuery>
       )}

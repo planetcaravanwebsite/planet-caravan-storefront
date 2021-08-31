@@ -21,14 +21,17 @@ export interface ProductFiltersProps {
   filters: Filters;
   onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
   max: number;
+  eraseSliderValues: boolean;
+  id: number;
 }
 
 export const ProductFilters: React.FC<ProductFiltersProps> = ({
   filters,
   onPriceChange,
   max,
+  eraseSliderValues,
+  id,
 }) => {
-  // console.log(max);
   return (
     <div className="product-filters">
       <PriceRangeFilter
@@ -36,6 +39,9 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
         to={filters.priceLte}
         onChange={onPriceChange}
         max={max}
+        id={id}
+        // @ts-ignore
+        eraseSliderValues={eraseSliderValues}
       />
     </div>
   );

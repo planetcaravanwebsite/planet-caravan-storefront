@@ -7,7 +7,7 @@ import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 import { generateCategoryUrl } from "@temp/core/utils";
 
-// import { ProductFilters } from "@temp/components";
+import { ProductFilters } from "@temp/components";
 import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
@@ -40,6 +40,10 @@ export const FilterSidebar: React.FC<IProps> = ({
   products,
   // @ts-ignore
   max,
+  // @ts-ignore
+  eraseSliderValues,
+  // @ts-ignore
+  id,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -53,7 +57,6 @@ export const FilterSidebar: React.FC<IProps> = ({
       if (hasProducts) {
         return false; // break
       }
-      // console.log(product);
       if (!product.attributes) {
         return false;
       }
@@ -77,6 +80,7 @@ export const FilterSidebar: React.FC<IProps> = ({
     return hasProducts;
   };
 
+  // @ts-ignore
   return (
     <Overlay
       duration={0}
@@ -100,11 +104,13 @@ export const FilterSidebar: React.FC<IProps> = ({
             &rarr;
           </button>
         </S.Header>
-        {/* <ProductFilters
+        <ProductFilters
           filters={filters}
           onPriceChange={onPriceFilterChange}
           max={max}
-        /> */}
+          eraseSliderValues={eraseSliderValues}
+          id={id}
+        />
         <S.SubCat>
           {category && <S.SmHeader2>Categories</S.SmHeader2>}
           <ul>

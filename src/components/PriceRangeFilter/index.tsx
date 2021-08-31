@@ -2,9 +2,9 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-// import "rsuite/dist/styles/rsuite-default.css";
-import { RangeSlider } from "rsuite";
+import ReactSlider from "react-slider";
 import { debounce } from "lodash";
+import styled from "styled-components";
 import { TextField } from "..";
 
 interface PriceRangeFilterProps {
@@ -12,15 +12,17 @@ interface PriceRangeFilterProps {
   to: number;
   onChange: (field: "priceLte" | "priceGte", value: number) => void;
   max: number;
+  id: number;
 }
 
 interface PriceRangeFilterState {
   active: boolean;
   newFrom: number;
   newTo: number;
-  oldFrom: number;
-  oldTo: number;
   maxVal: number;
+  myFrom: number;
+  myTo: number;
+  eraseSliderValues: boolean;
 }
 
 class PriceRangeFilter extends React.Component<
@@ -33,20 +35,72 @@ class PriceRangeFilter extends React.Component<
     active: false,
     newFrom: null,
     newTo: null,
-    oldFrom: null,
-    oldTo: null,
     maxVal: null,
+    myFrom: null,
+    myTo: null,
+    eraseSliderValues: false,
   };
+
+  StyledSlider = styled(ReactSlider)`
+    width: 100%;
+    height: 25px;
+    margin-bottom: 14px;
+  `;
+
+  StyledThumb = styled.div`
+    top: -5px;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    font-size: 13px;
+    text-align: center;
+    background-color: #002646;
+    color: #fff;
+    border-radius: 50%;
+    cursor: grab;
+    &:focus {
+      outline: none;
+    }
+  `;
+
+  StyledTrack = styled.div`
+    top: 0;
+    bottom: 0;
+    background: #ddd;
+    border-radius: 999px;
+  `;
 
   constructor(props) {
     super(props);
-    // this.state.newFrom = this.props.from;
-    // this.state.newTo = this.props.to;
-    this.state.maxVal = this.props.max || 200;
-    console.log(this.state.maxVal);
+
+    let maxVal = this.props.max;
+    if (maxVal < 200) {
+      maxVal = 200;
+    }
+
+    this.state.eraseSliderValues = props.eraseSliderValues;
+
+    this.state.maxVal = maxVal || 1000;
+
+    if (sessionStorage.getItem(`${this.props.id}-erase`) === "true") {
+      console.log("let's erase the values");
+      this.state.myFrom = 0;
+      this.state.myTo = 10000;
+      this.state.eraseSliderValues = false;
+      sessionStorage.setItem(`${this.props.id}-erase`, "false");
+    } else {
+      console.log("let's not erase them");
+      const from = this.props.from || 0;
+      this.state.myFrom = from;
+
+      const to = this.props.to || 10000;
+      this.state.myTo = to;
+    }
+
+    // console.log(this.state.maxVal);
     this.changeValueandTrigger = debounce(
       this.changeValueandTrigger.bind(this),
-      500
+      250
     );
   }
 
@@ -73,6 +127,12 @@ class PriceRangeFilter extends React.Component<
       valueSetter.call(element, value);
     }
   }
+
+  Thumb = (props, state) => (
+    <this.StyledThumb {...props}>{state.valueNow}</this.StyledThumb>
+  );
+
+  Track = (props, state) => <this.StyledTrack {...props} index={state.index} />;
 
   handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     this.setState({ active: true });
@@ -108,23 +168,33 @@ class PriceRangeFilter extends React.Component<
   }
 
   changeValueandTrigger(val) {
-    if (this.compareStates(this.state.oldFrom, val[0])) {
-      const e = new Event("input", { bubbles: true });
-      const input = document.querySelector("#fromInput");
-      this.setNativeValue(input, val[0]);
-      input.dispatchEvent(e);
-      this.setState({ oldFrom: val[0] });
-    } else if (this.compareStates(this.state.oldTo, val[1])) {
-      const e = new Event("input", { bubbles: true });
-      const input = document.querySelector("#toInput");
-      this.setNativeValue(input, val[1]);
-      input.dispatchEvent(e);
-      this.setState({ oldTo: val[1] });
-    }
+    const e = new Event("input", { bubbles: true });
+    const inputFrom = document.querySelector("#fromInput");
+    const inputTo = document.querySelector("#toInput");
+
+    const low = val[0] < val[1] ? val[0] : val[1];
+    let high = val[0] > val[1] ? val[0] : val[1];
+
+    if (high > this.state.maxVal) high = this.state.maxVal;
+
+    this.setNativeValue(inputFrom, low);
+    inputFrom.dispatchEvent(e);
+
+    this.setNativeValue(inputTo, high);
+    inputTo.dispatchEvent(e);
+
+    this.setState({
+      myFrom: low,
+      myTo: high,
+    });
   }
 
   render() {
     const { from, onChange, to } = this.props;
+    const range = [
+      parseInt(String(this.state.myFrom), 10),
+      parseInt(String(this.state.myTo), 10),
+    ];
 
     return (
       <div
@@ -133,30 +203,45 @@ class PriceRangeFilter extends React.Component<
         onClick={this.handleClick}
       >
         <p className="p_heading">Price Filter</p>
-        <RangeSlider
-          progress
-          barClassName="styledSlider"
-          style={{ marginTop: 16 }}
-          defaultValue={[from, to]}
+
+        <this.StyledSlider
+          // @ts-ignore
+          defaultValue={range}
           max={this.state.maxVal}
-          onChange={value => {
+          onChange={(value, index) => {
             // console.log(value);
             this.changeValueandTrigger(value);
           }}
+          renderTrack={this.Track}
+          renderThumb={this.Thumb}
         />
 
         <TextField
           id="fromInput"
           type="number"
           placeholder="From"
-          onChange={event => onChange("priceGte", event.target.value as any)}
+          onChange={event => {
+            // @ts-ignore
+            if (parseInt(event.target.value, 10) > parseInt(to, 10)) {
+              // onChange("priceGte", event.target.value as any);
+              return;
+            }
+            onChange("priceGte", event.target.value as any);
+          }}
           value={this.state.newFrom}
         />
         <TextField
           id="toInput"
           type="number"
           placeholder="To"
-          onChange={event => onChange("priceLte", event.target.value as any)}
+          onChange={event => {
+            // @ts-ignore
+            if (parseInt(from, 10) > parseInt(event.target.value, 10)) {
+              // onChange("priceGte", event.target.value as any);
+              return;
+            }
+            onChange("priceLte", event.target.value as any);
+          }}
           value={this.state.newTo}
         />
       </div>

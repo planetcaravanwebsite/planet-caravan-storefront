@@ -60,7 +60,8 @@ interface PageProps {
   currentPage: number;
   loadNextPage: () => void;
   loadPrevPage: () => void;
-  max: number;
+  max: any;
+  eraseSliderValues: any;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -85,9 +86,11 @@ const Page: React.FC<PageProps> = ({
   loadNextPage,
   loadPrevPage,
   max,
+  eraseSliderValues,
 }) => {
   const [attributesFetched, setAttributesFetched] = useState(false);
   const [attributesData, setAttributesData] = useState();
+  const [maximumValue, setMaximumValue] =  useState(0);
 
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   const [productData, setProductData] = useState();
@@ -114,11 +117,17 @@ const Page: React.FC<PageProps> = ({
   const intl = useIntl();
   const [showFilters, setShowFilters] = React.useState(false);
 
-  // @ts-ignore
-  let maxVal = (max ? max.node.pricing.priceRange.start.net.amount : null);
+  let maxVal = max;
+
   if (maxVal < 200) {
     maxVal = 200;
   }
+
+  if (maxVal > maximumValue) {
+    setMaximumValue(maxVal);
+  }
+
+  variables.priceLte = null;
 
   // @ts-ignore
 /*  let sorted = products.products.edges;
@@ -437,7 +446,9 @@ query CategoryProductsNew(
                       products={ productData ? productData.products.edges.map(edge => edge.node) : [] }
                       category={categoryData}
                       // @ts-ignore
-                      max={maxVal}
+                      max={maximumValue}
+                      id={variables.id}
+                      eraseSliderValues={eraseSliderValues}
                     />
 
                     <ProductListHeader

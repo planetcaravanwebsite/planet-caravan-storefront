@@ -3,6 +3,15 @@
 .price-filter {
   position: relative;
 
+  #fromInput {
+    display: none;
+  }
+
+  #toInput {
+    display: none;
+  }
+
+
   &__dropdown {
     display: none;
     position: absolute;
