@@ -162,6 +162,10 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             />
           </S.RowWithTwoCells>
         )}
+        <S.RowWithTwoCells>
+          *If you are in Puerto Rico, please enter &quot;Puerto Rico&quot;
+          instead of &quot;United States&quot; for the country.
+        </S.RowWithTwoCells>
       </S.Wrapper>
     </S.AddressForm>
   );
