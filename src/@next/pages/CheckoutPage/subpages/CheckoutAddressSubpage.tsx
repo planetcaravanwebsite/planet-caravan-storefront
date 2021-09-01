@@ -117,6 +117,13 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       address.postalCode = address.postalCode?.toUpperCase();
     }
 
+    // fix: If no zip code, then we don't want whitespace either, just a blank field
+    if (address?.countryArea) {
+      if (!address?.countryArea.trim()) {
+        address.countryArea = "";
+      }
+    }
+
     if (!address && !billingAsShippingState) {
       setShippingErrors([
         {
