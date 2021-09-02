@@ -5,6 +5,7 @@ import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
 import { TakeShapeTopBanner } from "./topBanner";
+import { TakeShapeHomePageSlider } from "./homePageSlider";
 
 export interface TakeShapeInterface {
   position: any;
@@ -110,6 +111,34 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       `,
   });
 
+  const homePageSliderQuery = JSON.stringify({
+    query: `
+        {
+          getHomePageSlider {
+          _id
+          repeater {
+            object {
+              callToAction
+              sliderImage {
+                _id
+                caption
+                credit
+                description
+                filename
+                mimeType
+                path
+                sourceUrl
+                title
+                uploadStatus
+              }
+              text
+            }
+          }
+        }
+      }
+      `,
+  });
+
   const queryData = async () => {
     let query;
 
@@ -131,6 +160,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
     if (position.position === "brandsFooter") {
       query = brandsQuery;
+    }
+
+    if (position.position === "homePageSlider") {
+      query = homePageSliderQuery;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -198,6 +231,13 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeBrandsFooter content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "homePageSlider") {
+    return (
+      <>
+        <TakeShapeHomePageSlider content={dynamicContent} />
       </>
     );
   }
