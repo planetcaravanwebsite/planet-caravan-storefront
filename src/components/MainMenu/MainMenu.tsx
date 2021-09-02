@@ -53,7 +53,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
     <header>
       {whichMenu === "homePage" && (
         <>
-          <TakeShape position="topBanner" />
+          <TakeShape position="enhancedTopBanner" />
         </>
       )}
       <nav

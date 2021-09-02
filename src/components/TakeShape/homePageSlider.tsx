@@ -6,8 +6,7 @@ const settings = {
   infinite: true,
   autoplay: true,
   speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
+  centerMode: true,
 };
 
 export interface TakeShapeSliderInterface {
@@ -15,12 +14,11 @@ export interface TakeShapeSliderInterface {
 }
 
 export const TakeShapeHomePageSlider: React.FC<TakeShapeSliderInterface> = content => {
-  console.log(content.content.getHomePageSlider.repeater);
   return (
     <div className="container center">
-      <div className="">
-        <div className="">
-          <div style={{ maxWidth: "100vw", margin: "0 auto" }}>
+      <div className="footer-nav__section">
+        <div className="footer-nav__section-content">
+          <div style={{ maxWidth: "620px", margin: "0 auto" }}>
             <Slider {...settings}>
               {content.content.getHomePageSlider.repeater.map((item, i) => (
                 <span className="" key={i}>

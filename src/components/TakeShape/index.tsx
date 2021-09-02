@@ -6,6 +6,7 @@ import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
 import { TakeShapeTopBanner } from "./topBanner";
 import { TakeShapeHomePageSlider } from "./homePageSlider";
+import { TakeShapeEnhancedTopBanner } from "./topEnhancedBanner";
 
 export interface TakeShapeInterface {
   position: any;
@@ -139,6 +140,76 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       `,
   });
 
+  const enhancedMenuQuery = JSON.stringify({
+    query: `
+        {
+          getSiteSettings {
+            _id
+            helloBars {
+              enhancedTopBar {
+                backgroundColor {
+                  hex
+                }
+                button {
+                  buttonColor {
+                    hex
+                  }
+                  buttonCta
+                  buttonTextColor {
+                    hex
+                  }
+                  text
+                  topPixel
+                  rightPixel
+                }
+                desktopImage {
+                  _id
+                  caption
+                  credit
+                  description
+                  filename
+                  mimeType
+                  path
+                  sourceUrl
+                  title
+                  uploadStatus
+                }
+                display
+                headline {
+                  text
+                   fontColor {
+                    hex
+                   }
+                  topPixel
+                  rightPixel
+                }
+                tagline {
+                  text
+                  fontColor {
+                    hex
+                  }
+                  topPixel
+                  rightPixel
+                }
+                mobileImage {
+                  _id
+                  caption
+                  credit
+                  description
+                  filename
+                  mimeType
+                  path
+                  sourceUrl
+                  title
+                  uploadStatus
+                }
+              }
+            }
+          }
+        }
+      `,
+  });
+
   const queryData = async () => {
     let query;
 
@@ -164,6 +235,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
     if (position.position === "homePageSlider") {
       query = homePageSliderQuery;
+    }
+
+    if (position.position === "enhancedTopBanner") {
+      query = enhancedMenuQuery;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -238,6 +313,13 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeHomePageSlider content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "enhancedTopBanner") {
+    return (
+      <>
+        <TakeShapeEnhancedTopBanner content={dynamicContent} />
       </>
     );
   }
