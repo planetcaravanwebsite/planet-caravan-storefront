@@ -15,15 +15,13 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   const bar = content.content.getSiteSettings.helloBars.enhancedTopBar;
 
-  const desktopBackground =
-    bar.backgroundColor
-      ?.hex ||
-    bar.desktopImage;
+  const desktopBackground = bar.desktopImage
+    ? `center/cover no-repeat url(https://images.takeshape.io/${bar.desktopImage.path})`
+    : bar.backgroundColor?.hex;
 
-  const mobileBackground =
-    bar.backgroundColor
-      ?.hex ||
-    bar.mobileImage;
+  const mobileBackground = bar.desktopImage
+    ? `center/cover no-repeat url(https://images.takeshape.io/${bar.mobileImage.path})`
+    : bar.backgroundColor?.hex;
 
   const ContainerMobile = styled.div`
     position: relative;
@@ -52,19 +50,37 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     cursor: pointer;
   `;
 
-  const Header = styled.p`
+  const HeaderMobile = styled.p`
     position: absolute;
-    top: ${bar.headline.topPixel}px;
-    right: ${bar.headline.rightPixel}px;
+    top: ${bar.headline.mobile.topPixel}px;
+    right: ${bar.headline.mobile.rightPixel}px;
     color: ${bar.headline.fontColor?.hex};
     font-weight: bold;
     font-size: 3.5rem;
   `;
 
-  const SubHeader = styled.p`
+  const SubHeaderMobile = styled.p`
     position: absolute;
-    top: ${bar.tagline.topPixel}px;
-    right: ${bar.tagline.rightPixel}px;
+    top: ${bar.tagline.mobile.topPixel}px;
+    right: ${bar.tagline.mobile.rightPixel}px;
+    color: ${bar.tagline.fontColor?.hex};
+    font-weight: bold;
+    font-size: 2.5rem;
+  `;
+
+  const HeaderDesktop = styled.p`
+    position: absolute;
+    top: ${bar.headline.desktop.topPixel}px;
+    right: ${bar.headline.desktop.rightPixel}px;
+    color: ${bar.headline.fontColor?.hex};
+    font-weight: bold;
+    font-size: 3.5rem;
+  `;
+
+  const SubHeaderDesktop = styled.p`
+    position: absolute;
+    top: ${bar.tagline.desktop.topPixel}px;
+    right: ${bar.tagline.desktop.rightPixel}px;
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 2.5rem;
@@ -74,8 +90,8 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     <>
       <Media minWidth="500px">
         <ContainerDesktop>
-          <Header>{bar.headline.text}</Header>
-          <SubHeader>{bar.tagline.text}</SubHeader>
+          <HeaderDesktop>{bar.headline.text}</HeaderDesktop>
+          <SubHeaderDesktop>{bar.tagline.text}</SubHeaderDesktop>
           <a href={bar.button.buttonCta}>
             <MyButton>{bar.button.text}</MyButton>
           </a>
@@ -83,7 +99,11 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       </Media>
       <Media maxWidth="500px">
         <ContainerMobile>
-          Hello mobile
+          <HeaderMobile>{bar.headline.text}</HeaderMobile>
+          <SubHeaderMobile>{bar.tagline.text}</SubHeaderMobile>
+          <a href={bar.button.buttonCta}>
+            <MyButton>{bar.button.text}</MyButton>
+          </a>
         </ContainerMobile>
       </Media>
     </>

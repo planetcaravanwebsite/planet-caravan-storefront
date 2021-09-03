@@ -165,14 +165,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 desktopImage {
                   _id
                   caption
-                  credit
-                  description
-                  filename
-                  mimeType
                   path
-                  sourceUrl
-                  title
-                  uploadStatus
                 }
                 display
                 headline {
@@ -180,28 +173,33 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                    fontColor {
                     hex
                    }
-                  topPixel
-                  rightPixel
+                   mobile {
+                    topPixel
+                    rightPixel
+                   }
+                   desktop {
+                    topPixel
+                    rightPixel
+                   }
                 }
                 tagline {
                   text
                   fontColor {
                     hex
                   }
-                  topPixel
-                  rightPixel
+                  mobile {
+                    topPixel
+                    rightPixel
+                   }
+                   desktop {
+                    topPixel
+                    rightPixel
+                   }
                 }
                 mobileImage {
                   _id
                   caption
-                  credit
-                  description
-                  filename
-                  mimeType
                   path
-                  sourceUrl
-                  title
-                  uploadStatus
                 }
               }
             }
