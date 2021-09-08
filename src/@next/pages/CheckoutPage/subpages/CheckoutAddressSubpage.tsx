@@ -158,6 +158,14 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       return;
     }
 
+    // fix: no trailing and leading whitespaces in email
+    if (email) {
+      email = email.trim();
+    }
+    if (user?.email) {
+      user.email = user.email.trim();
+    }
+
     const shippingEmail = user?.email || email || "";
 
     if (!shippingEmail) {
