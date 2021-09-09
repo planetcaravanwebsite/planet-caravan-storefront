@@ -151,6 +151,14 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                   hex
                 }
                 button {
+                  desktop {
+                    topPixel
+                    rightPixel
+                  }
+                  mobile {
+                    topPixel
+                    rightPixel
+                  }
                   buttonColor {
                     hex
                   }
@@ -159,8 +167,6 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                     hex
                   }
                   text
-                  topPixel
-                  rightPixel
                 }
                 desktopImage {
                   _id
