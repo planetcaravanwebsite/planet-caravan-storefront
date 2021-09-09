@@ -4,9 +4,26 @@ import Slider from "react-slick";
 const settings = {
   dots: false,
   infinite: true,
-  autoplay: true,
+  autoplay: false,
   speed: 500,
   centerMode: true,
+  arrows: true,
+  responsive: [
+    {
+      breakpoint: 650,
+      settings: {
+        variableWidth: true,
+        centerPadding: "50px",
+      },
+    },
+    {
+      breakpoint: 382,
+      settings: {
+        variableWidth: true,
+        centerPadding: "20px",
+      },
+    },
+  ],
 };
 
 export interface TakeShapeSliderInterface {
@@ -16,7 +33,7 @@ export interface TakeShapeSliderInterface {
 export const TakeShapeHomePageSlider: React.FC<TakeShapeSliderInterface> = content => {
   return (
     <div className="container center">
-      <div className="footer-nav__section">
+      <div className="slider-home-page">
         <div className="footer-nav__section-content">
           <div style={{ maxWidth: "620px", margin: "0 auto" }}>
             <Slider {...settings}>
