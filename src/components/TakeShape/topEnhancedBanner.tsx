@@ -57,7 +57,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1.2rem;
-    padding: 0.7rem 3.4rem;
+    padding: 0.5rem 2.4rem;
     border: none;
     -webkit-transition: 0.3s;
     transition: 0.3s;
@@ -71,7 +71,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     right: ${bar.headline.mobile.rightPixel}px;
     color: ${bar.headline.fontColor?.hex};
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 2.3rem;
   `;
 
   const SubHeaderMobile = styled.p`
@@ -80,7 +80,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     right: ${bar.tagline.mobile.rightPixel}px;
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.7rem;
   `;
 
   const HeaderDesktop = styled.p`

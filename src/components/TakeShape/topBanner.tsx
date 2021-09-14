@@ -19,17 +19,22 @@ export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content
               ?.hex,
         }}
       >
-        <b
+        <a
           style={{
             color:
               content.content.getSiteSettings.helloBars.topBar.fontColor?.hex,
           }}
-        >
-          {
-            content.content.getSiteSettings.helloBars.topBar.headline.blocks[0]
-              .text
+          href={
+            content.content.getSiteSettings.helloBars.topBar.callToActionUrl
           }
-        </b>
+        >
+          <p
+            dangerouslySetInnerHTML={{
+              __html:
+                content.content.getSiteSettings.helloBars.topBar.headlineHtml,
+            }}
+          />
+        </a>
         <div className="exclusions">
           {content.content.getSiteSettings.helloBars.topBar.disclaimer}
         </div>

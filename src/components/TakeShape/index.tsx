@@ -70,7 +70,8 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
             topBar {
               disclaimer
               display
-              headline
+              headlineHtml
+              callToActionUrl
               backgroundColor {
                 hex
               }
