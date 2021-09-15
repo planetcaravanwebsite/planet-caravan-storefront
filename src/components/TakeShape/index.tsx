@@ -176,6 +176,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 }
                 display
                 headline {
+                  display
                   text
                    fontColor {
                     hex
@@ -190,6 +191,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                    }
                 }
                 tagline {
+                  display
                   text
                   fontColor {
                     hex

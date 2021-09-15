@@ -14,14 +14,18 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   }
 
   const bar = content.content.getSiteSettings.helloBars.enhancedTopBar;
+  console.log(bar);
+  console.log(bar.desktopImage.path);
 
   const desktopBackground = bar.desktopImage
-    ? `center/cover no-repeat url(https://images.takeshape.io/${bar.desktopImage.path})`
+    ? `center/cover no-repeat url("https://images.takeshape.io/${bar.desktopImage.path}")`
     : bar.backgroundColor?.hex;
 
   const mobileBackground = bar.desktopImage
-    ? `center/cover no-repeat url(https://images.takeshape.io/${bar.mobileImage.path})`
+    ? `center/cover no-repeat url("https://images.takeshape.io/${bar.mobileImage.path}")`
     : bar.backgroundColor?.hex;
+
+  console.log(desktopBackground);
 
   const ContainerMobile = styled.div`
     position: relative;
@@ -105,8 +109,12 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     <>
       <Media minWidth="500px">
         <ContainerDesktop>
-          <HeaderDesktop>{bar.headline.text}</HeaderDesktop>
-          <SubHeaderDesktop>{bar.tagline.text}</SubHeaderDesktop>
+          {bar.headline.display && (
+            <HeaderDesktop>{bar.headline.text}</HeaderDesktop>
+          )}
+          {bar.tagline.display && (
+            <SubHeaderDesktop>{bar.tagline.text}</SubHeaderDesktop>
+          )}
           <a href={bar.button.buttonCta}>
             <MyButtonDesktop>{bar.button.text}</MyButtonDesktop>
           </a>
@@ -114,8 +122,12 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       </Media>
       <Media maxWidth="500px">
         <ContainerMobile>
-          <HeaderMobile>{bar.headline.text}</HeaderMobile>
-          <SubHeaderMobile>{bar.tagline.text}</SubHeaderMobile>
+          {bar.headline.display && (
+            <HeaderMobile>{bar.headline.text}</HeaderMobile>
+          )}
+          {bar.tagline.display && (
+            <SubHeaderMobile>{bar.tagline.text}</SubHeaderMobile>
+          )}
           <a href={bar.button.buttonCta}>
             <MyButtonMobile>{bar.button.text}</MyButtonMobile>
           </a>
