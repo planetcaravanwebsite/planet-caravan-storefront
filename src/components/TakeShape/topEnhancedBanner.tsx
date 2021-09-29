@@ -61,7 +61,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1rem;
-    padding: 0.3rem 2.0rem;
+    padding: 0.3rem 2rem;
     border: none;
     -webkit-transition: 0.3s;
     transition: 0.3s;
