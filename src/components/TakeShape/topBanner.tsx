@@ -35,7 +35,13 @@ export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content
             }}
           />
         </a>
-        <div className="exclusions">
+        <div
+          className="exclusions"
+          style={{
+            color:
+              content.content.getSiteSettings.helloBars.topBar.fontColor?.hex,
+          }}
+        >
           {content.content.getSiteSettings.helloBars.topBar.disclaimer}
         </div>
       </div>
