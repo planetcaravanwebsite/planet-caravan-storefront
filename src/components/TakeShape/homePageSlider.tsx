@@ -31,6 +31,10 @@ export interface TakeShapeSliderInterface {
 }
 
 export const TakeShapeHomePageSlider: React.FC<TakeShapeSliderInterface> = content => {
+  if (!content.content.getHomePageSlider.display) {
+    return <></>;
+  }
+
   return (
     <div className="container center">
       <div className="slider-home-page">

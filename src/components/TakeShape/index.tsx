@@ -118,6 +118,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
         {
           getHomePageSlider {
           _id
+          display
           repeater {
             object {
               callToAction
