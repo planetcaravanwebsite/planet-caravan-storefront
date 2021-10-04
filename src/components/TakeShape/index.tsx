@@ -5,6 +5,8 @@ import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
 import { TakeShapeTopBanner } from "./topBanner";
+import { TakeShapeHomePageSlider } from "./homePageSlider";
+import { TakeShapeEnhancedTopBanner } from "./topEnhancedBanner";
 
 export interface TakeShapeInterface {
   position: any;
@@ -111,6 +113,111 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       `,
   });
 
+  const homePageSliderQuery = JSON.stringify({
+    query: `
+        {
+          getHomePageSlider {
+          _id
+          display
+          repeater {
+            object {
+              callToAction
+              sliderImage {
+                _id
+                caption
+                credit
+                description
+                filename
+                mimeType
+                path
+                sourceUrl
+                title
+                uploadStatus
+              }
+              text
+            }
+          }
+        }
+      }
+      `,
+  });
+
+  const enhancedMenuQuery = JSON.stringify({
+    query: `
+        {
+          getSiteSettings {
+            _id
+            helloBars {
+              enhancedTopBar {
+                backgroundColor {
+                  hex
+                }
+                button {
+                  desktop {
+                    topPixel
+                    rightPixel
+                  }
+                  mobile {
+                    topPixel
+                    rightPixel
+                  }
+                  buttonColor {
+                    hex
+                  }
+                  buttonCta
+                  buttonTextColor {
+                    hex
+                  }
+                  text
+                }
+                desktopImage {
+                  _id
+                  caption
+                  path
+                }
+                display
+                headline {
+                  display
+                  text
+                   fontColor {
+                    hex
+                   }
+                   mobile {
+                    topPixel
+                    rightPixel
+                   }
+                   desktop {
+                    topPixel
+                    rightPixel
+                   }
+                }
+                tagline {
+                  display
+                  text
+                  fontColor {
+                    hex
+                  }
+                  mobile {
+                    topPixel
+                    rightPixel
+                   }
+                   desktop {
+                    topPixel
+                    rightPixel
+                   }
+                }
+                mobileImage {
+                  _id
+                  caption
+                  path
+                }
+              }
+            }
+          }
+        }
+      `,
+  });
+
   const queryData = async () => {
     let query;
 
@@ -132,6 +239,14 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
 
     if (position.position === "brandsFooter") {
       query = brandsQuery;
+    }
+
+    if (position.position === "homePageSlider") {
+      query = homePageSliderQuery;
+    }
+
+    if (position.position === "enhancedTopBanner") {
+      query = enhancedMenuQuery;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -199,6 +314,20 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeBrandsFooter content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "homePageSlider") {
+    return (
+      <>
+        <TakeShapeHomePageSlider content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "enhancedTopBanner") {
+    return (
+      <>
+        <TakeShapeEnhancedTopBanner content={dynamicContent} />
       </>
     );
   }
