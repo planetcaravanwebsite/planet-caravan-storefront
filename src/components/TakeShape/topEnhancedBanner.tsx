@@ -110,7 +110,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   return (
     <>
-      <Media minWidth="500px">
+      <Media minWidth="650px">
         <ContainerDesktop>
           {bar.headline.display && (
             <HeaderDesktop>{bar.headline.text}</HeaderDesktop>
@@ -123,7 +123,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
           </a>
         </ContainerDesktop>
       </Media>
-      <Media maxWidth="500px">
+      <Media maxWidth="649px">
         <ContainerMobile>
           {bar.headline.display && (
             <HeaderMobile>{bar.headline.text}</HeaderMobile>
