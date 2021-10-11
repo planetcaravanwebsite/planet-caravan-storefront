@@ -5,9 +5,7 @@ export interface TakeShapeTopBannerInterface {
   cssClass?: any;
 }
 
-export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = (
-  content
-) => {
+export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content => {
   if (!content.content.getSiteSettings.helloBars.topBar.display) {
     return <></>;
   }
