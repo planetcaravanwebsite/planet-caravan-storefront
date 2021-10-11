@@ -10,6 +10,7 @@ import { TakeShapeEnhancedTopBanner } from "./topEnhancedBanner";
 
 export interface TakeShapeInterface {
   position: any;
+  cssclass?: string;
 }
 
 export const TakeShape: React.FC<TakeShapeInterface> = position => {
@@ -304,9 +305,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     );
   }
   if (position.position === "topBanner") {
+    const cssClass = position.cssclass || "";
     return (
       <>
-        <TakeShapeTopBanner content={dynamicContent} />
+        <TakeShapeTopBanner content={dynamicContent} cssClass={cssClass} />
       </>
     );
   }

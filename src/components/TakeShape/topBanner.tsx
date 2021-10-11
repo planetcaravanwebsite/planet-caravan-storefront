@@ -2,17 +2,22 @@ import React from "react";
 
 export interface TakeShapeTopBannerInterface {
   content: any;
+  cssClass?: any;
 }
 
 export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content => {
   if (!content.content.getSiteSettings.helloBars.topBar.display) {
     return <></>;
   }
+  console.log("here we are: ");
+  console.log(content.cssClass);
+
+  const classes = `coupon-bar-home ${content.cssClass}`;
 
   return (
     <>
       <div
-        className="coupon-bar-home"
+        className={classes}
         style={{
           backgroundColor:
             content.content.getSiteSettings.helloBars.topBar.backgroundColor

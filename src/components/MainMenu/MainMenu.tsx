@@ -57,7 +57,9 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           <TakeShape position="enhancedTopBanner" />
         </>
       )}
-      {whichMenu !== "homePage" && <TakeShape position="topBanner" />}
+      {whichMenu !== "homePage" && (
+        <TakeShape position="topBanner" cssclass="addPadding" />
+      )}
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
           <TypedMainMenuQuery renderOnError displayLoader={false}>
