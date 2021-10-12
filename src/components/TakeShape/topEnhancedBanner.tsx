@@ -17,6 +17,10 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   console.log(bar);
   console.log(bar.desktopImage.path);
 
+  interface iHeader {
+    align?: string;
+  }
+
   const desktopBackground = bar.desktopImage
     ? `center/cover no-repeat url("https://images.takeshape.io/${bar.desktopImage.path}")`
     : bar.backgroundColor?.hex;
@@ -27,22 +31,29 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   console.log(desktopBackground);
 
-  const ContainerMobile = styled.div`
+  const ContainerMobile = styled.div<iHeader>`
     position: relative;
     height: 150px;
     background: ${mobileBackground};
+    text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
 
-  const ContainerDesktop = styled.div`
+  const ContainerDesktop = styled.div<iHeader>`
     position: relative;
     height: 200px;
     background: ${desktopBackground};
+    text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
 
-  const MyButtonDesktop = styled.button`
-    position: absolute;
-    top: ${bar.button.desktop.topPixel}px;
-    right: ${bar.button.desktop.rightPixel}px;
+  const MyButtonDesktop = styled.button<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center" ? "unset" : `${bar.button.desktop.topPixel}px;`};
+    right: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.button.desktop.rightPixel}px`};
+    margin-top : ${props => (props.align === "center" ? "20px" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1.4rem;
@@ -54,10 +65,13 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     cursor: pointer;
   `;
 
-  const MyButtonMobile = styled.button`
-    position: absolute;
-    top: ${bar.button.mobile.topPixel}px;
-    right: ${bar.button.mobile.rightPixel}px;
+  const MyButtonMobile = styled.button<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center" ? "unset" : `${bar.button.mobile.topPixel}px;`};
+    right: ${props =>
+      props.align === "center" ? "unset" : `${bar.button.mobile.rightPixel}px`};
+    margin-top : ${props => (props.align === "center" ? "10px" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1rem;
@@ -69,39 +83,61 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     cursor: pointer;
   `;
 
-  const HeaderMobile = styled.p`
-    position: absolute;
-    top: ${bar.headline.mobile.topPixel}px;
-    right: ${bar.headline.mobile.rightPixel}px;
+  const HeaderMobile = styled.p<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center" ? "45px" : `${bar.headline.mobile.topPixel}px;`};
+    right: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.headline.mobile.rightPixel}px`};
     color: ${bar.headline.fontColor?.hex};
     font-weight: bold;
     font-size: 1.7rem;
     line-height: 2rem;
   `;
 
-  const SubHeaderMobile = styled.p`
-    position: absolute;
-    top: ${bar.tagline.mobile.topPixel}px;
-    right: ${bar.tagline.mobile.rightPixel}px;
+  const SubHeaderMobile = styled.p<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center" ? "unset" : `${bar.tagline.mobile.topPixel}px;`};
+    right: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.tagline.mobile.rightPixel}px`};
+    margin-top : ${props => (props.align === "center" ? "45px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 1.3rem;
   `;
 
-  const HeaderDesktop = styled.p`
-    position: absolute;
-    top: ${bar.headline.desktop.topPixel}px;
-    right: ${bar.headline.desktop.rightPixel}px;
+  const HeaderDesktop = styled.p<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center"
+        ? "20px"
+        : `${bar.headline.desktop.topPixel}px;`};
+    right: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.headline.desktop.rightPixel}px`};
     color: ${bar.headline.fontColor?.hex};
     font-weight: bold;
     font-size: 3.5rem;
     line-height: 2.7rem;
   `;
 
-  const SubHeaderDesktop = styled.p`
-    position: absolute;
-    top: ${bar.tagline.desktop.topPixel}px;
-    right: ${bar.tagline.desktop.rightPixel}px;
+  const SubHeaderDesktop = styled.p<iHeader>`
+    position: ${props => (props.align === "center" ? "relative" : "absolute")};
+    top: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.tagline.desktop.topPixel}px;`};
+    right: ${props =>
+      props.align === "center"
+        ? "unset"
+        : `${bar.tagline.desktop.rightPixel}px`};
+    margin-top : ${props => (props.align === "center" ? "27px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 2.5rem;
@@ -110,29 +146,41 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   return (
     <>
-      <Media minWidth="650px">
-        <ContainerDesktop>
+      <Media minWidth="860px">
+        <ContainerDesktop align={bar.centerAll ? "center" : null}>
           {bar.headline.display && (
-            <HeaderDesktop>{bar.headline.text}</HeaderDesktop>
+            <HeaderDesktop align={bar.centerAll ? "center" : null}>
+              {bar.headline.text}
+            </HeaderDesktop>
           )}
           {bar.tagline.display && (
-            <SubHeaderDesktop>{bar.tagline.text}</SubHeaderDesktop>
+            <SubHeaderDesktop align={bar.centerAll ? "center" : null}>
+              {bar.tagline.text}
+            </SubHeaderDesktop>
           )}
           <a href={bar.button.buttonCta}>
-            <MyButtonDesktop>{bar.button.text}</MyButtonDesktop>
+            <MyButtonDesktop align={bar.centerAll ? "center" : null}>
+              {bar.button.text}
+            </MyButtonDesktop>
           </a>
         </ContainerDesktop>
       </Media>
-      <Media maxWidth="649px">
-        <ContainerMobile>
+      <Media maxWidth="869px">
+        <ContainerMobile align={bar.centerAll ? "center" : null}>
           {bar.headline.display && (
-            <HeaderMobile>{bar.headline.text}</HeaderMobile>
+            <HeaderMobile align={bar.centerAll ? "center" : null}>
+              {bar.headline.text}
+            </HeaderMobile>
           )}
           {bar.tagline.display && (
-            <SubHeaderMobile>{bar.tagline.text}</SubHeaderMobile>
+            <SubHeaderMobile align={bar.centerAll ? "center" : null}>
+              {bar.tagline.text}
+            </SubHeaderMobile>
           )}
           <a href={bar.button.buttonCta}>
-            <MyButtonMobile>{bar.button.text}</MyButtonMobile>
+            <MyButtonMobile align={bar.centerAll ? "center" : null}>
+              {bar.button.text}
+            </MyButtonMobile>
           </a>
         </ContainerMobile>
       </Media>

@@ -150,6 +150,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
             _id
             helloBars {
               enhancedTopBar {
+                centerAll
                 backgroundColor {
                   hex
                 }
