@@ -67,9 +67,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           />
           <Media
             query={{ minWidth: "860px" }}
-            render={() => (
-              <TakeShape position="topBanner" />
-            )}
+            render={() => <TakeShape position="topBanner" />}
           />
         </>
       )}
