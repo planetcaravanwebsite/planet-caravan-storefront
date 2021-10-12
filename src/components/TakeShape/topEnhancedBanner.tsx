@@ -146,7 +146,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   return (
     <>
-      <Media minWidth="860px">
+      <Media minWidth="870px">
         <ContainerDesktop align={bar.centerAll ? "center" : null}>
           {bar.headline.display && (
             <HeaderDesktop align={bar.centerAll ? "center" : null}>
