@@ -58,7 +58,18 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         </>
       )}
       {whichMenu !== "homePage" && (
-        <TakeShape position="topBanner" cssclass="addPadding" />
+        <>
+          <Media
+            query={{ maxWidth: "859px" }}
+            render={() => (
+              <TakeShape position="topBanner" cssclass="addPadding" />
+            )}
+          />
+          <Media
+            query={{ minWidth: "860px" }}
+            render={() => <TakeShape position="topBanner" />}
+          />
+        </>
       )}
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
