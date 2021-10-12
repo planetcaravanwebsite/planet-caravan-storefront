@@ -53,7 +53,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.button.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "20px" : "0")}
+    margin-top : ${props => (props.align === "center" ? "12px" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1.4rem;
@@ -137,7 +137,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.tagline.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "27px" : "0")}
+    margin-top : ${props => (props.align === "center" ? "32px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 2.5rem;
