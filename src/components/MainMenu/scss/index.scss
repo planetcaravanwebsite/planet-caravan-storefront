@@ -52,7 +52,7 @@
         img {
           width: 145px;
           padding-top:28px;
-          @media screen and (max-width: 500px) {
+          @media screen and (max-width: 860px) {
             width: 115px;
             padding-top:22px;
           }
@@ -373,7 +373,7 @@
 }
 
 .coupon-bar-home.addPadding {
-  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .free-bar {

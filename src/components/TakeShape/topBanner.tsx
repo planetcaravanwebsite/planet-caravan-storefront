@@ -10,18 +10,25 @@ export const TakeShapeTopBanner: React.FC<TakeShapeTopBannerInterface> = content
     return <></>;
   }
   console.log("here we are: ");
-  console.log(content.cssClass);
+  console.log(
+    content.content.getSiteSettings.helloBars.topBar.backgroundImage.path
+  );
 
   const classes = `coupon-bar-home ${content.cssClass}`;
+
+  const desktopBackground = content.content.getSiteSettings.helloBars.topBar
+    .backgroundImage
+    ? `center/cover no-repeat url("https://images.takeshape.io/${content.content.getSiteSettings.helloBars.topBar.backgroundImage.path}")`
+    : content.content.getSiteSettings.helloBars.topBar.backgroundColor?.hex;
+
+  console.log(desktopBackground);
 
   return (
     <>
       <div
         className={classes}
         style={{
-          backgroundColor:
-            content.content.getSiteSettings.helloBars.topBar.backgroundColor
-              ?.hex,
+          background: desktopBackground,
         }}
       >
         <a

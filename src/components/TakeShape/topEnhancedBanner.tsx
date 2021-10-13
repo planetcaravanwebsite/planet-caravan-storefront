@@ -7,15 +7,11 @@ export interface TakeShapeTopEnhancedBannerInterface {
 }
 
 export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInterface> = content => {
-  console.log(content.content);
-
   if (!content.content.getSiteSettings.helloBars.enhancedTopBar.display) {
     return <></>;
   }
 
   const bar = content.content.getSiteSettings.helloBars.enhancedTopBar;
-  console.log(bar);
-  console.log(bar.desktopImage.path);
 
   interface iHeader {
     align?: string;
@@ -28,8 +24,6 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const mobileBackground = bar.desktopImage
     ? `center/cover no-repeat url("https://images.takeshape.io/${bar.mobileImage.path}")`
     : bar.backgroundColor?.hex;
-
-  console.log(desktopBackground);
 
   const ContainerMobile = styled.div<iHeader>`
     position: relative;

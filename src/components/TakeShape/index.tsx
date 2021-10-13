@@ -79,6 +79,9 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
               fontColor {
                 hex
               }
+              backgroundImage {
+                path
+              }
             }
           }
         }

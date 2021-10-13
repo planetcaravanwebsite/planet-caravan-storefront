@@ -57,21 +57,14 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           <TakeShape position="enhancedTopBanner" />
         </>
       )}
-      {whichMenu !== "homePage" && (
-        <>
-          <Media
-            query={{ maxWidth: "859px" }}
-            render={() => (
-              <TakeShape position="topBanner" cssclass="addPadding" />
-            )}
-          />
-          <Media
-            query={{ minWidth: "860px" }}
-            render={() => <TakeShape position="topBanner" />}
-          />
-        </>
-      )}
-      <nav className="main-menu" id="header">
+      <nav
+        className={
+          whichMenu !== "homePage"
+            ? "main-menu main-menu__add-margin"
+            : "main-menu"
+        }
+        id="header"
+      >
         <div className="main-menu__left">
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
@@ -314,6 +307,16 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
       </nav>
       {whichMenu !== "homePage" && (
         <>
+          <Media
+            query={{ maxWidth: "859px" }}
+            render={() => (
+              <TakeShape position="topBanner" cssclass="addPadding" />
+            )}
+          />
+          <Media
+            query={{ minWidth: "860px" }}
+            render={() => <TakeShape position="topBanner" />}
+          />
           <TakeShape position="enhancedTopBanner" />
         </>
       )}
