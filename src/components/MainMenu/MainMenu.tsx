@@ -51,12 +51,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
 
   return (
     <header>
-      {whichMenu === "homePage" && (
-        <>
-          <TakeShape position="topBanner" />
-          <TakeShape position="enhancedTopBanner" />
-        </>
-      )}
+      {whichMenu === "homePage" && <></>}
       <nav
         className={
           whichMenu !== "homePage"
@@ -321,6 +316,12 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         </>
       )}
       {whichMenu !== "homePage" && <div className="bottom-bar" />}
+      {whichMenu === "homePage" && (
+        <>
+          <TakeShape position="topBanner" />
+          <TakeShape position="enhancedTopBanner" />
+        </>
+      )}
     </header>
   );
 };
