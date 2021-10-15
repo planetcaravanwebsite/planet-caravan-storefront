@@ -37,11 +37,51 @@ const CheckoutShipping: React.FC<IProps> = ({
       </li>
     </ul>
   );
-  const inStore = (
+  const inStoreJefferson = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Available for pick up at 2826 Jefferson Ave Cincinnati OH during store
-        hours
+        Available for pick up during store hours
+        <br />
+        <br />
+        2826 Jefferson Ave
+        <br />
+        Cincinnati, OH 45219
+      </li>
+    </ul>
+  );
+  const inStoreWestChester = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        <br />
+        <br />
+        8097 Beckett Center Dr
+        <br />
+        West Chester Township, OH 45069
+      </li>
+    </ul>
+  );
+  const inStoreWestMcMillan = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        <br />
+        <br />
+        243 W McMillan St
+        <br />
+        Cincinnati, OH 45219
+      </li>
+    </ul>
+  );
+  const inStoreColerain = (
+    <ul>
+      <li style={{ marginTop: "10px" }}>
+        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        <br />
+        <br />
+        9268 Colerain Ave
+        <br />
+        Cincinnati, OH 45251
       </li>
     </ul>
   );
@@ -107,7 +147,16 @@ const CheckoutShipping: React.FC<IProps> = ({
 
                 switch (id) {
                   case "U2hpcHBpbmdNZXRob2Q6MTU=":
-                    shippingDisclaimer = inStore;
+                    shippingDisclaimer = inStoreJefferson;
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6MTY=":
+                    shippingDisclaimer = inStoreWestChester;
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6MTc=":
+                    shippingDisclaimer = inStoreWestMcMillan;
+                    break;
+                  case "U2hpcHBpbmdNZXRob2Q6MTg=":
+                    shippingDisclaimer = inStoreColerain;
                     break;
                   case "U2hpcHBpbmdNZXRob2Q6OA==":
                     shippingDisclaimer = fedExDomesticOvernight;
