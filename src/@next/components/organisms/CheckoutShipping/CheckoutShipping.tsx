@@ -52,7 +52,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const inStoreWestChester = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        Available for in store pick up during store hours. Please allow 24-48
+        hours for your order to be available (Orders will not be delivered on
+        weekends). You will receive an email when your order is ready.
         <br />
         <br />
         8097 Beckett Center Dr
@@ -64,7 +66,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const inStoreWestMcMillan = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        Available for in store pick up during store hours. Please allow 24-48
+        hours for your order to be available (Orders will not be delivered on
+        weekends). You will receive an email when your order is ready.
         <br />
         <br />
         243 W McMillan St
@@ -76,7 +80,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const inStoreColerain = (
     <ul>
       <li style={{ marginTop: "10px" }}>
-        Available for in store pick up during store hours. Please allow 24-48 hours for your order to be available (Orders will not be delivered on weekends). You will receive an email when your order is ready.
+        Available for in store pick up during store hours. Please allow 24-48
+        hours for your order to be available (Orders will not be delivered on
+        weekends). You will receive an email when your order is ready.
         <br />
         <br />
         9268 Colerain Ave
