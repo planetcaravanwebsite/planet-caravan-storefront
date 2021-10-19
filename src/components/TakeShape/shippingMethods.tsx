@@ -20,8 +20,8 @@ export const TakeShapeShippingMethods: React.FC<TakeShapeShippingMethodsInterfac
     }));
 
   const merged = mergeById(
-    content.content.getSiteSettings.shippingMethods,
-    content.idMap
+    content.idMap,
+    content.content.getSiteSettings.shippingMethods
   );
 
   const sorted = sortBy(merged, "order");
