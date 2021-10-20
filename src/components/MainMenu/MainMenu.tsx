@@ -315,11 +315,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
           <TakeShape position="enhancedTopBanner" />
         </>
       )}
-      {whichMenu !== "homePage" && <div className="bottom-bar" />}
+      {/* whichMenu !== "homePage" && <div className="bottom-bar" /> */}
       {whichMenu === "homePage" && (
         <>
           <TakeShape position="topBanner" />
-          <TakeShape position="enhancedTopBanner" />
+          <TakeShape position="enhancedTopBanner" page="homePage" />
         </>
       )}
     </header>

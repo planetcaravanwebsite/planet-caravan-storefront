@@ -4,6 +4,7 @@ import Media from "react-responsive";
 
 export interface TakeShapeTopEnhancedBannerInterface {
   content: any;
+  page?: string;
 }
 
 export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInterface> = content => {
@@ -13,8 +14,11 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   const bar = content.content.getSiteSettings.helloBars.enhancedTopBar;
 
+  console.log(content.page);
+
   interface iHeader {
     align?: string;
+    page?: string;
   }
 
   const desktopBackground = bar.desktopImage
@@ -28,6 +32,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerMobile = styled.div<iHeader>`
     position: relative;
     height: 150px;
+    margin-bottom: ${props => (props.page === "homePage" ? "30px" : "0")};
     background: ${mobileBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
@@ -35,6 +40,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerDesktop = styled.div<iHeader>`
     position: relative;
     height: 200px;
+    margin-bottom: ${props => (props.page === "homePage" ? "24px" : "0")};
     background: ${desktopBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
@@ -99,7 +105,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.tagline.mobile.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "45px" : "0")}
+    padding-top : ${props => (props.align === "center" ? "45px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 1.3rem;
@@ -131,7 +137,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.tagline.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "32px" : "0")}
+    padding-top : ${props => (props.align === "center" ? "32px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-weight: bold;
     font-size: 2.5rem;
@@ -141,7 +147,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   return (
     <>
       <Media minWidth="870px">
-        <ContainerDesktop align={bar.centerAll ? "center" : null}>
+        <ContainerDesktop align={bar.centerAll ? "center" : null} page={content.page}>
           {bar.headline.display && (
             <HeaderDesktop align={bar.centerAll ? "center" : null}>
               {bar.headline.text}
@@ -160,7 +166,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
         </ContainerDesktop>
       </Media>
       <Media maxWidth="869px">
-        <ContainerMobile align={bar.centerAll ? "center" : null}>
+        <ContainerMobile align={bar.centerAll ? "center" : null} page={content.page}>
           {bar.headline.display && (
             <HeaderMobile align={bar.centerAll ? "center" : null}>
               {bar.headline.text}
