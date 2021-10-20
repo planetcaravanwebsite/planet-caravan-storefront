@@ -7,11 +7,15 @@ import { TakeShapeAbout } from "./about";
 import { TakeShapeTopBanner } from "./topBanner";
 import { TakeShapeHomePageSlider } from "./homePageSlider";
 import { TakeShapeEnhancedTopBanner } from "./topEnhancedBanner";
+import { TakeShapeShippingMethods } from "./shippingMethods";
 
 export interface TakeShapeInterface {
   position: any;
   cssclass?: string;
   page?: string;
+  idMap?: object;
+  selected?: string;
+  setFieldValue?: any;
 }
 
 export const TakeShape: React.FC<TakeShapeInterface> = position => {
@@ -224,35 +228,55 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       `,
   });
 
+  const shippingMethodsQuery = JSON.stringify({
+    query: `
+    {
+      getSiteSettings {
+          _id
+          shippingMethods {
+            description
+            descriptionHtml
+            id
+            tsName
+            needsSignature
+            order
+        }
+      }
+    }
+      `,
+  });
+
   const queryData = async () => {
     let query;
 
-    if (position.position === "locations") {
-      query = locationsQuery;
-    }
-
-    if (position.position === "contact") {
-      query = contactQuery;
-    }
-
-    if (position.position === "about") {
-      query = aboutQuery;
-    }
-
-    if (position.position === "topBanner") {
-      query = menuQuery;
-    }
-
-    if (position.position === "brandsFooter") {
-      query = brandsQuery;
-    }
-
-    if (position.position === "homePageSlider") {
-      query = homePageSliderQuery;
-    }
-
-    if (position.position === "enhancedTopBanner") {
-      query = enhancedMenuQuery;
+    switch (position.position) {
+      default:
+        query = null;
+        break;
+      case "locations":
+        query = locationsQuery;
+        break;
+      case "contact":
+        query = contactQuery;
+        break;
+      case "about":
+        query = aboutQuery;
+        break;
+      case "topBanner":
+        query = menuQuery;
+        break;
+      case "brandsFooter":
+        query = brandsQuery;
+        break;
+      case "homePageSlider":
+        query = homePageSliderQuery;
+        break;
+      case "enhancedTopBanner":
+        query = enhancedMenuQuery;
+        break;
+      case "shippingMethods":
+        query = shippingMethodsQuery;
+        break;
     }
 
     const response = await fetch(process.env.TAKESHAPE_ENDPOINT, {
@@ -337,6 +361,18 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
         <TakeShapeEnhancedTopBanner
           content={dynamicContent}
           page={position.page}
+        />
+      </>
+    );
+  }
+  if (position.position === "shippingMethods") {
+    return (
+      <>
+        <TakeShapeShippingMethods
+          content={dynamicContent}
+          idMap={position.idMap}
+          selected={position.selected}
+          setFieldValue={position.setFieldValue}
         />
       </>
     );

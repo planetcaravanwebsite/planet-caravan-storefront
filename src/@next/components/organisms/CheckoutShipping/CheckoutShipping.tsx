@@ -2,10 +2,10 @@ import { Formik } from "formik";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { ErrorMessage, Radio } from "@components/atoms";
-import { Money } from "@components/containers";
+import { ErrorMessage } from "@components/atoms";
 import { checkoutMessages } from "@temp/intl";
 
+import { TakeShape } from "@temp/components";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -21,53 +21,6 @@ const CheckoutShipping: React.FC<IProps> = ({
   formId,
   formRef,
 }: IProps) => {
-  const fedExDomestic = (
-    <ul>
-      <li style={{ marginTop: "10px" }}>
-        Any package over 645 cubic inches will ship via FedEx Home Delivery.
-        Please see your tracking number for specifications
-      </li>
-    </ul>
-  );
-  const fedExDomesticOvernight = (
-    <ul>
-      <li style={{ marginTop: "10px" }}>
-        Choose FedEx Priority Overnight® for a delivery in 1 or 2 days,
-        depending on the area of delivery
-      </li>
-    </ul>
-  );
-  const inStore = (
-    <ul>
-      <li style={{ marginTop: "10px" }}>
-        Available for pick up at 2826 Jefferson Ave Cincinnati OH during store
-        hours
-      </li>
-    </ul>
-  );
-  const signature = (
-    <ul>
-      <li style={{ marginTop: "10px" }}>
-        Someone at the recipient’s address may sign for the delivery. Direct
-        signature deliveries are made to the address on the mailing label, not
-        to an individual recipient. If no one is at the address, FedEx may
-        reattempt the delivery
-      </li>
-      <li style={{ marginTop: "10px" }}>
-        For more information about FedEx Direct Signature option please visit
-        <a
-          href="https://www.fedex.com/en-us/delivery-options/signature-services.html"
-          rel="noreferrer"
-          target="_blank"
-        >
-          https://www.fedex.com/en-us/delivery-options/signature-services.html
-        </a>
-      </li>
-    </ul>
-  );
-
-  console.log(shippingMethods);
-
   return (
     <section>
       <S.Title data-test="checkoutPageSubtitle">
@@ -99,78 +52,12 @@ const CheckoutShipping: React.FC<IProps> = ({
               ref={formRef}
               onSubmit={handleSubmit}
             >
-              {shippingMethods.map(({ id, name, price }, index) => {
-                const checked =
-                  !!values.shippingMethod && values.shippingMethod === id;
-
-                let shippingDisclaimer;
-
-                switch (id) {
-                  case "U2hpcHBpbmdNZXRob2Q6MTU=":
-                    shippingDisclaimer = inStore;
-                    break;
-                  case "U2hpcHBpbmdNZXRob2Q6OA==":
-                    shippingDisclaimer = fedExDomesticOvernight;
-                    break;
-                  case "U2hpcHBpbmdNZXRob2Q6MTA=":
-                    shippingDisclaimer = (
-                      <>
-                        {fedExDomesticOvernight}
-                        {signature}
-                      </>
-                    );
-                    break;
-                  case "U2hpcHBpbmdNZXRob2Q6MTQ=":
-                    shippingDisclaimer = fedExDomestic;
-                    break;
-                  case "U2hpcHBpbmdNZXRob2Q6MTE=":
-                    shippingDisclaimer = (
-                      <>
-                        {fedExDomestic}
-                        {signature}
-                      </>
-                    );
-                    break;
-                  default:
-                    shippingDisclaimer = <></>;
-                }
-
-                return (
-                  <S.Tile
-                    checked={checked}
-                    key={id}
-                    data-test="shippingMethodTile"
-                    data-test-id={id}
-                  >
-                    <Radio
-                      absolute
-                      name="shippingMethod"
-                      value={id}
-                      checked={checked}
-                      customLabel
-                      onChange={() => setFieldValue("shippingMethod", id)}
-                    >
-                      <S.TileTitle>
-                        <span
-                          data-test="checkoutShippingMethodOptionName"
-                          style={{ fontWeight: "bold" }}
-                        >
-                          {name}
-                        </span>
-                        <S.Price>
-                          {" "}
-                          | +
-                          <Money
-                            data-test="checkoutShippingMethodOptionPrice"
-                            money={price}
-                          />
-                        </S.Price>
-                        {shippingDisclaimer}
-                      </S.TileTitle>
-                    </Radio>
-                  </S.Tile>
-                );
-              })}
+              <TakeShape
+                position="shippingMethods"
+                idMap={shippingMethods}
+                selected={values.shippingMethod}
+                setFieldValue={setFieldValue}
+              />
               <ErrorMessage errors={errors} />
             </S.ShippingMethodForm>
           );

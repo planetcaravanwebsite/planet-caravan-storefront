@@ -14,8 +14,6 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   const bar = content.content.getSiteSettings.helloBars.enhancedTopBar;
 
-  console.log(content.page);
-
   interface iHeader {
     align?: string;
     page?: string;
