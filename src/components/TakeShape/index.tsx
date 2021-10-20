@@ -334,7 +334,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
   if (position.position === "enhancedTopBanner") {
     return (
       <>
-        <TakeShapeEnhancedTopBanner content={dynamicContent} page={position.page} />
+        <TakeShapeEnhancedTopBanner
+          content={dynamicContent}
+          page={position.page}
+        />
       </>
     );
   }

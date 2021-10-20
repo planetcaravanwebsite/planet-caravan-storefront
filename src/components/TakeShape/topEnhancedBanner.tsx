@@ -147,7 +147,10 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   return (
     <>
       <Media minWidth="870px">
-        <ContainerDesktop align={bar.centerAll ? "center" : null} page={content.page}>
+        <ContainerDesktop
+          align={bar.centerAll ? "center" : null}
+          page={content.page}
+        >
           {bar.headline.display && (
             <HeaderDesktop align={bar.centerAll ? "center" : null}>
               {bar.headline.text}
@@ -166,7 +169,10 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
         </ContainerDesktop>
       </Media>
       <Media maxWidth="869px">
-        <ContainerMobile align={bar.centerAll ? "center" : null} page={content.page}>
+        <ContainerMobile
+          align={bar.centerAll ? "center" : null}
+          page={content.page}
+        >
           {bar.headline.display && (
             <HeaderMobile align={bar.centerAll ? "center" : null}>
               {bar.headline.text}
