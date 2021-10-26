@@ -163,6 +163,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                   hex
                 }
                 button {
+                  display
                   desktop {
                     topPixel
                     rightPixel
@@ -188,7 +189,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 display
                 headline {
                   display
-                  text
+                  textHtml
                    fontColor {
                     hex
                    }
@@ -203,7 +204,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 }
                 tagline {
                   display
-                  text
+                  textHtml
                   fontColor {
                     hex
                   }
