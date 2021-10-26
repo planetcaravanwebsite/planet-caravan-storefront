@@ -102,6 +102,9 @@ body {
 
   header {
     background-color: #002646;
+    &.add-pad {
+      padding-bottom: 24px;
+    }
   }
 
   .container {

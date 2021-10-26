@@ -30,7 +30,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerMobile = styled.div<iHeader>`
     position: relative;
     height: 150px;
-    margin-bottom: ${props => (props.page === "homePage" ? "30px" : "0")};
+    margin-bottom: ${props => (props.page === "homePage" ? "0" : "0")};
     background: ${mobileBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
@@ -38,7 +38,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerDesktop = styled.div<iHeader>`
     position: relative;
     height: 200px;
-    margin-bottom: ${props => (props.page === "homePage" ? "24px" : "0")};
+    margin-bottom: ${props => (props.page === "homePage" ? "0" : "0")};
     background: ${desktopBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;

@@ -50,7 +50,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
     0;
 
   return (
-    <header>
+    <header className={whichMenu === "homePage" ? "add-pad" : ""}>
       {whichMenu === "homePage" && <></>}
       <nav
         className={
