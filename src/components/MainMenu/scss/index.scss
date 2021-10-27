@@ -50,11 +50,11 @@
       height: 100%;
       a {
         img {
-          width: 145px;
-          padding-top:28px;
-          @media screen and (max-width: 500px) {
-            width: 115px;
-            padding-top:22px;
+          width: 120px;
+          padding-top:12px;
+          @media screen and (max-width: 860px) {
+            width: 100px;
+            padding-top:5px;
           }
         }
       }
@@ -373,7 +373,7 @@
 }
 
 .coupon-bar-home.addPadding {
-  padding-bottom: 40px;
+  padding-top: 51px;
 }
 
 .free-bar {

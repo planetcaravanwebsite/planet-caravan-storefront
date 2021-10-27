@@ -4,6 +4,7 @@ import Media from "react-responsive";
 
 export interface TakeShapeTopEnhancedBannerInterface {
   content: any;
+  page?: string;
 }
 
 export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInterface> = content => {
@@ -15,6 +16,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
 
   interface iHeader {
     align?: string;
+    page?: string;
   }
 
   const desktopBackground = bar.desktopImage
@@ -28,6 +30,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerMobile = styled.div<iHeader>`
     position: relative;
     height: 150px;
+    margin-bottom: ${props => (props.page === "homePage" ? "0" : "0")};
     background: ${mobileBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
@@ -35,6 +38,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const ContainerDesktop = styled.div<iHeader>`
     position: relative;
     height: 200px;
+    margin-bottom: ${props => (props.page === "homePage" ? "0" : "0")};
     background: ${desktopBackground};
     text-align: ${props => (props.align === "center" ? "center" : "inherit")};
   `;
@@ -47,7 +51,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.button.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "12px" : "0")}
+    margin-top : ${props => (props.align === "center" ? "34px" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1.4rem;
@@ -65,7 +69,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center" ? "unset" : `${bar.button.mobile.topPixel}px;`};
     right: ${props =>
       props.align === "center" ? "unset" : `${bar.button.mobile.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "10px" : "0")}
+    margin-top : ${props => (props.align === "center" ? "0" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1rem;
@@ -80,13 +84,12 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const HeaderMobile = styled.p<iHeader>`
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
-      props.align === "center" ? "45px" : `${bar.headline.mobile.topPixel}px;`};
+      props.align === "center" ? "32px" : `${bar.headline.mobile.topPixel}px;`};
     right: ${props =>
       props.align === "center"
         ? "unset"
         : `${bar.headline.mobile.rightPixel}px`};
     color: ${bar.headline.fontColor?.hex};
-    font-weight: bold;
     font-size: 1.7rem;
     line-height: 2rem;
   `;
@@ -99,9 +102,8 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.tagline.mobile.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "45px" : "0")}
+    padding-top : ${props => (props.align === "center" ? "45px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
-    font-weight: bold;
     font-size: 1.3rem;
   `;
 
@@ -109,14 +111,13 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
       props.align === "center"
-        ? "20px"
+        ? "42px"
         : `${bar.headline.desktop.topPixel}px;`};
     right: ${props =>
       props.align === "center"
         ? "unset"
         : `${bar.headline.desktop.rightPixel}px`};
     color: ${bar.headline.fontColor?.hex};
-    font-weight: bold;
     font-size: 3.5rem;
     line-height: 2.7rem;
   `;
@@ -131,9 +132,8 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.tagline.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "32px" : "0")}
+    padding-top : ${props => (props.align === "center" ? "32px" : "0")}
     color: ${bar.tagline.fontColor?.hex};
-    font-weight: bold;
     font-size: 2.5rem;
     line-height: 2rem;
   `;
@@ -141,41 +141,63 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   return (
     <>
       <Media minWidth="870px">
-        <ContainerDesktop align={bar.centerAll ? "center" : null}>
+        <ContainerDesktop
+          align={bar.centerAll ? "center" : null}
+          page={content.page}
+        >
           {bar.headline.display && (
-            <HeaderDesktop align={bar.centerAll ? "center" : null}>
-              {bar.headline.text}
-            </HeaderDesktop>
+            <HeaderDesktop
+              align={bar.centerAll ? "center" : null}
+              dangerouslySetInnerHTML={{
+                __html: bar.headline.textHtml,
+              }}
+            />
           )}
           {bar.tagline.display && (
-            <SubHeaderDesktop align={bar.centerAll ? "center" : null}>
-              {bar.tagline.text}
-            </SubHeaderDesktop>
+            <SubHeaderDesktop
+              align={bar.centerAll ? "center" : null}
+              dangerouslySetInnerHTML={{
+                __html: bar.tagline.textHtml,
+              }}
+            />
           )}
-          <a href={bar.button.buttonCta}>
-            <MyButtonDesktop align={bar.centerAll ? "center" : null}>
-              {bar.button.text}
-            </MyButtonDesktop>
-          </a>
+          {bar.button.display && (
+            <a href={bar.button.buttonCta}>
+              <MyButtonDesktop align={bar.centerAll ? "center" : null}>
+                {bar.button.text}
+              </MyButtonDesktop>
+            </a>
+          )}
         </ContainerDesktop>
       </Media>
       <Media maxWidth="869px">
-        <ContainerMobile align={bar.centerAll ? "center" : null}>
+        <ContainerMobile
+          align={bar.centerAll ? "center" : null}
+          page={content.page}
+        >
           {bar.headline.display && (
-            <HeaderMobile align={bar.centerAll ? "center" : null}>
-              {bar.headline.text}
-            </HeaderMobile>
+            <HeaderMobile
+              align={bar.centerAll ? "center" : null}
+              dangerouslySetInnerHTML={{
+                __html: bar.headline.textHtml,
+              }}
+            />
           )}
           {bar.tagline.display && (
-            <SubHeaderMobile align={bar.centerAll ? "center" : null}>
-              {bar.tagline.text}
-            </SubHeaderMobile>
+            <SubHeaderMobile
+              align={bar.centerAll ? "center" : null}
+              dangerouslySetInnerHTML={{
+                __html: bar.tagline.textHtml,
+              }}
+            />
           )}
-          <a href={bar.button.buttonCta}>
-            <MyButtonMobile align={bar.centerAll ? "center" : null}>
-              {bar.button.text}
-            </MyButtonMobile>
-          </a>
+          {bar.button.display && (
+            <a href={bar.button.buttonCta}>
+              <MyButtonMobile align={bar.centerAll ? "center" : null}>
+                {bar.button.text}
+              </MyButtonMobile>
+            </a>
+          )}
         </ContainerMobile>
       </Media>
     </>

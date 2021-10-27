@@ -12,6 +12,7 @@ import { TakeShapeShippingMethods } from "./shippingMethods";
 export interface TakeShapeInterface {
   position: any;
   cssclass?: string;
+  page?: string;
   idMap?: object;
   selected?: string;
   setFieldValue?: any;
@@ -82,6 +83,9 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
               }
               fontColor {
                 hex
+              }
+              backgroundImage {
+                path
               }
             }
           }
@@ -159,6 +163,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                   hex
                 }
                 button {
+                  display
                   desktop {
                     topPixel
                     rightPixel
@@ -184,7 +189,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 display
                 headline {
                   display
-                  text
+                  textHtml
                    fontColor {
                     hex
                    }
@@ -199,7 +204,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
                 }
                 tagline {
                   display
-                  text
+                  textHtml
                   fontColor {
                     hex
                   }
@@ -354,7 +359,10 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
   if (position.position === "enhancedTopBanner") {
     return (
       <>
-        <TakeShapeEnhancedTopBanner content={dynamicContent} />
+        <TakeShapeEnhancedTopBanner
+          content={dynamicContent}
+          page={position.page}
+        />
       </>
     );
   }
