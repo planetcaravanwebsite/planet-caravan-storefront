@@ -46,7 +46,9 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const MyButtonDesktop = styled.button<iHeader>`
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
-      props.align === "center" ? "unset" : `${bar.button.desktop.topPixel}px;`};
+      props.align === "center"
+        ? `${bar.button.desktop.topPixel}px;`
+        : `${bar.button.desktop.topPixel}px;`};
     right: ${props =>
       props.align === "center"
         ? "unset"
@@ -66,7 +68,9 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const MyButtonMobile = styled.button<iHeader>`
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
-      props.align === "center" ? "unset" : `${bar.button.mobile.topPixel}px;`};
+      props.align === "center"
+        ? `${bar.button.mobile.topPixel}px;`
+        : `${bar.button.mobile.topPixel}px;`};
     right: ${props =>
       props.align === "center" ? "unset" : `${bar.button.mobile.rightPixel}px`};
     margin-top : ${props => (props.align === "center" ? "0" : "0")}
@@ -120,6 +124,9 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     color: ${bar.headline.fontColor?.hex};
     font-size: 3.5rem;
     line-height: 2.7rem;
+    & p {
+      line-height: 2.5rem;
+    }
   `;
 
   const SubHeaderDesktop = styled.p<iHeader>`
