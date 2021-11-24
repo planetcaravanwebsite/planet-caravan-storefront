@@ -53,11 +53,11 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
       props.align === "center"
         ? "unset"
         : `${bar.button.desktop.rightPixel}px`};
-    margin-top : ${props => (props.align === "center" ? "34px" : "0")}
+    margin-top : ${props => (props.align === "center" ? "0" : "0")}
     background-color: ${bar.button.buttonColor?.hex};
     color: ${bar.button.buttonTextColor?.hex};
     font-size: 1.4rem;
-    padding: 1.2rem 3.5rem;
+    padding: 1rem 3.5rem;
     border: none;
     -webkit-transition: 0.3s;
     transition: 0.3s;
@@ -88,7 +88,9 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const HeaderMobile = styled.p<iHeader>`
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
-      props.align === "center" ? "32px" : `${bar.headline.mobile.topPixel}px;`};
+      props.align === "center"
+        ? `${bar.headline.mobile.topPixel}px;`
+        : `${bar.headline.mobile.topPixel}px;`};
     right: ${props =>
       props.align === "center"
         ? "unset"
@@ -101,12 +103,14 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
   const SubHeaderMobile = styled.p<iHeader>`
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
-      props.align === "center" ? "unset" : `${bar.tagline.mobile.topPixel}px;`};
+      props.align === "center"
+        ? `${bar.tagline.mobile.topPixel}px;`
+        : `${bar.tagline.mobile.topPixel}px;`};
     right: ${props =>
       props.align === "center"
         ? "unset"
         : `${bar.tagline.mobile.rightPixel}px`};
-    padding-top : ${props => (props.align === "center" ? "45px" : "0")}
+    padding-top : ${props => (props.align === "center" ? "0" : "0")}
     color: ${bar.tagline.fontColor?.hex};
     font-size: 1.3rem;
   `;
@@ -115,7 +119,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
       props.align === "center"
-        ? "42px"
+        ? `${bar.headline.desktop.topPixel}px;`
         : `${bar.headline.desktop.topPixel}px;`};
     right: ${props =>
       props.align === "center"
@@ -133,7 +137,7 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     position: ${props => (props.align === "center" ? "relative" : "absolute")};
     top: ${props =>
       props.align === "center"
-        ? "unset"
+        ? `${bar.tagline.desktop.topPixel}px;`
         : `${bar.tagline.desktop.topPixel}px;`};
     right: ${props =>
       props.align === "center"
@@ -143,6 +147,9 @@ export const TakeShapeEnhancedTopBanner: React.FC<TakeShapeTopEnhancedBannerInte
     color: ${bar.tagline.fontColor?.hex};
     font-size: 2.5rem;
     line-height: 2rem;
+    & p {
+      line-height: 2rem;
+    }
   `;
 
   return (
