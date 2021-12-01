@@ -5,6 +5,7 @@ import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
 import { TakeShapeTopBanner } from "./topBanner";
+import { TakeShapeTopNavBar } from "./topNavBar";
 import { TakeShapeHomePageSlider } from "./homePageSlider";
 import { TakeShapeEnhancedTopBanner } from "./topEnhancedBanner";
 import { TakeShapeShippingMethods } from "./shippingMethods";
@@ -64,6 +65,24 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
           contentHtml
           }
          }
+      `,
+  });
+
+  const topNavQuery = JSON.stringify({
+    query: `
+        {
+        getTopSiteNavigation {
+        _id
+        link {
+          name
+          subLink {
+            name
+            url
+          }
+          url
+        }
+      }
+    }
       `,
   });
 
@@ -263,6 +282,9 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       case "about":
         query = aboutQuery;
         break;
+      case "topNavMenu":
+        query = topNavQuery;
+        break;
       case "topBanner":
         query = menuQuery;
         break;
@@ -331,6 +353,14 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeAbout content={dynamicContent} />
+      </>
+    );
+  }
+  if (position.position === "topNavMenu") {
+    const cssClass = position.cssclass || "";
+    return (
+      <>
+        <TakeShapeTopNavBar content={dynamicContent} cssClass={cssClass} />
       </>
     );
   }

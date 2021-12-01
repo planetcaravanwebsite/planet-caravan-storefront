@@ -18,7 +18,6 @@ import {
 } from "..";
 import * as appPaths from "../../app/routes";
 import { maybe } from "../../core/utils";
-import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/noun_cart.svg";
@@ -123,77 +122,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
                       </Link>
                     )}
                     {whichMenu !== "homePage" && (
-                      <>
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <li
-                              data-test="mainMenuItem"
-                              className="main-menu__item"
-                            >
-                              <ul className="main-menu__nav-dropdown">
-                                <li>
-                                  <a href="/collection/drops/4759/">Drops</a>
-                                </li>
-                              </ul>
-                            </li>
-                          )}
-                        />
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() =>
-                            items.map(item => (
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                                key={item.id}
-                              >
-                                <NavDropdown
-                                  overlay={overlayContext}
-                                  {...item}
-                                />
-                              </li>
-                            ))
-                          }
-                        />
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/locations/">Locations</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/about/">About</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/contact/">Contact</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </>
-                          )}
-                        />
-                      </>
+                      <TakeShape position="topNavMenu" />
                     )}
                   </ul>
                 </>
