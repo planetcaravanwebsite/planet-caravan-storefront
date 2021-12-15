@@ -17,11 +17,9 @@ import {
   OverlayType,
 } from "..";
 import * as appPaths from "../../app/routes";
-import { maybe } from "../../core/utils";
 import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/noun_cart.svg";
-import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/pc-logo.png";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
@@ -62,58 +60,18 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         <div className="main-menu__left">
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
-              const items = maybe(() => data.shop.navigation.main.items, []);
               return (
                 <>
                   <ul>
                     {whichMenu !== "homePage" && (
-                      <Media
-                        query={{ maxWidth: mediumScreen }}
-                        render={() => (
-                          <li
-                            data-test="toggleSideMenuLink"
-                            className="main-menu__hamburger"
-                            onClick={() =>
-                              overlayContext.show(
-                                OverlayType.sideNav,
-                                OverlayTheme.left,
-                                { data: items, more: true }
-                              )
-                            }
-                          >
-                            <ReactSVG
-                              path={hamburgerImg}
-                              className="main-menu__hamburger--icon"
-                            />
-                            <ReactSVG
-                              path={hamburgerImg}
-                              className="main-menu__hamburger--hover"
-                            />
-                          </li>
-                        )}
-                      />
+                      <div>
+                        <TakeShape position="topNavMenuMobile" />
+                      </div>
                     )}
                     {whichMenu === "homePage" && (
-                      <li
-                        data-test="toggleSideMenuLink"
-                        className="main-menu__hamburger"
-                        onClick={() =>
-                          overlayContext.show(
-                            OverlayType.sideNav,
-                            OverlayTheme.left,
-                            { data: items, more: true }
-                          )
-                        }
-                      >
-                        <ReactSVG
-                          path={hamburgerImg}
-                          className="main-menu__hamburger--icon"
-                        />
-                        <ReactSVG
-                          path={hamburgerImg}
-                          className="main-menu__hamburger--hover"
-                        />
-                      </li>
+                      <div>
+                        <TakeShape position="topNavMenuMobile" />
+                      </div>
                     )}
 
                     {whichMenu !== "homePage" && (

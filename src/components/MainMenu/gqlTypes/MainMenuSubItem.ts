@@ -7,6 +7,7 @@
 // ====================================================
 
 export interface MainMenuSubItem_category {
+  href?: any;
   __typename: "Category";
   /**
    * The ID of the object.

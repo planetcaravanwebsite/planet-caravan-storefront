@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { TakeShapeBrandsFooter } from "@temp/components/TakeShape/brandsFooter";
+import { TakeShapeTopNavBarMobile } from "@temp/components/TakeShape/topNavBarMobile";
 import { TakeShapeLocations } from "./locations";
 import { TakeShapeContact } from "./contact";
 import { TakeShapeAbout } from "./about";
@@ -83,6 +84,32 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
         }
       }
     }
+      `,
+  });
+
+  const topNavLinksQuery = JSON.stringify({
+    query: `
+{
+  getTopLinks {
+    _id
+    items {
+      category {
+        href
+        id
+        name
+      }
+      children {
+        category {
+          href
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+
       `,
   });
 
@@ -285,6 +312,9 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
       case "topNavMenu":
         query = topNavQuery;
         break;
+      case "topNavMenuMobile":
+        query = topNavLinksQuery;
+        break;
       case "topBanner":
         query = menuQuery;
         break;
@@ -330,11 +360,9 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     // eslint-disable-next-line no-return-assign
     return () => (mounted = false);
   }, [isFetched]);
-
   if (!dynamicContent) {
     return null;
   }
-
   if (position.position === "locations") {
     return (
       <>
@@ -361,6 +389,17 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
     return (
       <>
         <TakeShapeTopNavBar content={dynamicContent} cssClass={cssClass} />
+      </>
+    );
+  }
+  if (position.position === "topNavMenuMobile") {
+    const cssClass = position.cssclass || "";
+    return (
+      <>
+        <TakeShapeTopNavBarMobile
+          content={dynamicContent}
+          cssClass={cssClass}
+        />
       </>
     );
   }

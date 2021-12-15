@@ -61,7 +61,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
   }
 
   render() {
-    const { hideOverlay, more } = this.props;
+    const { hideOverlay } = this.props;
     const { displayedItems, parent } = this.state;
     return (
       <ul>
@@ -97,18 +97,6 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           </>
         )}
 
-        {more && (
-          <li className="side-nav__menu-item">
-            <Link
-              to="/collection/drops/4759/"
-              className="side-nav__menu-item-link"
-              onClick={hideOverlay}
-            >
-              Drops
-            </Link>
-          </li>
-        )}
-
         {displayedItems.map(item => (
           <NavItem
             key={item.id}
@@ -117,38 +105,6 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             {...item}
           />
         ))}
-
-        {more && (
-          <>
-            <li className="side-nav__menu-item">
-              <Link
-                to="/static/locations/"
-                className="side-nav__menu-item-link"
-                onClick={hideOverlay}
-              >
-                Locations
-              </Link>
-            </li>
-            <li className="side-nav__menu-item">
-              <Link
-                to="/static/about/"
-                className="side-nav__menu-item-link"
-                onClick={hideOverlay}
-              >
-                About
-              </Link>
-            </li>
-            <li className="side-nav__menu-item">
-              <Link
-                to="/static/contact/"
-                className="side-nav__menu-item-link"
-                onClick={hideOverlay}
-              >
-                Contact
-              </Link>
-            </li>
-          </>
-        )}
       </ul>
     );
   }
