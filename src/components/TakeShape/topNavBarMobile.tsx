@@ -11,7 +11,6 @@ interface TSMenuItemInterface {
 }
 const TSMenuItem: React.FC<TSMenuItemInterface> = content => {
   const [showDropDown, setShowDropDown] = useState(false);
-  console.log(content.content);
 
   const hasSubNavigation = content.content.subLink?.length;
 
@@ -68,8 +67,6 @@ export interface TakeShapeTopNavBarInterface {
 export const TakeShapeTopNavBarMobile: React.FC<TakeShapeTopNavBarInterface> = content => {
   const overlayContext = useContext(OverlayContext);
 
-  console.log(content.content);
-
   return (
     <>
       {content.content.getTopLinks.items.map((link, i) => (
@@ -86,10 +83,13 @@ export const TakeShapeTopNavBarMobile: React.FC<TakeShapeTopNavBarInterface> = c
             data-test="toggleSideMenuLink"
             className="main-menu__hamburger"
             onClick={() =>
+              // @ts-ignore
               overlayContext.show(
                 OverlayType.sideNav,
                 OverlayTheme.left,
+                // @ts-ignore
                 { data: content.content.getTopLinks.items, more: true }
+                // @ts-ignore
               )
             }
           >
