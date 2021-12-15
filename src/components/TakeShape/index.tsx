@@ -13,6 +13,7 @@ import { TakeShapeShippingMethods } from "./shippingMethods";
 
 export interface TakeShapeInterface {
   position: any;
+  homePage?: string;
   cssclass?: string;
   page?: string;
   idMap?: object;
@@ -84,32 +85,6 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
         }
       }
     }
-      `,
-  });
-
-  const topNavLinksQuery = JSON.stringify({
-    query: `
-{
-  getTopLinks {
-    _id
-    items {
-      category {
-        href
-        id
-        name
-      }
-      children {
-        category {
-          href
-          id
-          name
-        }
-      }
-    }
-  }
-}
-
-
       `,
   });
 
@@ -313,7 +288,7 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
         query = topNavQuery;
         break;
       case "topNavMenuMobile":
-        query = topNavLinksQuery;
+        query = topNavQuery;
         break;
       case "topBanner":
         query = menuQuery;
@@ -394,11 +369,13 @@ export const TakeShape: React.FC<TakeShapeInterface> = position => {
   }
   if (position.position === "topNavMenuMobile") {
     const cssClass = position.cssclass || "";
+    const homePage = position.homePage || "";
     return (
       <>
         <TakeShapeTopNavBarMobile
           content={dynamicContent}
           cssClass={cssClass}
+          homePage={homePage}
         />
       </>
     );

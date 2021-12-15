@@ -5,6 +5,7 @@ import { MainMenuSubItem } from "../MainMenu/gqlTypes/MainMenuSubItem";
 
 export interface INavItem extends MainMenuSubItem {
   children?: INavItem[];
+  subLink?: INavItem[];
 }
 
 interface NavItemProps extends INavItem {
@@ -17,11 +18,8 @@ const NavItem: React.FC<NavItemProps> = ({
   // showSubItems,
   ...item
 }) => {
-  const hasSubNavigation = item.children && !!item.children.length;
+  const hasSubNavigation = item.subLink && !!item.subLink.length;
   const [showChildren, setShowChildren] = React.useState(false);
-
-  console.log(item);
-  console.log(hasSubNavigation);
 
   return (
     <li
@@ -30,11 +28,8 @@ const NavItem: React.FC<NavItemProps> = ({
         "side-nav__menu-item--has-subnavigation": hasSubNavigation,
       })}
     >
-      <a
-        className="side-nav__menu-item-link"
-        href={item.category.href && item.category.href}
-      >
-        {item.category?.name && item.category.name}
+      <a className="side-nav__menu-item-link" href={item.url}>
+        {item.name}
       </a>
 
       {hasSubNavigation && (
@@ -44,7 +39,7 @@ const NavItem: React.FC<NavItemProps> = ({
           </span>
           <div className={`sub-nav ${showChildren ? "show" : ""}`}>
             <ul>
-              {item.children.map(child => (
+              {item.subLink.map(child => (
                 <NavItem key={child.id} hideOverlay={hideOverlay} {...child} />
               ))}
             </ul>

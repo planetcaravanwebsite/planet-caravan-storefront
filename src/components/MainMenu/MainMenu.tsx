@@ -66,7 +66,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
               )}
               {whichMenu === "homePage" && (
                 <div>
-                  <TakeShape position="topNavMenuMobile" />
+                  <TakeShape position="topNavMenuMobile" homePage="homePage" />
                 </div>
               )}
 

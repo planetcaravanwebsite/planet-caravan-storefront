@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Media from "react-media";
-import classNames from "classnames";
+// import classNames from "classnames";
 import { OverlayContext, OverlayTheme, OverlayType } from "@temp/components";
 import ReactSVG from "react-svg";
 import hamburgerImg from "images/hamburger.svg";
 import { mediumScreen } from "../../globalStyles/scss/variables.scss";
-
+/*
 interface TSMenuItemInterface {
   content: any;
 }
@@ -25,9 +25,12 @@ const TSMenuItem: React.FC<TSMenuItemInterface> = content => {
   };
 
   return (
-    <li data-test="mainMenuItem" className="main-menu__item">
-      {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
-      <ul
+    <li data-test="mainMenuItem" className="main-menu__item"> */
+// eslint-disable-next-line no-lone-blocks
+{
+  /* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */
+}
+/*      <ul
         className={classNames({
           "main-menu__nav-dropdown": true,
           "main-menu__nav-dropdown--active": showDropDown,
@@ -57,27 +60,25 @@ const TSMenuItem: React.FC<TSMenuItemInterface> = content => {
       </ul>
     </li>
   );
-};
+}; */
 
 export interface TakeShapeTopNavBarInterface {
   content: any;
   cssClass?: any;
+  homePage?: string;
 }
 
-export const TakeShapeTopNavBarMobile: React.FC<TakeShapeTopNavBarInterface> = content => {
+export const TakeShapeTopNavBarMobile: React.FC<TakeShapeTopNavBarInterface> = ({
+  content,
+  homePage,
+}) => {
   const overlayContext = useContext(OverlayContext);
+  const myMaxWidth = homePage === "homePage" ? 5000 : mediumScreen;
 
   return (
     <>
-      {content.content.getTopLinks.items.map((link, i) => (
-        <Media
-          query={{ minWidth: mediumScreen }}
-          render={() => <TSMenuItem content={link} />}
-        />
-      ))}
-
       <Media
-        query={{ maxWidth: mediumScreen }}
+        query={{ maxWidth: myMaxWidth }}
         render={() => (
           <li
             data-test="toggleSideMenuLink"
@@ -88,7 +89,7 @@ export const TakeShapeTopNavBarMobile: React.FC<TakeShapeTopNavBarInterface> = c
                 OverlayType.sideNav,
                 OverlayTheme.left,
                 // @ts-ignore
-                { data: content.content.getTopLinks.items, more: true }
+                { data: content.getTopSiteNavigation.link, more: true }
                 // @ts-ignore
               )
             }
