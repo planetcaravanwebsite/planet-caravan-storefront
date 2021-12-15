@@ -17,7 +17,6 @@ import {
   OverlayType,
 } from "..";
 import * as appPaths from "../../app/routes";
-import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/noun_cart.svg";
 import logoImg from "../../images/pc-logo.png";
@@ -58,35 +57,27 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         id="header"
       >
         <div className="main-menu__left">
-          <TypedMainMenuQuery renderOnError displayLoader={false}>
-            {({ data }) => {
-              return (
-                <>
-                  <ul>
-                    {whichMenu !== "homePage" && (
-                      <div>
-                        <TakeShape position="topNavMenuMobile" />
-                      </div>
-                    )}
-                    {whichMenu === "homePage" && (
-                      <div>
-                        <TakeShape position="topNavMenuMobile" />
-                      </div>
-                    )}
+          <>
+            <ul>
+              {whichMenu !== "homePage" && (
+                <div>
+                  <TakeShape position="topNavMenuMobile" />
+                </div>
+              )}
+              {whichMenu === "homePage" && (
+                <div>
+                  <TakeShape position="topNavMenuMobile" />
+                </div>
+              )}
 
-                    {whichMenu !== "homePage" && (
-                      <Link to={appPaths.baseUrl}>
-                        <img src={logoImg} alt="" />
-                      </Link>
-                    )}
-                    {whichMenu !== "homePage" && (
-                      <TakeShape position="topNavMenu" />
-                    )}
-                  </ul>
-                </>
-              );
-            }}
-          </TypedMainMenuQuery>
+              {whichMenu !== "homePage" && (
+                <Link to={appPaths.baseUrl}>
+                  <img src={logoImg} alt="" />
+                </Link>
+              )}
+              {whichMenu !== "homePage" && <TakeShape position="topNavMenu" />}
+            </ul>
+          </>
         </div>
 
         <div className="main-menu__center" />
