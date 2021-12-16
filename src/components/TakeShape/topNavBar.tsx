@@ -8,8 +8,6 @@ export interface TSMenuItemInterface {
 }
 const TSMenuItem: React.FC<TSMenuItemInterface> = content => {
   const [showDropDown, setShowDropDown] = useState(false);
-  console.log(content.content);
-
   const hasSubNavigation = content.content.subLink?.length;
 
   const showOverlayHandler = () => {

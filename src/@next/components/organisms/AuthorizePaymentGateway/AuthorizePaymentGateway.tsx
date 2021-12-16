@@ -100,7 +100,7 @@ const AuthorizePaymentGateway: React.FC<IProps> = ({
         });
       })
       .catch(response => {
-        // console.log(response);
+        console.info("auth.net response: ", response);
         const errors = [
           {
             message: response.messages.message[0].text || "",
