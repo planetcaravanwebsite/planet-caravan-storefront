@@ -17,12 +17,8 @@ import {
   OverlayType,
 } from "..";
 import * as appPaths from "../../app/routes";
-import { maybe } from "../../core/utils";
-import NavDropdown from "./NavDropdown";
-import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/noun_cart.svg";
-import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/pc-logo.png";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
@@ -61,145 +57,27 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode, whichMenu }) => {
         id="header"
       >
         <div className="main-menu__left">
-          <TypedMainMenuQuery renderOnError displayLoader={false}>
-            {({ data }) => {
-              const items = maybe(() => data.shop.navigation.main.items, []);
-              return (
-                <>
-                  <ul>
-                    {whichMenu !== "homePage" && (
-                      <Media
-                        query={{ maxWidth: mediumScreen }}
-                        render={() => (
-                          <li
-                            data-test="toggleSideMenuLink"
-                            className="main-menu__hamburger"
-                            onClick={() =>
-                              overlayContext.show(
-                                OverlayType.sideNav,
-                                OverlayTheme.left,
-                                { data: items, more: true }
-                              )
-                            }
-                          >
-                            <ReactSVG
-                              path={hamburgerImg}
-                              className="main-menu__hamburger--icon"
-                            />
-                            <ReactSVG
-                              path={hamburgerImg}
-                              className="main-menu__hamburger--hover"
-                            />
-                          </li>
-                        )}
-                      />
-                    )}
-                    {whichMenu === "homePage" && (
-                      <li
-                        data-test="toggleSideMenuLink"
-                        className="main-menu__hamburger"
-                        onClick={() =>
-                          overlayContext.show(
-                            OverlayType.sideNav,
-                            OverlayTheme.left,
-                            { data: items, more: true }
-                          )
-                        }
-                      >
-                        <ReactSVG
-                          path={hamburgerImg}
-                          className="main-menu__hamburger--icon"
-                        />
-                        <ReactSVG
-                          path={hamburgerImg}
-                          className="main-menu__hamburger--hover"
-                        />
-                      </li>
-                    )}
+          <>
+            <ul>
+              {whichMenu !== "homePage" && (
+                <div>
+                  <TakeShape position="topNavMenuMobile" />
+                </div>
+              )}
+              {whichMenu === "homePage" && (
+                <div>
+                  <TakeShape position="topNavMenuMobile" homePage="homePage" />
+                </div>
+              )}
 
-                    {whichMenu !== "homePage" && (
-                      <Link to={appPaths.baseUrl}>
-                        <img src={logoImg} alt="" />
-                      </Link>
-                    )}
-                    {whichMenu !== "homePage" && (
-                      <>
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <li
-                              data-test="mainMenuItem"
-                              className="main-menu__item"
-                            >
-                              <ul className="main-menu__nav-dropdown">
-                                <li>
-                                  <a href="/collection/drops/4759/">Drops</a>
-                                </li>
-                              </ul>
-                            </li>
-                          )}
-                        />
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() =>
-                            items.map(item => (
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                                key={item.id}
-                              >
-                                <NavDropdown
-                                  overlay={overlayContext}
-                                  {...item}
-                                />
-                              </li>
-                            ))
-                          }
-                        />
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/locations/">Locations</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/about/">About</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li
-                                data-test="mainMenuItem"
-                                className="main-menu__item"
-                              >
-                                <ul className="main-menu__nav-dropdown">
-                                  <li>
-                                    <a href="/static/contact/">Contact</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </>
-                          )}
-                        />
-                      </>
-                    )}
-                  </ul>
-                </>
-              );
-            }}
-          </TypedMainMenuQuery>
+              {whichMenu !== "homePage" && (
+                <Link to={appPaths.baseUrl}>
+                  <img src={logoImg} alt="" />
+                </Link>
+              )}
+              {whichMenu !== "homePage" && <TakeShape position="topNavMenu" />}
+            </ul>
+          </>
         </div>
 
         <div className="main-menu__center" />
