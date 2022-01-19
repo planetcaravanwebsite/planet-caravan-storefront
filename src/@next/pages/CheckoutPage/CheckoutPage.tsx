@@ -229,7 +229,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
-    console.log(getActiveStep().index);
+    // console.log(getActiveStep().index);
     switch (getActiveStep().index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
@@ -272,6 +272,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       });
     } else {
       history.push(steps[activeStepIndex + 1].link);
+      if (currentStep === CheckoutStep.Shipping) {
+        window.location.reload();
+      }
     }
   };
 
