@@ -137,7 +137,8 @@ const Page: React.FC<PageProps> = ({
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           {collection.name === "Drops" && (
             <>
-              <h1 className="normal">Cincinnati Smoke Shop Drops</h1><br />
+              <h1 className="normal">Cincinnati Smoke Shop Drops</h1>
+              <br />
               <h3 className="normal">How Drops Work</h3>
               <ul className="normal">
                 <li>
@@ -187,7 +188,12 @@ const Page: React.FC<PageProps> = ({
               </ul>
             </>
           )}
-          {collection.name == "New Arrivals" ? <><h1>Cincinnati, OH New Arrivals</h1><br /></> : null}
+          {collection.name === "New Arrivals" ? (
+            <>
+              <h1>Cincinnati, OH New Arrivals</h1>
+              <br />
+            </>
+          ) : null}
           <FilterSidebar
             show={showFilters}
             hide={() => setShowFilters(false)}
