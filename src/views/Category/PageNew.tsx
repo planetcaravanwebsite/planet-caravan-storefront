@@ -433,6 +433,17 @@ query CategoryProductsNew(
                     {displayLoader?<Loader />:null}
                     <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
 
+                    {category.name == "Terp Slurper Accessories" ? <><h1>Terp Slurper Accessories</h1><br /></> : null}
+                    {category.name == "Headies" ? <><h1>Cincinnati, OH Headies</h1><br /></> : null}
+                    {category.name == "Caps" ? <><h1>Cincinnati Glass Caps</h1><br /></> : null}
+                    {category.name == "Functional Pipes" ? <><h1>Cincinnati Functional Pipes</h1><br /></> : null}
+                    {category.name == "Mats" ? <><h1>Cincinnati Smoking Mats</h1><br /></> : null}
+                    {category.name == "Merch" ? <><h1>Cincinnati Smoke Shop Merch</h1><br /></> : null}
+                    {category.name == "Pearls" ? <><h1>Cincinnati Banger Beads</h1><br /></> : null}
+                    {category.name == "Pendants & Beads" ? <><h1>Cincinnati Glass Pendants</h1><br /></> : null}
+                    {category.name == "Quartz" ? <><h1>Bangers, Slurpers, Shredders, and More</h1><br /></> : null}
+                    {category.name == "Slides" ? <><h1>Glass Slides</h1><br /></> : null}
+
                     <FilterSidebar
                       show={showFilters}
                       hide={() => setShowFilters(false)}

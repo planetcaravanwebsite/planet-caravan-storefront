@@ -14,7 +14,7 @@ const View: React.FC = () => (
           <MetaWrapper
             meta={{
               description: data.shop ? data.shop.description : "",
-              title: "Planet Caravan | Cincinnati Smoke Shop",
+              title: "Smoke Shop in Cincinnati, OH | Planet Caravan",
             }}
           >
             <Page

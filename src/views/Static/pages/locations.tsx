@@ -7,7 +7,7 @@ export const Locations: React.FC<any> = () => {
     <>
       <div className="container">
         <div className="locations-page">
-          <h1>Locations</h1>
+          <h1>Cincinnati Smoke Shop Locations</h1>
           <div className="locations-grid">
             <TakeShape position="locations" />
           </div>

@@ -17,11 +17,18 @@ export const View: React.FC<ViewProps> = ({
   <div className="home-page">
     <TypedHomePageQuery alwaysRender displayLoader={false} errorPolicy="all">
       {({ data, loading }) => {
+
+        let metaDescription = "";
+        let metaTitle = "";
+        if(slug === "locations") {
+          metaTitle = "Smoke Shop Locations in Cincinnati | Planet Caravan Smoke Shop";
+          metaDescription = "We have 4  great locations for you to choose from for all of your smoking accessories and merch - Jefferson, West McMillan, Colerain, and West Chester.";
+        }
         return (
           <MetaWrapper
             meta={{
-              description: data.shop ? data.shop.description : "",
-              title: data.shop ? data.shop.name : "",
+              description: metaDescription ? metaDescription : data.shop ? data.shop.description : "",
+              title: metaTitle ? metaTitle : data.shop ? data.shop.name : "",
             }}
           >
             <Page
