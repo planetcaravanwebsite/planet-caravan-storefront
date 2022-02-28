@@ -444,6 +444,7 @@ query CategoryProductsNew(
                     {category.name == "Quartz" ? <><h1>Bangers, Slurpers, Shredders, and More</h1><br /></> : null}
                     {category.name == "Slides" ? <><h1>Glass Slides</h1><br /></> : null}
 
+
                     <FilterSidebar
                       show={showFilters}
                       hide={() => setShowFilters(false)}
