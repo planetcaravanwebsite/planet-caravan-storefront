@@ -28,12 +28,9 @@ export const View: React.FC<ViewProps> = ({
         return (
           <MetaWrapper
             meta={{
-              description: metaDescription
-                ? metaDescription
-                : data.shop
-                ? data.shop.description
-                : "",
-              title: metaTitle ? metaTitle : data.shop ? data.shop.name : "",
+              description:
+                metaDescription || data.shop ? data.shop.description : "",
+              title: metaTitle || data.shop ? data.shop.name : "",
             }}
           >
             <Page
