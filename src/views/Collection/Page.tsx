@@ -190,7 +190,7 @@ const Page: React.FC<PageProps> = ({
           )}
           {collection.name === "New Arrivals" ? (
             <>
-              <h1>Cincinnati, OH New Arrivals</h1>
+              <h1 className="custom-smaller-h1">Cincinnati, OH New Arrivals</h1>
               <br />
             </>
           ) : null}
