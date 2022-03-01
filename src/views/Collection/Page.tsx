@@ -137,7 +137,7 @@ const Page: React.FC<PageProps> = ({
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           {collection.name === "Drops" && (
             <>
-              <h1 className="normal">Cincinnati Smoke Shop Drops</h1>
+              <h1 className="custom-smaller-h1">Cincinnati Smoke Shop Drops</h1>
               <br />
               <h3 className="normal">How Drops Work</h3>
               <ul className="normal">
