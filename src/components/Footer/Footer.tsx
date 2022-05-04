@@ -19,6 +19,12 @@ const Footer: React.FC = () => (
       </div>
     </div>
     <Nav />
+    <div className="creditCards">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0609/0827/3825/files/cards.png?v=1651677342"
+        alt=""
+      />
+    </div>
     <Copywrite />
   </div>
 );
