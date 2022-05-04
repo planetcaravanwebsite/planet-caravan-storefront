@@ -6,7 +6,7 @@ class Copyright extends React.PureComponent {
   render() {
     return (
       <div className="container center pad-bottom">
-        &copy; 2021 Planet Caravan, Inc., All rights reserved.
+        &copy; 2022 Planet Caravan, Inc., All rights reserved.
       </div>
     );
   }
